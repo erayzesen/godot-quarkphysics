@@ -1,0 +1,86 @@
+name: Build for All Platforms
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+jobs:
+  windows-build:
+    runs-on: windows-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      - name: Install SCons
+        run: choco install python --version=3.9.0 -y && pip install scons
+
+      - name: Build for Windows
+        run: |
+          scons platform=windows target=release
+
+  linux-build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      - name: Install Dependencies
+        run: sudo apt-get update && sudo apt-get install -y build-essential scons python3
+
+      - name: Build for Linux
+        run: scons platform=linux target=release
+
+  macos-build:
+    runs-on: macos-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      - name: Install Dependencies
+        run: brew install scons
+
+      - name: Build for macOS
+        run: scons platform=macos target=release
+
+  ios-build:
+    runs-on: macos-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      - name: Install Dependencies
+        run: brew install scons
+
+      - name: Build for iOS
+        run: scons platform=ios target=release
+
+  android-build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      - name: Set Up Android SDK and NDK
+        uses: android-actions/setup-android@v2
+        with:
+          ndk-version: r25c
+
+      - name: Build for Android
+        run: scons platform=android target=release android_arch=arm64v8
+
+  web-build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      - name: Set Up Emscripten
+        uses: engine262/setup-emsdk@v1
+        with:
+          version: latest
+
+      - name: Build for Web (Emscripten)
+        run: scons platform=javascript target=release
+
