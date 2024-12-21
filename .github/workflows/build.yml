@@ -13,6 +13,11 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
+        with:
+          submodules: recursive
+
+      - name: Checkout repository
+        uses: actions/checkout@v3
 
       - name: Install dependencies
         run: |
@@ -27,6 +32,11 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
+        with:
+          submodules: recursive
+
+      - name: Checkout repository
+        uses: actions/checkout@v3
 
       - name: Install dependencies
         run: choco install python scons mingw
@@ -37,6 +47,11 @@ jobs:
   android-build:
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+        with:
+          submodules: recursive
+
       - name: Checkout repository
         uses: actions/checkout@v3
 
@@ -54,6 +69,11 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
+        with:
+          submodules: recursive
+
+      - name: Checkout repository
+        uses: actions/checkout@v3
 
       - name: Setup Emscripten
         uses: aykevl/setup-emscripten@v1
@@ -68,6 +88,11 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
+        with:
+          submodules: recursive
+
+      - name: Checkout repository
+        uses: actions/checkout@v3
 
       - name: Install dependencies
         run: brew install scons
@@ -78,6 +103,11 @@ jobs:
   ios-build:
     runs-on: macos-latest
     steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+        with:
+          submodules: recursive
+          
       - name: Checkout repository
         uses: actions/checkout@v3
 
