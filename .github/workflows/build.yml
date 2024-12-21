@@ -1,4 +1,4 @@
-name: Build for all platforms with SCons
+name: Cross-Platform Build
 
 on:
   push:
@@ -8,53 +8,62 @@ on:
   workflow_dispatch:
 
 jobs:
-  web-build:
-    name: Build for Web (Emscripten)
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v3
-
-      - name: Set up Emscripten SDK
-        uses: rroemhild/setup-emsdk@v1
-        with:
-          emsdk-version: latest
-
-      - name: Build with SCons for Web
-        run: |
-          source ./emsdk/emsdk_env.sh
-          scons platform=web
-
   linux-build:
-    name: Build for Linux
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
 
       - name: Install dependencies
-        run: sudo apt-get update && sudo apt-get install -y python3 python3-pip scons g++
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y python3 python3-pip scons g++
 
-      - name: Build with SCons for Linux
+      - name: Build for Linux
         run: scons platform=linux
 
   windows-build:
-    name: Build for Windows
     runs-on: windows-latest
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
 
       - name: Install dependencies
-        run: |
-          choco install python --pre -y
-          choco install scons -y
+        run: choco install python scons mingw
 
-      - name: Build with SCons for Windows
+      - name: Build for Windows
         run: scons platform=windows
 
+  android-build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Setup Android SDK/NDK
+        uses: android-actions/setup-android@v2
+        with:
+          api-level: 30
+          ndk-version: 23.1.7779620
+
+      - name: Build for Android
+        run: scons platform=android
+
+  web-build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Setup Emscripten
+        uses: aykevl/setup-emscripten@v1
+        with:
+          version: latest
+
+      - name: Build for Web
+        run: scons platform=web
+
   macos-build:
-    name: Build for macOS
     runs-on: macos-latest
     steps:
       - name: Checkout repository
@@ -63,18 +72,17 @@ jobs:
       - name: Install dependencies
         run: brew install scons
 
-      - name: Build with SCons for macOS
+      - name: Build for macOS
         run: scons platform=macos
 
   ios-build:
-    name: Build for iOS
     runs-on: macos-latest
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      - name: Install dependencies
-        run: brew install scons
+      - name: Setup Xcode
+        run: xcode-select --switch /Applications/Xcode.app
 
-      - name: Build with SCons for iOS
-        run: scons platform=ios ios_simulator=false
+      - name: Build for iOS
+        run: scons platform=ios
