@@ -1,0 +1,5 @@
+[gd_scene format=3 uid="uid://b5wjks0a7qvwl"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="QWorldNode" type="QWorldNode" parent="."]
