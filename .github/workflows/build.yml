@@ -1,86 +1,80 @@
-name: Build for All Platforms
+name: Build for all platforms with SCons
 
 on:
   push:
     branches:
-      - master
+      - main
   pull_request:
+  workflow_dispatch:
 
 jobs:
-  windows-build:
-    runs-on: windows-latest
+  web-build:
+    name: Build for Web (Emscripten)
+    runs-on: ubuntu-latest
     steps:
-      - name: Checkout Code
+      - name: Checkout repository
         uses: actions/checkout@v3
 
-      - name: Install SCons
-        run: choco install python --version=3.9.0 -y && pip install scons
+      - name: Set up Emscripten SDK
+        uses: rroemhild/setup-emsdk@v1
+        with:
+          emsdk-version: latest
 
-      - name: Build for Windows
+      - name: Build with SCons for Web
         run: |
-          scons platform=windows target=release
+          source ./emsdk/emsdk_env.sh
+          scons platform=web
 
   linux-build:
+    name: Build for Linux
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout Code
+      - name: Checkout repository
         uses: actions/checkout@v3
 
-      - name: Install Dependencies
-        run: sudo apt-get update && sudo apt-get install -y build-essential scons python3
+      - name: Install dependencies
+        run: sudo apt-get update && sudo apt-get install -y python3 python3-pip scons g++
 
-      - name: Build for Linux
-        run: scons platform=linux target=release
+      - name: Build with SCons for Linux
+        run: scons platform=linux
+
+  windows-build:
+    name: Build for Windows
+    runs-on: windows-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Install dependencies
+        run: |
+          choco install python --pre -y
+          choco install scons -y
+
+      - name: Build with SCons for Windows
+        run: scons platform=windows
 
   macos-build:
+    name: Build for macOS
     runs-on: macos-latest
     steps:
-      - name: Checkout Code
+      - name: Checkout repository
         uses: actions/checkout@v3
 
-      - name: Install Dependencies
+      - name: Install dependencies
         run: brew install scons
 
-      - name: Build for macOS
-        run: scons platform=macos target=release
+      - name: Build with SCons for macOS
+        run: scons platform=macos
 
   ios-build:
+    name: Build for iOS
     runs-on: macos-latest
     steps:
-      - name: Checkout Code
+      - name: Checkout repository
         uses: actions/checkout@v3
 
-      - name: Install Dependencies
+      - name: Install dependencies
         run: brew install scons
 
-      - name: Build for iOS
-        run: scons platform=ios target=release
-
-  android-build:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout Code
-        uses: actions/checkout@v3
-
-      - name: Set Up Android SDK and NDK
-        uses: android-actions/setup-android@v2
-        with:
-          ndk-version: r25c
-
-      - name: Build for Android
-        run: scons platform=android target=release android_arch=arm64v8
-
-  web-build:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout Code
-        uses: actions/checkout@v3
-
-      - name: Set Up Emscripten
-        uses: engine262/setup-emsdk@v1
-        with:
-          version: latest
-
-      - name: Build for Web (Emscripten)
-        run: scons platform=javascript target=release
-
+      - name: Build with SCons for iOS
+        run: scons platform=ios ios_simulator=false
