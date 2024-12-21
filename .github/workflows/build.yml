@@ -5,114 +5,323 @@ on:
     branches:
       - master
   pull_request:
+  merge_group:
   workflow_dispatch:
 
+
 jobs:
-  linux-build:
-    runs-on: ubuntu-latest
+  build:
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+        # Debug templates
+          - platform: linux
+            float-precision: single
+            arch: x86_64
+            target-type: template_debug
+            os: ubuntu-20.04
+
+          - platform: windows
+            float-precision: single
+            arch: x86_32
+            target-type: template_debug
+            os: windows-latest
+
+          - platform: windows
+            float-precision: single
+            arch: x86_64
+            target-type: template_debug
+            os: windows-latest
+
+          - platform: macos
+            float-precision: single
+            arch: universal
+            target-type: template_debug
+            os: macos-latest
+
+          - platform: android
+            float-precision: single
+            arch: arm64
+            target-type: template_debug
+            os: ubuntu-20.04
+
+          - platform: android
+            float-precision: single
+            arch: arm32
+            target-type: template_debug
+            os: ubuntu-20.04
+
+          - platform: android
+            float-precision: single
+            arch: x86_64
+            target-type: template_debug
+            os: ubuntu-20.04
+
+          - platform: android
+            float-precision: single
+            arch: x86_32
+            target-type: template_debug
+            os: ubuntu-20.04
+
+          - platform: ios
+            float-precision: single
+            arch: arm64
+            target-type: template_debug
+            os: macos-latest
+
+          - platform: web
+            float-precision: single
+            arch: wasm32
+            target-type: template_debug
+            os: ubuntu-20.04
+
+        # Release templates
+          - platform: linux
+            float-precision: single
+            arch: x86_64
+            target-type: template_release
+            os: ubuntu-20.04
+
+          # - platform: windows
+          #   float-precision: single
+          #   arch: x86_32
+          #   target-type: template_release
+          #   os: windows-latest
+
+          # - platform: windows
+          #   float-precision: single
+          #   arch: x86_64
+          #   target-type: template_release
+          #   os: windows-latest
+
+          # - platform: macos
+          #   float-precision: single
+          #   arch: universal
+          #   target-type: template_release
+          #   os: macos-latest
+
+          # - platform: android
+          #   float-precision: single
+          #   arch: arm64
+          #   target-type: template_release
+          #   os: ubuntu-20.04
+
+          # - platform: android
+          #   float-precision: single
+          #   arch: arm32
+          #   target-type: template_release
+          #   os: ubuntu-20.04
+
+          # - platform: android
+          #   float-precision: single
+          #   arch: x86_64
+          #   target-type: template_release
+          #   os: ubuntu-20.04
+
+          # - platform: android
+          #   float-precision: single
+          #   arch: x86_32
+          #   target-type: template_release
+          #   os: ubuntu-20.04
+
+          # - platform: ios
+          #   float-precision: single
+          #   arch: arm64
+          #   target-type: template_release
+          #   os: macos-latest
+
+          # - platform: web
+          #   float-precision: single
+          #   arch: wasm32
+          #   target-type: template_release
+          #   os: ubuntu-20.04
+
+        # Double precision templates
+        # Double precision debug templates
+          - platform: linux
+            float-precision: double
+            arch: x86_64
+            target-type: template_debug
+            os: ubuntu-20.04
+
+          - platform: windows
+            float-precision: double
+            arch: x86_32
+            target-type: template_debug
+            os: windows-latest
+
+          - platform: windows
+            float-precision: double
+            arch: x86_64
+            target-type: template_debug
+            os: windows-latest
+
+          - platform: macos
+            float-precision: double
+            arch: universal
+            target-type: template_debug
+            os: macos-latest
+
+          - platform: android
+            float-precision: double
+            arch: arm64
+            target-type: template_debug
+            os: ubuntu-20.04
+
+          - platform: android
+            float-precision: double
+            arch: arm32
+            target-type: template_debug
+            os: ubuntu-20.04
+
+          - platform: android
+            float-precision: double
+            arch: x86_64
+            target-type: template_debug
+            os: ubuntu-20.04
+
+          - platform: android
+            float-precision: double
+            arch: x86_32
+            target-type: template_debug
+            os: ubuntu-20.04
+
+          - platform: ios
+            float-precision: double
+            arch: arm64
+            target-type: template_debug
+            os: macos-latest
+
+          - platform: web
+            float-precision: double
+            arch: wasm32
+            target-type: template_debug
+            os: ubuntu-20.04
+
+        # Double precision release templates
+          - platform: linux
+            float-precision: double
+            arch: x86_64
+            target-type: template_release
+            os: ubuntu-20.04
+
+          # - platform: windows
+          #   float-precision: double
+          #   arch: x86_32
+          #   target-type: template_release
+          #   os: windows-latest
+
+          # - platform: windows
+          #   float-precision: double
+          #   arch: x86_64
+          #   target-type: template_release
+          #   os: windows-latest
+
+          # - platform: macos
+          #   float-precision: double
+          #   arch: universal
+          #   target-type: template_release
+          #   os: macos-latest
+
+          # - platform: android
+          #   float-precision: double
+          #   arch: arm64
+          #   target-type: template_release
+          #   os: ubuntu-20.04
+
+          # - platform: android
+          #   float-precision: double
+          #   arch: arm32
+          #   target-type: template_release
+          #   os: ubuntu-20.04
+
+          # - platform: android
+          #   float-precision: double
+          #   arch: x86_64
+          #   target-type: template_release
+          #   os: ubuntu-20.04
+
+          # - platform: android
+          #   float-precision: double
+          #   arch: x86_32
+          #   target-type: template_release
+          #   os: ubuntu-20.04
+
+          # - platform: ios
+          #   float-precision: double
+          #   arch: arm64
+          #   target-type: template_release
+          #   os: macos-latest
+
+          # - platform: web
+          #   float-precision: double
+          #   arch: wasm32
+          #   target-type: template_release
+          #   os: ubuntu-20.04
+    runs-on: ${{ matrix.os }}
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v3
+      - name: Checkout
+        uses: actions/checkout@v4
         with:
-          submodules: recursive
+          submodules: true
 
-      - name: Checkout repository
-        uses: actions/checkout@v3
+# Lint
+      #- name: Setup clang-format
+      #  shell: bash
+      #  run: |
+      #    python -m pip install clang-format
+      #- name: Run clang-format
+      #  shell: bash
+      #  run: |
+      #    clang-format src/** --dry-run --Werror
 
-      - name: Install dependencies
+# Build
+      - name: 🔗 GDExtension Debug Build
+        uses: ./.github/actions/build
+        with:
+          platform: ${{ matrix.platform }}
+          arch: ${{ matrix.arch }}
+          float-precision: ${{ matrix.float-precision }}
+          build-target-type: ${{ matrix.target-type }}
+
+# Sign
+      - name: Mac Sign
+        # Disable sign if secrets are not set
+        if: ${{ matrix.platform == 'macos' && env.APPLE_CERT_BASE64 }}
+        env:
+          APPLE_CERT_BASE64: ${{ secrets.APPLE_CERT_BASE64 }}
+        uses: ./.github/actions/sign
+        with:
+          FRAMEWORK_PATH: bin/macos/macos.framework
+          APPLE_CERT_BASE64: ${{ secrets.APPLE_CERT_BASE64 }}
+          APPLE_CERT_PASSWORD: ${{ secrets.APPLE_CERT_PASSWORD }}
+          APPLE_DEV_PASSWORD: ${{ secrets.APPLE_DEV_PASSWORD }}
+          APPLE_DEV_ID: ${{ secrets.APPLE_DEV_ID }}
+          APPLE_DEV_TEAM_ID: ${{ secrets.APPLE_DEV_TEAM_ID }}
+          APPLE_DEV_APP_ID: ${{ secrets.APPLE_DEV_APP_ID }}
+
+      - name: Windows - Delete compilation files
+        if: ${{ matrix.platform == 'windows' }}
+        shell: pwsh
         run: |
-          sudo apt-get update
-          sudo apt-get install -y python3 python3-pip scons g++
+          Remove-Item bin/* -Include *.exp,*.lib,*.pdb -Force
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: godot-cpp-template-${{ matrix.platform }}-${{ matrix.arch }}-${{ matrix.float-precision }}-${{ matrix.target-type }}
+          path: |
+            ${{ github.workspace }}/bin/**
 
-      - name: Build for Linux
-        run: scons platform=linux
-
-  windows-build:
-    runs-on: windows-latest
+  # Merges all the build artifacts together into a single godot-cpp-template artifact.
+  # If you comment out this step, all the builds will be uploaded individually.
+  merge:
+    runs-on: ubuntu-20.04
+    needs: build
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v3
+      - name: Merge Artifacts
+        uses: actions/upload-artifact/merge@v4
         with:
-          submodules: recursive
-
-      - name: Checkout repository
-        uses: actions/checkout@v3
-
-      - name: Install dependencies
-        run: choco install python scons mingw
-
-      - name: Build for Windows
-        run: scons platform=windows
-
-  android-build:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v3
-        with:
-          submodules: recursive
-
-      - name: Checkout repository
-        uses: actions/checkout@v3
-
-      - name: Setup Android SDK/NDK
-        uses: android-actions/setup-android@v2
-        with:
-          api-level: 30
-          ndk-version: 23.1.7779620
-
-      - name: Build for Android
-        run: scons platform=android
-
-  web-build:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v3
-        with:
-          submodules: recursive
-
-      - name: Checkout repository
-        uses: actions/checkout@v3
-
-      - name: Setup Emscripten
-        uses: aykevl/setup-emscripten@v1
-        with:
-          version: latest
-
-      - name: Build for Web
-        run: scons platform=web
-
-  macos-build:
-    runs-on: macos-latest
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v3
-        with:
-          submodules: recursive
-
-      - name: Checkout repository
-        uses: actions/checkout@v3
-
-      - name: Install dependencies
-        run: brew install scons
-
-      - name: Build for macOS
-        run: scons platform=macos
-
-  ios-build:
-    runs-on: macos-latest
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v3
-        with:
-          submodules: recursive
-          
-      - name: Checkout repository
-        uses: actions/checkout@v3
-
-      - name: Setup Xcode
-        run: xcode-select --switch /Applications/Xcode.app
-
-      - name: Build for iOS
-        run: scons platform=ios
+          name: godot-cpp-template
+          pattern: godot-cpp-template-*
+          delete-merged: true
