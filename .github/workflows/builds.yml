@@ -316,11 +316,12 @@ jobs:
   # Merges all the build artifacts together into a single godot-cpp-template artifact.
   # If you comment out this step, all the builds will be uploaded individually.
   merge:
-  runs-on: ubuntu-20.04
-  needs: build
-  steps:
-    - name: Upload project directory as artifact
-      uses: actions/upload-artifact@v4
-      with:
-        name: godot-quarkphysics
-        path: ${{ github.workspace }}/project/
+    runs-on: ubuntu-20.04
+    needs: build
+    steps:
+      - name: Upload project directory as artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: godot-quarkphysics
+          path: ${{ github.workspace }}/project/
+          delete-merged: true
