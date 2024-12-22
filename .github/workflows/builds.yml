@@ -330,15 +330,18 @@ jobs:
       runs-on: ubuntu-20.04
       needs: merge
       steps:
+        - name: Checkout
+          uses: actions/checkout@v4
+          with:
+            submodules: true
 
         - name: Download all build artifacts
           uses: actions/download-artifact@v4
           with:
-            name: bin
-            path: ./downloaded-artifacts
+            path: downloaded-artifacts
 
         - name: Copy files to project/addons/quarkphysics/bin
-          run: cp -r -f ./downloaded-artifacts/* project/addons/quarkphysics/bin/
+          run: cp -r -f downloaded-artifacts/* project/addons/quarkphysics/bin/
 
         - name: Upload Project Artifact
           uses: actions/upload-artifact@v4
