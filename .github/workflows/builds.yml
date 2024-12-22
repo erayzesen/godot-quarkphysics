@@ -341,7 +341,7 @@ jobs:
             path: downloaded-artifacts
 
         - name: Copy files to project/addons/quarkphysics/bin
-          run: cp -r -f downloaded-artifacts/* project/addons/quarkphysics/bin/
+          run: cp -r -f downloaded-artifacts/bin/* project/addons/quarkphysics/bin/
 
         - name: Upload Project Artifact
           uses: actions/upload-artifact@v4
