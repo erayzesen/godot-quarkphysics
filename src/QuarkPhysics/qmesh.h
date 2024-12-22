@@ -33,6 +33,7 @@
 #include "qparticle.h"
 #include "json/json.hpp"
 #include "fstream"
+#include "qmath_utils.h"
 
 using json =nlohmann::json;
 

@@ -15,7 +15,7 @@ Note: This project is currently in the alpha stage. You can test it and contribu
 
 ## How to Use? 
 
-Until a stable release is published, no precompiled builds or initial releases are available. You can fork the project and compile it using Godot's official GDExtension compilation tutorials. The builds are placed in the `/project/addons/quarkphysics/bin directory`. You can copy the `addons` folder under the `project` directory to your project and start using it. Alternatively, you can check out the example Godot project available in the `/project` directory of this repository.
+Until a stable release is published, no precompiled builds or initial releases are available. You can fork the project and compile it using Godot's official GDExtension compilation tutorials. The builds are placed in the `/project/addons/quarkphysics/bin` directory. You can copy the `addons` folder under the `project` directory to your project and start using it. Alternatively, you can check out the example Godot project available in the `/project` directory of this repository.
 
 
 
