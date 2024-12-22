@@ -326,24 +326,24 @@ jobs:
           pattern: libquarkphysics-*
           delete-merged: true
 
-package:
-    runs-on: ubuntu-20.04
-    needs: build
-    steps:
+  package:
+      runs-on: ubuntu-20.04
+      needs: build
+      steps:
 
-      - name: Download all build artifacts
-        uses: actions/download-artifact@v4
-        with:
-          path: ./downloaded-artifacts
+        - name: Download all build artifacts
+          uses: actions/download-artifact@v4
+          with:
+            path: ./downloaded-artifacts
 
-      - name: Unzip Artifact
-        run: unzip ./downloaded-artifacts/bin.zip -d ./unzipped-artifacts
+        - name: Unzip Artifact
+          run: unzip ./downloaded-artifacts/bin.zip -d ./unzipped-artifacts
 
-      - name: Copy files to project/addons/quarkphysics/bin
-        run: cp -r -f ./unzipped-artifacts/* project/addons/quarkphysics/bin/
+        - name: Copy files to project/addons/quarkphysics/bin
+          run: cp -r -f ./unzipped-artifacts/* project/addons/quarkphysics/bin/
 
-      - name: Upload Project Artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: godot-quarkphysics
-          path: project/**
+        - name: Upload Project Artifact
+          uses: actions/upload-artifact@v4
+          with:
+            name: godot-quarkphysics
+            path: project/**
