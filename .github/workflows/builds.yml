@@ -198,15 +198,18 @@ jobs:
           path: |
             ${{ github.workspace }}/project/addons/quarkphysics/bin/**
 
-  # Merges all the build artifacts together into a single godot-quarkphysics artifact.
-  # If you comment out this step, all the builds will be uploaded individually.
-  merge:
+  # Package the entire project folder as an artifact
+  package:
     runs-on: ubuntu-20.04
     needs: build
     steps:
-      - name: Merge Artifacts
-        uses: actions/upload-artifact/merge@v4
+      - name: Checkout
+        uses: actions/checkout@v4
         with:
-          name: godot-quarkphysics
-          pattern: godot-quarkphysics-*
-          delete-merged: true
+          submodules: true
+
+      - name: Upload Project Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: project-artifact
+          path: project/**
