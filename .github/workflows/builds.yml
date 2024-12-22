@@ -198,7 +198,8 @@ jobs:
           path: |
             ${{ github.workspace }}/project/addons/quarkphysics/bin/**
 
-merge:
+  # Package the entire project folder as an artifact
+  package:
     runs-on: ubuntu-20.04
     needs: build
     steps:
@@ -211,9 +212,6 @@ merge:
         uses: actions/download-artifact@v4
         with:
           path: build_artifacts
-
-      - name: Create bin directory
-        run: mkdir -p project/addons/quarkphysics/bin
 
       - name: Move all build artifacts to bin directory
         run: |
