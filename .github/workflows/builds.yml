@@ -168,6 +168,12 @@ jobs:
           float-precision: ${{ matrix.float-precision }}
           build-target-type: ${{ matrix.target-type }}
 
+      # Copy build outputs to the common bin directory
+      - name: Copy Build Outputs
+        run: |
+          mkdir -p project/addons/quarkphysics/bin
+          cp -r build/output/* project/addons/quarkphysics/bin/
+
       # Sign for Mac
       - name: Mac Sign
         if: ${{ matrix.platform == 'macos' && env.APPLE_CERT_BASE64 }}
@@ -189,14 +195,6 @@ jobs:
         shell: pwsh
         run: |
           Remove-Item project/addons/quarkphysics/bin/* -Include *.exp,*.lib,*.pdb -Force
-
-      # Upload Artifact
-      - name: Upload Artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: godot-quarkphysics-${{ matrix.platform }}-${{ matrix.arch }}-${{ matrix.float-precision }}-${{ matrix.target-type }}
-          path: |
-            ${{ github.workspace }}/project/addons/quarkphysics/bin/**
 
   # Package the entire project folder as an artifact
   package:
