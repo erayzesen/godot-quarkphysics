@@ -84,8 +84,8 @@ void QSpring::Update(float rigidity,bool internalsException, bool isWorldSpring)
 
 	
 	
-	if(pA->GetOwnerMesh()!=nullptr and pB->GetOwnerMesh()!=nullptr){
-		if(pA->GetOwnerMesh()->GetOwnerBody()!=nullptr and pB->GetOwnerMesh()->GetOwnerBody()!=nullptr){
+	if(pA->GetOwnerMesh()!=nullptr && pB->GetOwnerMesh()!=nullptr){
+		if(pA->GetOwnerMesh()->GetOwnerBody()!=nullptr && pB->GetOwnerMesh()->GetOwnerBody()!=nullptr){
 			if (pA->GetOwnerMesh()->GetOwnerBody()->GetIsSleeping() && pB->GetOwnerMesh()->GetOwnerBody()->GetIsSleeping() ){
 				return;
 			}

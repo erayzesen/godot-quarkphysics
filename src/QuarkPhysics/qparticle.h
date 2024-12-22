@@ -86,7 +86,7 @@ public:
 		return r;
 	}
 	/** Returns whether the particle is internal. Internal particle definition is used not for the particles that define the collision boundaries of a mesh, but for the grid particles inside these boundaries. This feature is important for simulation types that require different internal particle simulation, such as volume preserved soft bodies.*/
-	float GetIsInternal(){
+	bool GetIsInternal(){
 		return isInternal;
 	}
 	/** Returns the current force value of the particle. */

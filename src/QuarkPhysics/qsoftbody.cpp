@@ -196,14 +196,14 @@ void QSoftBody::PreserveAreas()
 		float pressure=(deltaArea/circumference)*areaPreservingRigidity;
 
 		
-		QVector volumeForces[mesh->polygon.size()];
+		vector<QVector> volumeForces;
 		QVector centerOfMesh=QMesh::GetAveragePositionAndRotation(mesh->polygon).first;
 		for(int n=0;n<mesh->polygon.size();n++){
 			QParticle *pp=mesh->polygon[ (n-1+mesh->polygon.size())%mesh->polygon.size() ];
 			QParticle *np=mesh->polygon[ (n+1)%mesh->polygon.size() ];
 			QVector vec=np->GetGlobalPosition()-pp->GetGlobalPosition();
 			QVector normal=vec.Perpendicular().Normalized();
-			volumeForces[n]=pressure*(normal)*ts;
+			volumeForces.push_back(pressure*(normal)*ts);
 		}
 
 		for(int n=0;n<mesh->polygon.size();n++){
