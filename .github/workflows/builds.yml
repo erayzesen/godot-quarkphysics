@@ -283,6 +283,7 @@ jobs:
           arch: ${{ matrix.arch }}
           float-precision: ${{ matrix.float-precision }}
           build-target-type: ${{ matrix.target-type }}
+          
 
 # Sign
       - name: Mac Sign
@@ -315,12 +316,11 @@ jobs:
   # Merges all the build artifacts together into a single godot-cpp-template artifact.
   # If you comment out this step, all the builds will be uploaded individually.
   merge:
-    runs-on: ubuntu-20.04
-    needs: build
-    steps:
-      - name: Merge Artifacts
-        uses: actions/upload-artifact/merge@v4
-        with:
-          name: godot-cpp-template
-          pattern: godot-cpp-template-*
-          delete-merged: true
+  runs-on: ubuntu-20.04
+  needs: build
+  steps:
+    - name: Upload project directory as artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: godot-quarkphysics
+        path: ${{ github.workspace }}/project/
