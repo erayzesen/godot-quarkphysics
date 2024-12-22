@@ -8,7 +8,7 @@
 #endif
 
 #ifndef MAXFLOAT
-    #define MAXFLOAT FLTMAX
+    #define MAXFLOAT FLT_MAX
 #endif
 
 #endif // MATH_UTILS_H
