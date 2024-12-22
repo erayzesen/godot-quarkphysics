@@ -323,5 +323,5 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: godot-quarkphysics
-          path: ${{ github.workspace }}/project/
+          path: project/
           delete-merged: true
