@@ -972,7 +972,7 @@ QMesh::MeshData QMesh::GeneratePolygonMeshData(float radius, int sideCount, QVec
 	}
 
 	//Adding construction springs
-	if (polarGrid>1){
+	if (polarGrid>=0){
 		int pc=res.particlePositions.size();
 		int startIndex=pc-sideCount-centerParticleFactor;
 		for(int i=0;i<sideCount;i++){

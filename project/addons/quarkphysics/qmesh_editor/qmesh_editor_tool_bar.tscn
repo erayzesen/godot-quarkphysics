@@ -1,0 +1,83 @@
+[gd_scene load_steps=3 format=3 uid="uid://1iyw5k4em234"]
+
+[ext_resource type="Script" path="res://addons/quarkphysics/qmesh_editor/qmesh_editor_tool_bar.gd" id="1_8n687"]
+
+[sub_resource type="ButtonGroup" id="ButtonGroup_l0uhj"]
+
+[node name="Control" type="HBoxContainer"]
+custom_minimum_size = Vector2(605, 0)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_8n687")
+
+[node name="EditButton" type="Button" parent="."]
+layout_mode = 2
+size_flags_vertical = 4
+toggle_mode = true
+text = "Edit QMesh"
+
+[node name="SelectButton" type="Button" parent="."]
+visible = false
+layout_mode = 2
+size_flags_vertical = 4
+toggle_mode = true
+button_pressed = true
+button_group = SubResource("ButtonGroup_l0uhj")
+text = "Select"
+
+[node name="ParticleButton" type="Button" parent="."]
+visible = false
+layout_mode = 2
+size_flags_vertical = 4
+toggle_mode = true
+button_group = SubResource("ButtonGroup_l0uhj")
+text = "Particle"
+
+[node name="SpringButton" type="Button" parent="."]
+visible = false
+layout_mode = 2
+size_flags_vertical = 4
+toggle_mode = true
+button_group = SubResource("ButtonGroup_l0uhj")
+text = "Spring"
+
+[node name="PolygonButton" type="Button" parent="."]
+visible = false
+layout_mode = 2
+size_flags_vertical = 4
+toggle_mode = true
+button_group = SubResource("ButtonGroup_l0uhj")
+text = "Polygon"
+
+[node name="UVButton" type="Button" parent="."]
+visible = false
+layout_mode = 2
+size_flags_vertical = 4
+toggle_mode = true
+button_group = SubResource("ButtonGroup_l0uhj")
+text = "UV"
+
+[node name="InternalCheckBox" type="CheckBox" parent="."]
+visible = false
+layout_mode = 2
+text = "Internal"
+
+[node name="RadiusBar" type="HBoxContainer" parent="."]
+visible = false
+layout_mode = 2
+
+[node name="Label" type="Label" parent="RadiusBar"]
+layout_mode = 2
+text = "Radius:"
+
+[node name="SpinBox" type="SpinBox" parent="RadiusBar"]
+layout_mode = 2
+size_flags_vertical = 4
+min_value = 0.5
+max_value = 512.0
+step = 0.1
+value = 0.5
+editable = false

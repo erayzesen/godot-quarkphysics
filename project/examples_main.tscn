@@ -3,3 +3,21 @@
 [node name="Node2D" type="Node2D"]
 
 [node name="QWorldNode" type="QWorldNode" parent="."]
+
+[node name="QMeshPolygonNode" type="QMeshPolygonNode" parent="."]
+data_particle_positions = PackedVector2Array(32, 0, 22.6274, 22.6274, -1.39876e-06, 32, -22.6274, 22.6274, -32, -2.79753e-06, -22.6274, -22.6274, 3.81596e-07, -32, 22.6274, -22.6274)
+data_particle_radius = PackedFloat32Array(0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5)
+data_particle_is_internal = PackedByteArray(0, 0, 0, 0, 0, 0, 0, 0)
+data_springs = Array[PackedInt32Array]([PackedInt32Array(0, 1), PackedInt32Array(1, 2), PackedInt32Array(2, 3), PackedInt32Array(3, 4), PackedInt32Array(4, 5), PackedInt32Array(5, 6), PackedInt32Array(6, 7), PackedInt32Array(7, 0)])
+data_polygon = PackedInt32Array(0, 1, 2, 3, 4, 5, 6, 7)
+data_uv_maps = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3, 4, 5, 6, 7)])
+position = Vector2(135, 82)
+
+[node name="QMeshPolygonNode2" type="QMeshPolygonNode" parent="."]
+data_particle_positions = PackedVector2Array(32, 0, 22.6274, 22.6274, -1.39876e-06, 32, -22.6274, 22.6274, -32, -2.79753e-06, -22.6274, -22.6274, 3.81596e-07, -32, 22.6274, -22.6274)
+data_particle_radius = PackedFloat32Array(0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5)
+data_particle_is_internal = PackedByteArray(0, 0, 0, 0, 0, 0, 0, 0)
+data_springs = Array[PackedInt32Array]([PackedInt32Array(0, 1), PackedInt32Array(1, 2), PackedInt32Array(2, 3), PackedInt32Array(3, 4), PackedInt32Array(4, 5), PackedInt32Array(5, 6), PackedInt32Array(6, 7), PackedInt32Array(7, 0)])
+data_polygon = PackedInt32Array(0, 1, 2, 3, 4, 5, 6, 7)
+data_uv_maps = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3, 4, 5, 6, 7)])
+position = Vector2(250, 97)
