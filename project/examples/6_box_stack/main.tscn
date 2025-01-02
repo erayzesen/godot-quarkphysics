@@ -1,0 +1,2782 @@
+[gd_scene format=3 uid="uid://b51mna7glashk"]
+
+[node name="Node2D" type="Node2D"]
+metadata/_edit_vertical_guides_ = [168.0, 80.0]
+
+[node name="QWorldNode" type="QWorldNode" parent="."]
+debug_renderer = false
+enable_debug_mouse_interactions = true
+
+[node name="Floor" type="QRigidBodyNode" parent="."]
+mode = 1
+layers = 2
+position = Vector2(512, 688)
+
+[node name="QMeshRectNode" type="QMeshRectNode" parent="Floor"]
+rectangle_size = Vector2(3000, 300)
+enable_vector_rendering = true
+enable_fill = false
+enable_stroke = true
+data_particle_positions = PackedVector2Array(-1500, -150, 1500, -150, 1500, 150, -1500, 150)
+data_particle_radius = PackedFloat32Array(0.5, 0.5, 0.5, 0.5)
+data_particle_is_internal = PackedByteArray(0, 0, 0, 0)
+data_springs = Array[PackedInt32Array]([PackedInt32Array(0, 1), PackedInt32Array(1, 2), PackedInt32Array(2, 3), PackedInt32Array(3, 0)])
+data_internal_springs = Array[PackedInt32Array]([PackedInt32Array(0, 2), PackedInt32Array(1, 3)])
+data_polygon = PackedInt32Array(0, 1, 2, 3)
+data_uv_maps = Array[PackedInt32Array]([PackedInt32Array(0, 1, 3), PackedInt32Array(1, 2, 3)])
+
+[node name="boxes" type="Node2D" parent="."]
+
+[node name="Row" type="Node2D" parent="boxes"]
+position = Vector2(512, 512)
+
+[node name="box" type="QRigidBodyNode" parent="boxes/Row"]
+position = Vector2(-432, 0)
+
+[node name="QMeshRectNode" type="QMeshRectNode" parent="boxes/Row/box"]
+rectangle_size = Vector2(48, 48)
+enable_vector_rendering = true
+fill_color = Color(0.407843, 0.682353, 0.831373, 1)
+enable_stroke = true
+data_particle_positions = PackedVector2Array(-24, -24, 24, -24, 24, 24, -24, 24)
+data_particle_radius = PackedFloat32Array(0.5, 0.5, 0.5, 0.5)
+data_particle_is_internal = PackedByteArray(0, 0, 0, 0)
+data_springs = Array[PackedInt32Array]([PackedInt32Array(0, 1), PackedInt32Array(1, 2), PackedInt32Array(2, 3), PackedInt32Array(3, 0)])
+data_internal_springs = Array[PackedInt32Array]([PackedInt32Array(0, 2), PackedInt32Array(1, 3)])
+data_polygon = PackedInt32Array(0, 1, 2, 3)
+data_uv_maps = Array[PackedInt32Array]([PackedInt32Array(0, 1, 3), PackedInt32Array(1, 2, 3)])
+
+[node name="box2" type="QRigidBodyNode" parent="boxes/Row"]
+position = Vector2(-384, 0)
+
+[node name="QMeshRectNode" type="QMeshRectNode" parent="boxes/Row/box2"]
+rectangle_size = Vector2(48, 48)
+enable_vector_rendering = true
+fill_color = Color(0.407843, 0.682353, 0.831373, 1)
+enable_stroke = true
+data_particle_positions = PackedVector2Array(-24, -24, 24, -24, 24, 24, -24, 24)
+data_particle_radius = PackedFloat32Array(0.5, 0.5, 0.5, 0.5)
+data_particle_is_internal = PackedByteArray(0, 0, 0, 0)
+data_springs = Array[PackedInt32Array]([PackedInt32Array(0, 1), PackedInt32Array(1, 2), PackedInt32Array(2, 3), PackedInt32Array(3, 0)])
+data_internal_springs = Array[PackedInt32Array]([PackedInt32Array(0, 2), PackedInt32Array(1, 3)])
+data_polygon = PackedInt32Array(0, 1, 2, 3)
+data_uv_maps = Array[PackedInt32Array]([PackedInt32Array(0, 1, 3), PackedInt32Array(1, 2, 3)])
+
+[node name="box3" type="QRigidBodyNode" parent="boxes/Row"]
+position = Vector2(-336, 0)
+
+[node name="QMeshRectNode" type="QMeshRectNode" parent="boxes/Row/box3"]
+rectangle_size = Vector2(48, 48)
+enable_vector_rendering = true
+fill_color = Color(0.407843, 0.682353, 0.831373, 1)
+enable_stroke = true
+data_particle_positions = PackedVector2Array(-24, -24, 24, -24, 24, 24, -24, 24)
+data_particle_radius = PackedFloat32Array(0.5, 0.5, 0.5, 0.5)
+data_particle_is_internal = PackedByteArray(0, 0, 0, 0)
+data_springs = Array[PackedInt32Array]([PackedInt32Array(0, 1), PackedInt32Array(1, 2), PackedInt32Array(2, 3), PackedInt32Array(3, 0)])
+data_internal_springs = Array[PackedInt32Array]([PackedInt32Array(0, 2), PackedInt32Array(1, 3)])
+data_polygon = PackedInt32Array(0, 1, 2, 3)
+data_uv_maps = Array[PackedInt32Array]([PackedInt32Array(0, 1, 3), PackedInt32Array(1, 2, 3)])
+
+[node name="box4" type="QRigidBodyNode" parent="boxes/Row"]
+position = Vector2(-288, 0)
+
+[node name="QMeshRectNode" type="QMeshRectNode" parent="boxes/Row/box4"]
+rectangle_size = Vector2(48, 48)
+enable_vector_rendering = true
+fill_color = Color(0.407843, 0.682353, 0.831373, 1)
+enable_stroke = true
+data_particle_positions = PackedVector2Array(-24, -24, 24, -24, 24, 24, -24, 24)
+data_particle_radius = PackedFloat32Array(0.5, 0.5, 0.5, 0.5)
+data_particle_is_internal = PackedByteArray(0, 0, 0, 0)
+data_springs = Array[PackedInt32Array]([PackedInt32Array(0, 1), PackedInt32Array(1, 2), PackedInt32Array(2, 3), PackedInt32Array(3, 0)])
+data_internal_springs = Array[PackedInt32Array]([PackedInt32Array(0, 2), PackedInt32Array(1, 3)])
+data_polygon = PackedInt32Array(0, 1, 2, 3)
+data_uv_maps = Array[PackedInt32Array]([PackedInt32Array(0, 1, 3), PackedInt32Array(1, 2, 3)])
+
+[node name="box5" type="QRigidBodyNode" parent="boxes/Row"]
+position = Vector2(-240, 0)
+
+[node name="QMeshRectNode" type="QMeshRectNode" parent="boxes/Row/box5"]
+rectangle_size = Vector2(48, 48)
+enable_vector_rendering = true
+fill_color = Color(0.407843, 0.682353, 0.831373, 1)
+enable_stroke = true
+data_particle_positions = PackedVector2Array(-24, -24, 24, -24, 24, 24, -24, 24)
+data_particle_radius = PackedFloat32Array(0.5, 0.5, 0.5, 0.5)
+data_particle_is_internal = PackedByteArray(0, 0, 0, 0)
+data_springs = Array[PackedInt32Array]([PackedInt32Array(0, 1), PackedInt32Array(1, 2), PackedInt32Array(2, 3), PackedInt32Array(3, 0)])
+data_internal_springs = Array[PackedInt32Array]([PackedInt32Array(0, 2), PackedInt32Array(1, 3)])
+data_polygon = PackedInt32Array(0, 1, 2, 3)
+data_uv_maps = Array[PackedInt32Array]([PackedInt32Array(0, 1, 3), PackedInt32Array(1, 2, 3)])
+
+[node name="box6" type="QRigidBodyNode" parent="boxes/Row"]
+position = Vector2(-192, 0)
+
+[node name="QMeshRectNode" type="QMeshRectNode" parent="boxes/Row/box6"]
+rectangle_size = Vector2(48, 48)
+enable_vector_rendering = true
+fill_color = Color(0.407843, 0.682353, 0.831373, 1)
+enable_stroke = true
+data_particle_positions = PackedVector2Array(-24, -24, 24, -24, 24, 24, -24, 24)
+data_particle_radius = PackedFloat32Array(0.5, 0.5, 0.5, 0.5)
+data_particle_is_internal = PackedByteArray(0, 0, 0, 0)
+data_springs = Array[PackedInt32Array]([PackedInt32Array(0, 1), PackedInt32Array(1, 2), PackedInt32Array(2, 3), PackedInt32Array(3, 0)])
+data_internal_springs = Array[PackedInt32Array]([PackedInt32Array(0, 2), PackedInt32Array(1, 3)])
+data_polygon = PackedInt32Array(0, 1, 2, 3)
+data_uv_maps = Array[PackedInt32Array]([PackedInt32Array(0, 1, 3), PackedInt32Array(1, 2, 3)])
+
+[node name="box7" type="QRigidBodyNode" parent="boxes/Row"]
+position = Vector2(-144, 0)
+
+[node name="QMeshRectNode" type="QMeshRectNode" parent="boxes/Row/box7"]
+rectangle_size = Vector2(48, 48)
+enable_vector_rendering = true
+fill_color = Color(0.407843, 0.682353, 0.831373, 1)
+enable_stroke = true
+data_particle_positions = PackedVector2Array(-24, -24, 24, -24, 24, 24, -24, 24)
+data_particle_radius = PackedFloat32Array(0.5, 0.5, 0.5, 0.5)
+data_particle_is_internal = PackedByteArray(0, 0, 0, 0)
+data_springs = Array[PackedInt32Array]([PackedInt32Array(0, 1), PackedInt32Array(1, 2), PackedInt32Array(2, 3), PackedInt32Array(3, 0)])
+data_internal_springs = Array[PackedInt32Array]([PackedInt32Array(0, 2), PackedInt32Array(1, 3)])
+data_polygon = PackedInt32Array(0, 1, 2, 3)
+data_uv_maps = Array[PackedInt32Array]([PackedInt32Array(0, 1, 3), PackedInt32Array(1, 2, 3)])
+
+[node name="box8" type="QRigidBodyNode" parent="boxes/Row"]
+position = Vector2(-96, 0)
+
+[node name="QMeshRectNode" type="QMeshRectNode" parent="boxes/Row/box8"]
+rectangle_size = Vector2(48, 48)
+enable_vector_rendering = true
+fill_color = Color(0.407843, 0.682353, 0.831373, 1)
+enable_stroke = true
+data_particle_positions = PackedVector2Array(-24, -24, 24, -24, 24, 24, -24, 24)
+data_particle_radius = PackedFloat32Array(0.5, 0.5, 0.5, 0.5)
+data_particle_is_internal = PackedByteArray(0, 0, 0, 0)
+data_springs = Array[PackedInt32Array]([PackedInt32Array(0, 1), PackedInt32Array(1, 2), PackedInt32Array(2, 3), PackedInt32Array(3, 0)])
+data_internal_springs = Array[PackedInt32Array]([PackedInt32Array(0, 2), PackedInt32Array(1, 3)])
+data_polygon = PackedInt32Array(0, 1, 2, 3)
+data_uv_maps = Array[PackedInt32Array]([PackedInt32Array(0, 1, 3), PackedInt32Array(1, 2, 3)])
+
+[node name="box9" type="QRigidBodyNode" parent="boxes/Row"]
+position = Vector2(-48, 0)
+
+[node name="QMeshRectNode" type="QMeshRectNode" parent="boxes/Row/box9"]
+rectangle_size = Vector2(48, 48)
+enable_vector_rendering = true
+fill_color = Color(0.407843, 0.682353, 0.831373, 1)
+enable_stroke = true
+data_particle_positions = PackedVector2Array(-24, -24, 24, -24, 24, 24, -24, 24)
+data_particle_radius = PackedFloat32Array(0.5, 0.5, 0.5, 0.5)
+data_particle_is_internal = PackedByteArray(0, 0, 0, 0)
+data_springs = Array[PackedInt32Array]([PackedInt32Array(0, 1), PackedInt32Array(1, 2), PackedInt32Array(2, 3), PackedInt32Array(3, 0)])
+data_internal_springs = Array[PackedInt32Array]([PackedInt32Array(0, 2), PackedInt32Array(1, 3)])
+data_polygon = PackedInt32Array(0, 1, 2, 3)
+data_uv_maps = Array[PackedInt32Array]([PackedInt32Array(0, 1, 3), PackedInt32Array(1, 2, 3)])
+
+[node name="box10" type="QRigidBodyNode" parent="boxes/Row"]
+
+[node name="QMeshRectNode" type="QMeshRectNode" parent="boxes/Row/box10"]
+rectangle_size = Vector2(48, 48)
+enable_vector_rendering = true
+fill_color = Color(0.407843, 0.682353, 0.831373, 1)
+enable_stroke = true
+data_particle_positions = PackedVector2Array(-24, -24, 24, -24, 24, 24, -24, 24)
+data_particle_radius = PackedFloat32Array(0.5, 0.5, 0.5, 0.5)
+data_particle_is_internal = PackedByteArray(0, 0, 0, 0)
+data_springs = Array[PackedInt32Array]([PackedInt32Array(0, 1), PackedInt32Array(1, 2), PackedInt32Array(2, 3), PackedInt32Array(3, 0)])
+data_internal_springs = Array[PackedInt32Array]([PackedInt32Array(0, 2), PackedInt32Array(1, 3)])
+data_polygon = PackedInt32Array(0, 1, 2, 3)
+data_uv_maps = Array[PackedInt32Array]([PackedInt32Array(0, 1, 3), PackedInt32Array(1, 2, 3)])
+
+[node name="box11" type="QRigidBodyNode" parent="boxes/Row"]
+position = Vector2(48, 0)
+
+[node name="QMeshRectNode" type="QMeshRectNode" parent="boxes/Row/box11"]
+rectangle_size = Vector2(48, 48)
+enable_vector_rendering = true
+fill_color = Color(0.407843, 0.682353, 0.831373, 1)
+enable_stroke = true
+data_particle_positions = PackedVector2Array(-24, -24, 24, -24, 24, 24, -24, 24)
+data_particle_radius = PackedFloat32Array(0.5, 0.5, 0.5, 0.5)
+data_particle_is_internal = PackedByteArray(0, 0, 0, 0)
+data_springs = Array[PackedInt32Array]([PackedInt32Array(0, 1), PackedInt32Array(1, 2), PackedInt32Array(2, 3), PackedInt32Array(3, 0)])
+data_internal_springs = Array[PackedInt32Array]([PackedInt32Array(0, 2), PackedInt32Array(1, 3)])
+data_polygon = PackedInt32Array(0, 1, 2, 3)
+data_uv_maps = Array[PackedInt32Array]([PackedInt32Array(0, 1, 3), PackedInt32Array(1, 2, 3)])
+
+[node name="box12" type="QRigidBodyNode" parent="boxes/Row"]
+position = Vector2(96, 0)
+
+[node name="QMeshRectNode" type="QMeshRectNode" parent="boxes/Row/box12"]
+rectangle_size = Vector2(48, 48)
+enable_vector_rendering = true
+fill_color = Color(0.407843, 0.682353, 0.831373, 1)
+enable_stroke = true
+data_particle_positions = PackedVector2Array(-24, -24, 24, -24, 24, 24, -24, 24)
+data_particle_radius = PackedFloat32Array(0.5, 0.5, 0.5, 0.5)
+data_particle_is_internal = PackedByteArray(0, 0, 0, 0)
+data_springs = Array[PackedInt32Array]([PackedInt32Array(0, 1), PackedInt32Array(1, 2), PackedInt32Array(2, 3), PackedInt32Array(3, 0)])
+data_internal_springs = Array[PackedInt32Array]([PackedInt32Array(0, 2), PackedInt32Array(1, 3)])
+data_polygon = PackedInt32Array(0, 1, 2, 3)
+data_uv_maps = Array[PackedInt32Array]([PackedInt32Array(0, 1, 3), PackedInt32Array(1, 2, 3)])
+
+[node name="box13" type="QRigidBodyNode" parent="boxes/Row"]
+position = Vector2(144, 0)
+
+[node name="QMeshRectNode" type="QMeshRectNode" parent="boxes/Row/box13"]
+rectangle_size = Vector2(48, 48)
+enable_vector_rendering = true
+fill_color = Color(0.407843, 0.682353, 0.831373, 1)
+enable_stroke = true
+data_particle_positions = PackedVector2Array(-24, -24, 24, -24, 24, 24, -24, 24)
+data_particle_radius = PackedFloat32Array(0.5, 0.5, 0.5, 0.5)
+data_particle_is_internal = PackedByteArray(0, 0, 0, 0)
+data_springs = Array[PackedInt32Array]([PackedInt32Array(0, 1), PackedInt32Array(1, 2), PackedInt32Array(2, 3), PackedInt32Array(3, 0)])
+data_internal_springs = Array[PackedInt32Array]([PackedInt32Array(0, 2), PackedInt32Array(1, 3)])
+data_polygon = PackedInt32Array(0, 1, 2, 3)
+data_uv_maps = Array[PackedInt32Array]([PackedInt32Array(0, 1, 3), PackedInt32Array(1, 2, 3)])
+
+[node name="box14" type="QRigidBodyNode" parent="boxes/Row"]
+position = Vector2(192, 0)
+
+[node name="QMeshRectNode" type="QMeshRectNode" parent="boxes/Row/box14"]
+rectangle_size = Vector2(48, 48)
+enable_vector_rendering = true
+fill_color = Color(0.407843, 0.682353, 0.831373, 1)
+enable_stroke = true
+data_particle_positions = PackedVector2Array(-24, -24, 24, -24, 24, 24, -24, 24)
+data_particle_radius = PackedFloat32Array(0.5, 0.5, 0.5, 0.5)
+data_particle_is_internal = PackedByteArray(0, 0, 0, 0)
+data_springs = Array[PackedInt32Array]([PackedInt32Array(0, 1), PackedInt32Array(1, 2), PackedInt32Array(2, 3), PackedInt32Array(3, 0)])
+data_internal_springs = Array[PackedInt32Array]([PackedInt32Array(0, 2), PackedInt32Array(1, 3)])
+data_polygon = PackedInt32Array(0, 1, 2, 3)
+data_uv_maps = Array[PackedInt32Array]([PackedInt32Array(0, 1, 3), PackedInt32Array(1, 2, 3)])
+
+[node name="box15" type="QRigidBodyNode" parent="boxes/Row"]
+position = Vector2(240, 0)
+
+[node name="QMeshRectNode" type="QMeshRectNode" parent="boxes/Row/box15"]
+rectangle_size = Vector2(48, 48)
+enable_vector_rendering = true
+fill_color = Color(0.407843, 0.682353, 0.831373, 1)
+enable_stroke = true
+data_particle_positions = PackedVector2Array(-24, -24, 24, -24, 24, 24, -24, 24)
+data_particle_radius = PackedFloat32Array(0.5, 0.5, 0.5, 0.5)
+data_particle_is_internal = PackedByteArray(0, 0, 0, 0)
+data_springs = Array[PackedInt32Array]([PackedInt32Array(0, 1), PackedInt32Array(1, 2), PackedInt32Array(2, 3), PackedInt32Array(3, 0)])
+data_internal_springs = Array[PackedInt32Array]([PackedInt32Array(0, 2), PackedInt32Array(1, 3)])
+data_polygon = PackedInt32Array(0, 1, 2, 3)
+data_uv_maps = Array[PackedInt32Array]([PackedInt32Array(0, 1, 3), PackedInt32Array(1, 2, 3)])
+
+[node name="box16" type="QRigidBodyNode" parent="boxes/Row"]
+position = Vector2(288, 0)
+
+[node name="QMeshRectNode" type="QMeshRectNode" parent="boxes/Row/box16"]
+rectangle_size = Vector2(48, 48)
+enable_vector_rendering = true
+fill_color = Color(0.407843, 0.682353, 0.831373, 1)
+enable_stroke = true
+data_particle_positions = PackedVector2Array(-24, -24, 24, -24, 24, 24, -24, 24)
+data_particle_radius = PackedFloat32Array(0.5, 0.5, 0.5, 0.5)
+data_particle_is_internal = PackedByteArray(0, 0, 0, 0)
+data_springs = Array[PackedInt32Array]([PackedInt32Array(0, 1), PackedInt32Array(1, 2), PackedInt32Array(2, 3), PackedInt32Array(3, 0)])
+data_internal_springs = Array[PackedInt32Array]([PackedInt32Array(0, 2), PackedInt32Array(1, 3)])
+data_polygon = PackedInt32Array(0, 1, 2, 3)
+data_uv_maps = Array[PackedInt32Array]([PackedInt32Array(0, 1, 3), PackedInt32Array(1, 2, 3)])
+
+[node name="box17" type="QRigidBodyNode" parent="boxes/Row"]
+position = Vector2(336, 0)
+
+[node name="QMeshRectNode" type="QMeshRectNode" parent="boxes/Row/box17"]
+rectangle_size = Vector2(48, 48)
+enable_vector_rendering = true
+fill_color = Color(0.407843, 0.682353, 0.831373, 1)
+enable_stroke = true
+data_particle_positions = PackedVector2Array(-24, -24, 24, -24, 24, 24, -24, 24)
+data_particle_radius = PackedFloat32Array(0.5, 0.5, 0.5, 0.5)
+data_particle_is_internal = PackedByteArray(0, 0, 0, 0)
+data_springs = Array[PackedInt32Array]([PackedInt32Array(0, 1), PackedInt32Array(1, 2), PackedInt32Array(2, 3), PackedInt32Array(3, 0)])
+data_internal_springs = Array[PackedInt32Array]([PackedInt32Array(0, 2), PackedInt32Array(1, 3)])
+data_polygon = PackedInt32Array(0, 1, 2, 3)
+data_uv_maps = Array[PackedInt32Array]([PackedInt32Array(0, 1, 3), PackedInt32Array(1, 2, 3)])
+
+[node name="box18" type="QRigidBodyNode" parent="boxes/Row"]
+position = Vector2(384, 0)
+
+[node name="QMeshRectNode" type="QMeshRectNode" parent="boxes/Row/box18"]
+rectangle_size = Vector2(48, 48)
+enable_vector_rendering = true
+fill_color = Color(0.407843, 0.682353, 0.831373, 1)
+enable_stroke = true
+data_particle_positions = PackedVector2Array(-24, -24, 24, -24, 24, 24, -24, 24)
+data_particle_radius = PackedFloat32Array(0.5, 0.5, 0.5, 0.5)
+data_particle_is_internal = PackedByteArray(0, 0, 0, 0)
+data_springs = Array[PackedInt32Array]([PackedInt32Array(0, 1), PackedInt32Array(1, 2), PackedInt32Array(2, 3), PackedInt32Array(3, 0)])
+data_internal_springs = Array[PackedInt32Array]([PackedInt32Array(0, 2), PackedInt32Array(1, 3)])
+data_polygon = PackedInt32Array(0, 1, 2, 3)
+data_uv_maps = Array[PackedInt32Array]([PackedInt32Array(0, 1, 3), PackedInt32Array(1, 2, 3)])
+
+[node name="box19" type="QRigidBodyNode" parent="boxes/Row"]
+position = Vector2(432, 0)
+
+[node name="QMeshRectNode" type="QMeshRectNode" parent="boxes/Row/box19"]
+rectangle_size = Vector2(48, 48)
+enable_vector_rendering = true
+fill_color = Color(0.407843, 0.682353, 0.831373, 1)
+enable_stroke = true
+data_particle_positions = PackedVector2Array(-24, -24, 24, -24, 24, 24, -24, 24)
+data_particle_radius = PackedFloat32Array(0.5, 0.5, 0.5, 0.5)
+data_particle_is_internal = PackedByteArray(0, 0, 0, 0)
+data_springs = Array[PackedInt32Array]([PackedInt32Array(0, 1), PackedInt32Array(1, 2), PackedInt32Array(2, 3), PackedInt32Array(3, 0)])
+data_internal_springs = Array[PackedInt32Array]([PackedInt32Array(0, 2), PackedInt32Array(1, 3)])
+data_polygon = PackedInt32Array(0, 1, 2, 3)
+data_uv_maps = Array[PackedInt32Array]([PackedInt32Array(0, 1, 3), PackedInt32Array(1, 2, 3)])
+
+[node name="Row2" type="Node2D" parent="boxes"]
+position = Vector2(512, 464)
+
+[node name="box" type="QRigidBodyNode" parent="boxes/Row2"]
+position = Vector2(-432, 0)
+
+[node name="QMeshRectNode" type="QMeshRectNode" parent="boxes/Row2/box"]
+rectangle_size = Vector2(48, 48)
+enable_vector_rendering = true
+fill_color = Color(0.407843, 0.682353, 0.831373, 1)
+enable_stroke = true
+data_particle_positions = PackedVector2Array(-24, -24, 24, -24, 24, 24, -24, 24)
+data_particle_radius = PackedFloat32Array(0.5, 0.5, 0.5, 0.5)
+data_particle_is_internal = PackedByteArray(0, 0, 0, 0)
+data_springs = Array[PackedInt32Array]([PackedInt32Array(0, 1), PackedInt32Array(1, 2), PackedInt32Array(2, 3), PackedInt32Array(3, 0)])
+data_internal_springs = Array[PackedInt32Array]([PackedInt32Array(0, 2), PackedInt32Array(1, 3)])
+data_polygon = PackedInt32Array(0, 1, 2, 3)
+data_uv_maps = Array[PackedInt32Array]([PackedInt32Array(0, 1, 3), PackedInt32Array(1, 2, 3)])
+
+[node name="box2" type="QRigidBodyNode" parent="boxes/Row2"]
+position = Vector2(-384, 0)
+
+[node name="QMeshRectNode" type="QMeshRectNode" parent="boxes/Row2/box2"]
+rectangle_size = Vector2(48, 48)
+enable_vector_rendering = true
+fill_color = Color(0.407843, 0.682353, 0.831373, 1)
+enable_stroke = true
+data_particle_positions = PackedVector2Array(-24, -24, 24, -24, 24, 24, -24, 24)
+data_particle_radius = PackedFloat32Array(0.5, 0.5, 0.5, 0.5)
+data_particle_is_internal = PackedByteArray(0, 0, 0, 0)
+data_springs = Array[PackedInt32Array]([PackedInt32Array(0, 1), PackedInt32Array(1, 2), PackedInt32Array(2, 3), PackedInt32Array(3, 0)])
+data_internal_springs = Array[PackedInt32Array]([PackedInt32Array(0, 2), PackedInt32Array(1, 3)])
+data_polygon = PackedInt32Array(0, 1, 2, 3)
+data_uv_maps = Array[PackedInt32Array]([PackedInt32Array(0, 1, 3), PackedInt32Array(1, 2, 3)])
+
+[node name="box3" type="QRigidBodyNode" parent="boxes/Row2"]
+position = Vector2(-336, 0)
+
+[node name="QMeshRectNode" type="QMeshRectNode" parent="boxes/Row2/box3"]
+rectangle_size = Vector2(48, 48)
+enable_vector_rendering = true
+fill_color = Color(0.407843, 0.682353, 0.831373, 1)
+enable_stroke = true
+data_particle_positions = PackedVector2Array(-24, -24, 24, -24, 24, 24, -24, 24)
+data_particle_radius = PackedFloat32Array(0.5, 0.5, 0.5, 0.5)
+data_particle_is_internal = PackedByteArray(0, 0, 0, 0)
+data_springs = Array[PackedInt32Array]([PackedInt32Array(0, 1), PackedInt32Array(1, 2), PackedInt32Array(2, 3), PackedInt32Array(3, 0)])
+data_internal_springs = Array[PackedInt32Array]([PackedInt32Array(0, 2), PackedInt32Array(1, 3)])
+data_polygon = PackedInt32Array(0, 1, 2, 3)
+data_uv_maps = Array[PackedInt32Array]([PackedInt32Array(0, 1, 3), PackedInt32Array(1, 2, 3)])
+
+[node name="box4" type="QRigidBodyNode" parent="boxes/Row2"]
+position = Vector2(-288, 0)
+
+[node name="QMeshRectNode" type="QMeshRectNode" parent="boxes/Row2/box4"]
+rectangle_size = Vector2(48, 48)
+enable_vector_rendering = true
+fill_color = Color(0.407843, 0.682353, 0.831373, 1)
+enable_stroke = true
+data_particle_positions = PackedVector2Array(-24, -24, 24, -24, 24, 24, -24, 24)
+data_particle_radius = PackedFloat32Array(0.5, 0.5, 0.5, 0.5)
+data_particle_is_internal = PackedByteArray(0, 0, 0, 0)
+data_springs = Array[PackedInt32Array]([PackedInt32Array(0, 1), PackedInt32Array(1, 2), PackedInt32Array(2, 3), PackedInt32Array(3, 0)])
+data_internal_springs = Array[PackedInt32Array]([PackedInt32Array(0, 2), PackedInt32Array(1, 3)])
+data_polygon = PackedInt32Array(0, 1, 2, 3)
+data_uv_maps = Array[PackedInt32Array]([PackedInt32Array(0, 1, 3), PackedInt32Array(1, 2, 3)])
+
+[node name="box5" type="QRigidBodyNode" parent="boxes/Row2"]
+position = Vector2(-240, 0)
+
+[node name="QMeshRectNode" type="QMeshRectNode" parent="boxes/Row2/box5"]
+rectangle_size = Vector2(48, 48)
+enable_vector_rendering = true
+fill_color = Color(0.407843, 0.682353, 0.831373, 1)
+enable_stroke = true
+data_particle_positions = PackedVector2Array(-24, -24, 24, -24, 24, 24, -24, 24)
+data_particle_radius = PackedFloat32Array(0.5, 0.5, 0.5, 0.5)
+data_particle_is_internal = PackedByteArray(0, 0, 0, 0)
+data_springs = Array[PackedInt32Array]([PackedInt32Array(0, 1), PackedInt32Array(1, 2), PackedInt32Array(2, 3), PackedInt32Array(3, 0)])
+data_internal_springs = Array[PackedInt32Array]([PackedInt32Array(0, 2), PackedInt32Array(1, 3)])
+data_polygon = PackedInt32Array(0, 1, 2, 3)
+data_uv_maps = Array[PackedInt32Array]([PackedInt32Array(0, 1, 3), PackedInt32Array(1, 2, 3)])
+
+[node name="box6" type="QRigidBodyNode" parent="boxes/Row2"]
+position = Vector2(-192, 0)
+
+[node name="QMeshRectNode" type="QMeshRectNode" parent="boxes/Row2/box6"]
+rectangle_size = Vector2(48, 48)
+enable_vector_rendering = true
+fill_color = Color(0.407843, 0.682353, 0.831373, 1)
+enable_stroke = true
+data_particle_positions = PackedVector2Array(-24, -24, 24, -24, 24, 24, -24, 24)
+data_particle_radius = PackedFloat32Array(0.5, 0.5, 0.5, 0.5)
+data_particle_is_internal = PackedByteArray(0, 0, 0, 0)
+data_springs = Array[PackedInt32Array]([PackedInt32Array(0, 1), PackedInt32Array(1, 2), PackedInt32Array(2, 3), PackedInt32Array(3, 0)])
+data_internal_springs = Array[PackedInt32Array]([PackedInt32Array(0, 2), PackedInt32Array(1, 3)])
+data_polygon = PackedInt32Array(0, 1, 2, 3)
+data_uv_maps = Array[PackedInt32Array]([PackedInt32Array(0, 1, 3), PackedInt32Array(1, 2, 3)])
+
+[node name="box7" type="QRigidBodyNode" parent="boxes/Row2"]
+position = Vector2(-144, 0)
+
+[node name="QMeshRectNode" type="QMeshRectNode" parent="boxes/Row2/box7"]
+rectangle_size = Vector2(48, 48)
+enable_vector_rendering = true
+fill_color = Color(0.407843, 0.682353, 0.831373, 1)
+enable_stroke = true
+data_particle_positions = PackedVector2Array(-24, -24, 24, -24, 24, 24, -24, 24)
+data_particle_radius = PackedFloat32Array(0.5, 0.5, 0.5, 0.5)
+data_particle_is_internal = PackedByteArray(0, 0, 0, 0)
+data_springs = Array[PackedInt32Array]([PackedInt32Array(0, 1), PackedInt32Array(1, 2), PackedInt32Array(2, 3), PackedInt32Array(3, 0)])
+data_internal_springs = Array[PackedInt32Array]([PackedInt32Array(0, 2), PackedInt32Array(1, 3)])
+data_polygon = PackedInt32Array(0, 1, 2, 3)
+data_uv_maps = Array[PackedInt32Array]([PackedInt32Array(0, 1, 3), PackedInt32Array(1, 2, 3)])
+
+[node name="box8" type="QRigidBodyNode" parent="boxes/Row2"]
+position = Vector2(-96, 0)
+
+[node name="QMeshRectNode" type="QMeshRectNode" parent="boxes/Row2/box8"]
+rectangle_size = Vector2(48, 48)
+enable_vector_rendering = true
+fill_color = Color(0.407843, 0.682353, 0.831373, 1)
+enable_stroke = true
+data_particle_positions = PackedVector2Array(-24, -24, 24, -24, 24, 24, -24, 24)
+data_particle_radius = PackedFloat32Array(0.5, 0.5, 0.5, 0.5)
+data_particle_is_internal = PackedByteArray(0, 0, 0, 0)
+data_springs = Array[PackedInt32Array]([PackedInt32Array(0, 1), PackedInt32Array(1, 2), PackedInt32Array(2, 3), PackedInt32Array(3, 0)])
+data_internal_springs = Array[PackedInt32Array]([PackedInt32Array(0, 2), PackedInt32Array(1, 3)])
+data_polygon = PackedInt32Array(0, 1, 2, 3)
+data_uv_maps = Array[PackedInt32Array]([PackedInt32Array(0, 1, 3), PackedInt32Array(1, 2, 3)])
+
+[node name="box9" type="QRigidBodyNode" parent="boxes/Row2"]
+position = Vector2(-48, 0)
+
+[node name="QMeshRectNode" type="QMeshRectNode" parent="boxes/Row2/box9"]
+rectangle_size = Vector2(48, 48)
+enable_vector_rendering = true
+fill_color = Color(0.407843, 0.682353, 0.831373, 1)
+enable_stroke = true
+data_particle_positions = PackedVector2Array(-24, -24, 24, -24, 24, 24, -24, 24)
+data_particle_radius = PackedFloat32Array(0.5, 0.5, 0.5, 0.5)
+data_particle_is_internal = PackedByteArray(0, 0, 0, 0)
+data_springs = Array[PackedInt32Array]([PackedInt32Array(0, 1), PackedInt32Array(1, 2), PackedInt32Array(2, 3), PackedInt32Array(3, 0)])
+data_internal_springs = Array[PackedInt32Array]([PackedInt32Array(0, 2), PackedInt32Array(1, 3)])
+data_polygon = PackedInt32Array(0, 1, 2, 3)
+data_uv_maps = Array[PackedInt32Array]([PackedInt32Array(0, 1, 3), PackedInt32Array(1, 2, 3)])
+
+[node name="box10" type="QRigidBodyNode" parent="boxes/Row2"]
+
+[node name="QMeshRectNode" type="QMeshRectNode" parent="boxes/Row2/box10"]
+rectangle_size = Vector2(48, 48)
+enable_vector_rendering = true
+fill_color = Color(0.407843, 0.682353, 0.831373, 1)
+enable_stroke = true
+data_particle_positions = PackedVector2Array(-24, -24, 24, -24, 24, 24, -24, 24)
+data_particle_radius = PackedFloat32Array(0.5, 0.5, 0.5, 0.5)
+data_particle_is_internal = PackedByteArray(0, 0, 0, 0)
+data_springs = Array[PackedInt32Array]([PackedInt32Array(0, 1), PackedInt32Array(1, 2), PackedInt32Array(2, 3), PackedInt32Array(3, 0)])
+data_internal_springs = Array[PackedInt32Array]([PackedInt32Array(0, 2), PackedInt32Array(1, 3)])
+data_polygon = PackedInt32Array(0, 1, 2, 3)
+data_uv_maps = Array[PackedInt32Array]([PackedInt32Array(0, 1, 3), PackedInt32Array(1, 2, 3)])
+
+[node name="box11" type="QRigidBodyNode" parent="boxes/Row2"]
+position = Vector2(48, 0)
+
+[node name="QMeshRectNode" type="QMeshRectNode" parent="boxes/Row2/box11"]
+rectangle_size = Vector2(48, 48)
+enable_vector_rendering = true
+fill_color = Color(0.407843, 0.682353, 0.831373, 1)
+enable_stroke = true
+data_particle_positions = PackedVector2Array(-24, -24, 24, -24, 24, 24, -24, 24)
+data_particle_radius = PackedFloat32Array(0.5, 0.5, 0.5, 0.5)
+data_particle_is_internal = PackedByteArray(0, 0, 0, 0)
+data_springs = Array[PackedInt32Array]([PackedInt32Array(0, 1), PackedInt32Array(1, 2), PackedInt32Array(2, 3), PackedInt32Array(3, 0)])
+data_internal_springs = Array[PackedInt32Array]([PackedInt32Array(0, 2), PackedInt32Array(1, 3)])
+data_polygon = PackedInt32Array(0, 1, 2, 3)
+data_uv_maps = Array[PackedInt32Array]([PackedInt32Array(0, 1, 3), PackedInt32Array(1, 2, 3)])
+
+[node name="box12" type="QRigidBodyNode" parent="boxes/Row2"]
+position = Vector2(96, 0)
+
+[node name="QMeshRectNode" type="QMeshRectNode" parent="boxes/Row2/box12"]
+rectangle_size = Vector2(48, 48)
+enable_vector_rendering = true
+fill_color = Color(0.407843, 0.682353, 0.831373, 1)
+enable_stroke = true
+data_particle_positions = PackedVector2Array(-24, -24, 24, -24, 24, 24, -24, 24)
+data_particle_radius = PackedFloat32Array(0.5, 0.5, 0.5, 0.5)
+data_particle_is_internal = PackedByteArray(0, 0, 0, 0)
+data_springs = Array[PackedInt32Array]([PackedInt32Array(0, 1), PackedInt32Array(1, 2), PackedInt32Array(2, 3), PackedInt32Array(3, 0)])
+data_internal_springs = Array[PackedInt32Array]([PackedInt32Array(0, 2), PackedInt32Array(1, 3)])
+data_polygon = PackedInt32Array(0, 1, 2, 3)
+data_uv_maps = Array[PackedInt32Array]([PackedInt32Array(0, 1, 3), PackedInt32Array(1, 2, 3)])
+
+[node name="box13" type="QRigidBodyNode" parent="boxes/Row2"]
+position = Vector2(144, 0)
+
+[node name="QMeshRectNode" type="QMeshRectNode" parent="boxes/Row2/box13"]
+rectangle_size = Vector2(48, 48)
+enable_vector_rendering = true
+fill_color = Color(0.407843, 0.682353, 0.831373, 1)
+enable_stroke = true
+data_particle_positions = PackedVector2Array(-24, -24, 24, -24, 24, 24, -24, 24)
+data_particle_radius = PackedFloat32Array(0.5, 0.5, 0.5, 0.5)
+data_particle_is_internal = PackedByteArray(0, 0, 0, 0)
+data_springs = Array[PackedInt32Array]([PackedInt32Array(0, 1), PackedInt32Array(1, 2), PackedInt32Array(2, 3), PackedInt32Array(3, 0)])
+data_internal_springs = Array[PackedInt32Array]([PackedInt32Array(0, 2), PackedInt32Array(1, 3)])
+data_polygon = PackedInt32Array(0, 1, 2, 3)
+data_uv_maps = Array[PackedInt32Array]([PackedInt32Array(0, 1, 3), PackedInt32Array(1, 2, 3)])
+
+[node name="box14" type="QRigidBodyNode" parent="boxes/Row2"]
+position = Vector2(192, 0)
+
+[node name="QMeshRectNode" type="QMeshRectNode" parent="boxes/Row2/box14"]
+rectangle_size = Vector2(48, 48)
+enable_vector_rendering = true
+fill_color = Color(0.407843, 0.682353, 0.831373, 1)
+enable_stroke = true
+data_particle_positions = PackedVector2Array(-24, -24, 24, -24, 24, 24, -24, 24)
+data_particle_radius = PackedFloat32Array(0.5, 0.5, 0.5, 0.5)
+data_particle_is_internal = PackedByteArray(0, 0, 0, 0)
+data_springs = Array[PackedInt32Array]([PackedInt32Array(0, 1), PackedInt32Array(1, 2), PackedInt32Array(2, 3), PackedInt32Array(3, 0)])
+data_internal_springs = Array[PackedInt32Array]([PackedInt32Array(0, 2), PackedInt32Array(1, 3)])
+data_polygon = PackedInt32Array(0, 1, 2, 3)
+data_uv_maps = Array[PackedInt32Array]([PackedInt32Array(0, 1, 3), PackedInt32Array(1, 2, 3)])
+
+[node name="box15" type="QRigidBodyNode" parent="boxes/Row2"]
+position = Vector2(240, 0)
+
+[node name="QMeshRectNode" type="QMeshRectNode" parent="boxes/Row2/box15"]
+rectangle_size = Vector2(48, 48)
+enable_vector_rendering = true
+fill_color = Color(0.407843, 0.682353, 0.831373, 1)
+enable_stroke = true
+data_particle_positions = PackedVector2Array(-24, -24, 24, -24, 24, 24, -24, 24)
+data_particle_radius = PackedFloat32Array(0.5, 0.5, 0.5, 0.5)
+data_particle_is_internal = PackedByteArray(0, 0, 0, 0)
+data_springs = Array[PackedInt32Array]([PackedInt32Array(0, 1), PackedInt32Array(1, 2), PackedInt32Array(2, 3), PackedInt32Array(3, 0)])
+data_internal_springs = Array[PackedInt32Array]([PackedInt32Array(0, 2), PackedInt32Array(1, 3)])
+data_polygon = PackedInt32Array(0, 1, 2, 3)
+data_uv_maps = Array[PackedInt32Array]([PackedInt32Array(0, 1, 3), PackedInt32Array(1, 2, 3)])
+
+[node name="box16" type="QRigidBodyNode" parent="boxes/Row2"]
+position = Vector2(288, 0)
+
+[node name="QMeshRectNode" type="QMeshRectNode" parent="boxes/Row2/box16"]
+rectangle_size = Vector2(48, 48)
+enable_vector_rendering = true
+fill_color = Color(0.407843, 0.682353, 0.831373, 1)
+enable_stroke = true
+data_particle_positions = PackedVector2Array(-24, -24, 24, -24, 24, 24, -24, 24)
+data_particle_radius = PackedFloat32Array(0.5, 0.5, 0.5, 0.5)
+data_particle_is_internal = PackedByteArray(0, 0, 0, 0)
+data_springs = Array[PackedInt32Array]([PackedInt32Array(0, 1), PackedInt32Array(1, 2), PackedInt32Array(2, 3), PackedInt32Array(3, 0)])
+data_internal_springs = Array[PackedInt32Array]([PackedInt32Array(0, 2), PackedInt32Array(1, 3)])
+data_polygon = PackedInt32Array(0, 1, 2, 3)
+data_uv_maps = Array[PackedInt32Array]([PackedInt32Array(0, 1, 3), PackedInt32Array(1, 2, 3)])
+
+[node name="box17" type="QRigidBodyNode" parent="boxes/Row2"]
+position = Vector2(336, 0)
+
+[node name="QMeshRectNode" type="QMeshRectNode" parent="boxes/Row2/box17"]
+rectangle_size = Vector2(48, 48)
+enable_vector_rendering = true
+fill_color = Color(0.407843, 0.682353, 0.831373, 1)
+enable_stroke = true
+data_particle_positions = PackedVector2Array(-24, -24, 24, -24, 24, 24, -24, 24)
+data_particle_radius = PackedFloat32Array(0.5, 0.5, 0.5, 0.5)
+data_particle_is_internal = PackedByteArray(0, 0, 0, 0)
+data_springs = Array[PackedInt32Array]([PackedInt32Array(0, 1), PackedInt32Array(1, 2), PackedInt32Array(2, 3), PackedInt32Array(3, 0)])
+data_internal_springs = Array[PackedInt32Array]([PackedInt32Array(0, 2), PackedInt32Array(1, 3)])
+data_polygon = PackedInt32Array(0, 1, 2, 3)
+data_uv_maps = Array[PackedInt32Array]([PackedInt32Array(0, 1, 3), PackedInt32Array(1, 2, 3)])
+
+[node name="box18" type="QRigidBodyNode" parent="boxes/Row2"]
+position = Vector2(384, 0)
+
+[node name="QMeshRectNode" type="QMeshRectNode" parent="boxes/Row2/box18"]
+rectangle_size = Vector2(48, 48)
+enable_vector_rendering = true
+fill_color = Color(0.407843, 0.682353, 0.831373, 1)
+enable_stroke = true
+data_particle_positions = PackedVector2Array(-24, -24, 24, -24, 24, 24, -24, 24)
+data_particle_radius = PackedFloat32Array(0.5, 0.5, 0.5, 0.5)
+data_particle_is_internal = PackedByteArray(0, 0, 0, 0)
+data_springs = Array[PackedInt32Array]([PackedInt32Array(0, 1), PackedInt32Array(1, 2), PackedInt32Array(2, 3), PackedInt32Array(3, 0)])
+data_internal_springs = Array[PackedInt32Array]([PackedInt32Array(0, 2), PackedInt32Array(1, 3)])
+data_polygon = PackedInt32Array(0, 1, 2, 3)
+data_uv_maps = Array[PackedInt32Array]([PackedInt32Array(0, 1, 3), PackedInt32Array(1, 2, 3)])
+
+[node name="box19" type="QRigidBodyNode" parent="boxes/Row2"]
+position = Vector2(432, 0)
+
+[node name="QMeshRectNode" type="QMeshRectNode" parent="boxes/Row2/box19"]
+rectangle_size = Vector2(48, 48)
+enable_vector_rendering = true
+fill_color = Color(0.407843, 0.682353, 0.831373, 1)
+enable_stroke = true
+data_particle_positions = PackedVector2Array(-24, -24, 24, -24, 24, 24, -24, 24)
+data_particle_radius = PackedFloat32Array(0.5, 0.5, 0.5, 0.5)
+data_particle_is_internal = PackedByteArray(0, 0, 0, 0)
+data_springs = Array[PackedInt32Array]([PackedInt32Array(0, 1), PackedInt32Array(1, 2), PackedInt32Array(2, 3), PackedInt32Array(3, 0)])
+data_internal_springs = Array[PackedInt32Array]([PackedInt32Array(0, 2), PackedInt32Array(1, 3)])
+data_polygon = PackedInt32Array(0, 1, 2, 3)
+data_uv_maps = Array[PackedInt32Array]([PackedInt32Array(0, 1, 3), PackedInt32Array(1, 2, 3)])
+
+[node name="Row3" type="Node2D" parent="boxes"]
+position = Vector2(512, 416)
+
+[node name="box" type="QRigidBodyNode" parent="boxes/Row3"]
+position = Vector2(-432, 0)
+
+[node name="QMeshRectNode" type="QMeshRectNode" parent="boxes/Row3/box"]
+rectangle_size = Vector2(48, 48)
+enable_vector_rendering = true
+fill_color = Color(0.407843, 0.682353, 0.831373, 1)
+enable_stroke = true
+data_particle_positions = PackedVector2Array(-24, -24, 24, -24, 24, 24, -24, 24)
+data_particle_radius = PackedFloat32Array(0.5, 0.5, 0.5, 0.5)
+data_particle_is_internal = PackedByteArray(0, 0, 0, 0)
+data_springs = Array[PackedInt32Array]([PackedInt32Array(0, 1), PackedInt32Array(1, 2), PackedInt32Array(2, 3), PackedInt32Array(3, 0)])
+data_internal_springs = Array[PackedInt32Array]([PackedInt32Array(0, 2), PackedInt32Array(1, 3)])
+data_polygon = PackedInt32Array(0, 1, 2, 3)
+data_uv_maps = Array[PackedInt32Array]([PackedInt32Array(0, 1, 3), PackedInt32Array(1, 2, 3)])
+
+[node name="box2" type="QRigidBodyNode" parent="boxes/Row3"]
+position = Vector2(-384, 0)
+
+[node name="QMeshRectNode" type="QMeshRectNode" parent="boxes/Row3/box2"]
+rectangle_size = Vector2(48, 48)
+enable_vector_rendering = true
+fill_color = Color(0.407843, 0.682353, 0.831373, 1)
+enable_stroke = true
+data_particle_positions = PackedVector2Array(-24, -24, 24, -24, 24, 24, -24, 24)
+data_particle_radius = PackedFloat32Array(0.5, 0.5, 0.5, 0.5)
+data_particle_is_internal = PackedByteArray(0, 0, 0, 0)
+data_springs = Array[PackedInt32Array]([PackedInt32Array(0, 1), PackedInt32Array(1, 2), PackedInt32Array(2, 3), PackedInt32Array(3, 0)])
+data_internal_springs = Array[PackedInt32Array]([PackedInt32Array(0, 2), PackedInt32Array(1, 3)])
+data_polygon = PackedInt32Array(0, 1, 2, 3)
+data_uv_maps = Array[PackedInt32Array]([PackedInt32Array(0, 1, 3), PackedInt32Array(1, 2, 3)])
+
+[node name="box3" type="QRigidBodyNode" parent="boxes/Row3"]
+position = Vector2(-336, 0)
+
+[node name="QMeshRectNode" type="QMeshRectNode" parent="boxes/Row3/box3"]
+rectangle_size = Vector2(48, 48)
+enable_vector_rendering = true
+fill_color = Color(0.407843, 0.682353, 0.831373, 1)
+enable_stroke = true
+data_particle_positions = PackedVector2Array(-24, -24, 24, -24, 24, 24, -24, 24)
+data_particle_radius = PackedFloat32Array(0.5, 0.5, 0.5, 0.5)
+data_particle_is_internal = PackedByteArray(0, 0, 0, 0)
+data_springs = Array[PackedInt32Array]([PackedInt32Array(0, 1), PackedInt32Array(1, 2), PackedInt32Array(2, 3), PackedInt32Array(3, 0)])
+data_internal_springs = Array[PackedInt32Array]([PackedInt32Array(0, 2), PackedInt32Array(1, 3)])
+data_polygon = PackedInt32Array(0, 1, 2, 3)
+data_uv_maps = Array[PackedInt32Array]([PackedInt32Array(0, 1, 3), PackedInt32Array(1, 2, 3)])
+
+[node name="box4" type="QRigidBodyNode" parent="boxes/Row3"]
+position = Vector2(-288, 0)
+
+[node name="QMeshRectNode" type="QMeshRectNode" parent="boxes/Row3/box4"]
+rectangle_size = Vector2(48, 48)
+enable_vector_rendering = true
+fill_color = Color(0.407843, 0.682353, 0.831373, 1)
+enable_stroke = true
+data_particle_positions = PackedVector2Array(-24, -24, 24, -24, 24, 24, -24, 24)
+data_particle_radius = PackedFloat32Array(0.5, 0.5, 0.5, 0.5)
+data_particle_is_internal = PackedByteArray(0, 0, 0, 0)
+data_springs = Array[PackedInt32Array]([PackedInt32Array(0, 1), PackedInt32Array(1, 2), PackedInt32Array(2, 3), PackedInt32Array(3, 0)])
+data_internal_springs = Array[PackedInt32Array]([PackedInt32Array(0, 2), PackedInt32Array(1, 3)])
+data_polygon = PackedInt32Array(0, 1, 2, 3)
+data_uv_maps = Array[PackedInt32Array]([PackedInt32Array(0, 1, 3), PackedInt32Array(1, 2, 3)])
+
+[node name="box5" type="QRigidBodyNode" parent="boxes/Row3"]
+position = Vector2(-240, 0)
+
+[node name="QMeshRectNode" type="QMeshRectNode" parent="boxes/Row3/box5"]
+rectangle_size = Vector2(48, 48)
+enable_vector_rendering = true
+fill_color = Color(0.407843, 0.682353, 0.831373, 1)
+enable_stroke = true
+data_particle_positions = PackedVector2Array(-24, -24, 24, -24, 24, 24, -24, 24)
+data_particle_radius = PackedFloat32Array(0.5, 0.5, 0.5, 0.5)
+data_particle_is_internal = PackedByteArray(0, 0, 0, 0)
+data_springs = Array[PackedInt32Array]([PackedInt32Array(0, 1), PackedInt32Array(1, 2), PackedInt32Array(2, 3), PackedInt32Array(3, 0)])
+data_internal_springs = Array[PackedInt32Array]([PackedInt32Array(0, 2), PackedInt32Array(1, 3)])
+data_polygon = PackedInt32Array(0, 1, 2, 3)
+data_uv_maps = Array[PackedInt32Array]([PackedInt32Array(0, 1, 3), PackedInt32Array(1, 2, 3)])
+
+[node name="box6" type="QRigidBodyNode" parent="boxes/Row3"]
+position = Vector2(-192, 0)
+
+[node name="QMeshRectNode" type="QMeshRectNode" parent="boxes/Row3/box6"]
+rectangle_size = Vector2(48, 48)
+enable_vector_rendering = true
+fill_color = Color(0.407843, 0.682353, 0.831373, 1)
+enable_stroke = true
+data_particle_positions = PackedVector2Array(-24, -24, 24, -24, 24, 24, -24, 24)
+data_particle_radius = PackedFloat32Array(0.5, 0.5, 0.5, 0.5)
+data_particle_is_internal = PackedByteArray(0, 0, 0, 0)
+data_springs = Array[PackedInt32Array]([PackedInt32Array(0, 1), PackedInt32Array(1, 2), PackedInt32Array(2, 3), PackedInt32Array(3, 0)])
+data_internal_springs = Array[PackedInt32Array]([PackedInt32Array(0, 2), PackedInt32Array(1, 3)])
+data_polygon = PackedInt32Array(0, 1, 2, 3)
+data_uv_maps = Array[PackedInt32Array]([PackedInt32Array(0, 1, 3), PackedInt32Array(1, 2, 3)])
+
+[node name="box7" type="QRigidBodyNode" parent="boxes/Row3"]
+position = Vector2(-144, 0)
+
+[node name="QMeshRectNode" type="QMeshRectNode" parent="boxes/Row3/box7"]
+rectangle_size = Vector2(48, 48)
+enable_vector_rendering = true
+fill_color = Color(0.407843, 0.682353, 0.831373, 1)
+enable_stroke = true
+data_particle_positions = PackedVector2Array(-24, -24, 24, -24, 24, 24, -24, 24)
+data_particle_radius = PackedFloat32Array(0.5, 0.5, 0.5, 0.5)
+data_particle_is_internal = PackedByteArray(0, 0, 0, 0)
+data_springs = Array[PackedInt32Array]([PackedInt32Array(0, 1), PackedInt32Array(1, 2), PackedInt32Array(2, 3), PackedInt32Array(3, 0)])
+data_internal_springs = Array[PackedInt32Array]([PackedInt32Array(0, 2), PackedInt32Array(1, 3)])
+data_polygon = PackedInt32Array(0, 1, 2, 3)
+data_uv_maps = Array[PackedInt32Array]([PackedInt32Array(0, 1, 3), PackedInt32Array(1, 2, 3)])
+
+[node name="box8" type="QRigidBodyNode" parent="boxes/Row3"]
+position = Vector2(-96, 0)
+
+[node name="QMeshRectNode" type="QMeshRectNode" parent="boxes/Row3/box8"]
+rectangle_size = Vector2(48, 48)
+enable_vector_rendering = true
+fill_color = Color(0.407843, 0.682353, 0.831373, 1)
+enable_stroke = true
+data_particle_positions = PackedVector2Array(-24, -24, 24, -24, 24, 24, -24, 24)
+data_particle_radius = PackedFloat32Array(0.5, 0.5, 0.5, 0.5)
+data_particle_is_internal = PackedByteArray(0, 0, 0, 0)
+data_springs = Array[PackedInt32Array]([PackedInt32Array(0, 1), PackedInt32Array(1, 2), PackedInt32Array(2, 3), PackedInt32Array(3, 0)])
+data_internal_springs = Array[PackedInt32Array]([PackedInt32Array(0, 2), PackedInt32Array(1, 3)])
+data_polygon = PackedInt32Array(0, 1, 2, 3)
+data_uv_maps = Array[PackedInt32Array]([PackedInt32Array(0, 1, 3), PackedInt32Array(1, 2, 3)])
+
+[node name="box9" type="QRigidBodyNode" parent="boxes/Row3"]
+position = Vector2(-48, 0)
+
+[node name="QMeshRectNode" type="QMeshRectNode" parent="boxes/Row3/box9"]
+rectangle_size = Vector2(48, 48)
+enable_vector_rendering = true
+fill_color = Color(0.407843, 0.682353, 0.831373, 1)
+enable_stroke = true
+data_particle_positions = PackedVector2Array(-24, -24, 24, -24, 24, 24, -24, 24)
+data_particle_radius = PackedFloat32Array(0.5, 0.5, 0.5, 0.5)
+data_particle_is_internal = PackedByteArray(0, 0, 0, 0)
+data_springs = Array[PackedInt32Array]([PackedInt32Array(0, 1), PackedInt32Array(1, 2), PackedInt32Array(2, 3), PackedInt32Array(3, 0)])
+data_internal_springs = Array[PackedInt32Array]([PackedInt32Array(0, 2), PackedInt32Array(1, 3)])
+data_polygon = PackedInt32Array(0, 1, 2, 3)
+data_uv_maps = Array[PackedInt32Array]([PackedInt32Array(0, 1, 3), PackedInt32Array(1, 2, 3)])
+
+[node name="box10" type="QRigidBodyNode" parent="boxes/Row3"]
+
+[node name="QMeshRectNode" type="QMeshRectNode" parent="boxes/Row3/box10"]
+rectangle_size = Vector2(48, 48)
+enable_vector_rendering = true
+fill_color = Color(0.407843, 0.682353, 0.831373, 1)
+enable_stroke = true
+data_particle_positions = PackedVector2Array(-24, -24, 24, -24, 24, 24, -24, 24)
+data_particle_radius = PackedFloat32Array(0.5, 0.5, 0.5, 0.5)
+data_particle_is_internal = PackedByteArray(0, 0, 0, 0)
+data_springs = Array[PackedInt32Array]([PackedInt32Array(0, 1), PackedInt32Array(1, 2), PackedInt32Array(2, 3), PackedInt32Array(3, 0)])
+data_internal_springs = Array[PackedInt32Array]([PackedInt32Array(0, 2), PackedInt32Array(1, 3)])
+data_polygon = PackedInt32Array(0, 1, 2, 3)
+data_uv_maps = Array[PackedInt32Array]([PackedInt32Array(0, 1, 3), PackedInt32Array(1, 2, 3)])
+
+[node name="box11" type="QRigidBodyNode" parent="boxes/Row3"]
+position = Vector2(48, 0)
+
+[node name="QMeshRectNode" type="QMeshRectNode" parent="boxes/Row3/box11"]
+rectangle_size = Vector2(48, 48)
+enable_vector_rendering = true
+fill_color = Color(0.407843, 0.682353, 0.831373, 1)
+enable_stroke = true
+data_particle_positions = PackedVector2Array(-24, -24, 24, -24, 24, 24, -24, 24)
+data_particle_radius = PackedFloat32Array(0.5, 0.5, 0.5, 0.5)
+data_particle_is_internal = PackedByteArray(0, 0, 0, 0)
+data_springs = Array[PackedInt32Array]([PackedInt32Array(0, 1), PackedInt32Array(1, 2), PackedInt32Array(2, 3), PackedInt32Array(3, 0)])
+data_internal_springs = Array[PackedInt32Array]([PackedInt32Array(0, 2), PackedInt32Array(1, 3)])
+data_polygon = PackedInt32Array(0, 1, 2, 3)
+data_uv_maps = Array[PackedInt32Array]([PackedInt32Array(0, 1, 3), PackedInt32Array(1, 2, 3)])
+
+[node name="box12" type="QRigidBodyNode" parent="boxes/Row3"]
+position = Vector2(96, 0)
+
+[node name="QMeshRectNode" type="QMeshRectNode" parent="boxes/Row3/box12"]
+rectangle_size = Vector2(48, 48)
+enable_vector_rendering = true
+fill_color = Color(0.407843, 0.682353, 0.831373, 1)
+enable_stroke = true
+data_particle_positions = PackedVector2Array(-24, -24, 24, -24, 24, 24, -24, 24)
+data_particle_radius = PackedFloat32Array(0.5, 0.5, 0.5, 0.5)
+data_particle_is_internal = PackedByteArray(0, 0, 0, 0)
+data_springs = Array[PackedInt32Array]([PackedInt32Array(0, 1), PackedInt32Array(1, 2), PackedInt32Array(2, 3), PackedInt32Array(3, 0)])
+data_internal_springs = Array[PackedInt32Array]([PackedInt32Array(0, 2), PackedInt32Array(1, 3)])
+data_polygon = PackedInt32Array(0, 1, 2, 3)
+data_uv_maps = Array[PackedInt32Array]([PackedInt32Array(0, 1, 3), PackedInt32Array(1, 2, 3)])
+
+[node name="box13" type="QRigidBodyNode" parent="boxes/Row3"]
+position = Vector2(144, 0)
+
+[node name="QMeshRectNode" type="QMeshRectNode" parent="boxes/Row3/box13"]
+rectangle_size = Vector2(48, 48)
+enable_vector_rendering = true
+fill_color = Color(0.407843, 0.682353, 0.831373, 1)
+enable_stroke = true
+data_particle_positions = PackedVector2Array(-24, -24, 24, -24, 24, 24, -24, 24)
+data_particle_radius = PackedFloat32Array(0.5, 0.5, 0.5, 0.5)
+data_particle_is_internal = PackedByteArray(0, 0, 0, 0)
+data_springs = Array[PackedInt32Array]([PackedInt32Array(0, 1), PackedInt32Array(1, 2), PackedInt32Array(2, 3), PackedInt32Array(3, 0)])
+data_internal_springs = Array[PackedInt32Array]([PackedInt32Array(0, 2), PackedInt32Array(1, 3)])
+data_polygon = PackedInt32Array(0, 1, 2, 3)
+data_uv_maps = Array[PackedInt32Array]([PackedInt32Array(0, 1, 3), PackedInt32Array(1, 2, 3)])
+
+[node name="box14" type="QRigidBodyNode" parent="boxes/Row3"]
+position = Vector2(192, 0)
+
+[node name="QMeshRectNode" type="QMeshRectNode" parent="boxes/Row3/box14"]
+rectangle_size = Vector2(48, 48)
+enable_vector_rendering = true
+fill_color = Color(0.407843, 0.682353, 0.831373, 1)
+enable_stroke = true
+data_particle_positions = PackedVector2Array(-24, -24, 24, -24, 24, 24, -24, 24)
+data_particle_radius = PackedFloat32Array(0.5, 0.5, 0.5, 0.5)
+data_particle_is_internal = PackedByteArray(0, 0, 0, 0)
+data_springs = Array[PackedInt32Array]([PackedInt32Array(0, 1), PackedInt32Array(1, 2), PackedInt32Array(2, 3), PackedInt32Array(3, 0)])
+data_internal_springs = Array[PackedInt32Array]([PackedInt32Array(0, 2), PackedInt32Array(1, 3)])
+data_polygon = PackedInt32Array(0, 1, 2, 3)
+data_uv_maps = Array[PackedInt32Array]([PackedInt32Array(0, 1, 3), PackedInt32Array(1, 2, 3)])
+
+[node name="box15" type="QRigidBodyNode" parent="boxes/Row3"]
+position = Vector2(240, 0)
+
+[node name="QMeshRectNode" type="QMeshRectNode" parent="boxes/Row3/box15"]
+rectangle_size = Vector2(48, 48)
+enable_vector_rendering = true
+fill_color = Color(0.407843, 0.682353, 0.831373, 1)
+enable_stroke = true
+data_particle_positions = PackedVector2Array(-24, -24, 24, -24, 24, 24, -24, 24)
+data_particle_radius = PackedFloat32Array(0.5, 0.5, 0.5, 0.5)
+data_particle_is_internal = PackedByteArray(0, 0, 0, 0)
+data_springs = Array[PackedInt32Array]([PackedInt32Array(0, 1), PackedInt32Array(1, 2), PackedInt32Array(2, 3), PackedInt32Array(3, 0)])
+data_internal_springs = Array[PackedInt32Array]([PackedInt32Array(0, 2), PackedInt32Array(1, 3)])
+data_polygon = PackedInt32Array(0, 1, 2, 3)
+data_uv_maps = Array[PackedInt32Array]([PackedInt32Array(0, 1, 3), PackedInt32Array(1, 2, 3)])
+
+[node name="box16" type="QRigidBodyNode" parent="boxes/Row3"]
+position = Vector2(288, 0)
+
+[node name="QMeshRectNode" type="QMeshRectNode" parent="boxes/Row3/box16"]
+rectangle_size = Vector2(48, 48)
+enable_vector_rendering = true
+fill_color = Color(0.407843, 0.682353, 0.831373, 1)
+enable_stroke = true
+data_particle_positions = PackedVector2Array(-24, -24, 24, -24, 24, 24, -24, 24)
+data_particle_radius = PackedFloat32Array(0.5, 0.5, 0.5, 0.5)
+data_particle_is_internal = PackedByteArray(0, 0, 0, 0)
+data_springs = Array[PackedInt32Array]([PackedInt32Array(0, 1), PackedInt32Array(1, 2), PackedInt32Array(2, 3), PackedInt32Array(3, 0)])
+data_internal_springs = Array[PackedInt32Array]([PackedInt32Array(0, 2), PackedInt32Array(1, 3)])
+data_polygon = PackedInt32Array(0, 1, 2, 3)
+data_uv_maps = Array[PackedInt32Array]([PackedInt32Array(0, 1, 3), PackedInt32Array(1, 2, 3)])
+
+[node name="box17" type="QRigidBodyNode" parent="boxes/Row3"]
+position = Vector2(336, 0)
+
+[node name="QMeshRectNode" type="QMeshRectNode" parent="boxes/Row3/box17"]
+rectangle_size = Vector2(48, 48)
+enable_vector_rendering = true
+fill_color = Color(0.407843, 0.682353, 0.831373, 1)
+enable_stroke = true
+data_particle_positions = PackedVector2Array(-24, -24, 24, -24, 24, 24, -24, 24)
+data_particle_radius = PackedFloat32Array(0.5, 0.5, 0.5, 0.5)
+data_particle_is_internal = PackedByteArray(0, 0, 0, 0)
+data_springs = Array[PackedInt32Array]([PackedInt32Array(0, 1), PackedInt32Array(1, 2), PackedInt32Array(2, 3), PackedInt32Array(3, 0)])
+data_internal_springs = Array[PackedInt32Array]([PackedInt32Array(0, 2), PackedInt32Array(1, 3)])
+data_polygon = PackedInt32Array(0, 1, 2, 3)
+data_uv_maps = Array[PackedInt32Array]([PackedInt32Array(0, 1, 3), PackedInt32Array(1, 2, 3)])
+
+[node name="box18" type="QRigidBodyNode" parent="boxes/Row3"]
+position = Vector2(384, 0)
+
+[node name="QMeshRectNode" type="QMeshRectNode" parent="boxes/Row3/box18"]
+rectangle_size = Vector2(48, 48)
+enable_vector_rendering = true
+fill_color = Color(0.407843, 0.682353, 0.831373, 1)
+enable_stroke = true
+data_particle_positions = PackedVector2Array(-24, -24, 24, -24, 24, 24, -24, 24)
+data_particle_radius = PackedFloat32Array(0.5, 0.5, 0.5, 0.5)
+data_particle_is_internal = PackedByteArray(0, 0, 0, 0)
+data_springs = Array[PackedInt32Array]([PackedInt32Array(0, 1), PackedInt32Array(1, 2), PackedInt32Array(2, 3), PackedInt32Array(3, 0)])
+data_internal_springs = Array[PackedInt32Array]([PackedInt32Array(0, 2), PackedInt32Array(1, 3)])
+data_polygon = PackedInt32Array(0, 1, 2, 3)
+data_uv_maps = Array[PackedInt32Array]([PackedInt32Array(0, 1, 3), PackedInt32Array(1, 2, 3)])
+
+[node name="box19" type="QRigidBodyNode" parent="boxes/Row3"]
+position = Vector2(432, 0)
+
+[node name="QMeshRectNode" type="QMeshRectNode" parent="boxes/Row3/box19"]
+rectangle_size = Vector2(48, 48)
+enable_vector_rendering = true
+fill_color = Color(0.407843, 0.682353, 0.831373, 1)
+enable_stroke = true
+data_particle_positions = PackedVector2Array(-24, -24, 24, -24, 24, 24, -24, 24)
+data_particle_radius = PackedFloat32Array(0.5, 0.5, 0.5, 0.5)
+data_particle_is_internal = PackedByteArray(0, 0, 0, 0)
+data_springs = Array[PackedInt32Array]([PackedInt32Array(0, 1), PackedInt32Array(1, 2), PackedInt32Array(2, 3), PackedInt32Array(3, 0)])
+data_internal_springs = Array[PackedInt32Array]([PackedInt32Array(0, 2), PackedInt32Array(1, 3)])
+data_polygon = PackedInt32Array(0, 1, 2, 3)
+data_uv_maps = Array[PackedInt32Array]([PackedInt32Array(0, 1, 3), PackedInt32Array(1, 2, 3)])
+
+[node name="Row4" type="Node2D" parent="boxes"]
+position = Vector2(512, 368)
+
+[node name="box" type="QRigidBodyNode" parent="boxes/Row4"]
+position = Vector2(-432, 0)
+
+[node name="QMeshRectNode" type="QMeshRectNode" parent="boxes/Row4/box"]
+rectangle_size = Vector2(48, 48)
+enable_vector_rendering = true
+fill_color = Color(0.407843, 0.682353, 0.831373, 1)
+enable_stroke = true
+data_particle_positions = PackedVector2Array(-24, -24, 24, -24, 24, 24, -24, 24)
+data_particle_radius = PackedFloat32Array(0.5, 0.5, 0.5, 0.5)
+data_particle_is_internal = PackedByteArray(0, 0, 0, 0)
+data_springs = Array[PackedInt32Array]([PackedInt32Array(0, 1), PackedInt32Array(1, 2), PackedInt32Array(2, 3), PackedInt32Array(3, 0)])
+data_internal_springs = Array[PackedInt32Array]([PackedInt32Array(0, 2), PackedInt32Array(1, 3)])
+data_polygon = PackedInt32Array(0, 1, 2, 3)
+data_uv_maps = Array[PackedInt32Array]([PackedInt32Array(0, 1, 3), PackedInt32Array(1, 2, 3)])
+
+[node name="box2" type="QRigidBodyNode" parent="boxes/Row4"]
+position = Vector2(-384, 0)
+
+[node name="QMeshRectNode" type="QMeshRectNode" parent="boxes/Row4/box2"]
+rectangle_size = Vector2(48, 48)
+enable_vector_rendering = true
+fill_color = Color(0.407843, 0.682353, 0.831373, 1)
+enable_stroke = true
+data_particle_positions = PackedVector2Array(-24, -24, 24, -24, 24, 24, -24, 24)
+data_particle_radius = PackedFloat32Array(0.5, 0.5, 0.5, 0.5)
+data_particle_is_internal = PackedByteArray(0, 0, 0, 0)
+data_springs = Array[PackedInt32Array]([PackedInt32Array(0, 1), PackedInt32Array(1, 2), PackedInt32Array(2, 3), PackedInt32Array(3, 0)])
+data_internal_springs = Array[PackedInt32Array]([PackedInt32Array(0, 2), PackedInt32Array(1, 3)])
+data_polygon = PackedInt32Array(0, 1, 2, 3)
+data_uv_maps = Array[PackedInt32Array]([PackedInt32Array(0, 1, 3), PackedInt32Array(1, 2, 3)])
+
+[node name="box3" type="QRigidBodyNode" parent="boxes/Row4"]
+position = Vector2(-336, 0)
+
+[node name="QMeshRectNode" type="QMeshRectNode" parent="boxes/Row4/box3"]
+rectangle_size = Vector2(48, 48)
+enable_vector_rendering = true
+fill_color = Color(0.407843, 0.682353, 0.831373, 1)
+enable_stroke = true
+data_particle_positions = PackedVector2Array(-24, -24, 24, -24, 24, 24, -24, 24)
+data_particle_radius = PackedFloat32Array(0.5, 0.5, 0.5, 0.5)
+data_particle_is_internal = PackedByteArray(0, 0, 0, 0)
+data_springs = Array[PackedInt32Array]([PackedInt32Array(0, 1), PackedInt32Array(1, 2), PackedInt32Array(2, 3), PackedInt32Array(3, 0)])
+data_internal_springs = Array[PackedInt32Array]([PackedInt32Array(0, 2), PackedInt32Array(1, 3)])
+data_polygon = PackedInt32Array(0, 1, 2, 3)
+data_uv_maps = Array[PackedInt32Array]([PackedInt32Array(0, 1, 3), PackedInt32Array(1, 2, 3)])
+
+[node name="box4" type="QRigidBodyNode" parent="boxes/Row4"]
+position = Vector2(-288, 0)
+
+[node name="QMeshRectNode" type="QMeshRectNode" parent="boxes/Row4/box4"]
+rectangle_size = Vector2(48, 48)
+enable_vector_rendering = true
+fill_color = Color(0.407843, 0.682353, 0.831373, 1)
+enable_stroke = true
+data_particle_positions = PackedVector2Array(-24, -24, 24, -24, 24, 24, -24, 24)
+data_particle_radius = PackedFloat32Array(0.5, 0.5, 0.5, 0.5)
+data_particle_is_internal = PackedByteArray(0, 0, 0, 0)
+data_springs = Array[PackedInt32Array]([PackedInt32Array(0, 1), PackedInt32Array(1, 2), PackedInt32Array(2, 3), PackedInt32Array(3, 0)])
+data_internal_springs = Array[PackedInt32Array]([PackedInt32Array(0, 2), PackedInt32Array(1, 3)])
+data_polygon = PackedInt32Array(0, 1, 2, 3)
+data_uv_maps = Array[PackedInt32Array]([PackedInt32Array(0, 1, 3), PackedInt32Array(1, 2, 3)])
+
+[node name="box5" type="QRigidBodyNode" parent="boxes/Row4"]
+position = Vector2(-240, 0)
+
+[node name="QMeshRectNode" type="QMeshRectNode" parent="boxes/Row4/box5"]
+rectangle_size = Vector2(48, 48)
+enable_vector_rendering = true
+fill_color = Color(0.407843, 0.682353, 0.831373, 1)
+enable_stroke = true
+data_particle_positions = PackedVector2Array(-24, -24, 24, -24, 24, 24, -24, 24)
+data_particle_radius = PackedFloat32Array(0.5, 0.5, 0.5, 0.5)
+data_particle_is_internal = PackedByteArray(0, 0, 0, 0)
+data_springs = Array[PackedInt32Array]([PackedInt32Array(0, 1), PackedInt32Array(1, 2), PackedInt32Array(2, 3), PackedInt32Array(3, 0)])
+data_internal_springs = Array[PackedInt32Array]([PackedInt32Array(0, 2), PackedInt32Array(1, 3)])
+data_polygon = PackedInt32Array(0, 1, 2, 3)
+data_uv_maps = Array[PackedInt32Array]([PackedInt32Array(0, 1, 3), PackedInt32Array(1, 2, 3)])
+
+[node name="box6" type="QRigidBodyNode" parent="boxes/Row4"]
+position = Vector2(-192, 0)
+
+[node name="QMeshRectNode" type="QMeshRectNode" parent="boxes/Row4/box6"]
+rectangle_size = Vector2(48, 48)
+enable_vector_rendering = true
+fill_color = Color(0.407843, 0.682353, 0.831373, 1)
+enable_stroke = true
+data_particle_positions = PackedVector2Array(-24, -24, 24, -24, 24, 24, -24, 24)
+data_particle_radius = PackedFloat32Array(0.5, 0.5, 0.5, 0.5)
+data_particle_is_internal = PackedByteArray(0, 0, 0, 0)
+data_springs = Array[PackedInt32Array]([PackedInt32Array(0, 1), PackedInt32Array(1, 2), PackedInt32Array(2, 3), PackedInt32Array(3, 0)])
+data_internal_springs = Array[PackedInt32Array]([PackedInt32Array(0, 2), PackedInt32Array(1, 3)])
+data_polygon = PackedInt32Array(0, 1, 2, 3)
+data_uv_maps = Array[PackedInt32Array]([PackedInt32Array(0, 1, 3), PackedInt32Array(1, 2, 3)])
+
+[node name="box7" type="QRigidBodyNode" parent="boxes/Row4"]
+position = Vector2(-144, 0)
+
+[node name="QMeshRectNode" type="QMeshRectNode" parent="boxes/Row4/box7"]
+rectangle_size = Vector2(48, 48)
+enable_vector_rendering = true
+fill_color = Color(0.407843, 0.682353, 0.831373, 1)
+enable_stroke = true
+data_particle_positions = PackedVector2Array(-24, -24, 24, -24, 24, 24, -24, 24)
+data_particle_radius = PackedFloat32Array(0.5, 0.5, 0.5, 0.5)
+data_particle_is_internal = PackedByteArray(0, 0, 0, 0)
+data_springs = Array[PackedInt32Array]([PackedInt32Array(0, 1), PackedInt32Array(1, 2), PackedInt32Array(2, 3), PackedInt32Array(3, 0)])
+data_internal_springs = Array[PackedInt32Array]([PackedInt32Array(0, 2), PackedInt32Array(1, 3)])
+data_polygon = PackedInt32Array(0, 1, 2, 3)
+data_uv_maps = Array[PackedInt32Array]([PackedInt32Array(0, 1, 3), PackedInt32Array(1, 2, 3)])
+
+[node name="box8" type="QRigidBodyNode" parent="boxes/Row4"]
+position = Vector2(-96, 0)
+
+[node name="QMeshRectNode" type="QMeshRectNode" parent="boxes/Row4/box8"]
+rectangle_size = Vector2(48, 48)
+enable_vector_rendering = true
+fill_color = Color(0.407843, 0.682353, 0.831373, 1)
+enable_stroke = true
+data_particle_positions = PackedVector2Array(-24, -24, 24, -24, 24, 24, -24, 24)
+data_particle_radius = PackedFloat32Array(0.5, 0.5, 0.5, 0.5)
+data_particle_is_internal = PackedByteArray(0, 0, 0, 0)
+data_springs = Array[PackedInt32Array]([PackedInt32Array(0, 1), PackedInt32Array(1, 2), PackedInt32Array(2, 3), PackedInt32Array(3, 0)])
+data_internal_springs = Array[PackedInt32Array]([PackedInt32Array(0, 2), PackedInt32Array(1, 3)])
+data_polygon = PackedInt32Array(0, 1, 2, 3)
+data_uv_maps = Array[PackedInt32Array]([PackedInt32Array(0, 1, 3), PackedInt32Array(1, 2, 3)])
+
+[node name="box9" type="QRigidBodyNode" parent="boxes/Row4"]
+position = Vector2(-48, 0)
+
+[node name="QMeshRectNode" type="QMeshRectNode" parent="boxes/Row4/box9"]
+rectangle_size = Vector2(48, 48)
+enable_vector_rendering = true
+fill_color = Color(0.407843, 0.682353, 0.831373, 1)
+enable_stroke = true
+data_particle_positions = PackedVector2Array(-24, -24, 24, -24, 24, 24, -24, 24)
+data_particle_radius = PackedFloat32Array(0.5, 0.5, 0.5, 0.5)
+data_particle_is_internal = PackedByteArray(0, 0, 0, 0)
+data_springs = Array[PackedInt32Array]([PackedInt32Array(0, 1), PackedInt32Array(1, 2), PackedInt32Array(2, 3), PackedInt32Array(3, 0)])
+data_internal_springs = Array[PackedInt32Array]([PackedInt32Array(0, 2), PackedInt32Array(1, 3)])
+data_polygon = PackedInt32Array(0, 1, 2, 3)
+data_uv_maps = Array[PackedInt32Array]([PackedInt32Array(0, 1, 3), PackedInt32Array(1, 2, 3)])
+
+[node name="box10" type="QRigidBodyNode" parent="boxes/Row4"]
+
+[node name="QMeshRectNode" type="QMeshRectNode" parent="boxes/Row4/box10"]
+rectangle_size = Vector2(48, 48)
+enable_vector_rendering = true
+fill_color = Color(0.407843, 0.682353, 0.831373, 1)
+enable_stroke = true
+data_particle_positions = PackedVector2Array(-24, -24, 24, -24, 24, 24, -24, 24)
+data_particle_radius = PackedFloat32Array(0.5, 0.5, 0.5, 0.5)
+data_particle_is_internal = PackedByteArray(0, 0, 0, 0)
+data_springs = Array[PackedInt32Array]([PackedInt32Array(0, 1), PackedInt32Array(1, 2), PackedInt32Array(2, 3), PackedInt32Array(3, 0)])
+data_internal_springs = Array[PackedInt32Array]([PackedInt32Array(0, 2), PackedInt32Array(1, 3)])
+data_polygon = PackedInt32Array(0, 1, 2, 3)
+data_uv_maps = Array[PackedInt32Array]([PackedInt32Array(0, 1, 3), PackedInt32Array(1, 2, 3)])
+
+[node name="box11" type="QRigidBodyNode" parent="boxes/Row4"]
+position = Vector2(48, 0)
+
+[node name="QMeshRectNode" type="QMeshRectNode" parent="boxes/Row4/box11"]
+rectangle_size = Vector2(48, 48)
+enable_vector_rendering = true
+fill_color = Color(0.407843, 0.682353, 0.831373, 1)
+enable_stroke = true
+data_particle_positions = PackedVector2Array(-24, -24, 24, -24, 24, 24, -24, 24)
+data_particle_radius = PackedFloat32Array(0.5, 0.5, 0.5, 0.5)
+data_particle_is_internal = PackedByteArray(0, 0, 0, 0)
+data_springs = Array[PackedInt32Array]([PackedInt32Array(0, 1), PackedInt32Array(1, 2), PackedInt32Array(2, 3), PackedInt32Array(3, 0)])
+data_internal_springs = Array[PackedInt32Array]([PackedInt32Array(0, 2), PackedInt32Array(1, 3)])
+data_polygon = PackedInt32Array(0, 1, 2, 3)
+data_uv_maps = Array[PackedInt32Array]([PackedInt32Array(0, 1, 3), PackedInt32Array(1, 2, 3)])
+
+[node name="box12" type="QRigidBodyNode" parent="boxes/Row4"]
+position = Vector2(96, 0)
+
+[node name="QMeshRectNode" type="QMeshRectNode" parent="boxes/Row4/box12"]
+rectangle_size = Vector2(48, 48)
+enable_vector_rendering = true
+fill_color = Color(0.407843, 0.682353, 0.831373, 1)
+enable_stroke = true
+data_particle_positions = PackedVector2Array(-24, -24, 24, -24, 24, 24, -24, 24)
+data_particle_radius = PackedFloat32Array(0.5, 0.5, 0.5, 0.5)
+data_particle_is_internal = PackedByteArray(0, 0, 0, 0)
+data_springs = Array[PackedInt32Array]([PackedInt32Array(0, 1), PackedInt32Array(1, 2), PackedInt32Array(2, 3), PackedInt32Array(3, 0)])
+data_internal_springs = Array[PackedInt32Array]([PackedInt32Array(0, 2), PackedInt32Array(1, 3)])
+data_polygon = PackedInt32Array(0, 1, 2, 3)
+data_uv_maps = Array[PackedInt32Array]([PackedInt32Array(0, 1, 3), PackedInt32Array(1, 2, 3)])
+
+[node name="box13" type="QRigidBodyNode" parent="boxes/Row4"]
+position = Vector2(144, 0)
+
+[node name="QMeshRectNode" type="QMeshRectNode" parent="boxes/Row4/box13"]
+rectangle_size = Vector2(48, 48)
+enable_vector_rendering = true
+fill_color = Color(0.407843, 0.682353, 0.831373, 1)
+enable_stroke = true
+data_particle_positions = PackedVector2Array(-24, -24, 24, -24, 24, 24, -24, 24)
+data_particle_radius = PackedFloat32Array(0.5, 0.5, 0.5, 0.5)
+data_particle_is_internal = PackedByteArray(0, 0, 0, 0)
+data_springs = Array[PackedInt32Array]([PackedInt32Array(0, 1), PackedInt32Array(1, 2), PackedInt32Array(2, 3), PackedInt32Array(3, 0)])
+data_internal_springs = Array[PackedInt32Array]([PackedInt32Array(0, 2), PackedInt32Array(1, 3)])
+data_polygon = PackedInt32Array(0, 1, 2, 3)
+data_uv_maps = Array[PackedInt32Array]([PackedInt32Array(0, 1, 3), PackedInt32Array(1, 2, 3)])
+
+[node name="box14" type="QRigidBodyNode" parent="boxes/Row4"]
+position = Vector2(192, 0)
+
+[node name="QMeshRectNode" type="QMeshRectNode" parent="boxes/Row4/box14"]
+rectangle_size = Vector2(48, 48)
+enable_vector_rendering = true
+fill_color = Color(0.407843, 0.682353, 0.831373, 1)
+enable_stroke = true
+data_particle_positions = PackedVector2Array(-24, -24, 24, -24, 24, 24, -24, 24)
+data_particle_radius = PackedFloat32Array(0.5, 0.5, 0.5, 0.5)
+data_particle_is_internal = PackedByteArray(0, 0, 0, 0)
+data_springs = Array[PackedInt32Array]([PackedInt32Array(0, 1), PackedInt32Array(1, 2), PackedInt32Array(2, 3), PackedInt32Array(3, 0)])
+data_internal_springs = Array[PackedInt32Array]([PackedInt32Array(0, 2), PackedInt32Array(1, 3)])
+data_polygon = PackedInt32Array(0, 1, 2, 3)
+data_uv_maps = Array[PackedInt32Array]([PackedInt32Array(0, 1, 3), PackedInt32Array(1, 2, 3)])
+
+[node name="box15" type="QRigidBodyNode" parent="boxes/Row4"]
+position = Vector2(240, 0)
+
+[node name="QMeshRectNode" type="QMeshRectNode" parent="boxes/Row4/box15"]
+rectangle_size = Vector2(48, 48)
+enable_vector_rendering = true
+fill_color = Color(0.407843, 0.682353, 0.831373, 1)
+enable_stroke = true
+data_particle_positions = PackedVector2Array(-24, -24, 24, -24, 24, 24, -24, 24)
+data_particle_radius = PackedFloat32Array(0.5, 0.5, 0.5, 0.5)
+data_particle_is_internal = PackedByteArray(0, 0, 0, 0)
+data_springs = Array[PackedInt32Array]([PackedInt32Array(0, 1), PackedInt32Array(1, 2), PackedInt32Array(2, 3), PackedInt32Array(3, 0)])
+data_internal_springs = Array[PackedInt32Array]([PackedInt32Array(0, 2), PackedInt32Array(1, 3)])
+data_polygon = PackedInt32Array(0, 1, 2, 3)
+data_uv_maps = Array[PackedInt32Array]([PackedInt32Array(0, 1, 3), PackedInt32Array(1, 2, 3)])
+
+[node name="box16" type="QRigidBodyNode" parent="boxes/Row4"]
+position = Vector2(288, 0)
+
+[node name="QMeshRectNode" type="QMeshRectNode" parent="boxes/Row4/box16"]
+rectangle_size = Vector2(48, 48)
+enable_vector_rendering = true
+fill_color = Color(0.407843, 0.682353, 0.831373, 1)
+enable_stroke = true
+data_particle_positions = PackedVector2Array(-24, -24, 24, -24, 24, 24, -24, 24)
+data_particle_radius = PackedFloat32Array(0.5, 0.5, 0.5, 0.5)
+data_particle_is_internal = PackedByteArray(0, 0, 0, 0)
+data_springs = Array[PackedInt32Array]([PackedInt32Array(0, 1), PackedInt32Array(1, 2), PackedInt32Array(2, 3), PackedInt32Array(3, 0)])
+data_internal_springs = Array[PackedInt32Array]([PackedInt32Array(0, 2), PackedInt32Array(1, 3)])
+data_polygon = PackedInt32Array(0, 1, 2, 3)
+data_uv_maps = Array[PackedInt32Array]([PackedInt32Array(0, 1, 3), PackedInt32Array(1, 2, 3)])
+
+[node name="box17" type="QRigidBodyNode" parent="boxes/Row4"]
+position = Vector2(336, 0)
+
+[node name="QMeshRectNode" type="QMeshRectNode" parent="boxes/Row4/box17"]
+rectangle_size = Vector2(48, 48)
+enable_vector_rendering = true
+fill_color = Color(0.407843, 0.682353, 0.831373, 1)
+enable_stroke = true
+data_particle_positions = PackedVector2Array(-24, -24, 24, -24, 24, 24, -24, 24)
+data_particle_radius = PackedFloat32Array(0.5, 0.5, 0.5, 0.5)
+data_particle_is_internal = PackedByteArray(0, 0, 0, 0)
+data_springs = Array[PackedInt32Array]([PackedInt32Array(0, 1), PackedInt32Array(1, 2), PackedInt32Array(2, 3), PackedInt32Array(3, 0)])
+data_internal_springs = Array[PackedInt32Array]([PackedInt32Array(0, 2), PackedInt32Array(1, 3)])
+data_polygon = PackedInt32Array(0, 1, 2, 3)
+data_uv_maps = Array[PackedInt32Array]([PackedInt32Array(0, 1, 3), PackedInt32Array(1, 2, 3)])
+
+[node name="box18" type="QRigidBodyNode" parent="boxes/Row4"]
+position = Vector2(384, 0)
+
+[node name="QMeshRectNode" type="QMeshRectNode" parent="boxes/Row4/box18"]
+rectangle_size = Vector2(48, 48)
+enable_vector_rendering = true
+fill_color = Color(0.407843, 0.682353, 0.831373, 1)
+enable_stroke = true
+data_particle_positions = PackedVector2Array(-24, -24, 24, -24, 24, 24, -24, 24)
+data_particle_radius = PackedFloat32Array(0.5, 0.5, 0.5, 0.5)
+data_particle_is_internal = PackedByteArray(0, 0, 0, 0)
+data_springs = Array[PackedInt32Array]([PackedInt32Array(0, 1), PackedInt32Array(1, 2), PackedInt32Array(2, 3), PackedInt32Array(3, 0)])
+data_internal_springs = Array[PackedInt32Array]([PackedInt32Array(0, 2), PackedInt32Array(1, 3)])
+data_polygon = PackedInt32Array(0, 1, 2, 3)
+data_uv_maps = Array[PackedInt32Array]([PackedInt32Array(0, 1, 3), PackedInt32Array(1, 2, 3)])
+
+[node name="box19" type="QRigidBodyNode" parent="boxes/Row4"]
+position = Vector2(432, 0)
+
+[node name="QMeshRectNode" type="QMeshRectNode" parent="boxes/Row4/box19"]
+rectangle_size = Vector2(48, 48)
+enable_vector_rendering = true
+fill_color = Color(0.407843, 0.682353, 0.831373, 1)
+enable_stroke = true
+data_particle_positions = PackedVector2Array(-24, -24, 24, -24, 24, 24, -24, 24)
+data_particle_radius = PackedFloat32Array(0.5, 0.5, 0.5, 0.5)
+data_particle_is_internal = PackedByteArray(0, 0, 0, 0)
+data_springs = Array[PackedInt32Array]([PackedInt32Array(0, 1), PackedInt32Array(1, 2), PackedInt32Array(2, 3), PackedInt32Array(3, 0)])
+data_internal_springs = Array[PackedInt32Array]([PackedInt32Array(0, 2), PackedInt32Array(1, 3)])
+data_polygon = PackedInt32Array(0, 1, 2, 3)
+data_uv_maps = Array[PackedInt32Array]([PackedInt32Array(0, 1, 3), PackedInt32Array(1, 2, 3)])
+
+[node name="Row5" type="Node2D" parent="boxes"]
+position = Vector2(512, 320)
+
+[node name="box" type="QRigidBodyNode" parent="boxes/Row5"]
+position = Vector2(-432, 0)
+
+[node name="QMeshRectNode" type="QMeshRectNode" parent="boxes/Row5/box"]
+rectangle_size = Vector2(48, 48)
+enable_vector_rendering = true
+fill_color = Color(0.407843, 0.682353, 0.831373, 1)
+enable_stroke = true
+data_particle_positions = PackedVector2Array(-24, -24, 24, -24, 24, 24, -24, 24)
+data_particle_radius = PackedFloat32Array(0.5, 0.5, 0.5, 0.5)
+data_particle_is_internal = PackedByteArray(0, 0, 0, 0)
+data_springs = Array[PackedInt32Array]([PackedInt32Array(0, 1), PackedInt32Array(1, 2), PackedInt32Array(2, 3), PackedInt32Array(3, 0)])
+data_internal_springs = Array[PackedInt32Array]([PackedInt32Array(0, 2), PackedInt32Array(1, 3)])
+data_polygon = PackedInt32Array(0, 1, 2, 3)
+data_uv_maps = Array[PackedInt32Array]([PackedInt32Array(0, 1, 3), PackedInt32Array(1, 2, 3)])
+
+[node name="box2" type="QRigidBodyNode" parent="boxes/Row5"]
+position = Vector2(-384, 0)
+
+[node name="QMeshRectNode" type="QMeshRectNode" parent="boxes/Row5/box2"]
+rectangle_size = Vector2(48, 48)
+enable_vector_rendering = true
+fill_color = Color(0.407843, 0.682353, 0.831373, 1)
+enable_stroke = true
+data_particle_positions = PackedVector2Array(-24, -24, 24, -24, 24, 24, -24, 24)
+data_particle_radius = PackedFloat32Array(0.5, 0.5, 0.5, 0.5)
+data_particle_is_internal = PackedByteArray(0, 0, 0, 0)
+data_springs = Array[PackedInt32Array]([PackedInt32Array(0, 1), PackedInt32Array(1, 2), PackedInt32Array(2, 3), PackedInt32Array(3, 0)])
+data_internal_springs = Array[PackedInt32Array]([PackedInt32Array(0, 2), PackedInt32Array(1, 3)])
+data_polygon = PackedInt32Array(0, 1, 2, 3)
+data_uv_maps = Array[PackedInt32Array]([PackedInt32Array(0, 1, 3), PackedInt32Array(1, 2, 3)])
+
+[node name="box3" type="QRigidBodyNode" parent="boxes/Row5"]
+position = Vector2(-336, 0)
+
+[node name="QMeshRectNode" type="QMeshRectNode" parent="boxes/Row5/box3"]
+rectangle_size = Vector2(48, 48)
+enable_vector_rendering = true
+fill_color = Color(0.407843, 0.682353, 0.831373, 1)
+enable_stroke = true
+data_particle_positions = PackedVector2Array(-24, -24, 24, -24, 24, 24, -24, 24)
+data_particle_radius = PackedFloat32Array(0.5, 0.5, 0.5, 0.5)
+data_particle_is_internal = PackedByteArray(0, 0, 0, 0)
+data_springs = Array[PackedInt32Array]([PackedInt32Array(0, 1), PackedInt32Array(1, 2), PackedInt32Array(2, 3), PackedInt32Array(3, 0)])
+data_internal_springs = Array[PackedInt32Array]([PackedInt32Array(0, 2), PackedInt32Array(1, 3)])
+data_polygon = PackedInt32Array(0, 1, 2, 3)
+data_uv_maps = Array[PackedInt32Array]([PackedInt32Array(0, 1, 3), PackedInt32Array(1, 2, 3)])
+
+[node name="box4" type="QRigidBodyNode" parent="boxes/Row5"]
+position = Vector2(-288, 0)
+
+[node name="QMeshRectNode" type="QMeshRectNode" parent="boxes/Row5/box4"]
+rectangle_size = Vector2(48, 48)
+enable_vector_rendering = true
+fill_color = Color(0.407843, 0.682353, 0.831373, 1)
+enable_stroke = true
+data_particle_positions = PackedVector2Array(-24, -24, 24, -24, 24, 24, -24, 24)
+data_particle_radius = PackedFloat32Array(0.5, 0.5, 0.5, 0.5)
+data_particle_is_internal = PackedByteArray(0, 0, 0, 0)
+data_springs = Array[PackedInt32Array]([PackedInt32Array(0, 1), PackedInt32Array(1, 2), PackedInt32Array(2, 3), PackedInt32Array(3, 0)])
+data_internal_springs = Array[PackedInt32Array]([PackedInt32Array(0, 2), PackedInt32Array(1, 3)])
+data_polygon = PackedInt32Array(0, 1, 2, 3)
+data_uv_maps = Array[PackedInt32Array]([PackedInt32Array(0, 1, 3), PackedInt32Array(1, 2, 3)])
+
+[node name="box5" type="QRigidBodyNode" parent="boxes/Row5"]
+position = Vector2(-240, 0)
+
+[node name="QMeshRectNode" type="QMeshRectNode" parent="boxes/Row5/box5"]
+rectangle_size = Vector2(48, 48)
+enable_vector_rendering = true
+fill_color = Color(0.407843, 0.682353, 0.831373, 1)
+enable_stroke = true
+data_particle_positions = PackedVector2Array(-24, -24, 24, -24, 24, 24, -24, 24)
+data_particle_radius = PackedFloat32Array(0.5, 0.5, 0.5, 0.5)
+data_particle_is_internal = PackedByteArray(0, 0, 0, 0)
+data_springs = Array[PackedInt32Array]([PackedInt32Array(0, 1), PackedInt32Array(1, 2), PackedInt32Array(2, 3), PackedInt32Array(3, 0)])
+data_internal_springs = Array[PackedInt32Array]([PackedInt32Array(0, 2), PackedInt32Array(1, 3)])
+data_polygon = PackedInt32Array(0, 1, 2, 3)
+data_uv_maps = Array[PackedInt32Array]([PackedInt32Array(0, 1, 3), PackedInt32Array(1, 2, 3)])
+
+[node name="box6" type="QRigidBodyNode" parent="boxes/Row5"]
+position = Vector2(-192, 0)
+
+[node name="QMeshRectNode" type="QMeshRectNode" parent="boxes/Row5/box6"]
+rectangle_size = Vector2(48, 48)
+enable_vector_rendering = true
+fill_color = Color(0.407843, 0.682353, 0.831373, 1)
+enable_stroke = true
+data_particle_positions = PackedVector2Array(-24, -24, 24, -24, 24, 24, -24, 24)
+data_particle_radius = PackedFloat32Array(0.5, 0.5, 0.5, 0.5)
+data_particle_is_internal = PackedByteArray(0, 0, 0, 0)
+data_springs = Array[PackedInt32Array]([PackedInt32Array(0, 1), PackedInt32Array(1, 2), PackedInt32Array(2, 3), PackedInt32Array(3, 0)])
+data_internal_springs = Array[PackedInt32Array]([PackedInt32Array(0, 2), PackedInt32Array(1, 3)])
+data_polygon = PackedInt32Array(0, 1, 2, 3)
+data_uv_maps = Array[PackedInt32Array]([PackedInt32Array(0, 1, 3), PackedInt32Array(1, 2, 3)])
+
+[node name="box7" type="QRigidBodyNode" parent="boxes/Row5"]
+position = Vector2(-144, 0)
+
+[node name="QMeshRectNode" type="QMeshRectNode" parent="boxes/Row5/box7"]
+rectangle_size = Vector2(48, 48)
+enable_vector_rendering = true
+fill_color = Color(0.407843, 0.682353, 0.831373, 1)
+enable_stroke = true
+data_particle_positions = PackedVector2Array(-24, -24, 24, -24, 24, 24, -24, 24)
+data_particle_radius = PackedFloat32Array(0.5, 0.5, 0.5, 0.5)
+data_particle_is_internal = PackedByteArray(0, 0, 0, 0)
+data_springs = Array[PackedInt32Array]([PackedInt32Array(0, 1), PackedInt32Array(1, 2), PackedInt32Array(2, 3), PackedInt32Array(3, 0)])
+data_internal_springs = Array[PackedInt32Array]([PackedInt32Array(0, 2), PackedInt32Array(1, 3)])
+data_polygon = PackedInt32Array(0, 1, 2, 3)
+data_uv_maps = Array[PackedInt32Array]([PackedInt32Array(0, 1, 3), PackedInt32Array(1, 2, 3)])
+
+[node name="box8" type="QRigidBodyNode" parent="boxes/Row5"]
+position = Vector2(-96, 0)
+
+[node name="QMeshRectNode" type="QMeshRectNode" parent="boxes/Row5/box8"]
+rectangle_size = Vector2(48, 48)
+enable_vector_rendering = true
+fill_color = Color(0.407843, 0.682353, 0.831373, 1)
+enable_stroke = true
+data_particle_positions = PackedVector2Array(-24, -24, 24, -24, 24, 24, -24, 24)
+data_particle_radius = PackedFloat32Array(0.5, 0.5, 0.5, 0.5)
+data_particle_is_internal = PackedByteArray(0, 0, 0, 0)
+data_springs = Array[PackedInt32Array]([PackedInt32Array(0, 1), PackedInt32Array(1, 2), PackedInt32Array(2, 3), PackedInt32Array(3, 0)])
+data_internal_springs = Array[PackedInt32Array]([PackedInt32Array(0, 2), PackedInt32Array(1, 3)])
+data_polygon = PackedInt32Array(0, 1, 2, 3)
+data_uv_maps = Array[PackedInt32Array]([PackedInt32Array(0, 1, 3), PackedInt32Array(1, 2, 3)])
+
+[node name="box9" type="QRigidBodyNode" parent="boxes/Row5"]
+position = Vector2(-48, 0)
+
+[node name="QMeshRectNode" type="QMeshRectNode" parent="boxes/Row5/box9"]
+rectangle_size = Vector2(48, 48)
+enable_vector_rendering = true
+fill_color = Color(0.407843, 0.682353, 0.831373, 1)
+enable_stroke = true
+data_particle_positions = PackedVector2Array(-24, -24, 24, -24, 24, 24, -24, 24)
+data_particle_radius = PackedFloat32Array(0.5, 0.5, 0.5, 0.5)
+data_particle_is_internal = PackedByteArray(0, 0, 0, 0)
+data_springs = Array[PackedInt32Array]([PackedInt32Array(0, 1), PackedInt32Array(1, 2), PackedInt32Array(2, 3), PackedInt32Array(3, 0)])
+data_internal_springs = Array[PackedInt32Array]([PackedInt32Array(0, 2), PackedInt32Array(1, 3)])
+data_polygon = PackedInt32Array(0, 1, 2, 3)
+data_uv_maps = Array[PackedInt32Array]([PackedInt32Array(0, 1, 3), PackedInt32Array(1, 2, 3)])
+
+[node name="box10" type="QRigidBodyNode" parent="boxes/Row5"]
+
+[node name="QMeshRectNode" type="QMeshRectNode" parent="boxes/Row5/box10"]
+rectangle_size = Vector2(48, 48)
+enable_vector_rendering = true
+fill_color = Color(0.407843, 0.682353, 0.831373, 1)
+enable_stroke = true
+data_particle_positions = PackedVector2Array(-24, -24, 24, -24, 24, 24, -24, 24)
+data_particle_radius = PackedFloat32Array(0.5, 0.5, 0.5, 0.5)
+data_particle_is_internal = PackedByteArray(0, 0, 0, 0)
+data_springs = Array[PackedInt32Array]([PackedInt32Array(0, 1), PackedInt32Array(1, 2), PackedInt32Array(2, 3), PackedInt32Array(3, 0)])
+data_internal_springs = Array[PackedInt32Array]([PackedInt32Array(0, 2), PackedInt32Array(1, 3)])
+data_polygon = PackedInt32Array(0, 1, 2, 3)
+data_uv_maps = Array[PackedInt32Array]([PackedInt32Array(0, 1, 3), PackedInt32Array(1, 2, 3)])
+
+[node name="box11" type="QRigidBodyNode" parent="boxes/Row5"]
+position = Vector2(48, 0)
+
+[node name="QMeshRectNode" type="QMeshRectNode" parent="boxes/Row5/box11"]
+rectangle_size = Vector2(48, 48)
+enable_vector_rendering = true
+fill_color = Color(0.407843, 0.682353, 0.831373, 1)
+enable_stroke = true
+data_particle_positions = PackedVector2Array(-24, -24, 24, -24, 24, 24, -24, 24)
+data_particle_radius = PackedFloat32Array(0.5, 0.5, 0.5, 0.5)
+data_particle_is_internal = PackedByteArray(0, 0, 0, 0)
+data_springs = Array[PackedInt32Array]([PackedInt32Array(0, 1), PackedInt32Array(1, 2), PackedInt32Array(2, 3), PackedInt32Array(3, 0)])
+data_internal_springs = Array[PackedInt32Array]([PackedInt32Array(0, 2), PackedInt32Array(1, 3)])
+data_polygon = PackedInt32Array(0, 1, 2, 3)
+data_uv_maps = Array[PackedInt32Array]([PackedInt32Array(0, 1, 3), PackedInt32Array(1, 2, 3)])
+
+[node name="box12" type="QRigidBodyNode" parent="boxes/Row5"]
+position = Vector2(96, 0)
+
+[node name="QMeshRectNode" type="QMeshRectNode" parent="boxes/Row5/box12"]
+rectangle_size = Vector2(48, 48)
+enable_vector_rendering = true
+fill_color = Color(0.407843, 0.682353, 0.831373, 1)
+enable_stroke = true
+data_particle_positions = PackedVector2Array(-24, -24, 24, -24, 24, 24, -24, 24)
+data_particle_radius = PackedFloat32Array(0.5, 0.5, 0.5, 0.5)
+data_particle_is_internal = PackedByteArray(0, 0, 0, 0)
+data_springs = Array[PackedInt32Array]([PackedInt32Array(0, 1), PackedInt32Array(1, 2), PackedInt32Array(2, 3), PackedInt32Array(3, 0)])
+data_internal_springs = Array[PackedInt32Array]([PackedInt32Array(0, 2), PackedInt32Array(1, 3)])
+data_polygon = PackedInt32Array(0, 1, 2, 3)
+data_uv_maps = Array[PackedInt32Array]([PackedInt32Array(0, 1, 3), PackedInt32Array(1, 2, 3)])
+
+[node name="box13" type="QRigidBodyNode" parent="boxes/Row5"]
+position = Vector2(144, 0)
+
+[node name="QMeshRectNode" type="QMeshRectNode" parent="boxes/Row5/box13"]
+rectangle_size = Vector2(48, 48)
+enable_vector_rendering = true
+fill_color = Color(0.407843, 0.682353, 0.831373, 1)
+enable_stroke = true
+data_particle_positions = PackedVector2Array(-24, -24, 24, -24, 24, 24, -24, 24)
+data_particle_radius = PackedFloat32Array(0.5, 0.5, 0.5, 0.5)
+data_particle_is_internal = PackedByteArray(0, 0, 0, 0)
+data_springs = Array[PackedInt32Array]([PackedInt32Array(0, 1), PackedInt32Array(1, 2), PackedInt32Array(2, 3), PackedInt32Array(3, 0)])
+data_internal_springs = Array[PackedInt32Array]([PackedInt32Array(0, 2), PackedInt32Array(1, 3)])
+data_polygon = PackedInt32Array(0, 1, 2, 3)
+data_uv_maps = Array[PackedInt32Array]([PackedInt32Array(0, 1, 3), PackedInt32Array(1, 2, 3)])
+
+[node name="box14" type="QRigidBodyNode" parent="boxes/Row5"]
+position = Vector2(192, 0)
+
+[node name="QMeshRectNode" type="QMeshRectNode" parent="boxes/Row5/box14"]
+rectangle_size = Vector2(48, 48)
+enable_vector_rendering = true
+fill_color = Color(0.407843, 0.682353, 0.831373, 1)
+enable_stroke = true
+data_particle_positions = PackedVector2Array(-24, -24, 24, -24, 24, 24, -24, 24)
+data_particle_radius = PackedFloat32Array(0.5, 0.5, 0.5, 0.5)
+data_particle_is_internal = PackedByteArray(0, 0, 0, 0)
+data_springs = Array[PackedInt32Array]([PackedInt32Array(0, 1), PackedInt32Array(1, 2), PackedInt32Array(2, 3), PackedInt32Array(3, 0)])
+data_internal_springs = Array[PackedInt32Array]([PackedInt32Array(0, 2), PackedInt32Array(1, 3)])
+data_polygon = PackedInt32Array(0, 1, 2, 3)
+data_uv_maps = Array[PackedInt32Array]([PackedInt32Array(0, 1, 3), PackedInt32Array(1, 2, 3)])
+
+[node name="box15" type="QRigidBodyNode" parent="boxes/Row5"]
+position = Vector2(240, 0)
+
+[node name="QMeshRectNode" type="QMeshRectNode" parent="boxes/Row5/box15"]
+rectangle_size = Vector2(48, 48)
+enable_vector_rendering = true
+fill_color = Color(0.407843, 0.682353, 0.831373, 1)
+enable_stroke = true
+data_particle_positions = PackedVector2Array(-24, -24, 24, -24, 24, 24, -24, 24)
+data_particle_radius = PackedFloat32Array(0.5, 0.5, 0.5, 0.5)
+data_particle_is_internal = PackedByteArray(0, 0, 0, 0)
+data_springs = Array[PackedInt32Array]([PackedInt32Array(0, 1), PackedInt32Array(1, 2), PackedInt32Array(2, 3), PackedInt32Array(3, 0)])
+data_internal_springs = Array[PackedInt32Array]([PackedInt32Array(0, 2), PackedInt32Array(1, 3)])
+data_polygon = PackedInt32Array(0, 1, 2, 3)
+data_uv_maps = Array[PackedInt32Array]([PackedInt32Array(0, 1, 3), PackedInt32Array(1, 2, 3)])
+
+[node name="box16" type="QRigidBodyNode" parent="boxes/Row5"]
+position = Vector2(288, 0)
+
+[node name="QMeshRectNode" type="QMeshRectNode" parent="boxes/Row5/box16"]
+rectangle_size = Vector2(48, 48)
+enable_vector_rendering = true
+fill_color = Color(0.407843, 0.682353, 0.831373, 1)
+enable_stroke = true
+data_particle_positions = PackedVector2Array(-24, -24, 24, -24, 24, 24, -24, 24)
+data_particle_radius = PackedFloat32Array(0.5, 0.5, 0.5, 0.5)
+data_particle_is_internal = PackedByteArray(0, 0, 0, 0)
+data_springs = Array[PackedInt32Array]([PackedInt32Array(0, 1), PackedInt32Array(1, 2), PackedInt32Array(2, 3), PackedInt32Array(3, 0)])
+data_internal_springs = Array[PackedInt32Array]([PackedInt32Array(0, 2), PackedInt32Array(1, 3)])
+data_polygon = PackedInt32Array(0, 1, 2, 3)
+data_uv_maps = Array[PackedInt32Array]([PackedInt32Array(0, 1, 3), PackedInt32Array(1, 2, 3)])
+
+[node name="box17" type="QRigidBodyNode" parent="boxes/Row5"]
+position = Vector2(336, 0)
+
+[node name="QMeshRectNode" type="QMeshRectNode" parent="boxes/Row5/box17"]
+rectangle_size = Vector2(48, 48)
+enable_vector_rendering = true
+fill_color = Color(0.407843, 0.682353, 0.831373, 1)
+enable_stroke = true
+data_particle_positions = PackedVector2Array(-24, -24, 24, -24, 24, 24, -24, 24)
+data_particle_radius = PackedFloat32Array(0.5, 0.5, 0.5, 0.5)
+data_particle_is_internal = PackedByteArray(0, 0, 0, 0)
+data_springs = Array[PackedInt32Array]([PackedInt32Array(0, 1), PackedInt32Array(1, 2), PackedInt32Array(2, 3), PackedInt32Array(3, 0)])
+data_internal_springs = Array[PackedInt32Array]([PackedInt32Array(0, 2), PackedInt32Array(1, 3)])
+data_polygon = PackedInt32Array(0, 1, 2, 3)
+data_uv_maps = Array[PackedInt32Array]([PackedInt32Array(0, 1, 3), PackedInt32Array(1, 2, 3)])
+
+[node name="box18" type="QRigidBodyNode" parent="boxes/Row5"]
+position = Vector2(384, 0)
+
+[node name="QMeshRectNode" type="QMeshRectNode" parent="boxes/Row5/box18"]
+rectangle_size = Vector2(48, 48)
+enable_vector_rendering = true
+fill_color = Color(0.407843, 0.682353, 0.831373, 1)
+enable_stroke = true
+data_particle_positions = PackedVector2Array(-24, -24, 24, -24, 24, 24, -24, 24)
+data_particle_radius = PackedFloat32Array(0.5, 0.5, 0.5, 0.5)
+data_particle_is_internal = PackedByteArray(0, 0, 0, 0)
+data_springs = Array[PackedInt32Array]([PackedInt32Array(0, 1), PackedInt32Array(1, 2), PackedInt32Array(2, 3), PackedInt32Array(3, 0)])
+data_internal_springs = Array[PackedInt32Array]([PackedInt32Array(0, 2), PackedInt32Array(1, 3)])
+data_polygon = PackedInt32Array(0, 1, 2, 3)
+data_uv_maps = Array[PackedInt32Array]([PackedInt32Array(0, 1, 3), PackedInt32Array(1, 2, 3)])
+
+[node name="box19" type="QRigidBodyNode" parent="boxes/Row5"]
+position = Vector2(432, 0)
+
+[node name="QMeshRectNode" type="QMeshRectNode" parent="boxes/Row5/box19"]
+rectangle_size = Vector2(48, 48)
+enable_vector_rendering = true
+fill_color = Color(0.407843, 0.682353, 0.831373, 1)
+enable_stroke = true
+data_particle_positions = PackedVector2Array(-24, -24, 24, -24, 24, 24, -24, 24)
+data_particle_radius = PackedFloat32Array(0.5, 0.5, 0.5, 0.5)
+data_particle_is_internal = PackedByteArray(0, 0, 0, 0)
+data_springs = Array[PackedInt32Array]([PackedInt32Array(0, 1), PackedInt32Array(1, 2), PackedInt32Array(2, 3), PackedInt32Array(3, 0)])
+data_internal_springs = Array[PackedInt32Array]([PackedInt32Array(0, 2), PackedInt32Array(1, 3)])
+data_polygon = PackedInt32Array(0, 1, 2, 3)
+data_uv_maps = Array[PackedInt32Array]([PackedInt32Array(0, 1, 3), PackedInt32Array(1, 2, 3)])
+
+[node name="Row6" type="Node2D" parent="boxes"]
+position = Vector2(512, 272)
+
+[node name="box" type="QRigidBodyNode" parent="boxes/Row6"]
+position = Vector2(-432, 0)
+
+[node name="QMeshRectNode" type="QMeshRectNode" parent="boxes/Row6/box"]
+rectangle_size = Vector2(48, 48)
+enable_vector_rendering = true
+fill_color = Color(0.407843, 0.682353, 0.831373, 1)
+enable_stroke = true
+data_particle_positions = PackedVector2Array(-24, -24, 24, -24, 24, 24, -24, 24)
+data_particle_radius = PackedFloat32Array(0.5, 0.5, 0.5, 0.5)
+data_particle_is_internal = PackedByteArray(0, 0, 0, 0)
+data_springs = Array[PackedInt32Array]([PackedInt32Array(0, 1), PackedInt32Array(1, 2), PackedInt32Array(2, 3), PackedInt32Array(3, 0)])
+data_internal_springs = Array[PackedInt32Array]([PackedInt32Array(0, 2), PackedInt32Array(1, 3)])
+data_polygon = PackedInt32Array(0, 1, 2, 3)
+data_uv_maps = Array[PackedInt32Array]([PackedInt32Array(0, 1, 3), PackedInt32Array(1, 2, 3)])
+
+[node name="box2" type="QRigidBodyNode" parent="boxes/Row6"]
+position = Vector2(-384, 0)
+
+[node name="QMeshRectNode" type="QMeshRectNode" parent="boxes/Row6/box2"]
+rectangle_size = Vector2(48, 48)
+enable_vector_rendering = true
+fill_color = Color(0.407843, 0.682353, 0.831373, 1)
+enable_stroke = true
+data_particle_positions = PackedVector2Array(-24, -24, 24, -24, 24, 24, -24, 24)
+data_particle_radius = PackedFloat32Array(0.5, 0.5, 0.5, 0.5)
+data_particle_is_internal = PackedByteArray(0, 0, 0, 0)
+data_springs = Array[PackedInt32Array]([PackedInt32Array(0, 1), PackedInt32Array(1, 2), PackedInt32Array(2, 3), PackedInt32Array(3, 0)])
+data_internal_springs = Array[PackedInt32Array]([PackedInt32Array(0, 2), PackedInt32Array(1, 3)])
+data_polygon = PackedInt32Array(0, 1, 2, 3)
+data_uv_maps = Array[PackedInt32Array]([PackedInt32Array(0, 1, 3), PackedInt32Array(1, 2, 3)])
+
+[node name="box3" type="QRigidBodyNode" parent="boxes/Row6"]
+position = Vector2(-336, 0)
+
+[node name="QMeshRectNode" type="QMeshRectNode" parent="boxes/Row6/box3"]
+rectangle_size = Vector2(48, 48)
+enable_vector_rendering = true
+fill_color = Color(0.407843, 0.682353, 0.831373, 1)
+enable_stroke = true
+data_particle_positions = PackedVector2Array(-24, -24, 24, -24, 24, 24, -24, 24)
+data_particle_radius = PackedFloat32Array(0.5, 0.5, 0.5, 0.5)
+data_particle_is_internal = PackedByteArray(0, 0, 0, 0)
+data_springs = Array[PackedInt32Array]([PackedInt32Array(0, 1), PackedInt32Array(1, 2), PackedInt32Array(2, 3), PackedInt32Array(3, 0)])
+data_internal_springs = Array[PackedInt32Array]([PackedInt32Array(0, 2), PackedInt32Array(1, 3)])
+data_polygon = PackedInt32Array(0, 1, 2, 3)
+data_uv_maps = Array[PackedInt32Array]([PackedInt32Array(0, 1, 3), PackedInt32Array(1, 2, 3)])
+
+[node name="box4" type="QRigidBodyNode" parent="boxes/Row6"]
+position = Vector2(-288, 0)
+
+[node name="QMeshRectNode" type="QMeshRectNode" parent="boxes/Row6/box4"]
+rectangle_size = Vector2(48, 48)
+enable_vector_rendering = true
+fill_color = Color(0.407843, 0.682353, 0.831373, 1)
+enable_stroke = true
+data_particle_positions = PackedVector2Array(-24, -24, 24, -24, 24, 24, -24, 24)
+data_particle_radius = PackedFloat32Array(0.5, 0.5, 0.5, 0.5)
+data_particle_is_internal = PackedByteArray(0, 0, 0, 0)
+data_springs = Array[PackedInt32Array]([PackedInt32Array(0, 1), PackedInt32Array(1, 2), PackedInt32Array(2, 3), PackedInt32Array(3, 0)])
+data_internal_springs = Array[PackedInt32Array]([PackedInt32Array(0, 2), PackedInt32Array(1, 3)])
+data_polygon = PackedInt32Array(0, 1, 2, 3)
+data_uv_maps = Array[PackedInt32Array]([PackedInt32Array(0, 1, 3), PackedInt32Array(1, 2, 3)])
+
+[node name="box5" type="QRigidBodyNode" parent="boxes/Row6"]
+position = Vector2(-240, 0)
+
+[node name="QMeshRectNode" type="QMeshRectNode" parent="boxes/Row6/box5"]
+rectangle_size = Vector2(48, 48)
+enable_vector_rendering = true
+fill_color = Color(0.407843, 0.682353, 0.831373, 1)
+enable_stroke = true
+data_particle_positions = PackedVector2Array(-24, -24, 24, -24, 24, 24, -24, 24)
+data_particle_radius = PackedFloat32Array(0.5, 0.5, 0.5, 0.5)
+data_particle_is_internal = PackedByteArray(0, 0, 0, 0)
+data_springs = Array[PackedInt32Array]([PackedInt32Array(0, 1), PackedInt32Array(1, 2), PackedInt32Array(2, 3), PackedInt32Array(3, 0)])
+data_internal_springs = Array[PackedInt32Array]([PackedInt32Array(0, 2), PackedInt32Array(1, 3)])
+data_polygon = PackedInt32Array(0, 1, 2, 3)
+data_uv_maps = Array[PackedInt32Array]([PackedInt32Array(0, 1, 3), PackedInt32Array(1, 2, 3)])
+
+[node name="box6" type="QRigidBodyNode" parent="boxes/Row6"]
+position = Vector2(-192, 0)
+
+[node name="QMeshRectNode" type="QMeshRectNode" parent="boxes/Row6/box6"]
+rectangle_size = Vector2(48, 48)
+enable_vector_rendering = true
+fill_color = Color(0.407843, 0.682353, 0.831373, 1)
+enable_stroke = true
+data_particle_positions = PackedVector2Array(-24, -24, 24, -24, 24, 24, -24, 24)
+data_particle_radius = PackedFloat32Array(0.5, 0.5, 0.5, 0.5)
+data_particle_is_internal = PackedByteArray(0, 0, 0, 0)
+data_springs = Array[PackedInt32Array]([PackedInt32Array(0, 1), PackedInt32Array(1, 2), PackedInt32Array(2, 3), PackedInt32Array(3, 0)])
+data_internal_springs = Array[PackedInt32Array]([PackedInt32Array(0, 2), PackedInt32Array(1, 3)])
+data_polygon = PackedInt32Array(0, 1, 2, 3)
+data_uv_maps = Array[PackedInt32Array]([PackedInt32Array(0, 1, 3), PackedInt32Array(1, 2, 3)])
+
+[node name="box7" type="QRigidBodyNode" parent="boxes/Row6"]
+position = Vector2(-144, 0)
+
+[node name="QMeshRectNode" type="QMeshRectNode" parent="boxes/Row6/box7"]
+rectangle_size = Vector2(48, 48)
+enable_vector_rendering = true
+fill_color = Color(0.407843, 0.682353, 0.831373, 1)
+enable_stroke = true
+data_particle_positions = PackedVector2Array(-24, -24, 24, -24, 24, 24, -24, 24)
+data_particle_radius = PackedFloat32Array(0.5, 0.5, 0.5, 0.5)
+data_particle_is_internal = PackedByteArray(0, 0, 0, 0)
+data_springs = Array[PackedInt32Array]([PackedInt32Array(0, 1), PackedInt32Array(1, 2), PackedInt32Array(2, 3), PackedInt32Array(3, 0)])
+data_internal_springs = Array[PackedInt32Array]([PackedInt32Array(0, 2), PackedInt32Array(1, 3)])
+data_polygon = PackedInt32Array(0, 1, 2, 3)
+data_uv_maps = Array[PackedInt32Array]([PackedInt32Array(0, 1, 3), PackedInt32Array(1, 2, 3)])
+
+[node name="box8" type="QRigidBodyNode" parent="boxes/Row6"]
+position = Vector2(-96, 0)
+
+[node name="QMeshRectNode" type="QMeshRectNode" parent="boxes/Row6/box8"]
+rectangle_size = Vector2(48, 48)
+enable_vector_rendering = true
+fill_color = Color(0.407843, 0.682353, 0.831373, 1)
+enable_stroke = true
+data_particle_positions = PackedVector2Array(-24, -24, 24, -24, 24, 24, -24, 24)
+data_particle_radius = PackedFloat32Array(0.5, 0.5, 0.5, 0.5)
+data_particle_is_internal = PackedByteArray(0, 0, 0, 0)
+data_springs = Array[PackedInt32Array]([PackedInt32Array(0, 1), PackedInt32Array(1, 2), PackedInt32Array(2, 3), PackedInt32Array(3, 0)])
+data_internal_springs = Array[PackedInt32Array]([PackedInt32Array(0, 2), PackedInt32Array(1, 3)])
+data_polygon = PackedInt32Array(0, 1, 2, 3)
+data_uv_maps = Array[PackedInt32Array]([PackedInt32Array(0, 1, 3), PackedInt32Array(1, 2, 3)])
+
+[node name="box9" type="QRigidBodyNode" parent="boxes/Row6"]
+position = Vector2(-48, 0)
+
+[node name="QMeshRectNode" type="QMeshRectNode" parent="boxes/Row6/box9"]
+rectangle_size = Vector2(48, 48)
+enable_vector_rendering = true
+fill_color = Color(0.407843, 0.682353, 0.831373, 1)
+enable_stroke = true
+data_particle_positions = PackedVector2Array(-24, -24, 24, -24, 24, 24, -24, 24)
+data_particle_radius = PackedFloat32Array(0.5, 0.5, 0.5, 0.5)
+data_particle_is_internal = PackedByteArray(0, 0, 0, 0)
+data_springs = Array[PackedInt32Array]([PackedInt32Array(0, 1), PackedInt32Array(1, 2), PackedInt32Array(2, 3), PackedInt32Array(3, 0)])
+data_internal_springs = Array[PackedInt32Array]([PackedInt32Array(0, 2), PackedInt32Array(1, 3)])
+data_polygon = PackedInt32Array(0, 1, 2, 3)
+data_uv_maps = Array[PackedInt32Array]([PackedInt32Array(0, 1, 3), PackedInt32Array(1, 2, 3)])
+
+[node name="box10" type="QRigidBodyNode" parent="boxes/Row6"]
+
+[node name="QMeshRectNode" type="QMeshRectNode" parent="boxes/Row6/box10"]
+rectangle_size = Vector2(48, 48)
+enable_vector_rendering = true
+fill_color = Color(0.407843, 0.682353, 0.831373, 1)
+enable_stroke = true
+data_particle_positions = PackedVector2Array(-24, -24, 24, -24, 24, 24, -24, 24)
+data_particle_radius = PackedFloat32Array(0.5, 0.5, 0.5, 0.5)
+data_particle_is_internal = PackedByteArray(0, 0, 0, 0)
+data_springs = Array[PackedInt32Array]([PackedInt32Array(0, 1), PackedInt32Array(1, 2), PackedInt32Array(2, 3), PackedInt32Array(3, 0)])
+data_internal_springs = Array[PackedInt32Array]([PackedInt32Array(0, 2), PackedInt32Array(1, 3)])
+data_polygon = PackedInt32Array(0, 1, 2, 3)
+data_uv_maps = Array[PackedInt32Array]([PackedInt32Array(0, 1, 3), PackedInt32Array(1, 2, 3)])
+
+[node name="box11" type="QRigidBodyNode" parent="boxes/Row6"]
+position = Vector2(48, 0)
+
+[node name="QMeshRectNode" type="QMeshRectNode" parent="boxes/Row6/box11"]
+rectangle_size = Vector2(48, 48)
+enable_vector_rendering = true
+fill_color = Color(0.407843, 0.682353, 0.831373, 1)
+enable_stroke = true
+data_particle_positions = PackedVector2Array(-24, -24, 24, -24, 24, 24, -24, 24)
+data_particle_radius = PackedFloat32Array(0.5, 0.5, 0.5, 0.5)
+data_particle_is_internal = PackedByteArray(0, 0, 0, 0)
+data_springs = Array[PackedInt32Array]([PackedInt32Array(0, 1), PackedInt32Array(1, 2), PackedInt32Array(2, 3), PackedInt32Array(3, 0)])
+data_internal_springs = Array[PackedInt32Array]([PackedInt32Array(0, 2), PackedInt32Array(1, 3)])
+data_polygon = PackedInt32Array(0, 1, 2, 3)
+data_uv_maps = Array[PackedInt32Array]([PackedInt32Array(0, 1, 3), PackedInt32Array(1, 2, 3)])
+
+[node name="box12" type="QRigidBodyNode" parent="boxes/Row6"]
+position = Vector2(96, 0)
+
+[node name="QMeshRectNode" type="QMeshRectNode" parent="boxes/Row6/box12"]
+rectangle_size = Vector2(48, 48)
+enable_vector_rendering = true
+fill_color = Color(0.407843, 0.682353, 0.831373, 1)
+enable_stroke = true
+data_particle_positions = PackedVector2Array(-24, -24, 24, -24, 24, 24, -24, 24)
+data_particle_radius = PackedFloat32Array(0.5, 0.5, 0.5, 0.5)
+data_particle_is_internal = PackedByteArray(0, 0, 0, 0)
+data_springs = Array[PackedInt32Array]([PackedInt32Array(0, 1), PackedInt32Array(1, 2), PackedInt32Array(2, 3), PackedInt32Array(3, 0)])
+data_internal_springs = Array[PackedInt32Array]([PackedInt32Array(0, 2), PackedInt32Array(1, 3)])
+data_polygon = PackedInt32Array(0, 1, 2, 3)
+data_uv_maps = Array[PackedInt32Array]([PackedInt32Array(0, 1, 3), PackedInt32Array(1, 2, 3)])
+
+[node name="box13" type="QRigidBodyNode" parent="boxes/Row6"]
+position = Vector2(144, 0)
+
+[node name="QMeshRectNode" type="QMeshRectNode" parent="boxes/Row6/box13"]
+rectangle_size = Vector2(48, 48)
+enable_vector_rendering = true
+fill_color = Color(0.407843, 0.682353, 0.831373, 1)
+enable_stroke = true
+data_particle_positions = PackedVector2Array(-24, -24, 24, -24, 24, 24, -24, 24)
+data_particle_radius = PackedFloat32Array(0.5, 0.5, 0.5, 0.5)
+data_particle_is_internal = PackedByteArray(0, 0, 0, 0)
+data_springs = Array[PackedInt32Array]([PackedInt32Array(0, 1), PackedInt32Array(1, 2), PackedInt32Array(2, 3), PackedInt32Array(3, 0)])
+data_internal_springs = Array[PackedInt32Array]([PackedInt32Array(0, 2), PackedInt32Array(1, 3)])
+data_polygon = PackedInt32Array(0, 1, 2, 3)
+data_uv_maps = Array[PackedInt32Array]([PackedInt32Array(0, 1, 3), PackedInt32Array(1, 2, 3)])
+
+[node name="box14" type="QRigidBodyNode" parent="boxes/Row6"]
+position = Vector2(192, 0)
+
+[node name="QMeshRectNode" type="QMeshRectNode" parent="boxes/Row6/box14"]
+rectangle_size = Vector2(48, 48)
+enable_vector_rendering = true
+fill_color = Color(0.407843, 0.682353, 0.831373, 1)
+enable_stroke = true
+data_particle_positions = PackedVector2Array(-24, -24, 24, -24, 24, 24, -24, 24)
+data_particle_radius = PackedFloat32Array(0.5, 0.5, 0.5, 0.5)
+data_particle_is_internal = PackedByteArray(0, 0, 0, 0)
+data_springs = Array[PackedInt32Array]([PackedInt32Array(0, 1), PackedInt32Array(1, 2), PackedInt32Array(2, 3), PackedInt32Array(3, 0)])
+data_internal_springs = Array[PackedInt32Array]([PackedInt32Array(0, 2), PackedInt32Array(1, 3)])
+data_polygon = PackedInt32Array(0, 1, 2, 3)
+data_uv_maps = Array[PackedInt32Array]([PackedInt32Array(0, 1, 3), PackedInt32Array(1, 2, 3)])
+
+[node name="box15" type="QRigidBodyNode" parent="boxes/Row6"]
+position = Vector2(240, 0)
+
+[node name="QMeshRectNode" type="QMeshRectNode" parent="boxes/Row6/box15"]
+rectangle_size = Vector2(48, 48)
+enable_vector_rendering = true
+fill_color = Color(0.407843, 0.682353, 0.831373, 1)
+enable_stroke = true
+data_particle_positions = PackedVector2Array(-24, -24, 24, -24, 24, 24, -24, 24)
+data_particle_radius = PackedFloat32Array(0.5, 0.5, 0.5, 0.5)
+data_particle_is_internal = PackedByteArray(0, 0, 0, 0)
+data_springs = Array[PackedInt32Array]([PackedInt32Array(0, 1), PackedInt32Array(1, 2), PackedInt32Array(2, 3), PackedInt32Array(3, 0)])
+data_internal_springs = Array[PackedInt32Array]([PackedInt32Array(0, 2), PackedInt32Array(1, 3)])
+data_polygon = PackedInt32Array(0, 1, 2, 3)
+data_uv_maps = Array[PackedInt32Array]([PackedInt32Array(0, 1, 3), PackedInt32Array(1, 2, 3)])
+
+[node name="box16" type="QRigidBodyNode" parent="boxes/Row6"]
+position = Vector2(288, 0)
+
+[node name="QMeshRectNode" type="QMeshRectNode" parent="boxes/Row6/box16"]
+rectangle_size = Vector2(48, 48)
+enable_vector_rendering = true
+fill_color = Color(0.407843, 0.682353, 0.831373, 1)
+enable_stroke = true
+data_particle_positions = PackedVector2Array(-24, -24, 24, -24, 24, 24, -24, 24)
+data_particle_radius = PackedFloat32Array(0.5, 0.5, 0.5, 0.5)
+data_particle_is_internal = PackedByteArray(0, 0, 0, 0)
+data_springs = Array[PackedInt32Array]([PackedInt32Array(0, 1), PackedInt32Array(1, 2), PackedInt32Array(2, 3), PackedInt32Array(3, 0)])
+data_internal_springs = Array[PackedInt32Array]([PackedInt32Array(0, 2), PackedInt32Array(1, 3)])
+data_polygon = PackedInt32Array(0, 1, 2, 3)
+data_uv_maps = Array[PackedInt32Array]([PackedInt32Array(0, 1, 3), PackedInt32Array(1, 2, 3)])
+
+[node name="box17" type="QRigidBodyNode" parent="boxes/Row6"]
+position = Vector2(336, 0)
+
+[node name="QMeshRectNode" type="QMeshRectNode" parent="boxes/Row6/box17"]
+rectangle_size = Vector2(48, 48)
+enable_vector_rendering = true
+fill_color = Color(0.407843, 0.682353, 0.831373, 1)
+enable_stroke = true
+data_particle_positions = PackedVector2Array(-24, -24, 24, -24, 24, 24, -24, 24)
+data_particle_radius = PackedFloat32Array(0.5, 0.5, 0.5, 0.5)
+data_particle_is_internal = PackedByteArray(0, 0, 0, 0)
+data_springs = Array[PackedInt32Array]([PackedInt32Array(0, 1), PackedInt32Array(1, 2), PackedInt32Array(2, 3), PackedInt32Array(3, 0)])
+data_internal_springs = Array[PackedInt32Array]([PackedInt32Array(0, 2), PackedInt32Array(1, 3)])
+data_polygon = PackedInt32Array(0, 1, 2, 3)
+data_uv_maps = Array[PackedInt32Array]([PackedInt32Array(0, 1, 3), PackedInt32Array(1, 2, 3)])
+
+[node name="box18" type="QRigidBodyNode" parent="boxes/Row6"]
+position = Vector2(384, 0)
+
+[node name="QMeshRectNode" type="QMeshRectNode" parent="boxes/Row6/box18"]
+rectangle_size = Vector2(48, 48)
+enable_vector_rendering = true
+fill_color = Color(0.407843, 0.682353, 0.831373, 1)
+enable_stroke = true
+data_particle_positions = PackedVector2Array(-24, -24, 24, -24, 24, 24, -24, 24)
+data_particle_radius = PackedFloat32Array(0.5, 0.5, 0.5, 0.5)
+data_particle_is_internal = PackedByteArray(0, 0, 0, 0)
+data_springs = Array[PackedInt32Array]([PackedInt32Array(0, 1), PackedInt32Array(1, 2), PackedInt32Array(2, 3), PackedInt32Array(3, 0)])
+data_internal_springs = Array[PackedInt32Array]([PackedInt32Array(0, 2), PackedInt32Array(1, 3)])
+data_polygon = PackedInt32Array(0, 1, 2, 3)
+data_uv_maps = Array[PackedInt32Array]([PackedInt32Array(0, 1, 3), PackedInt32Array(1, 2, 3)])
+
+[node name="box19" type="QRigidBodyNode" parent="boxes/Row6"]
+position = Vector2(432, 0)
+
+[node name="QMeshRectNode" type="QMeshRectNode" parent="boxes/Row6/box19"]
+rectangle_size = Vector2(48, 48)
+enable_vector_rendering = true
+fill_color = Color(0.407843, 0.682353, 0.831373, 1)
+enable_stroke = true
+data_particle_positions = PackedVector2Array(-24, -24, 24, -24, 24, 24, -24, 24)
+data_particle_radius = PackedFloat32Array(0.5, 0.5, 0.5, 0.5)
+data_particle_is_internal = PackedByteArray(0, 0, 0, 0)
+data_springs = Array[PackedInt32Array]([PackedInt32Array(0, 1), PackedInt32Array(1, 2), PackedInt32Array(2, 3), PackedInt32Array(3, 0)])
+data_internal_springs = Array[PackedInt32Array]([PackedInt32Array(0, 2), PackedInt32Array(1, 3)])
+data_polygon = PackedInt32Array(0, 1, 2, 3)
+data_uv_maps = Array[PackedInt32Array]([PackedInt32Array(0, 1, 3), PackedInt32Array(1, 2, 3)])
+
+[node name="Row7" type="Node2D" parent="boxes"]
+position = Vector2(512, 224)
+
+[node name="box" type="QRigidBodyNode" parent="boxes/Row7"]
+position = Vector2(-432, 0)
+
+[node name="QMeshRectNode" type="QMeshRectNode" parent="boxes/Row7/box"]
+rectangle_size = Vector2(48, 48)
+enable_vector_rendering = true
+fill_color = Color(0.407843, 0.682353, 0.831373, 1)
+enable_stroke = true
+data_particle_positions = PackedVector2Array(-24, -24, 24, -24, 24, 24, -24, 24)
+data_particle_radius = PackedFloat32Array(0.5, 0.5, 0.5, 0.5)
+data_particle_is_internal = PackedByteArray(0, 0, 0, 0)
+data_springs = Array[PackedInt32Array]([PackedInt32Array(0, 1), PackedInt32Array(1, 2), PackedInt32Array(2, 3), PackedInt32Array(3, 0)])
+data_internal_springs = Array[PackedInt32Array]([PackedInt32Array(0, 2), PackedInt32Array(1, 3)])
+data_polygon = PackedInt32Array(0, 1, 2, 3)
+data_uv_maps = Array[PackedInt32Array]([PackedInt32Array(0, 1, 3), PackedInt32Array(1, 2, 3)])
+
+[node name="box2" type="QRigidBodyNode" parent="boxes/Row7"]
+position = Vector2(-384, 0)
+
+[node name="QMeshRectNode" type="QMeshRectNode" parent="boxes/Row7/box2"]
+rectangle_size = Vector2(48, 48)
+enable_vector_rendering = true
+fill_color = Color(0.407843, 0.682353, 0.831373, 1)
+enable_stroke = true
+data_particle_positions = PackedVector2Array(-24, -24, 24, -24, 24, 24, -24, 24)
+data_particle_radius = PackedFloat32Array(0.5, 0.5, 0.5, 0.5)
+data_particle_is_internal = PackedByteArray(0, 0, 0, 0)
+data_springs = Array[PackedInt32Array]([PackedInt32Array(0, 1), PackedInt32Array(1, 2), PackedInt32Array(2, 3), PackedInt32Array(3, 0)])
+data_internal_springs = Array[PackedInt32Array]([PackedInt32Array(0, 2), PackedInt32Array(1, 3)])
+data_polygon = PackedInt32Array(0, 1, 2, 3)
+data_uv_maps = Array[PackedInt32Array]([PackedInt32Array(0, 1, 3), PackedInt32Array(1, 2, 3)])
+
+[node name="box3" type="QRigidBodyNode" parent="boxes/Row7"]
+position = Vector2(-336, 0)
+
+[node name="QMeshRectNode" type="QMeshRectNode" parent="boxes/Row7/box3"]
+rectangle_size = Vector2(48, 48)
+enable_vector_rendering = true
+fill_color = Color(0.407843, 0.682353, 0.831373, 1)
+enable_stroke = true
+data_particle_positions = PackedVector2Array(-24, -24, 24, -24, 24, 24, -24, 24)
+data_particle_radius = PackedFloat32Array(0.5, 0.5, 0.5, 0.5)
+data_particle_is_internal = PackedByteArray(0, 0, 0, 0)
+data_springs = Array[PackedInt32Array]([PackedInt32Array(0, 1), PackedInt32Array(1, 2), PackedInt32Array(2, 3), PackedInt32Array(3, 0)])
+data_internal_springs = Array[PackedInt32Array]([PackedInt32Array(0, 2), PackedInt32Array(1, 3)])
+data_polygon = PackedInt32Array(0, 1, 2, 3)
+data_uv_maps = Array[PackedInt32Array]([PackedInt32Array(0, 1, 3), PackedInt32Array(1, 2, 3)])
+
+[node name="box4" type="QRigidBodyNode" parent="boxes/Row7"]
+position = Vector2(-288, 0)
+
+[node name="QMeshRectNode" type="QMeshRectNode" parent="boxes/Row7/box4"]
+rectangle_size = Vector2(48, 48)
+enable_vector_rendering = true
+fill_color = Color(0.407843, 0.682353, 0.831373, 1)
+enable_stroke = true
+data_particle_positions = PackedVector2Array(-24, -24, 24, -24, 24, 24, -24, 24)
+data_particle_radius = PackedFloat32Array(0.5, 0.5, 0.5, 0.5)
+data_particle_is_internal = PackedByteArray(0, 0, 0, 0)
+data_springs = Array[PackedInt32Array]([PackedInt32Array(0, 1), PackedInt32Array(1, 2), PackedInt32Array(2, 3), PackedInt32Array(3, 0)])
+data_internal_springs = Array[PackedInt32Array]([PackedInt32Array(0, 2), PackedInt32Array(1, 3)])
+data_polygon = PackedInt32Array(0, 1, 2, 3)
+data_uv_maps = Array[PackedInt32Array]([PackedInt32Array(0, 1, 3), PackedInt32Array(1, 2, 3)])
+
+[node name="box5" type="QRigidBodyNode" parent="boxes/Row7"]
+position = Vector2(-240, 0)
+
+[node name="QMeshRectNode" type="QMeshRectNode" parent="boxes/Row7/box5"]
+rectangle_size = Vector2(48, 48)
+enable_vector_rendering = true
+fill_color = Color(0.407843, 0.682353, 0.831373, 1)
+enable_stroke = true
+data_particle_positions = PackedVector2Array(-24, -24, 24, -24, 24, 24, -24, 24)
+data_particle_radius = PackedFloat32Array(0.5, 0.5, 0.5, 0.5)
+data_particle_is_internal = PackedByteArray(0, 0, 0, 0)
+data_springs = Array[PackedInt32Array]([PackedInt32Array(0, 1), PackedInt32Array(1, 2), PackedInt32Array(2, 3), PackedInt32Array(3, 0)])
+data_internal_springs = Array[PackedInt32Array]([PackedInt32Array(0, 2), PackedInt32Array(1, 3)])
+data_polygon = PackedInt32Array(0, 1, 2, 3)
+data_uv_maps = Array[PackedInt32Array]([PackedInt32Array(0, 1, 3), PackedInt32Array(1, 2, 3)])
+
+[node name="box6" type="QRigidBodyNode" parent="boxes/Row7"]
+position = Vector2(-192, 0)
+
+[node name="QMeshRectNode" type="QMeshRectNode" parent="boxes/Row7/box6"]
+rectangle_size = Vector2(48, 48)
+enable_vector_rendering = true
+fill_color = Color(0.407843, 0.682353, 0.831373, 1)
+enable_stroke = true
+data_particle_positions = PackedVector2Array(-24, -24, 24, -24, 24, 24, -24, 24)
+data_particle_radius = PackedFloat32Array(0.5, 0.5, 0.5, 0.5)
+data_particle_is_internal = PackedByteArray(0, 0, 0, 0)
+data_springs = Array[PackedInt32Array]([PackedInt32Array(0, 1), PackedInt32Array(1, 2), PackedInt32Array(2, 3), PackedInt32Array(3, 0)])
+data_internal_springs = Array[PackedInt32Array]([PackedInt32Array(0, 2), PackedInt32Array(1, 3)])
+data_polygon = PackedInt32Array(0, 1, 2, 3)
+data_uv_maps = Array[PackedInt32Array]([PackedInt32Array(0, 1, 3), PackedInt32Array(1, 2, 3)])
+
+[node name="box7" type="QRigidBodyNode" parent="boxes/Row7"]
+position = Vector2(-144, 0)
+
+[node name="QMeshRectNode" type="QMeshRectNode" parent="boxes/Row7/box7"]
+rectangle_size = Vector2(48, 48)
+enable_vector_rendering = true
+fill_color = Color(0.407843, 0.682353, 0.831373, 1)
+enable_stroke = true
+data_particle_positions = PackedVector2Array(-24, -24, 24, -24, 24, 24, -24, 24)
+data_particle_radius = PackedFloat32Array(0.5, 0.5, 0.5, 0.5)
+data_particle_is_internal = PackedByteArray(0, 0, 0, 0)
+data_springs = Array[PackedInt32Array]([PackedInt32Array(0, 1), PackedInt32Array(1, 2), PackedInt32Array(2, 3), PackedInt32Array(3, 0)])
+data_internal_springs = Array[PackedInt32Array]([PackedInt32Array(0, 2), PackedInt32Array(1, 3)])
+data_polygon = PackedInt32Array(0, 1, 2, 3)
+data_uv_maps = Array[PackedInt32Array]([PackedInt32Array(0, 1, 3), PackedInt32Array(1, 2, 3)])
+
+[node name="box8" type="QRigidBodyNode" parent="boxes/Row7"]
+position = Vector2(-96, 0)
+
+[node name="QMeshRectNode" type="QMeshRectNode" parent="boxes/Row7/box8"]
+rectangle_size = Vector2(48, 48)
+enable_vector_rendering = true
+fill_color = Color(0.407843, 0.682353, 0.831373, 1)
+enable_stroke = true
+data_particle_positions = PackedVector2Array(-24, -24, 24, -24, 24, 24, -24, 24)
+data_particle_radius = PackedFloat32Array(0.5, 0.5, 0.5, 0.5)
+data_particle_is_internal = PackedByteArray(0, 0, 0, 0)
+data_springs = Array[PackedInt32Array]([PackedInt32Array(0, 1), PackedInt32Array(1, 2), PackedInt32Array(2, 3), PackedInt32Array(3, 0)])
+data_internal_springs = Array[PackedInt32Array]([PackedInt32Array(0, 2), PackedInt32Array(1, 3)])
+data_polygon = PackedInt32Array(0, 1, 2, 3)
+data_uv_maps = Array[PackedInt32Array]([PackedInt32Array(0, 1, 3), PackedInt32Array(1, 2, 3)])
+
+[node name="box9" type="QRigidBodyNode" parent="boxes/Row7"]
+position = Vector2(-48, 0)
+
+[node name="QMeshRectNode" type="QMeshRectNode" parent="boxes/Row7/box9"]
+rectangle_size = Vector2(48, 48)
+enable_vector_rendering = true
+fill_color = Color(0.407843, 0.682353, 0.831373, 1)
+enable_stroke = true
+data_particle_positions = PackedVector2Array(-24, -24, 24, -24, 24, 24, -24, 24)
+data_particle_radius = PackedFloat32Array(0.5, 0.5, 0.5, 0.5)
+data_particle_is_internal = PackedByteArray(0, 0, 0, 0)
+data_springs = Array[PackedInt32Array]([PackedInt32Array(0, 1), PackedInt32Array(1, 2), PackedInt32Array(2, 3), PackedInt32Array(3, 0)])
+data_internal_springs = Array[PackedInt32Array]([PackedInt32Array(0, 2), PackedInt32Array(1, 3)])
+data_polygon = PackedInt32Array(0, 1, 2, 3)
+data_uv_maps = Array[PackedInt32Array]([PackedInt32Array(0, 1, 3), PackedInt32Array(1, 2, 3)])
+
+[node name="box10" type="QRigidBodyNode" parent="boxes/Row7"]
+
+[node name="QMeshRectNode" type="QMeshRectNode" parent="boxes/Row7/box10"]
+rectangle_size = Vector2(48, 48)
+enable_vector_rendering = true
+fill_color = Color(0.407843, 0.682353, 0.831373, 1)
+enable_stroke = true
+data_particle_positions = PackedVector2Array(-24, -24, 24, -24, 24, 24, -24, 24)
+data_particle_radius = PackedFloat32Array(0.5, 0.5, 0.5, 0.5)
+data_particle_is_internal = PackedByteArray(0, 0, 0, 0)
+data_springs = Array[PackedInt32Array]([PackedInt32Array(0, 1), PackedInt32Array(1, 2), PackedInt32Array(2, 3), PackedInt32Array(3, 0)])
+data_internal_springs = Array[PackedInt32Array]([PackedInt32Array(0, 2), PackedInt32Array(1, 3)])
+data_polygon = PackedInt32Array(0, 1, 2, 3)
+data_uv_maps = Array[PackedInt32Array]([PackedInt32Array(0, 1, 3), PackedInt32Array(1, 2, 3)])
+
+[node name="box11" type="QRigidBodyNode" parent="boxes/Row7"]
+position = Vector2(48, 0)
+
+[node name="QMeshRectNode" type="QMeshRectNode" parent="boxes/Row7/box11"]
+rectangle_size = Vector2(48, 48)
+enable_vector_rendering = true
+fill_color = Color(0.407843, 0.682353, 0.831373, 1)
+enable_stroke = true
+data_particle_positions = PackedVector2Array(-24, -24, 24, -24, 24, 24, -24, 24)
+data_particle_radius = PackedFloat32Array(0.5, 0.5, 0.5, 0.5)
+data_particle_is_internal = PackedByteArray(0, 0, 0, 0)
+data_springs = Array[PackedInt32Array]([PackedInt32Array(0, 1), PackedInt32Array(1, 2), PackedInt32Array(2, 3), PackedInt32Array(3, 0)])
+data_internal_springs = Array[PackedInt32Array]([PackedInt32Array(0, 2), PackedInt32Array(1, 3)])
+data_polygon = PackedInt32Array(0, 1, 2, 3)
+data_uv_maps = Array[PackedInt32Array]([PackedInt32Array(0, 1, 3), PackedInt32Array(1, 2, 3)])
+
+[node name="box12" type="QRigidBodyNode" parent="boxes/Row7"]
+position = Vector2(96, 0)
+
+[node name="QMeshRectNode" type="QMeshRectNode" parent="boxes/Row7/box12"]
+rectangle_size = Vector2(48, 48)
+enable_vector_rendering = true
+fill_color = Color(0.407843, 0.682353, 0.831373, 1)
+enable_stroke = true
+data_particle_positions = PackedVector2Array(-24, -24, 24, -24, 24, 24, -24, 24)
+data_particle_radius = PackedFloat32Array(0.5, 0.5, 0.5, 0.5)
+data_particle_is_internal = PackedByteArray(0, 0, 0, 0)
+data_springs = Array[PackedInt32Array]([PackedInt32Array(0, 1), PackedInt32Array(1, 2), PackedInt32Array(2, 3), PackedInt32Array(3, 0)])
+data_internal_springs = Array[PackedInt32Array]([PackedInt32Array(0, 2), PackedInt32Array(1, 3)])
+data_polygon = PackedInt32Array(0, 1, 2, 3)
+data_uv_maps = Array[PackedInt32Array]([PackedInt32Array(0, 1, 3), PackedInt32Array(1, 2, 3)])
+
+[node name="box13" type="QRigidBodyNode" parent="boxes/Row7"]
+position = Vector2(144, 0)
+
+[node name="QMeshRectNode" type="QMeshRectNode" parent="boxes/Row7/box13"]
+rectangle_size = Vector2(48, 48)
+enable_vector_rendering = true
+fill_color = Color(0.407843, 0.682353, 0.831373, 1)
+enable_stroke = true
+data_particle_positions = PackedVector2Array(-24, -24, 24, -24, 24, 24, -24, 24)
+data_particle_radius = PackedFloat32Array(0.5, 0.5, 0.5, 0.5)
+data_particle_is_internal = PackedByteArray(0, 0, 0, 0)
+data_springs = Array[PackedInt32Array]([PackedInt32Array(0, 1), PackedInt32Array(1, 2), PackedInt32Array(2, 3), PackedInt32Array(3, 0)])
+data_internal_springs = Array[PackedInt32Array]([PackedInt32Array(0, 2), PackedInt32Array(1, 3)])
+data_polygon = PackedInt32Array(0, 1, 2, 3)
+data_uv_maps = Array[PackedInt32Array]([PackedInt32Array(0, 1, 3), PackedInt32Array(1, 2, 3)])
+
+[node name="box14" type="QRigidBodyNode" parent="boxes/Row7"]
+position = Vector2(192, 0)
+
+[node name="QMeshRectNode" type="QMeshRectNode" parent="boxes/Row7/box14"]
+rectangle_size = Vector2(48, 48)
+enable_vector_rendering = true
+fill_color = Color(0.407843, 0.682353, 0.831373, 1)
+enable_stroke = true
+data_particle_positions = PackedVector2Array(-24, -24, 24, -24, 24, 24, -24, 24)
+data_particle_radius = PackedFloat32Array(0.5, 0.5, 0.5, 0.5)
+data_particle_is_internal = PackedByteArray(0, 0, 0, 0)
+data_springs = Array[PackedInt32Array]([PackedInt32Array(0, 1), PackedInt32Array(1, 2), PackedInt32Array(2, 3), PackedInt32Array(3, 0)])
+data_internal_springs = Array[PackedInt32Array]([PackedInt32Array(0, 2), PackedInt32Array(1, 3)])
+data_polygon = PackedInt32Array(0, 1, 2, 3)
+data_uv_maps = Array[PackedInt32Array]([PackedInt32Array(0, 1, 3), PackedInt32Array(1, 2, 3)])
+
+[node name="box15" type="QRigidBodyNode" parent="boxes/Row7"]
+position = Vector2(240, 0)
+
+[node name="QMeshRectNode" type="QMeshRectNode" parent="boxes/Row7/box15"]
+rectangle_size = Vector2(48, 48)
+enable_vector_rendering = true
+fill_color = Color(0.407843, 0.682353, 0.831373, 1)
+enable_stroke = true
+data_particle_positions = PackedVector2Array(-24, -24, 24, -24, 24, 24, -24, 24)
+data_particle_radius = PackedFloat32Array(0.5, 0.5, 0.5, 0.5)
+data_particle_is_internal = PackedByteArray(0, 0, 0, 0)
+data_springs = Array[PackedInt32Array]([PackedInt32Array(0, 1), PackedInt32Array(1, 2), PackedInt32Array(2, 3), PackedInt32Array(3, 0)])
+data_internal_springs = Array[PackedInt32Array]([PackedInt32Array(0, 2), PackedInt32Array(1, 3)])
+data_polygon = PackedInt32Array(0, 1, 2, 3)
+data_uv_maps = Array[PackedInt32Array]([PackedInt32Array(0, 1, 3), PackedInt32Array(1, 2, 3)])
+
+[node name="box16" type="QRigidBodyNode" parent="boxes/Row7"]
+position = Vector2(288, 0)
+
+[node name="QMeshRectNode" type="QMeshRectNode" parent="boxes/Row7/box16"]
+rectangle_size = Vector2(48, 48)
+enable_vector_rendering = true
+fill_color = Color(0.407843, 0.682353, 0.831373, 1)
+enable_stroke = true
+data_particle_positions = PackedVector2Array(-24, -24, 24, -24, 24, 24, -24, 24)
+data_particle_radius = PackedFloat32Array(0.5, 0.5, 0.5, 0.5)
+data_particle_is_internal = PackedByteArray(0, 0, 0, 0)
+data_springs = Array[PackedInt32Array]([PackedInt32Array(0, 1), PackedInt32Array(1, 2), PackedInt32Array(2, 3), PackedInt32Array(3, 0)])
+data_internal_springs = Array[PackedInt32Array]([PackedInt32Array(0, 2), PackedInt32Array(1, 3)])
+data_polygon = PackedInt32Array(0, 1, 2, 3)
+data_uv_maps = Array[PackedInt32Array]([PackedInt32Array(0, 1, 3), PackedInt32Array(1, 2, 3)])
+
+[node name="box17" type="QRigidBodyNode" parent="boxes/Row7"]
+position = Vector2(336, 0)
+
+[node name="QMeshRectNode" type="QMeshRectNode" parent="boxes/Row7/box17"]
+rectangle_size = Vector2(48, 48)
+enable_vector_rendering = true
+fill_color = Color(0.407843, 0.682353, 0.831373, 1)
+enable_stroke = true
+data_particle_positions = PackedVector2Array(-24, -24, 24, -24, 24, 24, -24, 24)
+data_particle_radius = PackedFloat32Array(0.5, 0.5, 0.5, 0.5)
+data_particle_is_internal = PackedByteArray(0, 0, 0, 0)
+data_springs = Array[PackedInt32Array]([PackedInt32Array(0, 1), PackedInt32Array(1, 2), PackedInt32Array(2, 3), PackedInt32Array(3, 0)])
+data_internal_springs = Array[PackedInt32Array]([PackedInt32Array(0, 2), PackedInt32Array(1, 3)])
+data_polygon = PackedInt32Array(0, 1, 2, 3)
+data_uv_maps = Array[PackedInt32Array]([PackedInt32Array(0, 1, 3), PackedInt32Array(1, 2, 3)])
+
+[node name="box18" type="QRigidBodyNode" parent="boxes/Row7"]
+position = Vector2(384, 0)
+
+[node name="QMeshRectNode" type="QMeshRectNode" parent="boxes/Row7/box18"]
+rectangle_size = Vector2(48, 48)
+enable_vector_rendering = true
+fill_color = Color(0.407843, 0.682353, 0.831373, 1)
+enable_stroke = true
+data_particle_positions = PackedVector2Array(-24, -24, 24, -24, 24, 24, -24, 24)
+data_particle_radius = PackedFloat32Array(0.5, 0.5, 0.5, 0.5)
+data_particle_is_internal = PackedByteArray(0, 0, 0, 0)
+data_springs = Array[PackedInt32Array]([PackedInt32Array(0, 1), PackedInt32Array(1, 2), PackedInt32Array(2, 3), PackedInt32Array(3, 0)])
+data_internal_springs = Array[PackedInt32Array]([PackedInt32Array(0, 2), PackedInt32Array(1, 3)])
+data_polygon = PackedInt32Array(0, 1, 2, 3)
+data_uv_maps = Array[PackedInt32Array]([PackedInt32Array(0, 1, 3), PackedInt32Array(1, 2, 3)])
+
+[node name="box19" type="QRigidBodyNode" parent="boxes/Row7"]
+position = Vector2(432, 0)
+
+[node name="QMeshRectNode" type="QMeshRectNode" parent="boxes/Row7/box19"]
+rectangle_size = Vector2(48, 48)
+enable_vector_rendering = true
+fill_color = Color(0.407843, 0.682353, 0.831373, 1)
+enable_stroke = true
+data_particle_positions = PackedVector2Array(-24, -24, 24, -24, 24, 24, -24, 24)
+data_particle_radius = PackedFloat32Array(0.5, 0.5, 0.5, 0.5)
+data_particle_is_internal = PackedByteArray(0, 0, 0, 0)
+data_springs = Array[PackedInt32Array]([PackedInt32Array(0, 1), PackedInt32Array(1, 2), PackedInt32Array(2, 3), PackedInt32Array(3, 0)])
+data_internal_springs = Array[PackedInt32Array]([PackedInt32Array(0, 2), PackedInt32Array(1, 3)])
+data_polygon = PackedInt32Array(0, 1, 2, 3)
+data_uv_maps = Array[PackedInt32Array]([PackedInt32Array(0, 1, 3), PackedInt32Array(1, 2, 3)])
+
+[node name="Row8" type="Node2D" parent="boxes"]
+position = Vector2(512, 176)
+
+[node name="box" type="QRigidBodyNode" parent="boxes/Row8"]
+position = Vector2(-432, 0)
+
+[node name="QMeshRectNode" type="QMeshRectNode" parent="boxes/Row8/box"]
+rectangle_size = Vector2(48, 48)
+enable_vector_rendering = true
+fill_color = Color(0.407843, 0.682353, 0.831373, 1)
+enable_stroke = true
+data_particle_positions = PackedVector2Array(-24, -24, 24, -24, 24, 24, -24, 24)
+data_particle_radius = PackedFloat32Array(0.5, 0.5, 0.5, 0.5)
+data_particle_is_internal = PackedByteArray(0, 0, 0, 0)
+data_springs = Array[PackedInt32Array]([PackedInt32Array(0, 1), PackedInt32Array(1, 2), PackedInt32Array(2, 3), PackedInt32Array(3, 0)])
+data_internal_springs = Array[PackedInt32Array]([PackedInt32Array(0, 2), PackedInt32Array(1, 3)])
+data_polygon = PackedInt32Array(0, 1, 2, 3)
+data_uv_maps = Array[PackedInt32Array]([PackedInt32Array(0, 1, 3), PackedInt32Array(1, 2, 3)])
+
+[node name="box2" type="QRigidBodyNode" parent="boxes/Row8"]
+position = Vector2(-384, 0)
+
+[node name="QMeshRectNode" type="QMeshRectNode" parent="boxes/Row8/box2"]
+rectangle_size = Vector2(48, 48)
+enable_vector_rendering = true
+fill_color = Color(0.407843, 0.682353, 0.831373, 1)
+enable_stroke = true
+data_particle_positions = PackedVector2Array(-24, -24, 24, -24, 24, 24, -24, 24)
+data_particle_radius = PackedFloat32Array(0.5, 0.5, 0.5, 0.5)
+data_particle_is_internal = PackedByteArray(0, 0, 0, 0)
+data_springs = Array[PackedInt32Array]([PackedInt32Array(0, 1), PackedInt32Array(1, 2), PackedInt32Array(2, 3), PackedInt32Array(3, 0)])
+data_internal_springs = Array[PackedInt32Array]([PackedInt32Array(0, 2), PackedInt32Array(1, 3)])
+data_polygon = PackedInt32Array(0, 1, 2, 3)
+data_uv_maps = Array[PackedInt32Array]([PackedInt32Array(0, 1, 3), PackedInt32Array(1, 2, 3)])
+
+[node name="box3" type="QRigidBodyNode" parent="boxes/Row8"]
+position = Vector2(-336, 0)
+
+[node name="QMeshRectNode" type="QMeshRectNode" parent="boxes/Row8/box3"]
+rectangle_size = Vector2(48, 48)
+enable_vector_rendering = true
+fill_color = Color(0.407843, 0.682353, 0.831373, 1)
+enable_stroke = true
+data_particle_positions = PackedVector2Array(-24, -24, 24, -24, 24, 24, -24, 24)
+data_particle_radius = PackedFloat32Array(0.5, 0.5, 0.5, 0.5)
+data_particle_is_internal = PackedByteArray(0, 0, 0, 0)
+data_springs = Array[PackedInt32Array]([PackedInt32Array(0, 1), PackedInt32Array(1, 2), PackedInt32Array(2, 3), PackedInt32Array(3, 0)])
+data_internal_springs = Array[PackedInt32Array]([PackedInt32Array(0, 2), PackedInt32Array(1, 3)])
+data_polygon = PackedInt32Array(0, 1, 2, 3)
+data_uv_maps = Array[PackedInt32Array]([PackedInt32Array(0, 1, 3), PackedInt32Array(1, 2, 3)])
+
+[node name="box4" type="QRigidBodyNode" parent="boxes/Row8"]
+position = Vector2(-288, 0)
+
+[node name="QMeshRectNode" type="QMeshRectNode" parent="boxes/Row8/box4"]
+rectangle_size = Vector2(48, 48)
+enable_vector_rendering = true
+fill_color = Color(0.407843, 0.682353, 0.831373, 1)
+enable_stroke = true
+data_particle_positions = PackedVector2Array(-24, -24, 24, -24, 24, 24, -24, 24)
+data_particle_radius = PackedFloat32Array(0.5, 0.5, 0.5, 0.5)
+data_particle_is_internal = PackedByteArray(0, 0, 0, 0)
+data_springs = Array[PackedInt32Array]([PackedInt32Array(0, 1), PackedInt32Array(1, 2), PackedInt32Array(2, 3), PackedInt32Array(3, 0)])
+data_internal_springs = Array[PackedInt32Array]([PackedInt32Array(0, 2), PackedInt32Array(1, 3)])
+data_polygon = PackedInt32Array(0, 1, 2, 3)
+data_uv_maps = Array[PackedInt32Array]([PackedInt32Array(0, 1, 3), PackedInt32Array(1, 2, 3)])
+
+[node name="box5" type="QRigidBodyNode" parent="boxes/Row8"]
+position = Vector2(-240, 0)
+
+[node name="QMeshRectNode" type="QMeshRectNode" parent="boxes/Row8/box5"]
+rectangle_size = Vector2(48, 48)
+enable_vector_rendering = true
+fill_color = Color(0.407843, 0.682353, 0.831373, 1)
+enable_stroke = true
+data_particle_positions = PackedVector2Array(-24, -24, 24, -24, 24, 24, -24, 24)
+data_particle_radius = PackedFloat32Array(0.5, 0.5, 0.5, 0.5)
+data_particle_is_internal = PackedByteArray(0, 0, 0, 0)
+data_springs = Array[PackedInt32Array]([PackedInt32Array(0, 1), PackedInt32Array(1, 2), PackedInt32Array(2, 3), PackedInt32Array(3, 0)])
+data_internal_springs = Array[PackedInt32Array]([PackedInt32Array(0, 2), PackedInt32Array(1, 3)])
+data_polygon = PackedInt32Array(0, 1, 2, 3)
+data_uv_maps = Array[PackedInt32Array]([PackedInt32Array(0, 1, 3), PackedInt32Array(1, 2, 3)])
+
+[node name="box6" type="QRigidBodyNode" parent="boxes/Row8"]
+position = Vector2(-192, 0)
+
+[node name="QMeshRectNode" type="QMeshRectNode" parent="boxes/Row8/box6"]
+rectangle_size = Vector2(48, 48)
+enable_vector_rendering = true
+fill_color = Color(0.407843, 0.682353, 0.831373, 1)
+enable_stroke = true
+data_particle_positions = PackedVector2Array(-24, -24, 24, -24, 24, 24, -24, 24)
+data_particle_radius = PackedFloat32Array(0.5, 0.5, 0.5, 0.5)
+data_particle_is_internal = PackedByteArray(0, 0, 0, 0)
+data_springs = Array[PackedInt32Array]([PackedInt32Array(0, 1), PackedInt32Array(1, 2), PackedInt32Array(2, 3), PackedInt32Array(3, 0)])
+data_internal_springs = Array[PackedInt32Array]([PackedInt32Array(0, 2), PackedInt32Array(1, 3)])
+data_polygon = PackedInt32Array(0, 1, 2, 3)
+data_uv_maps = Array[PackedInt32Array]([PackedInt32Array(0, 1, 3), PackedInt32Array(1, 2, 3)])
+
+[node name="box7" type="QRigidBodyNode" parent="boxes/Row8"]
+position = Vector2(-144, 0)
+
+[node name="QMeshRectNode" type="QMeshRectNode" parent="boxes/Row8/box7"]
+rectangle_size = Vector2(48, 48)
+enable_vector_rendering = true
+fill_color = Color(0.407843, 0.682353, 0.831373, 1)
+enable_stroke = true
+data_particle_positions = PackedVector2Array(-24, -24, 24, -24, 24, 24, -24, 24)
+data_particle_radius = PackedFloat32Array(0.5, 0.5, 0.5, 0.5)
+data_particle_is_internal = PackedByteArray(0, 0, 0, 0)
+data_springs = Array[PackedInt32Array]([PackedInt32Array(0, 1), PackedInt32Array(1, 2), PackedInt32Array(2, 3), PackedInt32Array(3, 0)])
+data_internal_springs = Array[PackedInt32Array]([PackedInt32Array(0, 2), PackedInt32Array(1, 3)])
+data_polygon = PackedInt32Array(0, 1, 2, 3)
+data_uv_maps = Array[PackedInt32Array]([PackedInt32Array(0, 1, 3), PackedInt32Array(1, 2, 3)])
+
+[node name="box8" type="QRigidBodyNode" parent="boxes/Row8"]
+position = Vector2(-96, 0)
+
+[node name="QMeshRectNode" type="QMeshRectNode" parent="boxes/Row8/box8"]
+rectangle_size = Vector2(48, 48)
+enable_vector_rendering = true
+fill_color = Color(0.407843, 0.682353, 0.831373, 1)
+enable_stroke = true
+data_particle_positions = PackedVector2Array(-24, -24, 24, -24, 24, 24, -24, 24)
+data_particle_radius = PackedFloat32Array(0.5, 0.5, 0.5, 0.5)
+data_particle_is_internal = PackedByteArray(0, 0, 0, 0)
+data_springs = Array[PackedInt32Array]([PackedInt32Array(0, 1), PackedInt32Array(1, 2), PackedInt32Array(2, 3), PackedInt32Array(3, 0)])
+data_internal_springs = Array[PackedInt32Array]([PackedInt32Array(0, 2), PackedInt32Array(1, 3)])
+data_polygon = PackedInt32Array(0, 1, 2, 3)
+data_uv_maps = Array[PackedInt32Array]([PackedInt32Array(0, 1, 3), PackedInt32Array(1, 2, 3)])
+
+[node name="box9" type="QRigidBodyNode" parent="boxes/Row8"]
+position = Vector2(-48, 0)
+
+[node name="QMeshRectNode" type="QMeshRectNode" parent="boxes/Row8/box9"]
+rectangle_size = Vector2(48, 48)
+enable_vector_rendering = true
+fill_color = Color(0.407843, 0.682353, 0.831373, 1)
+enable_stroke = true
+data_particle_positions = PackedVector2Array(-24, -24, 24, -24, 24, 24, -24, 24)
+data_particle_radius = PackedFloat32Array(0.5, 0.5, 0.5, 0.5)
+data_particle_is_internal = PackedByteArray(0, 0, 0, 0)
+data_springs = Array[PackedInt32Array]([PackedInt32Array(0, 1), PackedInt32Array(1, 2), PackedInt32Array(2, 3), PackedInt32Array(3, 0)])
+data_internal_springs = Array[PackedInt32Array]([PackedInt32Array(0, 2), PackedInt32Array(1, 3)])
+data_polygon = PackedInt32Array(0, 1, 2, 3)
+data_uv_maps = Array[PackedInt32Array]([PackedInt32Array(0, 1, 3), PackedInt32Array(1, 2, 3)])
+
+[node name="box10" type="QRigidBodyNode" parent="boxes/Row8"]
+
+[node name="QMeshRectNode" type="QMeshRectNode" parent="boxes/Row8/box10"]
+rectangle_size = Vector2(48, 48)
+enable_vector_rendering = true
+fill_color = Color(0.407843, 0.682353, 0.831373, 1)
+enable_stroke = true
+data_particle_positions = PackedVector2Array(-24, -24, 24, -24, 24, 24, -24, 24)
+data_particle_radius = PackedFloat32Array(0.5, 0.5, 0.5, 0.5)
+data_particle_is_internal = PackedByteArray(0, 0, 0, 0)
+data_springs = Array[PackedInt32Array]([PackedInt32Array(0, 1), PackedInt32Array(1, 2), PackedInt32Array(2, 3), PackedInt32Array(3, 0)])
+data_internal_springs = Array[PackedInt32Array]([PackedInt32Array(0, 2), PackedInt32Array(1, 3)])
+data_polygon = PackedInt32Array(0, 1, 2, 3)
+data_uv_maps = Array[PackedInt32Array]([PackedInt32Array(0, 1, 3), PackedInt32Array(1, 2, 3)])
+
+[node name="box11" type="QRigidBodyNode" parent="boxes/Row8"]
+position = Vector2(48, 0)
+
+[node name="QMeshRectNode" type="QMeshRectNode" parent="boxes/Row8/box11"]
+rectangle_size = Vector2(48, 48)
+enable_vector_rendering = true
+fill_color = Color(0.407843, 0.682353, 0.831373, 1)
+enable_stroke = true
+data_particle_positions = PackedVector2Array(-24, -24, 24, -24, 24, 24, -24, 24)
+data_particle_radius = PackedFloat32Array(0.5, 0.5, 0.5, 0.5)
+data_particle_is_internal = PackedByteArray(0, 0, 0, 0)
+data_springs = Array[PackedInt32Array]([PackedInt32Array(0, 1), PackedInt32Array(1, 2), PackedInt32Array(2, 3), PackedInt32Array(3, 0)])
+data_internal_springs = Array[PackedInt32Array]([PackedInt32Array(0, 2), PackedInt32Array(1, 3)])
+data_polygon = PackedInt32Array(0, 1, 2, 3)
+data_uv_maps = Array[PackedInt32Array]([PackedInt32Array(0, 1, 3), PackedInt32Array(1, 2, 3)])
+
+[node name="box12" type="QRigidBodyNode" parent="boxes/Row8"]
+position = Vector2(96, 0)
+
+[node name="QMeshRectNode" type="QMeshRectNode" parent="boxes/Row8/box12"]
+rectangle_size = Vector2(48, 48)
+enable_vector_rendering = true
+fill_color = Color(0.407843, 0.682353, 0.831373, 1)
+enable_stroke = true
+data_particle_positions = PackedVector2Array(-24, -24, 24, -24, 24, 24, -24, 24)
+data_particle_radius = PackedFloat32Array(0.5, 0.5, 0.5, 0.5)
+data_particle_is_internal = PackedByteArray(0, 0, 0, 0)
+data_springs = Array[PackedInt32Array]([PackedInt32Array(0, 1), PackedInt32Array(1, 2), PackedInt32Array(2, 3), PackedInt32Array(3, 0)])
+data_internal_springs = Array[PackedInt32Array]([PackedInt32Array(0, 2), PackedInt32Array(1, 3)])
+data_polygon = PackedInt32Array(0, 1, 2, 3)
+data_uv_maps = Array[PackedInt32Array]([PackedInt32Array(0, 1, 3), PackedInt32Array(1, 2, 3)])
+
+[node name="box13" type="QRigidBodyNode" parent="boxes/Row8"]
+position = Vector2(144, 0)
+
+[node name="QMeshRectNode" type="QMeshRectNode" parent="boxes/Row8/box13"]
+rectangle_size = Vector2(48, 48)
+enable_vector_rendering = true
+fill_color = Color(0.407843, 0.682353, 0.831373, 1)
+enable_stroke = true
+data_particle_positions = PackedVector2Array(-24, -24, 24, -24, 24, 24, -24, 24)
+data_particle_radius = PackedFloat32Array(0.5, 0.5, 0.5, 0.5)
+data_particle_is_internal = PackedByteArray(0, 0, 0, 0)
+data_springs = Array[PackedInt32Array]([PackedInt32Array(0, 1), PackedInt32Array(1, 2), PackedInt32Array(2, 3), PackedInt32Array(3, 0)])
+data_internal_springs = Array[PackedInt32Array]([PackedInt32Array(0, 2), PackedInt32Array(1, 3)])
+data_polygon = PackedInt32Array(0, 1, 2, 3)
+data_uv_maps = Array[PackedInt32Array]([PackedInt32Array(0, 1, 3), PackedInt32Array(1, 2, 3)])
+
+[node name="box14" type="QRigidBodyNode" parent="boxes/Row8"]
+position = Vector2(192, 0)
+
+[node name="QMeshRectNode" type="QMeshRectNode" parent="boxes/Row8/box14"]
+rectangle_size = Vector2(48, 48)
+enable_vector_rendering = true
+fill_color = Color(0.407843, 0.682353, 0.831373, 1)
+enable_stroke = true
+data_particle_positions = PackedVector2Array(-24, -24, 24, -24, 24, 24, -24, 24)
+data_particle_radius = PackedFloat32Array(0.5, 0.5, 0.5, 0.5)
+data_particle_is_internal = PackedByteArray(0, 0, 0, 0)
+data_springs = Array[PackedInt32Array]([PackedInt32Array(0, 1), PackedInt32Array(1, 2), PackedInt32Array(2, 3), PackedInt32Array(3, 0)])
+data_internal_springs = Array[PackedInt32Array]([PackedInt32Array(0, 2), PackedInt32Array(1, 3)])
+data_polygon = PackedInt32Array(0, 1, 2, 3)
+data_uv_maps = Array[PackedInt32Array]([PackedInt32Array(0, 1, 3), PackedInt32Array(1, 2, 3)])
+
+[node name="box15" type="QRigidBodyNode" parent="boxes/Row8"]
+position = Vector2(240, 0)
+
+[node name="QMeshRectNode" type="QMeshRectNode" parent="boxes/Row8/box15"]
+rectangle_size = Vector2(48, 48)
+enable_vector_rendering = true
+fill_color = Color(0.407843, 0.682353, 0.831373, 1)
+enable_stroke = true
+data_particle_positions = PackedVector2Array(-24, -24, 24, -24, 24, 24, -24, 24)
+data_particle_radius = PackedFloat32Array(0.5, 0.5, 0.5, 0.5)
+data_particle_is_internal = PackedByteArray(0, 0, 0, 0)
+data_springs = Array[PackedInt32Array]([PackedInt32Array(0, 1), PackedInt32Array(1, 2), PackedInt32Array(2, 3), PackedInt32Array(3, 0)])
+data_internal_springs = Array[PackedInt32Array]([PackedInt32Array(0, 2), PackedInt32Array(1, 3)])
+data_polygon = PackedInt32Array(0, 1, 2, 3)
+data_uv_maps = Array[PackedInt32Array]([PackedInt32Array(0, 1, 3), PackedInt32Array(1, 2, 3)])
+
+[node name="box16" type="QRigidBodyNode" parent="boxes/Row8"]
+position = Vector2(288, 0)
+
+[node name="QMeshRectNode" type="QMeshRectNode" parent="boxes/Row8/box16"]
+rectangle_size = Vector2(48, 48)
+enable_vector_rendering = true
+fill_color = Color(0.407843, 0.682353, 0.831373, 1)
+enable_stroke = true
+data_particle_positions = PackedVector2Array(-24, -24, 24, -24, 24, 24, -24, 24)
+data_particle_radius = PackedFloat32Array(0.5, 0.5, 0.5, 0.5)
+data_particle_is_internal = PackedByteArray(0, 0, 0, 0)
+data_springs = Array[PackedInt32Array]([PackedInt32Array(0, 1), PackedInt32Array(1, 2), PackedInt32Array(2, 3), PackedInt32Array(3, 0)])
+data_internal_springs = Array[PackedInt32Array]([PackedInt32Array(0, 2), PackedInt32Array(1, 3)])
+data_polygon = PackedInt32Array(0, 1, 2, 3)
+data_uv_maps = Array[PackedInt32Array]([PackedInt32Array(0, 1, 3), PackedInt32Array(1, 2, 3)])
+
+[node name="box17" type="QRigidBodyNode" parent="boxes/Row8"]
+position = Vector2(336, 0)
+
+[node name="QMeshRectNode" type="QMeshRectNode" parent="boxes/Row8/box17"]
+rectangle_size = Vector2(48, 48)
+enable_vector_rendering = true
+fill_color = Color(0.407843, 0.682353, 0.831373, 1)
+enable_stroke = true
+data_particle_positions = PackedVector2Array(-24, -24, 24, -24, 24, 24, -24, 24)
+data_particle_radius = PackedFloat32Array(0.5, 0.5, 0.5, 0.5)
+data_particle_is_internal = PackedByteArray(0, 0, 0, 0)
+data_springs = Array[PackedInt32Array]([PackedInt32Array(0, 1), PackedInt32Array(1, 2), PackedInt32Array(2, 3), PackedInt32Array(3, 0)])
+data_internal_springs = Array[PackedInt32Array]([PackedInt32Array(0, 2), PackedInt32Array(1, 3)])
+data_polygon = PackedInt32Array(0, 1, 2, 3)
+data_uv_maps = Array[PackedInt32Array]([PackedInt32Array(0, 1, 3), PackedInt32Array(1, 2, 3)])
+
+[node name="box18" type="QRigidBodyNode" parent="boxes/Row8"]
+position = Vector2(384, 0)
+
+[node name="QMeshRectNode" type="QMeshRectNode" parent="boxes/Row8/box18"]
+rectangle_size = Vector2(48, 48)
+enable_vector_rendering = true
+fill_color = Color(0.407843, 0.682353, 0.831373, 1)
+enable_stroke = true
+data_particle_positions = PackedVector2Array(-24, -24, 24, -24, 24, 24, -24, 24)
+data_particle_radius = PackedFloat32Array(0.5, 0.5, 0.5, 0.5)
+data_particle_is_internal = PackedByteArray(0, 0, 0, 0)
+data_springs = Array[PackedInt32Array]([PackedInt32Array(0, 1), PackedInt32Array(1, 2), PackedInt32Array(2, 3), PackedInt32Array(3, 0)])
+data_internal_springs = Array[PackedInt32Array]([PackedInt32Array(0, 2), PackedInt32Array(1, 3)])
+data_polygon = PackedInt32Array(0, 1, 2, 3)
+data_uv_maps = Array[PackedInt32Array]([PackedInt32Array(0, 1, 3), PackedInt32Array(1, 2, 3)])
+
+[node name="box19" type="QRigidBodyNode" parent="boxes/Row8"]
+position = Vector2(432, 0)
+
+[node name="QMeshRectNode" type="QMeshRectNode" parent="boxes/Row8/box19"]
+rectangle_size = Vector2(48, 48)
+enable_vector_rendering = true
+fill_color = Color(0.407843, 0.682353, 0.831373, 1)
+enable_stroke = true
+data_particle_positions = PackedVector2Array(-24, -24, 24, -24, 24, 24, -24, 24)
+data_particle_radius = PackedFloat32Array(0.5, 0.5, 0.5, 0.5)
+data_particle_is_internal = PackedByteArray(0, 0, 0, 0)
+data_springs = Array[PackedInt32Array]([PackedInt32Array(0, 1), PackedInt32Array(1, 2), PackedInt32Array(2, 3), PackedInt32Array(3, 0)])
+data_internal_springs = Array[PackedInt32Array]([PackedInt32Array(0, 2), PackedInt32Array(1, 3)])
+data_polygon = PackedInt32Array(0, 1, 2, 3)
+data_uv_maps = Array[PackedInt32Array]([PackedInt32Array(0, 1, 3), PackedInt32Array(1, 2, 3)])
+
+[node name="Row9" type="Node2D" parent="boxes"]
+position = Vector2(512, 128)
+
+[node name="box" type="QRigidBodyNode" parent="boxes/Row9"]
+position = Vector2(-432, 0)
+
+[node name="QMeshRectNode" type="QMeshRectNode" parent="boxes/Row9/box"]
+rectangle_size = Vector2(48, 48)
+enable_vector_rendering = true
+fill_color = Color(0.407843, 0.682353, 0.831373, 1)
+enable_stroke = true
+data_particle_positions = PackedVector2Array(-24, -24, 24, -24, 24, 24, -24, 24)
+data_particle_radius = PackedFloat32Array(0.5, 0.5, 0.5, 0.5)
+data_particle_is_internal = PackedByteArray(0, 0, 0, 0)
+data_springs = Array[PackedInt32Array]([PackedInt32Array(0, 1), PackedInt32Array(1, 2), PackedInt32Array(2, 3), PackedInt32Array(3, 0)])
+data_internal_springs = Array[PackedInt32Array]([PackedInt32Array(0, 2), PackedInt32Array(1, 3)])
+data_polygon = PackedInt32Array(0, 1, 2, 3)
+data_uv_maps = Array[PackedInt32Array]([PackedInt32Array(0, 1, 3), PackedInt32Array(1, 2, 3)])
+
+[node name="box2" type="QRigidBodyNode" parent="boxes/Row9"]
+position = Vector2(-384, 0)
+
+[node name="QMeshRectNode" type="QMeshRectNode" parent="boxes/Row9/box2"]
+rectangle_size = Vector2(48, 48)
+enable_vector_rendering = true
+fill_color = Color(0.407843, 0.682353, 0.831373, 1)
+enable_stroke = true
+data_particle_positions = PackedVector2Array(-24, -24, 24, -24, 24, 24, -24, 24)
+data_particle_radius = PackedFloat32Array(0.5, 0.5, 0.5, 0.5)
+data_particle_is_internal = PackedByteArray(0, 0, 0, 0)
+data_springs = Array[PackedInt32Array]([PackedInt32Array(0, 1), PackedInt32Array(1, 2), PackedInt32Array(2, 3), PackedInt32Array(3, 0)])
+data_internal_springs = Array[PackedInt32Array]([PackedInt32Array(0, 2), PackedInt32Array(1, 3)])
+data_polygon = PackedInt32Array(0, 1, 2, 3)
+data_uv_maps = Array[PackedInt32Array]([PackedInt32Array(0, 1, 3), PackedInt32Array(1, 2, 3)])
+
+[node name="box3" type="QRigidBodyNode" parent="boxes/Row9"]
+position = Vector2(-336, 0)
+
+[node name="QMeshRectNode" type="QMeshRectNode" parent="boxes/Row9/box3"]
+rectangle_size = Vector2(48, 48)
+enable_vector_rendering = true
+fill_color = Color(0.407843, 0.682353, 0.831373, 1)
+enable_stroke = true
+data_particle_positions = PackedVector2Array(-24, -24, 24, -24, 24, 24, -24, 24)
+data_particle_radius = PackedFloat32Array(0.5, 0.5, 0.5, 0.5)
+data_particle_is_internal = PackedByteArray(0, 0, 0, 0)
+data_springs = Array[PackedInt32Array]([PackedInt32Array(0, 1), PackedInt32Array(1, 2), PackedInt32Array(2, 3), PackedInt32Array(3, 0)])
+data_internal_springs = Array[PackedInt32Array]([PackedInt32Array(0, 2), PackedInt32Array(1, 3)])
+data_polygon = PackedInt32Array(0, 1, 2, 3)
+data_uv_maps = Array[PackedInt32Array]([PackedInt32Array(0, 1, 3), PackedInt32Array(1, 2, 3)])
+
+[node name="box4" type="QRigidBodyNode" parent="boxes/Row9"]
+position = Vector2(-288, 0)
+
+[node name="QMeshRectNode" type="QMeshRectNode" parent="boxes/Row9/box4"]
+rectangle_size = Vector2(48, 48)
+enable_vector_rendering = true
+fill_color = Color(0.407843, 0.682353, 0.831373, 1)
+enable_stroke = true
+data_particle_positions = PackedVector2Array(-24, -24, 24, -24, 24, 24, -24, 24)
+data_particle_radius = PackedFloat32Array(0.5, 0.5, 0.5, 0.5)
+data_particle_is_internal = PackedByteArray(0, 0, 0, 0)
+data_springs = Array[PackedInt32Array]([PackedInt32Array(0, 1), PackedInt32Array(1, 2), PackedInt32Array(2, 3), PackedInt32Array(3, 0)])
+data_internal_springs = Array[PackedInt32Array]([PackedInt32Array(0, 2), PackedInt32Array(1, 3)])
+data_polygon = PackedInt32Array(0, 1, 2, 3)
+data_uv_maps = Array[PackedInt32Array]([PackedInt32Array(0, 1, 3), PackedInt32Array(1, 2, 3)])
+
+[node name="box5" type="QRigidBodyNode" parent="boxes/Row9"]
+position = Vector2(-240, 0)
+
+[node name="QMeshRectNode" type="QMeshRectNode" parent="boxes/Row9/box5"]
+rectangle_size = Vector2(48, 48)
+enable_vector_rendering = true
+fill_color = Color(0.407843, 0.682353, 0.831373, 1)
+enable_stroke = true
+data_particle_positions = PackedVector2Array(-24, -24, 24, -24, 24, 24, -24, 24)
+data_particle_radius = PackedFloat32Array(0.5, 0.5, 0.5, 0.5)
+data_particle_is_internal = PackedByteArray(0, 0, 0, 0)
+data_springs = Array[PackedInt32Array]([PackedInt32Array(0, 1), PackedInt32Array(1, 2), PackedInt32Array(2, 3), PackedInt32Array(3, 0)])
+data_internal_springs = Array[PackedInt32Array]([PackedInt32Array(0, 2), PackedInt32Array(1, 3)])
+data_polygon = PackedInt32Array(0, 1, 2, 3)
+data_uv_maps = Array[PackedInt32Array]([PackedInt32Array(0, 1, 3), PackedInt32Array(1, 2, 3)])
+
+[node name="box6" type="QRigidBodyNode" parent="boxes/Row9"]
+position = Vector2(-192, 0)
+
+[node name="QMeshRectNode" type="QMeshRectNode" parent="boxes/Row9/box6"]
+rectangle_size = Vector2(48, 48)
+enable_vector_rendering = true
+fill_color = Color(0.407843, 0.682353, 0.831373, 1)
+enable_stroke = true
+data_particle_positions = PackedVector2Array(-24, -24, 24, -24, 24, 24, -24, 24)
+data_particle_radius = PackedFloat32Array(0.5, 0.5, 0.5, 0.5)
+data_particle_is_internal = PackedByteArray(0, 0, 0, 0)
+data_springs = Array[PackedInt32Array]([PackedInt32Array(0, 1), PackedInt32Array(1, 2), PackedInt32Array(2, 3), PackedInt32Array(3, 0)])
+data_internal_springs = Array[PackedInt32Array]([PackedInt32Array(0, 2), PackedInt32Array(1, 3)])
+data_polygon = PackedInt32Array(0, 1, 2, 3)
+data_uv_maps = Array[PackedInt32Array]([PackedInt32Array(0, 1, 3), PackedInt32Array(1, 2, 3)])
+
+[node name="box7" type="QRigidBodyNode" parent="boxes/Row9"]
+position = Vector2(-144, 0)
+
+[node name="QMeshRectNode" type="QMeshRectNode" parent="boxes/Row9/box7"]
+rectangle_size = Vector2(48, 48)
+enable_vector_rendering = true
+fill_color = Color(0.407843, 0.682353, 0.831373, 1)
+enable_stroke = true
+data_particle_positions = PackedVector2Array(-24, -24, 24, -24, 24, 24, -24, 24)
+data_particle_radius = PackedFloat32Array(0.5, 0.5, 0.5, 0.5)
+data_particle_is_internal = PackedByteArray(0, 0, 0, 0)
+data_springs = Array[PackedInt32Array]([PackedInt32Array(0, 1), PackedInt32Array(1, 2), PackedInt32Array(2, 3), PackedInt32Array(3, 0)])
+data_internal_springs = Array[PackedInt32Array]([PackedInt32Array(0, 2), PackedInt32Array(1, 3)])
+data_polygon = PackedInt32Array(0, 1, 2, 3)
+data_uv_maps = Array[PackedInt32Array]([PackedInt32Array(0, 1, 3), PackedInt32Array(1, 2, 3)])
+
+[node name="box8" type="QRigidBodyNode" parent="boxes/Row9"]
+position = Vector2(-96, 0)
+
+[node name="QMeshRectNode" type="QMeshRectNode" parent="boxes/Row9/box8"]
+rectangle_size = Vector2(48, 48)
+enable_vector_rendering = true
+fill_color = Color(0.407843, 0.682353, 0.831373, 1)
+enable_stroke = true
+data_particle_positions = PackedVector2Array(-24, -24, 24, -24, 24, 24, -24, 24)
+data_particle_radius = PackedFloat32Array(0.5, 0.5, 0.5, 0.5)
+data_particle_is_internal = PackedByteArray(0, 0, 0, 0)
+data_springs = Array[PackedInt32Array]([PackedInt32Array(0, 1), PackedInt32Array(1, 2), PackedInt32Array(2, 3), PackedInt32Array(3, 0)])
+data_internal_springs = Array[PackedInt32Array]([PackedInt32Array(0, 2), PackedInt32Array(1, 3)])
+data_polygon = PackedInt32Array(0, 1, 2, 3)
+data_uv_maps = Array[PackedInt32Array]([PackedInt32Array(0, 1, 3), PackedInt32Array(1, 2, 3)])
+
+[node name="box9" type="QRigidBodyNode" parent="boxes/Row9"]
+position = Vector2(-48, 0)
+
+[node name="QMeshRectNode" type="QMeshRectNode" parent="boxes/Row9/box9"]
+rectangle_size = Vector2(48, 48)
+enable_vector_rendering = true
+fill_color = Color(0.407843, 0.682353, 0.831373, 1)
+enable_stroke = true
+data_particle_positions = PackedVector2Array(-24, -24, 24, -24, 24, 24, -24, 24)
+data_particle_radius = PackedFloat32Array(0.5, 0.5, 0.5, 0.5)
+data_particle_is_internal = PackedByteArray(0, 0, 0, 0)
+data_springs = Array[PackedInt32Array]([PackedInt32Array(0, 1), PackedInt32Array(1, 2), PackedInt32Array(2, 3), PackedInt32Array(3, 0)])
+data_internal_springs = Array[PackedInt32Array]([PackedInt32Array(0, 2), PackedInt32Array(1, 3)])
+data_polygon = PackedInt32Array(0, 1, 2, 3)
+data_uv_maps = Array[PackedInt32Array]([PackedInt32Array(0, 1, 3), PackedInt32Array(1, 2, 3)])
+
+[node name="box10" type="QRigidBodyNode" parent="boxes/Row9"]
+
+[node name="QMeshRectNode" type="QMeshRectNode" parent="boxes/Row9/box10"]
+rectangle_size = Vector2(48, 48)
+enable_vector_rendering = true
+fill_color = Color(0.407843, 0.682353, 0.831373, 1)
+enable_stroke = true
+data_particle_positions = PackedVector2Array(-24, -24, 24, -24, 24, 24, -24, 24)
+data_particle_radius = PackedFloat32Array(0.5, 0.5, 0.5, 0.5)
+data_particle_is_internal = PackedByteArray(0, 0, 0, 0)
+data_springs = Array[PackedInt32Array]([PackedInt32Array(0, 1), PackedInt32Array(1, 2), PackedInt32Array(2, 3), PackedInt32Array(3, 0)])
+data_internal_springs = Array[PackedInt32Array]([PackedInt32Array(0, 2), PackedInt32Array(1, 3)])
+data_polygon = PackedInt32Array(0, 1, 2, 3)
+data_uv_maps = Array[PackedInt32Array]([PackedInt32Array(0, 1, 3), PackedInt32Array(1, 2, 3)])
+
+[node name="box11" type="QRigidBodyNode" parent="boxes/Row9"]
+position = Vector2(48, 0)
+
+[node name="QMeshRectNode" type="QMeshRectNode" parent="boxes/Row9/box11"]
+rectangle_size = Vector2(48, 48)
+enable_vector_rendering = true
+fill_color = Color(0.407843, 0.682353, 0.831373, 1)
+enable_stroke = true
+data_particle_positions = PackedVector2Array(-24, -24, 24, -24, 24, 24, -24, 24)
+data_particle_radius = PackedFloat32Array(0.5, 0.5, 0.5, 0.5)
+data_particle_is_internal = PackedByteArray(0, 0, 0, 0)
+data_springs = Array[PackedInt32Array]([PackedInt32Array(0, 1), PackedInt32Array(1, 2), PackedInt32Array(2, 3), PackedInt32Array(3, 0)])
+data_internal_springs = Array[PackedInt32Array]([PackedInt32Array(0, 2), PackedInt32Array(1, 3)])
+data_polygon = PackedInt32Array(0, 1, 2, 3)
+data_uv_maps = Array[PackedInt32Array]([PackedInt32Array(0, 1, 3), PackedInt32Array(1, 2, 3)])
+
+[node name="box12" type="QRigidBodyNode" parent="boxes/Row9"]
+position = Vector2(96, 0)
+
+[node name="QMeshRectNode" type="QMeshRectNode" parent="boxes/Row9/box12"]
+rectangle_size = Vector2(48, 48)
+enable_vector_rendering = true
+fill_color = Color(0.407843, 0.682353, 0.831373, 1)
+enable_stroke = true
+data_particle_positions = PackedVector2Array(-24, -24, 24, -24, 24, 24, -24, 24)
+data_particle_radius = PackedFloat32Array(0.5, 0.5, 0.5, 0.5)
+data_particle_is_internal = PackedByteArray(0, 0, 0, 0)
+data_springs = Array[PackedInt32Array]([PackedInt32Array(0, 1), PackedInt32Array(1, 2), PackedInt32Array(2, 3), PackedInt32Array(3, 0)])
+data_internal_springs = Array[PackedInt32Array]([PackedInt32Array(0, 2), PackedInt32Array(1, 3)])
+data_polygon = PackedInt32Array(0, 1, 2, 3)
+data_uv_maps = Array[PackedInt32Array]([PackedInt32Array(0, 1, 3), PackedInt32Array(1, 2, 3)])
+
+[node name="box13" type="QRigidBodyNode" parent="boxes/Row9"]
+position = Vector2(144, 0)
+
+[node name="QMeshRectNode" type="QMeshRectNode" parent="boxes/Row9/box13"]
+rectangle_size = Vector2(48, 48)
+enable_vector_rendering = true
+fill_color = Color(0.407843, 0.682353, 0.831373, 1)
+enable_stroke = true
+data_particle_positions = PackedVector2Array(-24, -24, 24, -24, 24, 24, -24, 24)
+data_particle_radius = PackedFloat32Array(0.5, 0.5, 0.5, 0.5)
+data_particle_is_internal = PackedByteArray(0, 0, 0, 0)
+data_springs = Array[PackedInt32Array]([PackedInt32Array(0, 1), PackedInt32Array(1, 2), PackedInt32Array(2, 3), PackedInt32Array(3, 0)])
+data_internal_springs = Array[PackedInt32Array]([PackedInt32Array(0, 2), PackedInt32Array(1, 3)])
+data_polygon = PackedInt32Array(0, 1, 2, 3)
+data_uv_maps = Array[PackedInt32Array]([PackedInt32Array(0, 1, 3), PackedInt32Array(1, 2, 3)])
+
+[node name="box14" type="QRigidBodyNode" parent="boxes/Row9"]
+position = Vector2(192, 0)
+
+[node name="QMeshRectNode" type="QMeshRectNode" parent="boxes/Row9/box14"]
+rectangle_size = Vector2(48, 48)
+enable_vector_rendering = true
+fill_color = Color(0.407843, 0.682353, 0.831373, 1)
+enable_stroke = true
+data_particle_positions = PackedVector2Array(-24, -24, 24, -24, 24, 24, -24, 24)
+data_particle_radius = PackedFloat32Array(0.5, 0.5, 0.5, 0.5)
+data_particle_is_internal = PackedByteArray(0, 0, 0, 0)
+data_springs = Array[PackedInt32Array]([PackedInt32Array(0, 1), PackedInt32Array(1, 2), PackedInt32Array(2, 3), PackedInt32Array(3, 0)])
+data_internal_springs = Array[PackedInt32Array]([PackedInt32Array(0, 2), PackedInt32Array(1, 3)])
+data_polygon = PackedInt32Array(0, 1, 2, 3)
+data_uv_maps = Array[PackedInt32Array]([PackedInt32Array(0, 1, 3), PackedInt32Array(1, 2, 3)])
+
+[node name="box15" type="QRigidBodyNode" parent="boxes/Row9"]
+position = Vector2(240, 0)
+
+[node name="QMeshRectNode" type="QMeshRectNode" parent="boxes/Row9/box15"]
+rectangle_size = Vector2(48, 48)
+enable_vector_rendering = true
+fill_color = Color(0.407843, 0.682353, 0.831373, 1)
+enable_stroke = true
+data_particle_positions = PackedVector2Array(-24, -24, 24, -24, 24, 24, -24, 24)
+data_particle_radius = PackedFloat32Array(0.5, 0.5, 0.5, 0.5)
+data_particle_is_internal = PackedByteArray(0, 0, 0, 0)
+data_springs = Array[PackedInt32Array]([PackedInt32Array(0, 1), PackedInt32Array(1, 2), PackedInt32Array(2, 3), PackedInt32Array(3, 0)])
+data_internal_springs = Array[PackedInt32Array]([PackedInt32Array(0, 2), PackedInt32Array(1, 3)])
+data_polygon = PackedInt32Array(0, 1, 2, 3)
+data_uv_maps = Array[PackedInt32Array]([PackedInt32Array(0, 1, 3), PackedInt32Array(1, 2, 3)])
+
+[node name="box16" type="QRigidBodyNode" parent="boxes/Row9"]
+position = Vector2(288, 0)
+
+[node name="QMeshRectNode" type="QMeshRectNode" parent="boxes/Row9/box16"]
+rectangle_size = Vector2(48, 48)
+enable_vector_rendering = true
+fill_color = Color(0.407843, 0.682353, 0.831373, 1)
+enable_stroke = true
+data_particle_positions = PackedVector2Array(-24, -24, 24, -24, 24, 24, -24, 24)
+data_particle_radius = PackedFloat32Array(0.5, 0.5, 0.5, 0.5)
+data_particle_is_internal = PackedByteArray(0, 0, 0, 0)
+data_springs = Array[PackedInt32Array]([PackedInt32Array(0, 1), PackedInt32Array(1, 2), PackedInt32Array(2, 3), PackedInt32Array(3, 0)])
+data_internal_springs = Array[PackedInt32Array]([PackedInt32Array(0, 2), PackedInt32Array(1, 3)])
+data_polygon = PackedInt32Array(0, 1, 2, 3)
+data_uv_maps = Array[PackedInt32Array]([PackedInt32Array(0, 1, 3), PackedInt32Array(1, 2, 3)])
+
+[node name="box17" type="QRigidBodyNode" parent="boxes/Row9"]
+position = Vector2(336, 0)
+
+[node name="QMeshRectNode" type="QMeshRectNode" parent="boxes/Row9/box17"]
+rectangle_size = Vector2(48, 48)
+enable_vector_rendering = true
+fill_color = Color(0.407843, 0.682353, 0.831373, 1)
+enable_stroke = true
+data_particle_positions = PackedVector2Array(-24, -24, 24, -24, 24, 24, -24, 24)
+data_particle_radius = PackedFloat32Array(0.5, 0.5, 0.5, 0.5)
+data_particle_is_internal = PackedByteArray(0, 0, 0, 0)
+data_springs = Array[PackedInt32Array]([PackedInt32Array(0, 1), PackedInt32Array(1, 2), PackedInt32Array(2, 3), PackedInt32Array(3, 0)])
+data_internal_springs = Array[PackedInt32Array]([PackedInt32Array(0, 2), PackedInt32Array(1, 3)])
+data_polygon = PackedInt32Array(0, 1, 2, 3)
+data_uv_maps = Array[PackedInt32Array]([PackedInt32Array(0, 1, 3), PackedInt32Array(1, 2, 3)])
+
+[node name="box18" type="QRigidBodyNode" parent="boxes/Row9"]
+position = Vector2(384, 0)
+
+[node name="QMeshRectNode" type="QMeshRectNode" parent="boxes/Row9/box18"]
+rectangle_size = Vector2(48, 48)
+enable_vector_rendering = true
+fill_color = Color(0.407843, 0.682353, 0.831373, 1)
+enable_stroke = true
+data_particle_positions = PackedVector2Array(-24, -24, 24, -24, 24, 24, -24, 24)
+data_particle_radius = PackedFloat32Array(0.5, 0.5, 0.5, 0.5)
+data_particle_is_internal = PackedByteArray(0, 0, 0, 0)
+data_springs = Array[PackedInt32Array]([PackedInt32Array(0, 1), PackedInt32Array(1, 2), PackedInt32Array(2, 3), PackedInt32Array(3, 0)])
+data_internal_springs = Array[PackedInt32Array]([PackedInt32Array(0, 2), PackedInt32Array(1, 3)])
+data_polygon = PackedInt32Array(0, 1, 2, 3)
+data_uv_maps = Array[PackedInt32Array]([PackedInt32Array(0, 1, 3), PackedInt32Array(1, 2, 3)])
+
+[node name="box19" type="QRigidBodyNode" parent="boxes/Row9"]
+position = Vector2(432, 0)
+
+[node name="QMeshRectNode" type="QMeshRectNode" parent="boxes/Row9/box19"]
+rectangle_size = Vector2(48, 48)
+enable_vector_rendering = true
+fill_color = Color(0.407843, 0.682353, 0.831373, 1)
+enable_stroke = true
+data_particle_positions = PackedVector2Array(-24, -24, 24, -24, 24, 24, -24, 24)
+data_particle_radius = PackedFloat32Array(0.5, 0.5, 0.5, 0.5)
+data_particle_is_internal = PackedByteArray(0, 0, 0, 0)
+data_springs = Array[PackedInt32Array]([PackedInt32Array(0, 1), PackedInt32Array(1, 2), PackedInt32Array(2, 3), PackedInt32Array(3, 0)])
+data_internal_springs = Array[PackedInt32Array]([PackedInt32Array(0, 2), PackedInt32Array(1, 3)])
+data_polygon = PackedInt32Array(0, 1, 2, 3)
+data_uv_maps = Array[PackedInt32Array]([PackedInt32Array(0, 1, 3), PackedInt32Array(1, 2, 3)])

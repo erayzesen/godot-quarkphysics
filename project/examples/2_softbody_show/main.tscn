@@ -1,0 +1,90 @@
+[gd_scene load_steps=2 format=3 uid="uid://b8rm1mcftb5pr"]
+
+[ext_resource type="Texture2D" uid="uid://e4vap6jhlmpk" path="res://icon.svg" id="2_kxaay"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="QWorldNode" type="QWorldNode" parent="."]
+gravity = Vector2(0, 0.1)
+debug_renderer = false
+enable_debug_mouse_interactions = true
+
+[node name="Floor" type="QRigidBodyNode" parent="."]
+mode = 1
+layers = 2
+position = Vector2(519, 555)
+
+[node name="QMeshRectNode" type="QMeshRectNode" parent="Floor"]
+rectangle_size = Vector2(2000, 300)
+enable_vector_rendering = true
+enable_stroke = true
+data_particle_positions = PackedVector2Array(-1000, -150, 1000, -150, 1000, 150, -1000, 150)
+data_particle_radius = PackedFloat32Array(0.5, 0.5, 0.5, 0.5)
+data_particle_is_internal = PackedByteArray(0, 0, 0, 0)
+data_springs = Array[PackedInt32Array]([PackedInt32Array(0, 1), PackedInt32Array(1, 2), PackedInt32Array(2, 3), PackedInt32Array(3, 0)])
+data_internal_springs = Array[PackedInt32Array]([PackedInt32Array(0, 2), PackedInt32Array(1, 3)])
+data_polygon = PackedInt32Array(0, 1, 2, 3)
+data_uv_maps = Array[PackedInt32Array]([PackedInt32Array(0, 1, 3), PackedInt32Array(1, 2, 3)])
+
+[node name="SoftBodyRect" type="QSoftBodyNode" parent="."]
+rigidity = 0.05
+shape_matching = true
+position = Vector2(270, -33)
+
+[node name="QMeshRectNode" type="QMeshRectNode" parent="SoftBodyRect"]
+rectangle_size = Vector2(128, 128)
+grid = Vector2(4, 4)
+enable_vector_rendering = true
+fill_texture = ExtResource("2_kxaay")
+data_particle_positions = PackedVector2Array(-64, -64, -32, -64, 0, -64, 32, -64, 64, -64, -64, -32, -32, -32, 0, -32, 32, -32, 64, -32, -64, 0, -32, 0, 0, 0, 32, 0, 64, 0, -64, 32, -32, 32, 0, 32, 32, 32, 64, 32, -64, 64, -32, 64, 0, 64, 32, 64, 64, 64)
+data_particle_radius = PackedFloat32Array(0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5)
+data_particle_is_internal = PackedByteArray(0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 1, 1, 1, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0)
+data_springs = Array[PackedInt32Array]([PackedInt32Array(0, 1), PackedInt32Array(1, 2), PackedInt32Array(2, 3), PackedInt32Array(3, 4), PackedInt32Array(4, 9), PackedInt32Array(9, 14), PackedInt32Array(14, 19), PackedInt32Array(19, 24), PackedInt32Array(24, 23), PackedInt32Array(23, 22), PackedInt32Array(22, 21), PackedInt32Array(21, 20), PackedInt32Array(20, 15), PackedInt32Array(15, 10), PackedInt32Array(10, 5), PackedInt32Array(5, 0)])
+data_internal_springs = Array[PackedInt32Array]([PackedInt32Array(0, 6), PackedInt32Array(1, 7), PackedInt32Array(1, 5), PackedInt32Array(1, 6), PackedInt32Array(2, 8), PackedInt32Array(2, 6), PackedInt32Array(2, 7), PackedInt32Array(3, 9), PackedInt32Array(3, 7), PackedInt32Array(3, 8), PackedInt32Array(4, 8), PackedInt32Array(6, 5), PackedInt32Array(5, 11), PackedInt32Array(7, 6), PackedInt32Array(6, 12), PackedInt32Array(6, 10), PackedInt32Array(6, 11), PackedInt32Array(8, 7), PackedInt32Array(7, 13), PackedInt32Array(7, 11), PackedInt32Array(7, 12), PackedInt32Array(9, 8), PackedInt32Array(8, 14), PackedInt32Array(8, 12), PackedInt32Array(8, 13), PackedInt32Array(9, 13), PackedInt32Array(11, 10), PackedInt32Array(10, 16), PackedInt32Array(12, 11), PackedInt32Array(11, 17), PackedInt32Array(11, 15), PackedInt32Array(11, 16), PackedInt32Array(13, 12), PackedInt32Array(12, 18), PackedInt32Array(12, 16), PackedInt32Array(12, 17), PackedInt32Array(14, 13), PackedInt32Array(13, 19), PackedInt32Array(13, 17), PackedInt32Array(13, 18), PackedInt32Array(14, 18), PackedInt32Array(16, 15), PackedInt32Array(15, 21), PackedInt32Array(17, 16), PackedInt32Array(16, 22), PackedInt32Array(16, 20), PackedInt32Array(16, 21), PackedInt32Array(18, 17), PackedInt32Array(17, 23), PackedInt32Array(17, 21), PackedInt32Array(17, 22), PackedInt32Array(19, 18), PackedInt32Array(18, 24), PackedInt32Array(18, 22), PackedInt32Array(18, 23), PackedInt32Array(19, 23)])
+data_polygon = PackedInt32Array(0, 1, 2, 3, 4, 9, 14, 19, 24, 23, 22, 21, 20, 15, 10, 5)
+data_uv_maps = Array[PackedInt32Array]([PackedInt32Array(0, 1, 5), PackedInt32Array(1, 6, 5), PackedInt32Array(1, 2, 6), PackedInt32Array(2, 7, 6), PackedInt32Array(2, 3, 7), PackedInt32Array(3, 8, 7), PackedInt32Array(3, 4, 8), PackedInt32Array(4, 9, 8), PackedInt32Array(5, 6, 10), PackedInt32Array(6, 11, 10), PackedInt32Array(6, 7, 11), PackedInt32Array(7, 12, 11), PackedInt32Array(7, 8, 12), PackedInt32Array(8, 13, 12), PackedInt32Array(8, 9, 13), PackedInt32Array(9, 14, 13), PackedInt32Array(10, 11, 15), PackedInt32Array(11, 16, 15), PackedInt32Array(11, 12, 16), PackedInt32Array(12, 17, 16), PackedInt32Array(12, 13, 17), PackedInt32Array(13, 18, 17), PackedInt32Array(13, 14, 18), PackedInt32Array(14, 19, 18), PackedInt32Array(15, 16, 20), PackedInt32Array(16, 21, 20), PackedInt32Array(16, 17, 21), PackedInt32Array(17, 22, 21), PackedInt32Array(17, 18, 22), PackedInt32Array(18, 23, 22), PackedInt32Array(18, 19, 23), PackedInt32Array(19, 24, 23)])
+
+[node name="SoftBodyPolygon" type="QSoftBodyNode" parent="."]
+rigidity = 0.05
+shape_matching = true
+position = Vector2(507, -33)
+
+[node name="QMeshPolygonNode" type="QMeshPolygonNode" parent="SoftBodyPolygon"]
+polygon_radius = 72.0
+side_count = 12
+polar_grid = 2
+enable_vector_rendering = true
+fill_texture = ExtResource("2_kxaay")
+data_particle_positions = PackedVector2Array(72, 0, 62.3538, 36, 36, 62.3538, -3.14722e-06, 72, -36, 62.3538, -62.3538, 36, -72, -6.29444e-06, -62.3538, -36, -36, -62.3538, 8.58591e-07, -72, 36, -62.3538, 62.3538, -36, 36, 0, 31.1769, 18, 18, 31.1769, -1.57361e-06, 36, -18, 31.1769, -31.1769, 18, -36, -3.14722e-06, -31.1769, -18, -18, -31.1769, 4.29296e-07, -36, 18, -31.1769, 31.1769, -18, 0, 0)
+data_particle_radius = PackedFloat32Array(0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5)
+data_particle_is_internal = PackedByteArray(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1)
+data_springs = Array[PackedInt32Array]([PackedInt32Array(0, 1), PackedInt32Array(1, 2), PackedInt32Array(2, 3), PackedInt32Array(3, 4), PackedInt32Array(4, 5), PackedInt32Array(5, 6), PackedInt32Array(6, 7), PackedInt32Array(7, 8), PackedInt32Array(8, 9), PackedInt32Array(9, 10), PackedInt32Array(10, 11), PackedInt32Array(11, 0)])
+data_internal_springs = Array[PackedInt32Array]([PackedInt32Array(12, 13), PackedInt32Array(13, 14), PackedInt32Array(14, 15), PackedInt32Array(15, 16), PackedInt32Array(16, 17), PackedInt32Array(17, 18), PackedInt32Array(18, 19), PackedInt32Array(19, 20), PackedInt32Array(20, 21), PackedInt32Array(21, 22), PackedInt32Array(22, 23), PackedInt32Array(23, 12), PackedInt32Array(12, 0), PackedInt32Array(12, 1), PackedInt32Array(13, 0), PackedInt32Array(13, 1), PackedInt32Array(13, 1), PackedInt32Array(13, 2), PackedInt32Array(14, 1), PackedInt32Array(14, 2), PackedInt32Array(14, 2), PackedInt32Array(14, 3), PackedInt32Array(15, 2), PackedInt32Array(15, 3), PackedInt32Array(15, 3), PackedInt32Array(15, 4), PackedInt32Array(16, 3), PackedInt32Array(16, 4), PackedInt32Array(16, 4), PackedInt32Array(16, 5), PackedInt32Array(17, 4), PackedInt32Array(17, 5), PackedInt32Array(17, 5), PackedInt32Array(17, 6), PackedInt32Array(18, 5), PackedInt32Array(18, 6), PackedInt32Array(18, 6), PackedInt32Array(18, 7), PackedInt32Array(19, 6), PackedInt32Array(19, 7), PackedInt32Array(19, 7), PackedInt32Array(19, 8), PackedInt32Array(20, 7), PackedInt32Array(20, 8), PackedInt32Array(20, 8), PackedInt32Array(20, 9), PackedInt32Array(21, 8), PackedInt32Array(21, 9), PackedInt32Array(21, 9), PackedInt32Array(21, 10), PackedInt32Array(22, 9), PackedInt32Array(22, 10), PackedInt32Array(22, 10), PackedInt32Array(22, 11), PackedInt32Array(23, 10), PackedInt32Array(23, 11), PackedInt32Array(23, 11), PackedInt32Array(23, 0), PackedInt32Array(12, 11), PackedInt32Array(12, 0), PackedInt32Array(24, 12), PackedInt32Array(24, 13), PackedInt32Array(24, 14), PackedInt32Array(24, 15), PackedInt32Array(24, 16), PackedInt32Array(24, 17), PackedInt32Array(24, 18), PackedInt32Array(24, 19), PackedInt32Array(24, 20), PackedInt32Array(24, 21), PackedInt32Array(24, 22), PackedInt32Array(24, 23), PackedInt32Array(22, 12), PackedInt32Array(12, 14), PackedInt32Array(23, 13), PackedInt32Array(13, 15), PackedInt32Array(12, 14), PackedInt32Array(14, 16), PackedInt32Array(13, 15), PackedInt32Array(15, 17), PackedInt32Array(14, 16), PackedInt32Array(16, 18), PackedInt32Array(15, 17), PackedInt32Array(17, 19), PackedInt32Array(16, 18), PackedInt32Array(18, 20), PackedInt32Array(17, 19), PackedInt32Array(19, 21), PackedInt32Array(18, 20), PackedInt32Array(20, 22), PackedInt32Array(19, 21), PackedInt32Array(21, 23), PackedInt32Array(20, 22), PackedInt32Array(22, 12), PackedInt32Array(21, 23), PackedInt32Array(23, 13)])
+data_polygon = PackedInt32Array(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11)
+data_uv_maps = Array[PackedInt32Array]([PackedInt32Array(0, 1, 12), PackedInt32Array(1, 13, 12), PackedInt32Array(1, 2, 13), PackedInt32Array(2, 14, 13), PackedInt32Array(2, 3, 14), PackedInt32Array(3, 15, 14), PackedInt32Array(3, 4, 15), PackedInt32Array(4, 16, 15), PackedInt32Array(4, 5, 16), PackedInt32Array(5, 17, 16), PackedInt32Array(5, 6, 17), PackedInt32Array(6, 18, 17), PackedInt32Array(6, 7, 18), PackedInt32Array(7, 19, 18), PackedInt32Array(7, 8, 19), PackedInt32Array(8, 20, 19), PackedInt32Array(8, 9, 20), PackedInt32Array(9, 21, 20), PackedInt32Array(9, 10, 21), PackedInt32Array(10, 22, 21), PackedInt32Array(10, 11, 22), PackedInt32Array(11, 23, 22), PackedInt32Array(11, 0, 23), PackedInt32Array(0, 12, 23), PackedInt32Array(12, 13, 24), PackedInt32Array(13, 14, 24), PackedInt32Array(14, 15, 24), PackedInt32Array(15, 16, 24), PackedInt32Array(16, 17, 24), PackedInt32Array(17, 18, 24), PackedInt32Array(18, 19, 24), PackedInt32Array(19, 20, 24), PackedInt32Array(20, 21, 24), PackedInt32Array(21, 22, 24), PackedInt32Array(22, 23, 24), PackedInt32Array(23, 12, 24)])
+
+[node name="SoftBodyBlob" type="QSoftBodyNode" parent="."]
+rigidity = 0.05
+passivation_of_internal_springs = true
+area_preserving = true
+position = Vector2(723, -33)
+
+[node name="QMeshPolygonNode" type="QMeshPolygonNode" parent="SoftBodyBlob"]
+polygon_radius = 72.0
+side_count = 16
+polar_grid = 2
+enable_vector_rendering = true
+fill_texture = ExtResource("2_kxaay")
+fill_texture_scale = 0.9
+enable_stroke = true
+stroke_width = 4.0
+stroke_color = Color(0.180688, 0.402642, 0.563527, 1)
+stroke_offset = 1.0
+enable_curved_corners = true
+data_particle_positions = PackedVector2Array(72, 0, 66.5193, 27.5532, 50.9117, 50.9117, 27.5532, 66.5193, -3.14722e-06, 72, -27.5532, 66.5193, -50.9117, 50.9117, -66.5193, 27.5532, -72, -6.29444e-06, -66.5193, -27.5532, -50.9117, -50.9117, -27.5532, -66.5193, 8.58591e-07, -72, 27.5532, -66.5193, 50.9117, -50.9117, 66.5193, -27.5532, 36, 0, 33.2597, 13.7766, 25.4558, 25.4558, 13.7766, 33.2597, -1.57361e-06, 36, -13.7766, 33.2597, -25.4558, 25.4558, -33.2597, 13.7766, -36, -3.14722e-06, -33.2597, -13.7766, -25.4558, -25.4558, -13.7766, -33.2597, 4.29296e-07, -36, 13.7766, -33.2597, 25.4559, -25.4558, 33.2597, -13.7766, 0, 0)
+data_particle_radius = PackedFloat32Array(0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5)
+data_particle_is_internal = PackedByteArray(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1)
+data_springs = Array[PackedInt32Array]([PackedInt32Array(0, 1), PackedInt32Array(1, 2), PackedInt32Array(2, 3), PackedInt32Array(3, 4), PackedInt32Array(4, 5), PackedInt32Array(5, 6), PackedInt32Array(6, 7), PackedInt32Array(7, 8), PackedInt32Array(8, 9), PackedInt32Array(9, 10), PackedInt32Array(10, 11), PackedInt32Array(11, 12), PackedInt32Array(12, 13), PackedInt32Array(13, 14), PackedInt32Array(14, 15), PackedInt32Array(15, 0)])
+data_internal_springs = Array[PackedInt32Array]([PackedInt32Array(16, 17), PackedInt32Array(17, 18), PackedInt32Array(18, 19), PackedInt32Array(19, 20), PackedInt32Array(20, 21), PackedInt32Array(21, 22), PackedInt32Array(22, 23), PackedInt32Array(23, 24), PackedInt32Array(24, 25), PackedInt32Array(25, 26), PackedInt32Array(26, 27), PackedInt32Array(27, 28), PackedInt32Array(28, 29), PackedInt32Array(29, 30), PackedInt32Array(30, 31), PackedInt32Array(31, 16), PackedInt32Array(16, 0), PackedInt32Array(16, 1), PackedInt32Array(17, 0), PackedInt32Array(17, 1), PackedInt32Array(17, 1), PackedInt32Array(17, 2), PackedInt32Array(18, 1), PackedInt32Array(18, 2), PackedInt32Array(18, 2), PackedInt32Array(18, 3), PackedInt32Array(19, 2), PackedInt32Array(19, 3), PackedInt32Array(19, 3), PackedInt32Array(19, 4), PackedInt32Array(20, 3), PackedInt32Array(20, 4), PackedInt32Array(20, 4), PackedInt32Array(20, 5), PackedInt32Array(21, 4), PackedInt32Array(21, 5), PackedInt32Array(21, 5), PackedInt32Array(21, 6), PackedInt32Array(22, 5), PackedInt32Array(22, 6), PackedInt32Array(22, 6), PackedInt32Array(22, 7), PackedInt32Array(23, 6), PackedInt32Array(23, 7), PackedInt32Array(23, 7), PackedInt32Array(23, 8), PackedInt32Array(24, 7), PackedInt32Array(24, 8), PackedInt32Array(24, 8), PackedInt32Array(24, 9), PackedInt32Array(25, 8), PackedInt32Array(25, 9), PackedInt32Array(25, 9), PackedInt32Array(25, 10), PackedInt32Array(26, 9), PackedInt32Array(26, 10), PackedInt32Array(26, 10), PackedInt32Array(26, 11), PackedInt32Array(27, 10), PackedInt32Array(27, 11), PackedInt32Array(27, 11), PackedInt32Array(27, 12), PackedInt32Array(28, 11), PackedInt32Array(28, 12), PackedInt32Array(28, 12), PackedInt32Array(28, 13), PackedInt32Array(29, 12), PackedInt32Array(29, 13), PackedInt32Array(29, 13), PackedInt32Array(29, 14), PackedInt32Array(30, 13), PackedInt32Array(30, 14), PackedInt32Array(30, 14), PackedInt32Array(30, 15), PackedInt32Array(31, 14), PackedInt32Array(31, 15), PackedInt32Array(31, 15), PackedInt32Array(31, 0), PackedInt32Array(16, 15), PackedInt32Array(16, 0), PackedInt32Array(32, 16), PackedInt32Array(32, 17), PackedInt32Array(32, 18), PackedInt32Array(32, 19), PackedInt32Array(32, 20), PackedInt32Array(32, 21), PackedInt32Array(32, 22), PackedInt32Array(32, 23), PackedInt32Array(32, 24), PackedInt32Array(32, 25), PackedInt32Array(32, 26), PackedInt32Array(32, 27), PackedInt32Array(32, 28), PackedInt32Array(32, 29), PackedInt32Array(32, 30), PackedInt32Array(32, 31), PackedInt32Array(30, 16), PackedInt32Array(16, 18), PackedInt32Array(31, 17), PackedInt32Array(17, 19), PackedInt32Array(16, 18), PackedInt32Array(18, 20), PackedInt32Array(17, 19), PackedInt32Array(19, 21), PackedInt32Array(18, 20), PackedInt32Array(20, 22), PackedInt32Array(19, 21), PackedInt32Array(21, 23), PackedInt32Array(20, 22), PackedInt32Array(22, 24), PackedInt32Array(21, 23), PackedInt32Array(23, 25), PackedInt32Array(22, 24), PackedInt32Array(24, 26), PackedInt32Array(23, 25), PackedInt32Array(25, 27), PackedInt32Array(24, 26), PackedInt32Array(26, 28), PackedInt32Array(25, 27), PackedInt32Array(27, 29), PackedInt32Array(26, 28), PackedInt32Array(28, 30), PackedInt32Array(27, 29), PackedInt32Array(29, 31), PackedInt32Array(28, 30), PackedInt32Array(30, 16), PackedInt32Array(29, 31), PackedInt32Array(31, 17)])
+data_polygon = PackedInt32Array(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15)
+data_uv_maps = Array[PackedInt32Array]([PackedInt32Array(0, 1, 16), PackedInt32Array(1, 17, 16), PackedInt32Array(1, 2, 17), PackedInt32Array(2, 18, 17), PackedInt32Array(2, 3, 18), PackedInt32Array(3, 19, 18), PackedInt32Array(3, 4, 19), PackedInt32Array(4, 20, 19), PackedInt32Array(4, 5, 20), PackedInt32Array(5, 21, 20), PackedInt32Array(5, 6, 21), PackedInt32Array(6, 22, 21), PackedInt32Array(6, 7, 22), PackedInt32Array(7, 23, 22), PackedInt32Array(7, 8, 23), PackedInt32Array(8, 24, 23), PackedInt32Array(8, 9, 24), PackedInt32Array(9, 25, 24), PackedInt32Array(9, 10, 25), PackedInt32Array(10, 26, 25), PackedInt32Array(10, 11, 26), PackedInt32Array(11, 27, 26), PackedInt32Array(11, 12, 27), PackedInt32Array(12, 28, 27), PackedInt32Array(12, 13, 28), PackedInt32Array(13, 29, 28), PackedInt32Array(13, 14, 29), PackedInt32Array(14, 30, 29), PackedInt32Array(14, 15, 30), PackedInt32Array(15, 31, 30), PackedInt32Array(15, 0, 31), PackedInt32Array(0, 16, 31), PackedInt32Array(16, 17, 32), PackedInt32Array(17, 18, 32), PackedInt32Array(18, 19, 32), PackedInt32Array(19, 20, 32), PackedInt32Array(20, 21, 32), PackedInt32Array(21, 22, 32), PackedInt32Array(22, 23, 32), PackedInt32Array(23, 24, 32), PackedInt32Array(24, 25, 32), PackedInt32Array(25, 26, 32), PackedInt32Array(26, 27, 32), PackedInt32Array(27, 28, 32), PackedInt32Array(28, 29, 32), PackedInt32Array(29, 30, 32), PackedInt32Array(30, 31, 32), PackedInt32Array(31, 16, 32)])

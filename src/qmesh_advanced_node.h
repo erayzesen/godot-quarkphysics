@@ -25,21 +25,27 @@
  *
 **************************************************************************************/
 
-#ifndef QMESH_EXTERNAL_NODE_H
-#define QMESH_EXTERNAL_NODE_H
+#ifndef QMESH_ADVANVED_NODE_H
+#define QMESH_ADVANVED_NODE_H
 
 #include "qmesh_node.h"
 
-class QMeshExternalNode: public QMeshNode {
-    GDCLASS(QMeshExternalNode,QMeshNode);
+class QMeshAdvancedNode: public QMeshNode {
+    GDCLASS(QMeshAdvancedNode,QMeshNode);
 private:
-    String filePath="";
-    void set_file_path(String value);
-    String get_file_path();
+    String importFilePath="";
+    void set_import_file_path(String value);
+    String get_import_file_path();
+
+    String exportFilePath="";
+    void set_export_file_path(String value);
+    String get_export_file_path();
 
     int meshIndex=0;
     void set_mesh_index(int value);
     int get_mesh_index();
+
+    
     
 
 protected:
@@ -47,16 +53,16 @@ protected:
     static void _bind_methods();
     void update_mesh_node_data();
 public:
-    QMeshExternalNode(){
-        useMeshData=true;
+    QMeshAdvancedNode(){
+        useMeshData=false;
     };
-    ~QMeshExternalNode(){
+    ~QMeshAdvancedNode(){
 
     };
 
 };
 
-#endif // QMESH_EXTERNAL_NODE_H
+#endif // QMESH_ADVANVED_NODE_H
 
 
 

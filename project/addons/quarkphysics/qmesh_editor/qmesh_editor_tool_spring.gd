@@ -11,31 +11,42 @@ func _handle_event(event:InputEvent)->bool:
 			#Handling mouse left button pressed
 			if event.button_index==MOUSE_BUTTON_LEFT :
 				var mPos=fromScreen(event.position)
-				if first_selected_particle_index!=-1 :
-					var nearest_particle_index=get_nearest_particle_index(meshNode,mPos)
-					if nearest_particle_index!=-1 || first_selected_particle_index!=-1:
-						if nearest_particle_index!=first_selected_particle_index :
-							#Checking particle pair of the spring whether QMeshNode exist
-							var matched_spring=search_spring(meshNode,first_selected_particle_index,nearest_particle_index,false)
-							if matched_spring==-1 :
-								var matched_internal_spring=search_spring(meshNode,first_selected_particle_index,nearest_particle_index,true)
-								if matched_internal_spring==-1:
-									#The particle pair doesn't exist in QMeshNode
-									var undo_redo=plugin.get_undo_redo()
-									undo_redo.create_action("Add a New Spring Between Particles: "+str(first_selected_particle_index)+"-"+str(nearest_particle_index) )
-									undo_redo.add_do_method(self,"command_add_spring",plugin,meshNode,first_selected_particle_index,nearest_particle_index,false )
-									undo_redo.add_undo_method(self,"command_remove_spring",plugin,meshNode,first_selected_particle_index,nearest_particle_index )
-									undo_redo.commit_action(true)
-					first_selected_particle_index=-1
-					meshNode.modulate.a=1.0
-				else :
-					var nearest_particle_index=get_nearest_particle_index(meshNode, mPos)
-					first_selected_particle_index=nearest_particle_index
-					last_mouse_pressed_position=mPos
-					last_mouse_motion_position=mPos
-					meshNode.modulate.a=0.3
+				if operationOptionButton.selected==0 :
+					if first_selected_particle_index!=-1 :
+						var nearest_particle_index=get_nearest_particle_index(meshNode,mPos)
+						if nearest_particle_index!=-1 && first_selected_particle_index!=-1:
+							if nearest_particle_index!=first_selected_particle_index :
+								#Checking particle pair of the spring whether QMeshNode exist
+								var matched_spring=search_spring(meshNode,first_selected_particle_index,nearest_particle_index,false)
+								if matched_spring==-1 :
+									var matched_internal_spring=search_spring(meshNode,first_selected_particle_index,nearest_particle_index,true)
+									if matched_internal_spring==-1:
+										#The particle pair doesn't exist in QMeshNode
+										var undo_redo=plugin.get_undo_redo()
+										undo_redo.create_action("Add a New Spring Between Particles: "+str(first_selected_particle_index)+"-"+str(nearest_particle_index) )
+										undo_redo.add_do_method(self,"command_add_spring",plugin,meshNode,first_selected_particle_index,nearest_particle_index,internalCheckBox.button_pressed )
+										undo_redo.add_undo_method(self,"command_remove_spring",plugin,meshNode,first_selected_particle_index,nearest_particle_index )
+										undo_redo.commit_action(true)
+						first_selected_particle_index=-1
+						meshNode.modulate.a=1.0
+					else :
+						var nearest_particle_index=get_nearest_particle_index(meshNode, mPos)
+						first_selected_particle_index=nearest_particle_index
+						last_mouse_pressed_position=mPos
+						last_mouse_motion_position=mPos
+						meshNode.modulate.a=0.3
 					
-				pass
+				else :
+					var nearest_spring_index=get_nearest_spring_index(meshNode,mPos,internalCheckBox.button_pressed)
+					if nearest_spring_index!=-1:
+						var springs=meshNode.data_internal_springs if internalCheckBox.button_pressed else meshNode.data_springs
+						var pa_index=springs[nearest_spring_index][0]
+						var pb_index=springs[nearest_spring_index][1]
+						var undo_redo=plugin.get_undo_redo()
+						undo_redo.create_action("Remove a Spring Indexed: "+str(nearest_spring_index) )
+						undo_redo.add_do_method(self,"command_remove_spring_at",plugin,meshNode,nearest_spring_index,internalCheckBox.button_pressed )
+						undo_redo.add_undo_method(self,"command_add_spring",plugin,meshNode,pa_index,pb_index,internalCheckBox.button_pressed )
+						undo_redo.commit_action(true)
 				
 				
 					
@@ -103,6 +114,21 @@ func command_remove_spring(targetPlugin:EditorPlugin,targetMeshNode:QMeshNode,fi
 		var springs=targetMeshNode.data_internal_springs.duplicate()
 		springs.remove_at(matched_internal_spring)
 		targetMeshNode.data_internal_springs=springs
+		
+	print ("matched_spring:"+str(matched_spring))
+	print ("matched_internal_spring:"+str(matched_internal_spring))
+	
+	targetMeshNode.queue_redraw()
+	targetPlugin.update_overlays()
+	
+func command_remove_spring_at(targetPlugin:EditorPlugin,targetMeshNode:QMeshNode,spring_index:int,internal:bool):
+	var springs=targetMeshNode.data_internal_springs.duplicate(true) if internal else targetMeshNode.data_springs.duplicate(true)
+	springs.remove_at(spring_index)
+	if internal :
+		targetMeshNode.data_internal_springs=springs
+	else :
+		targetMeshNode.data_springs=springs
+	
 	
 	targetMeshNode.queue_redraw()
 	targetPlugin.update_overlays()

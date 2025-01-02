@@ -428,6 +428,7 @@ void QMeshNode::vector_render_in_runtime()
                 Vector2 zeroDistance=textureRect.position;
                 for(size_t i=0;i<get_uv_map_count() ;++i ){
                     PackedInt32Array map=get_uv_map_at(i);
+                    
                     vector <Ref<QParticleObject>> polygonParticles;
                     for(size_t j=0;j<map.size();++j ){
                         polygonParticles.push_back( get_particle_at( map[j] ) );
@@ -459,10 +460,12 @@ void QMeshNode::vector_render_in_runtime()
                     for(size_t s=0;s<meshObject->GetSubConvexPolygonCount();++s){
                         vector<QParticle*> subPolygonParticles=meshObject->GetSubConvexPolygonAt(s);
                         PackedVector2Array subPolygonPoints;
+                        
                         for(size_t p=0;p<subPolygonParticles.size();++p ){
                             QVector pPos=subPolygonParticles[p]->GetGlobalPosition();
                             subPolygonPoints.push_back( (Vector2(pPos.x,pPos.y)-get_global_position()).rotated(-get_global_rotation() ) );
                         }
+
                         if(subPolygonPoints.size()>2 ){
                             TypedArray<PackedVector2Array> partedPolygons=Geometry2D::get_singleton()->intersect_polygons(subPolygonPoints,subPolygonPoints);
                             for(size_t j=0;j<partedPolygons.size();++j ){
@@ -470,8 +473,7 @@ void QMeshNode::vector_render_in_runtime()
                                 rs->canvas_item_add_polygon(polygonDrawInstance,partedPolygons[j],{fillColors} );
                             }
                         }
-
-                            
+     
                     }
                     
                 }else{
@@ -540,29 +542,28 @@ void QMeshNode::on_post_enter_tree() {
                 update_mesh_node_data();
                 QMesh::MeshData qData=convert_mesh_node_data_to_mesh_data();
                 meshObject=QMesh::CreateWithMeshData( qData );
-
-                //Creating object and node versions of the mesh
-                for(int i=0;i<meshObject->GetParticleCount();i++ ){ //particles
-                    Ref<QParticleObject> p=memnew( QParticleObject(meshObject->GetParticleAt(i)) );
-                    particleObjects.push_back(p);
-                }
-                for(int i=0;i<meshObject->GetSpringCount();i++ ){ //springs
-                    Ref<QSpringObject> s=memnew( QSpringObject(meshObject->GetSpringAt(i)) );
-                    springObjects.push_back(s);
-                }
-                
-                int polygonParticleCount=meshObject->GetPolygonParticleCount(); //poltgon
-                for(int n=0;n<polygonParticleCount;n++ ){
-                    Ref<QParticleObject> p=get_particle_object_with_particle(meshObject->GetParticleFromPolygon(n));
-                    polygon.push_back(p);
-                } 
                   
-                
 
             }else{
                 QMesh::MeshData qData=convert_mesh_node_data_to_mesh_data();
                 meshObject=QMesh::CreateWithMeshData(qData ) ;
+                
             }
+            //Creating object and node versions of the mesh
+            for(int i=0;i<meshObject->GetParticleCount();i++ ){ //particles
+                Ref<QParticleObject> p=memnew( QParticleObject(meshObject->GetParticleAt(i)) );
+                particleObjects.push_back(p);
+            }
+            for(int i=0;i<meshObject->GetSpringCount();i++ ){ //springs
+                Ref<QSpringObject> s=memnew( QSpringObject(meshObject->GetSpringAt(i)) );
+                springObjects.push_back(s);
+            }
+            
+            int polygonParticleCount=meshObject->GetPolygonParticleCount(); //polygon
+            for(int n=0;n<polygonParticleCount;n++ ){
+                Ref<QParticleObject> p=get_particle_object_with_particle(meshObject->GetParticleFromPolygon(n));
+                polygon.push_back(p);
+            } 
         }
         set_mesh_position(get_position());
         set_mesh_rotation(get_rotation());
@@ -623,8 +624,8 @@ QMesh::MeshData QMeshNode::convert_mesh_node_data_to_mesh_data()
     for(size_t i=0;i<dataUVMaps.size();++i){
         PackedInt32Array map=dataUVMaps[i];
         vector<int> qmap;
-        for(size_t i=0;i<map.size();++i){
-            qmap.push_back( map[i] );
+        for(size_t j=0;j<map.size();++j){
+            qmap.push_back( map[j] );
         }
         qData.UVMaps.push_back(qmap);
     }
@@ -1360,7 +1361,7 @@ PackedVector2Array QMeshNode::get_specified_side_points_of_polygon(PackedVector2
 QMeshNode *QMeshNode::type_cast(Object *obj) {
 	Node2D *node=Object::cast_to<Node2D>(obj);
     if(node!=nullptr){
-        if(node->get_class()=="QMeshNode" || node->get_class()=="QMeshRectNode" || node->get_class()=="QMeshPolygonNode" || node->get_class()=="QMeshCircleNode" || node->get_class()=="QMeshExternalNode"){
+        if(node->get_class()=="QMeshNode" || node->get_class()=="QMeshRectNode" || node->get_class()=="QMeshPolygonNode" || node->get_class()=="QMeshCircleNode" || node->get_class()=="QMeshAdvancedNode"){
             return static_cast<QMeshNode*>(node);
         }
     }

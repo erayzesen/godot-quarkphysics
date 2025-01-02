@@ -53,11 +53,13 @@ protected:
     void _notification(int what);
     void on_post_enter_tree();
     bool isConfigured=false;
-    QBody *bodyObject;
+    QBody *bodyObject=nullptr;
     QWorldNode *worldNode=nullptr;
     vector<QMeshNode*> meshNodes;
     static void _bind_methods();
     bodyNodeTypes bodyNodeType;
+    bool enabled=true;
+    
 
     
 public:

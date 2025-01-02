@@ -23,19 +23,17 @@ func _edit(object: Object) -> void:
 		var button_group:ButtonGroup=tool_bar.get_node("ParticleButton").button_group
 		button_group.connect("pressed",on_tool_button_pressed)
 		add_control_to_container(EditorPlugin.CONTAINER_CANVAS_EDITOR_MENU,tool_bar)
-		
-		
-		
+
 	else :
 		editor_tool=null
-		print("deleted tool bar")
+		#print("deleted tool bar")
 		reset_plugin()
 	pass
 	
 
 	
 func _handles(object: Object) -> bool:
-	return object is QMeshNode
+	return object is QMeshAdvancedNode
 	
 func _make_visible(visible: bool) -> void:
 	update_overlays()
@@ -97,6 +95,7 @@ func on_tool_bar_edit_pressed(toggled_on:bool):
 		tool_bar.get_node("UVButton").visible=false
 		tool_bar.get_node("InternalCheckBox").visible=false
 		tool_bar.get_node("RadiusBar").visible=false
+		tool_bar.get_node("OperationOptionButton").visible=false
 		update_overlays()
 	pass
 	
@@ -111,32 +110,45 @@ func on_tool_button_pressed(button: BaseButton) :
 			editor_tool=QMeshEditorToolSelect.new()
 			tool_bar.get_node("InternalCheckBox").visible=true
 			tool_bar.get_node("RadiusBar").visible=true
+			tool_bar.get_node("OperationOptionButton").visible=false
 			tool_bar.get_node("InternalCheckBox").connect("toggled",editor_tool._internal_checkbox_toggled)
 			tool_bar.get_node("RadiusBar/SpinBox").connect("value_changed",editor_tool._radius_bar_changed)
+			tool_bar.get_node("InternalCheckBox").disabled=true
 		particle_button:
 			editor_tool=QMeshEditorToolParticle.new()
 			tool_bar.get_node("InternalCheckBox").visible=true
 			tool_bar.get_node("RadiusBar").visible=false
+			tool_bar.get_node("OperationOptionButton").visible=true
+			tool_bar.get_node("OperationOptionButton").selected=0
+			tool_bar.get_node("InternalCheckBox").disabled=false
 		spring_button:
 			editor_tool=QMeshEditorToolSpring.new()
 			tool_bar.get_node("InternalCheckBox").visible=true
 			tool_bar.get_node("RadiusBar").visible=false
+			tool_bar.get_node("OperationOptionButton").visible=true
+			tool_bar.get_node("OperationOptionButton").selected=0
+			tool_bar.get_node("InternalCheckBox").disabled=false
 		polygon_button:
 			editor_tool=QMeshEditorToolPolygon.new()
 			tool_bar.get_node("InternalCheckBox").visible=false
 			tool_bar.get_node("RadiusBar").visible=false
+			tool_bar.get_node("OperationOptionButton").visible=true
+			tool_bar.get_node("OperationOptionButton").selected=0
 		uv_button:
 			editor_tool=QMeshEditorToolUV.new()
 			tool_bar.get_node("InternalCheckBox").visible=false
 			tool_bar.get_node("RadiusBar").visible=false
+			tool_bar.get_node("OperationOptionButton").visible=true
+			tool_bar.get_node("OperationOptionButton").selected=0
 	editor_tool.plugin=self
 	editor_tool.meshNode=meshNode
 	editor_tool.radiusSpinBox=tool_bar.get_node("RadiusBar/SpinBox")
 	editor_tool.internalCheckBox=tool_bar.get_node("InternalCheckBox")
+	editor_tool.operationOptionButton=tool_bar.get_node("OperationOptionButton")
 	editor_tool.radiusSpinBox.editable=false
-	editor_tool.internalCheckBox.disabled=true
 	
-	print("changed editor tool button with:"+button.name)
+	
+	#print("changed editor tool button with:"+button.name)
 	update_overlays()
 	
 func reset_plugin() :

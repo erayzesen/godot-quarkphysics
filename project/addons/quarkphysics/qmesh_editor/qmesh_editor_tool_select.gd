@@ -1,7 +1,7 @@
 class_name QMeshEditorToolSelect extends QMeshEditorTool
 
 var repositioning_particles:bool=false
-
+var selected_particle_previous_positions=[]
 
 func _handle_event(event:InputEvent)->bool:
 	if event is InputEventMouseButton :
@@ -31,6 +31,9 @@ func _handle_event(event:InputEvent)->bool:
 					if selected_particle_indexes.has(soloSelectedParticle)==false:
 						selected_particle_indexes.clear()
 						selected_particle_indexes.append(soloSelectedParticle)
+					selected_particle_previous_positions.clear()
+					for i in range(selected_particle_indexes.size()) :
+						selected_particle_previous_positions.append( meshNode.data_particle_positions[selected_particle_indexes[i] ] )
 					repositioning_particles=true
 					mouse_drag_mode=true
 					
@@ -43,7 +46,7 @@ func _handle_event(event:InputEvent)->bool:
 			if event.button_index==MOUSE_BUTTON_LEFT :
 				var mPos=fromScreen(event.position)
 				if repositioning_particles==true && selected_particle_indexes.size()>0 :
-					var delta=last_mouse_pressed_position-mPos
+					var delta=selected_particle_previous_positions[0]-meshNode.data_particle_positions[selected_particle_indexes[0] ]
 					var undo_redo=plugin.get_undo_redo()
 					undo_redo.create_action("Move Particle Positions by Delta: "+str(delta) )
 					undo_redo.add_do_method(self,"command_move_particle_positions",plugin,meshNode,selected_particle_indexes,-delta )
@@ -60,6 +63,7 @@ func _handle_event(event:InputEvent)->bool:
 				repositioning_particles=false
 				plugin.selection_rect.size=Vector2.ZERO
 				last_mouse_released_position=mPos
+				selected_particle_previous_positions.clear()
 				
 				
 	if event is InputEventMouseMotion :
@@ -68,9 +72,16 @@ func _handle_event(event:InputEvent)->bool:
 		if mouse_drag_mode==true :
 			#There are selected particles and the repositioning mode is active
 			if selected_particle_indexes.size()>0 && repositioning_particles :
-				var delta=last_mouse_motion_position-mPos
+				var delta=mPos-last_mouse_pressed_position
+				if snapHelper.snap_enabled and selected_particle_indexes.size()>1 :
+					delta=snap_to_grid(delta)
+				
 				for i in range(selected_particle_indexes.size()) :
-					meshNode.data_particle_positions[ selected_particle_indexes[i] ]-=delta
+					var new_pos=selected_particle_previous_positions[i]+delta
+					if snapHelper.snap_enabled and selected_particle_indexes.size()==1 :
+						new_pos=snap_to_grid(new_pos)
+					meshNode.data_particle_positions[ selected_particle_indexes[i] ]=new_pos
+					
 					 
 				meshNode.queue_redraw()
 				plugin.update_overlays()

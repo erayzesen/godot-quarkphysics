@@ -1,0 +1,358 @@
+[gd_scene load_steps=6 format=3 uid="uid://dw06ipgwyx2cc"]
+
+[ext_resource type="Script" path="res://examples/7_classic_platformer/player.gd" id="1_b5iax"]
+[ext_resource type="Script" path="res://examples/7_classic_platformer/moveable_platform.gd" id="2_hvcqu"]
+[ext_resource type="Script" path="res://examples/7_classic_platformer/door_button.gd" id="2_ndt36"]
+[ext_resource type="Script" path="res://examples/7_classic_platformer/coin.gd" id="3_5al4l"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_2ckbs"]
+font_size = 36
+font_color = Color(0, 0, 0, 0.254902)
+
+[node name="Node2D" type="Node2D"]
+metadata/_edit_horizontal_guides_ = [352.0]
+
+[node name="QWorldNode" type="QWorldNode" parent="."]
+debug_renderer = false
+
+[node name="Label" type="Label" parent="."]
+offset_left = 336.0
+offset_top = 224.0
+offset_right = 736.0
+offset_bottom = 431.0
+text = "key a: move left 
+key d: move right
+key w: jump
+"
+label_settings = SubResource("LabelSettings_2ckbs")
+
+[node name="QPlatformerBodyNode" type="QPlatformerBodyNode" parent="."]
+specific_platform_layers = 2
+position = Vector2(128, 512)
+script = ExtResource("1_b5iax")
+
+[node name="QMeshRectNode" type="QMeshRectNode" parent="QPlatformerBodyNode"]
+enable_vector_rendering = true
+fill_color = Color(0.0627451, 0.823529, 0.458824, 1)
+enable_stroke = true
+data_particle_positions = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+data_particle_radius = PackedFloat32Array(0.5, 0.5, 0.5, 0.5)
+data_particle_is_internal = PackedByteArray(0, 0, 0, 0)
+data_springs = Array[PackedInt32Array]([PackedInt32Array(0, 1), PackedInt32Array(1, 2), PackedInt32Array(2, 3), PackedInt32Array(3, 0)])
+data_internal_springs = Array[PackedInt32Array]([PackedInt32Array(0, 2), PackedInt32Array(1, 3)])
+data_polygon = PackedInt32Array(0, 1, 2, 3)
+data_uv_maps = Array[PackedInt32Array]([PackedInt32Array(0, 1, 3), PackedInt32Array(1, 2, 3)])
+
+[node name="DoorButton" type="QRigidBodyNode" parent="." node_paths=PackedStringArray("door")]
+fixed_rotation = true
+mass = 0.1
+layers = 0
+position = Vector2(64, 528)
+script = ExtResource("2_ndt36")
+door = NodePath("../Door")
+
+[node name="QMeshCircleNode" type="QMeshCircleNode" parent="DoorButton"]
+circle_radius = 16.0
+enable_vector_rendering = true
+fill_color = Color(1, 0.14902, 0.454902, 1)
+enable_stroke = true
+data_particle_positions = PackedVector2Array(0, 0)
+data_particle_radius = PackedFloat32Array(16)
+data_particle_is_internal = PackedByteArray(0)
+
+[node name="Door" type="QRigidBodyNode" parent="."]
+fixed_rotation = true
+mode = 1
+mass = 0.1
+layers = 0
+position = Vector2(496, 32)
+
+[node name="QMeshRectNode" type="QMeshRectNode" parent="Door"]
+rectangle_size = Vector2(16, 128)
+enable_vector_rendering = true
+fill_color = Color(1, 0.501961, 0.643137, 1)
+enable_stroke = true
+data_particle_positions = PackedVector2Array(-8, -64, 8, -64, 8, 64, -8, 64)
+data_particle_radius = PackedFloat32Array(0.5, 0.5, 0.5, 0.5)
+data_particle_is_internal = PackedByteArray(0, 0, 0, 0)
+data_springs = Array[PackedInt32Array]([PackedInt32Array(0, 1), PackedInt32Array(1, 2), PackedInt32Array(2, 3), PackedInt32Array(3, 0)])
+data_internal_springs = Array[PackedInt32Array]([PackedInt32Array(0, 2), PackedInt32Array(1, 3)])
+data_polygon = PackedInt32Array(0, 1, 2, 3)
+data_uv_maps = Array[PackedInt32Array]([PackedInt32Array(0, 1, 3), PackedInt32Array(1, 2, 3)])
+
+[node name="Platform" type="QRigidBodyNode" parent="."]
+mode = 1
+layers = 2
+position = Vector2(272, 624)
+
+[node name="QMeshAdvancedNode" type="QMeshAdvancedNode" parent="Platform"]
+enable_vector_rendering = true
+fill_color = Color(0.980392, 0.992157, 1, 1)
+enable_stroke = true
+data_particle_positions = PackedVector2Array(-96, -96, 80, -176, 288, -176, 288, 192, -400, 192, -400, -96)
+data_particle_radius = PackedFloat32Array(0.5, 0.5, 0.5, 0.5, 0.5, 0.5)
+data_particle_is_internal = PackedByteArray(0, 0, 0, 0, 0, 0)
+data_polygon = PackedInt32Array(5, 0, 1, 2, 3, 4)
+
+[node name="Platform2" type="QRigidBodyNode" parent="."]
+mode = 1
+layers = 2
+position = Vector2(880, 592)
+
+[node name="QMeshAdvancedNode" type="QMeshAdvancedNode" parent="Platform2"]
+enable_vector_rendering = true
+fill_color = Color(0.980392, 0.992157, 1, 1)
+enable_stroke = true
+data_particle_positions = PackedVector2Array(-144, -144, 64, -144, 64, -704, 160, -704, 160, 144, -144, 144)
+data_particle_radius = PackedFloat32Array(0.5, 0.5, 0.5, 0.5, 0.5, 0.5)
+data_particle_is_internal = PackedByteArray(0, 0, 0, 0, 0, 0)
+data_polygon = PackedInt32Array(0, 1, 2, 3, 4, 5)
+
+[node name="Platform3" type="QRigidBodyNode" parent="."]
+mode = 1
+layers = 2
+position = Vector2(832, 288)
+
+[node name="QMeshRectNode" type="QMeshRectNode" parent="Platform3"]
+rectangle_size = Vector2(100, 192)
+enable_vector_rendering = true
+fill_color = Color(0.980392, 0.992157, 1, 1)
+enable_stroke = true
+data_particle_positions = PackedVector2Array(-50, -96, 50, -96, 50, 96, -50, 96)
+data_particle_radius = PackedFloat32Array(0.5, 0.5, 0.5, 0.5)
+data_particle_is_internal = PackedByteArray(0, 0, 0, 0)
+data_springs = Array[PackedInt32Array]([PackedInt32Array(0, 1), PackedInt32Array(1, 2), PackedInt32Array(2, 3), PackedInt32Array(3, 0)])
+data_internal_springs = Array[PackedInt32Array]([PackedInt32Array(0, 2), PackedInt32Array(1, 3)])
+data_polygon = PackedInt32Array(0, 1, 2, 3)
+data_uv_maps = Array[PackedInt32Array]([PackedInt32Array(0, 1, 3), PackedInt32Array(1, 2, 3)])
+position = Vector2(-16, -32)
+
+[node name="Platform4" type="QRigidBodyNode" parent="."]
+mode = 1
+layers = 2
+position = Vector2(96, 336)
+
+[node name="QMeshRectNode" type="QMeshRectNode" parent="Platform4"]
+rectangle_size = Vector2(200, 32)
+enable_vector_rendering = true
+fill_color = Color(0.980392, 0.992157, 1, 1)
+enable_stroke = true
+data_particle_positions = PackedVector2Array(-100, -16, 100, -16, 100, 16, -100, 16)
+data_particle_radius = PackedFloat32Array(0.5, 0.5, 0.5, 0.5)
+data_particle_is_internal = PackedByteArray(0, 0, 0, 0)
+data_springs = Array[PackedInt32Array]([PackedInt32Array(0, 1), PackedInt32Array(1, 2), PackedInt32Array(2, 3), PackedInt32Array(3, 0)])
+data_internal_springs = Array[PackedInt32Array]([PackedInt32Array(0, 2), PackedInt32Array(1, 3)])
+data_polygon = PackedInt32Array(0, 1, 2, 3)
+data_uv_maps = Array[PackedInt32Array]([PackedInt32Array(0, 1, 3), PackedInt32Array(1, 2, 3)])
+
+[node name="Platform6" type="QRigidBodyNode" parent="."]
+mode = 1
+layers = 2
+position = Vector2(208, 112)
+
+[node name="QMeshRectNode" type="QMeshRectNode" parent="Platform6"]
+rectangle_size = Vector2(600, 32)
+enable_vector_rendering = true
+fill_color = Color(0.980392, 0.992157, 1, 1)
+enable_stroke = true
+data_particle_positions = PackedVector2Array(-300, -16, 300, -16, 300, 16, -300, 16)
+data_particle_radius = PackedFloat32Array(0.5, 0.5, 0.5, 0.5)
+data_particle_is_internal = PackedByteArray(0, 0, 0, 0)
+data_springs = Array[PackedInt32Array]([PackedInt32Array(0, 1), PackedInt32Array(1, 2), PackedInt32Array(2, 3), PackedInt32Array(3, 0)])
+data_internal_springs = Array[PackedInt32Array]([PackedInt32Array(0, 2), PackedInt32Array(1, 3)])
+data_polygon = PackedInt32Array(0, 1, 2, 3)
+data_uv_maps = Array[PackedInt32Array]([PackedInt32Array(0, 1, 3), PackedInt32Array(1, 2, 3)])
+
+[node name="Platform5" type="QRigidBodyNode" parent="."]
+mode = 1
+layers = 2
+position = Vector2(-80, 352)
+
+[node name="QMeshRectNode" type="QMeshRectNode" parent="Platform5"]
+rectangle_size = Vector2(192, 1000)
+enable_vector_rendering = true
+fill_color = Color(0.980392, 0.992157, 1, 1)
+enable_stroke = true
+data_particle_positions = PackedVector2Array(-96, -500, 96, -500, 96, 500, -96, 500)
+data_particle_radius = PackedFloat32Array(0.5, 0.5, 0.5, 0.5)
+data_particle_is_internal = PackedByteArray(0, 0, 0, 0)
+data_springs = Array[PackedInt32Array]([PackedInt32Array(0, 1), PackedInt32Array(1, 2), PackedInt32Array(2, 3), PackedInt32Array(3, 0)])
+data_internal_springs = Array[PackedInt32Array]([PackedInt32Array(0, 2), PackedInt32Array(1, 3)])
+data_polygon = PackedInt32Array(0, 1, 2, 3)
+data_uv_maps = Array[PackedInt32Array]([PackedInt32Array(0, 1, 3), PackedInt32Array(1, 2, 3)])
+position = Vector2(-16, -32)
+
+[node name="Platform7" type="QRigidBodyNode" parent="."]
+mode = 1
+layers = 2
+position = Vector2(464, -48)
+
+[node name="QMeshRectNode" type="QMeshRectNode" parent="Platform7"]
+rectangle_size = Vector2(1200, 192)
+enable_vector_rendering = true
+fill_color = Color(0.980392, 0.992157, 1, 1)
+enable_stroke = true
+data_particle_positions = PackedVector2Array(-600, -96, 600, -96, 600, 96, -600, 96)
+data_particle_radius = PackedFloat32Array(0.5, 0.5, 0.5, 0.5)
+data_particle_is_internal = PackedByteArray(0, 0, 0, 0)
+data_springs = Array[PackedInt32Array]([PackedInt32Array(0, 1), PackedInt32Array(1, 2), PackedInt32Array(2, 3), PackedInt32Array(3, 0)])
+data_internal_springs = Array[PackedInt32Array]([PackedInt32Array(0, 2), PackedInt32Array(1, 3)])
+data_polygon = PackedInt32Array(0, 1, 2, 3)
+data_uv_maps = Array[PackedInt32Array]([PackedInt32Array(0, 1, 3), PackedInt32Array(1, 2, 3)])
+position = Vector2(-16, -32)
+
+[node name="MoveablePlatform" type="QRigidBodyNode" parent="."]
+kinematic = true
+layers = 3
+position = Vector2(640, 176)
+script = ExtResource("2_hvcqu")
+next_location = Vector2(330, 303)
+
+[node name="QMeshRectNode" type="QMeshRectNode" parent="MoveablePlatform"]
+rectangle_size = Vector2(100, 32)
+enable_vector_rendering = true
+fill_color = Color(0.980392, 0.992157, 1, 1)
+enable_stroke = true
+data_particle_positions = PackedVector2Array(-50, -16, 50, -16, 50, 16, -50, 16)
+data_particle_radius = PackedFloat32Array(0.5, 0.5, 0.5, 0.5)
+data_particle_is_internal = PackedByteArray(0, 0, 0, 0)
+data_springs = Array[PackedInt32Array]([PackedInt32Array(0, 1), PackedInt32Array(1, 2), PackedInt32Array(2, 3), PackedInt32Array(3, 0)])
+data_internal_springs = Array[PackedInt32Array]([PackedInt32Array(0, 2), PackedInt32Array(1, 3)])
+data_polygon = PackedInt32Array(0, 1, 2, 3)
+data_uv_maps = Array[PackedInt32Array]([PackedInt32Array(0, 1, 3), PackedInt32Array(1, 2, 3)])
+
+[node name="Box" type="QRigidBodyNode" parent="."]
+layers = 3
+position = Vector2(128, 288)
+
+[node name="QMeshRectNode" type="QMeshRectNode" parent="Box"]
+rectangle_size = Vector2(60, 60)
+enable_vector_rendering = true
+fill_color = Color(1, 0.517647, 0.14902, 1)
+enable_stroke = true
+data_particle_positions = PackedVector2Array(-30, -30, 30, -30, 30, 30, -30, 30)
+data_particle_radius = PackedFloat32Array(0.5, 0.5, 0.5, 0.5)
+data_particle_is_internal = PackedByteArray(0, 0, 0, 0)
+data_springs = Array[PackedInt32Array]([PackedInt32Array(0, 1), PackedInt32Array(1, 2), PackedInt32Array(2, 3), PackedInt32Array(3, 0)])
+data_internal_springs = Array[PackedInt32Array]([PackedInt32Array(0, 2), PackedInt32Array(1, 3)])
+data_polygon = PackedInt32Array(0, 1, 2, 3)
+data_uv_maps = Array[PackedInt32Array]([PackedInt32Array(0, 1, 3), PackedInt32Array(1, 2, 3)])
+
+[node name="Coins" type="Node2D" parent="."]
+
+[node name="Coin1" type="QAreaBodyNode" parent="Coins"]
+position = Vector2(416, 416)
+script = ExtResource("3_5al4l")
+
+[node name="QMeshCircleNode" type="QMeshCircleNode" parent="Coins/Coin1"]
+circle_radius = 8.0
+enable_vector_rendering = true
+fill_color = Color(1, 0.819608, 0, 1)
+enable_stroke = true
+data_particle_positions = PackedVector2Array(0, 0)
+data_particle_radius = PackedFloat32Array(8)
+data_particle_is_internal = PackedByteArray(0)
+
+[node name="Coin2" type="QAreaBodyNode" parent="Coins"]
+position = Vector2(464, 416)
+script = ExtResource("3_5al4l")
+
+[node name="QMeshCircleNode" type="QMeshCircleNode" parent="Coins/Coin2"]
+circle_radius = 8.0
+enable_vector_rendering = true
+fill_color = Color(1, 0.819608, 0, 1)
+enable_stroke = true
+data_particle_positions = PackedVector2Array(0, 0)
+data_particle_radius = PackedFloat32Array(8)
+data_particle_is_internal = PackedByteArray(0)
+
+[node name="Coin3" type="QAreaBodyNode" parent="Coins"]
+position = Vector2(512, 416)
+script = ExtResource("3_5al4l")
+
+[node name="QMeshCircleNode" type="QMeshCircleNode" parent="Coins/Coin3"]
+circle_radius = 8.0
+enable_vector_rendering = true
+fill_color = Color(1, 0.819608, 0, 1)
+enable_stroke = true
+data_particle_positions = PackedVector2Array(0, 0)
+data_particle_radius = PackedFloat32Array(8)
+data_particle_is_internal = PackedByteArray(0)
+
+[node name="Coin4" type="QAreaBodyNode" parent="Coins"]
+position = Vector2(784, 128)
+script = ExtResource("3_5al4l")
+
+[node name="QMeshCircleNode" type="QMeshCircleNode" parent="Coins/Coin4"]
+circle_radius = 8.0
+enable_vector_rendering = true
+fill_color = Color(1, 0.819608, 0, 1)
+enable_stroke = true
+data_particle_positions = PackedVector2Array(0, 0)
+data_particle_radius = PackedFloat32Array(8)
+data_particle_is_internal = PackedByteArray(0)
+
+[node name="Coin5" type="QAreaBodyNode" parent="Coins"]
+position = Vector2(848, 128)
+script = ExtResource("3_5al4l")
+
+[node name="QMeshCircleNode" type="QMeshCircleNode" parent="Coins/Coin5"]
+circle_radius = 8.0
+enable_vector_rendering = true
+fill_color = Color(1, 0.819608, 0, 1)
+enable_stroke = true
+data_particle_positions = PackedVector2Array(0, 0)
+data_particle_radius = PackedFloat32Array(8)
+data_particle_is_internal = PackedByteArray(0)
+
+[node name="Coin6" type="QAreaBodyNode" parent="Coins"]
+position = Vector2(48, 64)
+script = ExtResource("3_5al4l")
+
+[node name="QMeshCircleNode" type="QMeshCircleNode" parent="Coins/Coin6"]
+circle_radius = 8.0
+enable_vector_rendering = true
+fill_color = Color(1, 0.819608, 0, 1)
+enable_stroke = true
+data_particle_positions = PackedVector2Array(0, 0)
+data_particle_radius = PackedFloat32Array(8)
+data_particle_is_internal = PackedByteArray(0)
+
+[node name="Coin7" type="QAreaBodyNode" parent="Coins"]
+position = Vector2(112, 64)
+script = ExtResource("3_5al4l")
+
+[node name="QMeshCircleNode" type="QMeshCircleNode" parent="Coins/Coin7"]
+circle_radius = 8.0
+enable_vector_rendering = true
+fill_color = Color(1, 0.819608, 0, 1)
+enable_stroke = true
+data_particle_positions = PackedVector2Array(0, 0)
+data_particle_radius = PackedFloat32Array(8)
+data_particle_is_internal = PackedByteArray(0)
+
+[node name="Coin8" type="QAreaBodyNode" parent="Coins"]
+position = Vector2(176, 64)
+script = ExtResource("3_5al4l")
+
+[node name="QMeshCircleNode" type="QMeshCircleNode" parent="Coins/Coin8"]
+circle_radius = 8.0
+enable_vector_rendering = true
+fill_color = Color(1, 0.819608, 0, 1)
+enable_stroke = true
+data_particle_positions = PackedVector2Array(0, 0)
+data_particle_radius = PackedFloat32Array(8)
+data_particle_is_internal = PackedByteArray(0)
+
+[node name="Coin9" type="QAreaBodyNode" parent="Coins"]
+position = Vector2(240, 64)
+script = ExtResource("3_5al4l")
+
+[node name="QMeshCircleNode" type="QMeshCircleNode" parent="Coins/Coin9"]
+circle_radius = 8.0
+enable_vector_rendering = true
+fill_color = Color(1, 0.819608, 0, 1)
+enable_stroke = true
+data_particle_positions = PackedVector2Array(0, 0)
+data_particle_radius = PackedFloat32Array(8)
+data_particle_is_internal = PackedByteArray(0)

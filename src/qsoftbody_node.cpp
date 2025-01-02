@@ -200,6 +200,7 @@ QSoftBodyNode *QSoftBodyNode::set_shape_matching_fixed_transform_enabled(bool va
     sb->SetShapeMatchingFixedTransformEnabled(value);
     set_shape_matching_fixed_position(get_global_position() );
     set_shape_matching_fixed_rotation(get_global_rotation() );
+    cout<<"shape matching fixed position:"<<get_global_position().x<<","<<get_global_position().y<<endl;
     return this;
 }
 

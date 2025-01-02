@@ -45,11 +45,17 @@ void QBodyNode::on_post_enter_tree() {
                 return;
             }
         }
+        
         if(bodyObject->GetBodyType()==QBody::BodyTypes::SOFT){
             QSoftBody *sb=static_cast<QSoftBody*>(bodyObject);
             //print_line("Resetting area preserving enabled.");
             if(sb->GetAreaPreservingEnabled())
                 sb->SetAreaPreservingEnabled(true);
+            if(sb->GetShapeMatchingFixedTransformEnabled()==true ){
+                sb->SetShapeMatchingFixedPosition( QVector(get_global_position().x,get_global_position().y) );
+                sb->SetShapeMatchingFixedRotation(get_global_rotation() );
+            }
+                
         }
         worldNode->add_body(this);
         isConfigured=true;
@@ -265,7 +271,8 @@ float QBodyNode::get_body_specific_time_scale() {
 }
 
 bool QBodyNode::get_enabled() {
-	return bodyObject->GetEnabled();
+    return enabled;
+	
 }
 
 float QBodyNode::get_velocity_limit() {
@@ -386,6 +393,8 @@ QBodyNode *QBodyNode::set_body_spesific_time_scale(float value) {
 }
 
 QBodyNode *QBodyNode::set_enabled(bool value) {
+    enabled=value;
+
     bodyObject->SetEnabled(value);
     update_meshes_draw();
 	return this;

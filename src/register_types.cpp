@@ -9,7 +9,7 @@
 #include "qmesh_rect_node.h"
 #include "qmesh_polygon_node.h"
 #include "qmesh_circle_node.h"
-#include "qmesh_external_node.h"
+#include "qmesh_advanced_node.h"
 #include "qparticle_object.h"
 #include "qspring_object.h"
 #include "qjoint_object.h"
@@ -39,7 +39,7 @@ void initialize_quarkphysics_module(ModuleInitializationLevel p_level) {
     GDREGISTER_CLASS( QMeshRectNode) ;
     GDREGISTER_CLASS( QMeshPolygonNode) ;
     GDREGISTER_CLASS( QMeshCircleNode) ;
-    GDREGISTER_CLASS( QMeshExternalNode) ;
+    GDREGISTER_CLASS( QMeshAdvancedNode) ;
     GDREGISTER_CLASS( QParticleObject) ;
     GDREGISTER_CLASS( QSpringObject) ;
     GDREGISTER_CLASS( QJointObject) ;

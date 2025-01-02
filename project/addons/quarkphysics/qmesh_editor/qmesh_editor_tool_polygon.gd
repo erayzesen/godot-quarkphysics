@@ -9,42 +9,55 @@ func _handle_event(event:InputEvent)->bool:
 		#Pressed Event
 		if event.is_pressed() :
 			#Handling mouse left button pressed
-			if event.button_index==MOUSE_BUTTON_LEFT :
-				var mPos=fromScreen(event.position)
-				var nearest_particle_index=get_nearest_particle_index(meshNode,mPos)
-				if nearest_particle_index==-1 :
-					selected_particle_indexes.clear()
-					meshNode.modulate.a=1.0
-					plugin.update_overlays()
-				else :
-					var is_particle_exist=false
-					for i in range(selected_particle_indexes.size()) :
-						if nearest_particle_index==selected_particle_indexes[i] :
-							is_particle_exist=true
-					if is_particle_exist==true && selected_particle_indexes[0]==nearest_particle_index :
-						#Setting new polygon
-						var undo_redo=plugin.get_undo_redo()
-						var new_polygon_indexes:PackedInt32Array=selected_particle_indexes.duplicate()
-						undo_redo.create_action("Set a New Polygon Indexes: "+str(selected_particle_indexes)+"-"+str(nearest_particle_index) )
-						undo_redo.add_undo_method(self,"command_set_polygon",plugin,meshNode,meshNode.data_polygon )
-						undo_redo.add_do_method(self,"command_set_polygon",plugin,meshNode, new_polygon_indexes )
-						undo_redo.commit_action(true)
-						meshNode.modulate.a=1.0
+			var mPos=fromScreen(event.position)
+			if operationOptionButton.selected==0 :	
+				if event.button_index==MOUSE_BUTTON_LEFT :
+					var nearest_particle_index=get_nearest_particle_index(meshNode,mPos)
+					if nearest_particle_index==-1 :
 						selected_particle_indexes.clear()
-						meshNode.queue_redraw()
+						meshNode.modulate.a=1.0
 						plugin.update_overlays()
 					else :
-						if is_particle_exist==false:
-							selected_particle_indexes.push_back(nearest_particle_index)
-							meshNode.modulate.a=0.3
+						var is_particle_exist=false
+						for i in range(selected_particle_indexes.size()) :
+							if nearest_particle_index==selected_particle_indexes[i] :
+								is_particle_exist=true
+						if is_particle_exist==true && selected_particle_indexes[0]==nearest_particle_index :
+							#Setting new polygon
+							var undo_redo=plugin.get_undo_redo()
+							var new_polygon_indexes:PackedInt32Array=selected_particle_indexes.duplicate()
+							undo_redo.create_action("Set a New Polygon Indexes: "+str(selected_particle_indexes)+"-"+str(nearest_particle_index) )
+							undo_redo.add_undo_method(self,"command_set_polygon",plugin,meshNode,meshNode.data_polygon )
+							undo_redo.add_do_method(self,"command_set_polygon",plugin,meshNode, new_polygon_indexes )
+							undo_redo.commit_action(true)
+							meshNode.modulate.a=1.0
+							selected_particle_indexes.clear()
+							meshNode.queue_redraw()
 							plugin.update_overlays()
 						else :
-							selected_particle_indexes.clear()
-							plugin.update_overlays()
-							meshNode.modulate.a=1.0
-				last_mouse_pressed_position=mPos
-				last_mouse_motion_position=mPos
-				pass
+							if is_particle_exist==false:
+								selected_particle_indexes.push_back(nearest_particle_index)
+								meshNode.modulate.a=0.3
+								plugin.update_overlays()
+							else :
+								selected_particle_indexes.clear()
+								plugin.update_overlays()
+								meshNode.modulate.a=1.0
+					last_mouse_pressed_position=mPos
+					last_mouse_motion_position=mPos
+					pass
+			else:
+				var polygon:PackedVector2Array 
+				for i in range(meshNode.data_polygon.size() ):
+					polygon.push_back( meshNode.data_particle_positions[meshNode.data_polygon[i] ]+meshNode.global_position  )
+				if Geometry2D.is_point_in_polygon(mPos,polygon) :
+					var undo_redo=plugin.get_undo_redo()
+					var polygon_points=meshNode.data_polygon.duplicate()
+					undo_redo.create_action("Remove Polygon")
+					undo_redo.add_undo_method(self,"command_set_polygon",plugin,meshNode,polygon_points )
+					undo_redo.add_do_method(self,"command_set_polygon",plugin,meshNode, PackedInt32Array() )
+					undo_redo.commit_action(true)
+						
 				
 				
 					
