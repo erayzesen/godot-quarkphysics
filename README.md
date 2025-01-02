@@ -18,6 +18,7 @@ You can use it like other Godot 4 native extension and plugins. Simply download 
 
 Additionally, you can check out the example scenes and applications in the `examples` folder. If you don't need them, there's no need to add anything other than the addon folder to your project.
 
+
 ## How to Contribute?
 You can contribute to the project in many ways. At this stage, the most valuable contribution is to test the project and report any bugs you encounter. You can also share your experiences. Additionally, you can help by working on documentation, creating tutorials, or promoting the project.
 
