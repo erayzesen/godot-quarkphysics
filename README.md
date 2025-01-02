@@ -3,7 +3,7 @@
 The project is a native plugin that integrates QuarkPhysics into Godot Engine versions 4.3 and above.
 QuarkPhysics is a physics engine for 2D games, capable of simulating Rigid Body, Soft Body, and various dynamics. You can find detailed information on the [project page](https://github.com/erayzesen/QuarkPhysics).
 
-[![Watch Examples](./images/examples_play.png)()](https://www.youtube.com/watch?v=KxsLLHMrB-Q)
+[ ![Watch Examples](./images/examples_play.png) ](https://www.youtube.com/watch?v=KxsLLHMrB-Q)
 
 ## Features of the Extension:
 
