@@ -12,6 +12,11 @@ enable_sleeping = false
 debug_renderer = false
 enable_debug_mouse_interactions = true
 
+[node name="background" type="ColorRect" parent="."]
+offset_right = 1030.0
+offset_bottom = 580.0
+mouse_filter = 2
+
 [node name="Floor" type="QRigidBodyNode" parent="."]
 mode = 1
 layers = 2

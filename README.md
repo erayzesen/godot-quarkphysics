@@ -16,7 +16,7 @@ QuarkPhysics is a physics engine for 2D games, capable of simulating Rigid Body,
 ## How to Use? 
 You can use it like other Godot 4 native extension and plugins. Simply download the latest version from the Releases section and add the `addons` folder to your project as is. If you want to use the `QMeshEditor` plugin, make sure it is activated in Godot's project settings.
 
-Additionally, you can check out the example scenes and applications in the `examples` folder. If you don't need them, there's no need to add anything other than the addon folder to your project.
+Additionally, you can check out the example scenes and applications in the `examples` folder. If you don't need them, there's no need to add anything other than the `addons` folder to your project.
 
 
 ## How to Contribute?

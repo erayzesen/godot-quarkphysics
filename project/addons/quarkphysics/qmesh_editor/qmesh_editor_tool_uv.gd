@@ -85,7 +85,7 @@ func _handle_canvas_draw(overlay: Control):
 		var uv_map=meshNode.data_uv_maps[i]
 		var polygon:PackedVector2Array
 		for n in range(uv_map.size() ) :
-			var pos=meshNode.data_particle_positions[ uv_map[n] ]+meshNode.global_position
+			var pos=meshNode.data_particle_positions[ uv_map[n] ].rotated(meshNode.global_rotation)+meshNode.global_position
 			pos=toScreen(pos)
 			polygon.push_back( pos )
 		var color=uv_debug_colors[i%uv_debug_colors.size()]
@@ -96,11 +96,11 @@ func _handle_canvas_draw(overlay: Control):
 	
 	if selected_particle_indexes.size()>1 :
 		for i in range(selected_particle_indexes.size()-1) :
-			var pA=toScreen(meshNode.data_particle_positions[selected_particle_indexes[i] ]+meshNode.global_position )
-			var pB=toScreen(meshNode.data_particle_positions[ selected_particle_indexes[i+1] ]+meshNode.global_position )
+			var pA=toScreen(meshNode.data_particle_positions[selected_particle_indexes[i] ].rotated(meshNode.global_rotation)+meshNode.global_position )
+			var pB=toScreen(meshNode.data_particle_positions[ selected_particle_indexes[i+1] ].rotated(meshNode.global_rotation)+meshNode.global_position )
 			overlay.draw_dashed_line(pA,pB,uv_line_color,-1.0,10.0)
 	if selected_particle_indexes.size()>0:
-		var first_pos:Vector2=meshNode.data_particle_positions[selected_particle_indexes[selected_particle_indexes.size()-1]]+meshNode.global_position
+		var first_pos:Vector2=meshNode.data_particle_positions[selected_particle_indexes[selected_particle_indexes.size()-1]].rotated(meshNode.global_rotation)+meshNode.global_position
 		first_pos=toScreen(first_pos)
 		var second_pos:Vector2=toScreen( last_mouse_motion_position )
 		overlay.draw_dashed_line(first_pos,second_pos,uv_line_color,-1.0,10.0)

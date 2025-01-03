@@ -256,6 +256,7 @@ void QWorld::Update(){
 								//QCollision::CircleAndPolyline(meshA->polygon,meshB->polygon,contacts);
 							}else{
 								QCollision::PolylineAndPolygon(meshA->polygon,meshB->polygon,contacts);
+								
 							}
 							
 							

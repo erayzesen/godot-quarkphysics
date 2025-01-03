@@ -46,7 +46,9 @@ func _forward_canvas_draw_over_viewport(overlay: Control) -> void:
 		return
 	
 	for i in range(meshNode.data_particle_positions.size()):
-		var circlePos=toScreen( meshNode.global_position+meshNode.data_particle_positions[i] )
+		var particle_pos=meshNode.data_particle_positions[i]
+		particle_pos=particle_pos.rotated(meshNode.global_rotation)
+		var circlePos=toScreen( meshNode.global_position+particle_pos )
 		var circleRadius=5
 		var color=Color.GREEN
 		if editor_tool.selected_particle_indexes.has(i) :

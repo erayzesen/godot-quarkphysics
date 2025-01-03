@@ -26,6 +26,10 @@ window/size/viewport_height=580
 window/size/initial_position=Vector2i(515, 290)
 window/stretch/mode="canvas_items"
 
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/quarkphysics/plugin.cfg")
+
 [input]
 
 ui_left={
@@ -57,4 +61,3 @@ ui_up={
 
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
-environment/defaults/default_clear_color=Color(0.980392, 0.992157, 1, 1)

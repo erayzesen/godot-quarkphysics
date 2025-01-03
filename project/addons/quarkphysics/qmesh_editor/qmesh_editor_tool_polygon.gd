@@ -49,7 +49,7 @@ func _handle_event(event:InputEvent)->bool:
 			else:
 				var polygon:PackedVector2Array 
 				for i in range(meshNode.data_polygon.size() ):
-					polygon.push_back( meshNode.data_particle_positions[meshNode.data_polygon[i] ]+meshNode.global_position  )
+					polygon.push_back( meshNode.data_particle_positions[meshNode.data_polygon[i] ].rotated(meshNode.global_rotation)+meshNode.global_position  )
 				if Geometry2D.is_point_in_polygon(mPos,polygon) :
 					var undo_redo=plugin.get_undo_redo()
 					var polygon_points=meshNode.data_polygon.duplicate()
@@ -83,8 +83,8 @@ func _handle_event(event:InputEvent)->bool:
 func _handle_canvas_draw(overlay: Control):
 	if selected_particle_indexes.size()>1 :
 		for i in range(selected_particle_indexes.size()-1) :
-			var pA=toScreen(meshNode.data_particle_positions[selected_particle_indexes[i] ]+meshNode.global_position )
-			var pB=toScreen(meshNode.data_particle_positions[ selected_particle_indexes[i+1] ]+meshNode.global_position )
+			var pA=toScreen(meshNode.data_particle_positions[selected_particle_indexes[i] ].rotated(meshNode.global_rotation)+meshNode.global_position )
+			var pB=toScreen(meshNode.data_particle_positions[ selected_particle_indexes[i+1] ].rotated(meshNode.global_rotation)+meshNode.global_position )
 			overlay.draw_dashed_line(pA,pB,Color.GREEN,-1.0,10.0)
 
 func _internal_checkbox_toggled(toggled_on:bool) :

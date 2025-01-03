@@ -17,6 +17,7 @@ var plugin:EditorPlugin
 #Helpers
 var snapHelper:QMeshSnapHelper=QMeshSnapHelper.new()
 
+
 func _reset_tool() :
 	mouse_drag_mode=false
 	last_mouse_pressed_position=Vector2.ZERO
@@ -48,7 +49,7 @@ func fromScreen(point:Vector2)->Vector2 :
 	
 func get_nearest_particle_index(targetMeshNode:QMeshNode,position:Vector2) ->int:
 	for i in range(targetMeshNode.data_particle_positions.size() ) :
-		var point=targetMeshNode.data_particle_positions[i]
+		var point=targetMeshNode.data_particle_positions[i].rotated(meshNode.global_rotation)
 		if ((point+targetMeshNode.global_position)-position).length()<5.0 :
 			return i
 	return -1;
@@ -60,8 +61,8 @@ func get_nearest_spring_index(targetMeshNode:QMeshNode, position:Vector2, intern
 	var springs=targetMeshNode.data_internal_springs if internal else targetMeshNode.data_springs  
 	for i in range(springs.size()) :
 		var spring=springs[i]
-		var pA=targetMeshNode.data_particle_positions[ spring[0] ]+meshNode.global_position
-		var pB=targetMeshNode.data_particle_positions[ spring[1] ]++meshNode.global_position
+		var pA=targetMeshNode.data_particle_positions[ spring[0] ].rotated(meshNode.global_rotation)+meshNode.global_position
+		var pB=targetMeshNode.data_particle_positions[ spring[1] ].rotated(meshNode.global_rotation)+meshNode.global_position
 		var a_vec=(pB-pA)
 		var unit=a_vec.normalized()
 		var normal=unit.orthogonal()
@@ -77,10 +78,10 @@ func get_nearest_spring_index(targetMeshNode:QMeshNode, position:Vector2, intern
 	
 	return spring_index
 	
-func snap_to_grid(point:Vector2) ->Vector2:
-	var snapped_x = roundf(point.x / snapHelper.snap_step.x) * snapHelper.snap_step.x
-	var snapped_y = roundf(point.y / snapHelper.snap_step.y) * snapHelper.snap_step.y
-	var res = Vector2(snapped_x, snapped_y) + snapHelper.snap_offset
+func snap_to_grid(point:Vector2,snap_step:Vector2,snap_offset:Vector2) ->Vector2:
+	var snapped_x = roundf(point.x / snap_step.x) * snap_step.x
+	var snapped_y = roundf(point.y / snap_step.y) * snap_step.y
+	var res = Vector2(snapped_x, snapped_y) + snap_offset
 	return res
 		
 	
@@ -89,7 +90,7 @@ func get_uv_map_index_at_position(targetMeshNode:QMeshNode, position:Vector2) ->
 		var map=targetMeshNode.data_uv_maps[i]
 		var uv_poly:PackedVector2Array
 		for j in range(map.size()):
-			uv_poly.push_back( targetMeshNode.data_particle_positions[ map[j] ]+targetMeshNode.global_position )
+			uv_poly.push_back( targetMeshNode.data_particle_positions[ map[j] ].rotated(targetMeshNode.global_rotation)+targetMeshNode.global_position )
 		if Geometry2D.is_point_in_polygon(position,uv_poly) :
 			return i
 	return -1

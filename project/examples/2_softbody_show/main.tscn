@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://b8rm1mcftb5pr"]
 
-[ext_resource type="Texture2D" uid="uid://e4vap6jhlmpk" path="res://icon.svg" id="2_kxaay"]
+[ext_resource type="Texture2D" uid="uid://cm01ugnxqwp12" path="res://examples/icon.svg" id="2_kxaay"]
 
 [node name="Node2D" type="Node2D"]
 
@@ -8,6 +8,11 @@
 gravity = Vector2(0, 0.1)
 debug_renderer = false
 enable_debug_mouse_interactions = true
+
+[node name="background" type="ColorRect" parent="."]
+offset_right = 1030.0
+offset_bottom = 580.0
+mouse_filter = 2
 
 [node name="Floor" type="QRigidBodyNode" parent="."]
 mode = 1

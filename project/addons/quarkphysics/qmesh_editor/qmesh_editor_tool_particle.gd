@@ -11,11 +11,12 @@ func _handle_event(event:InputEvent)->bool:
 				if operationOptionButton.selected==0 :
 					var new_particle_global_pos=mPos
 					if snapHelper.snap_enabled :
-						new_particle_global_pos=snap_to_grid(new_particle_global_pos)
+						new_particle_global_pos=snap_to_grid(new_particle_global_pos,snapHelper.snap_step,snapHelper.snap_offset)
+					var new_particle_local_pos=(new_particle_global_pos-meshNode.global_position).rotated(-meshNode.global_rotation)
 					#Add a new particle
 					var undo_redo=plugin.get_undo_redo()
 					undo_redo.create_action("Add a Particle to Position: "+str(mPos) )
-					undo_redo.add_do_method(self,"command_add_particle",plugin,meshNode,new_particle_global_pos-meshNode.global_position,0.5,false )
+					undo_redo.add_do_method(self,"command_add_particle",plugin,meshNode,new_particle_local_pos,0.5,false )
 					undo_redo.add_undo_method(self,"command_remove_particle",plugin,meshNode,meshNode.data_particle_positions.size() )
 					undo_redo.commit_action(true)
 					
