@@ -15,6 +15,11 @@ metadata/_edit_horizontal_guides_ = [352.0]
 [node name="QWorldNode" type="QWorldNode" parent="."]
 debug_renderer = false
 
+[node name="background" type="ColorRect" parent="."]
+offset_right = 1030.0
+offset_bottom = 580.0
+mouse_filter = 2
+
 [node name="Label" type="Label" parent="."]
 offset_left = 336.0
 offset_top = 224.0

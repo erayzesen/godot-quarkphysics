@@ -16,7 +16,7 @@ func _handle_event(event:InputEvent)->bool:
 				last_mouse_motion_position=mPos
 				var soloSelectedParticle:int=-1
 				for i in range(meshNode.data_particle_positions.size() ) :
-					var point=meshNode.data_particle_positions[i]
+					var point=meshNode.data_particle_positions[i].rotated(meshNode.global_rotation)
 					if ((point+meshNode.global_position)-mPos).length()<5.0 :
 						soloSelectedParticle=i
 						break
@@ -74,12 +74,12 @@ func _handle_event(event:InputEvent)->bool:
 			if selected_particle_indexes.size()>0 && repositioning_particles :
 				var delta=mPos-last_mouse_pressed_position
 				if snapHelper.snap_enabled and selected_particle_indexes.size()>1 :
-					delta=snap_to_grid(delta)
+					delta=snap_to_grid(delta,snapHelper.snap_step,snapHelper.snap_offset)
 				
 				for i in range(selected_particle_indexes.size()) :
 					var new_pos=selected_particle_previous_positions[i]+delta
 					if snapHelper.snap_enabled and selected_particle_indexes.size()==1 :
-						new_pos=snap_to_grid(new_pos)
+						new_pos=snap_to_grid(new_pos,snapHelper.snap_step,snapHelper.snap_offset)
 					meshNode.data_particle_positions[ selected_particle_indexes[i] ]=new_pos
 					
 					 
@@ -101,7 +101,7 @@ func _handle_event(event:InputEvent)->bool:
 				
 				#Checking which particles is inside of the rect 
 				for i in range(meshNode.data_particle_positions.size() ):
-					var particle_position=meshNode.data_particle_positions[i]+meshNode.global_position
+					var particle_position=meshNode.data_particle_positions[i].rotated(meshNode.global_rotation)+meshNode.global_position
 					if rect.has_point(particle_position):
 						selected_particle_indexes.append(i)
 				plugin.update_overlays()

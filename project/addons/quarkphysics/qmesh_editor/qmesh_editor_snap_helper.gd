@@ -20,6 +20,11 @@ func _init():
 	if(Engine.is_editor_hint()):
 		setup_controls()
 		update_values_from_editor()
+		
+		
+		
+		
+
 
 
 func setup_controls():

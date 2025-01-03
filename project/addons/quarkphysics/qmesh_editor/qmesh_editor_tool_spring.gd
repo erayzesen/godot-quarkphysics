@@ -75,7 +75,7 @@ func _handle_event(event:InputEvent)->bool:
 	
 func _handle_canvas_draw(overlay: Control):
 	if first_selected_particle_index!=-1 :
-		var first_pos:Vector2=toScreen( meshNode.data_particle_positions[first_selected_particle_index]+meshNode.global_position )
+		var first_pos:Vector2=toScreen( meshNode.data_particle_positions[first_selected_particle_index].rotated(meshNode.global_rotation)+meshNode.global_position )
 		var second_pos:Vector2=toScreen( last_mouse_motion_position )
 		overlay.draw_dashed_line(first_pos,second_pos,Color.GRAY,-1.0,10.0)
 	pass

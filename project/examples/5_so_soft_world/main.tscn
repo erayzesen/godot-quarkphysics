@@ -7,14 +7,10 @@ time_scale = 0.5
 debug_renderer = false
 enable_debug_mouse_interactions = true
 
-[node name="ColorRect" type="ColorRect" parent="."]
-visible = false
-custom_minimum_size = Vector2(2000, 2000)
-offset_left = -470.0
-offset_top = -866.0
-offset_right = 1530.0
-offset_bottom = 1134.0
-color = Color(0.603501, 0.762121, 0.903595, 1)
+[node name="background" type="ColorRect" parent="."]
+offset_right = 1030.0
+offset_bottom = 580.0
+mouse_filter = 2
 
 [node name="blobs" type="Node2D" parent="."]
 
