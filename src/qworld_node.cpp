@@ -371,9 +371,11 @@ void QWorldNode::on_physics_process() {
 }
 
 void QWorldNode::on_ready(){
+	mouseJointObject->set_rigidity(0.1f);
 	add_joint(mouseJointObject);
 	mouseJointObject->set_enabled(false);
 
+	mouseSpringObject->set_rigidity(0.5);
 	add_spring(mouseSpringObject);
 	mouseSpringObject->set_enabled(false);
 

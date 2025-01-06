@@ -214,7 +214,9 @@ void QMeshNode::vector_render_in_editor() {
                         Vector2 uvp=Vector2(p.x/textureRect.size.x,p.y/textureRect.size.y);
                         uvPoints.push_back(uvp);
                     }
-                    rs->canvas_item_add_polygon(textureRenderInstance,points,{fillColor},uvPoints,fillTexture->get_rid() );
+                    if(Geometry2D::get_singleton()->triangulate_polygon(points).is_empty()==false  ){
+                        rs->canvas_item_add_polygon(textureRenderInstance,points,{fillColor},uvPoints,fillTexture->get_rid() );
+                    }
 
                 }
                 
@@ -239,11 +241,15 @@ void QMeshNode::vector_render_in_editor() {
 
                             
                     }
-                }else{    
-                    rs->canvas_item_add_polygon(polygonDrawInstance,polygonPoints,{fillColors} );
+                }else{ 
+                    if(Geometry2D::get_singleton()->triangulate_polygon(polygonPoints).is_empty()==false  ){
+                        rs->canvas_item_add_polygon(polygonDrawInstance,polygonPoints,{fillColors} );
+                    }
                 }
             }else{
-                rs->canvas_item_add_polygon(polygonDrawInstance,polygonPoints,{fillColors} );
+                if(Geometry2D::get_singleton()->triangulate_polygon(polygonPoints).is_empty()==false  ){
+                    rs->canvas_item_add_polygon(polygonDrawInstance,polygonPoints,{fillColors} );
+                }
             }
         }
         
@@ -447,8 +453,10 @@ void QMeshNode::vector_render_in_runtime()
                     if(Geometry2D::get_singleton()->is_polygon_clockwise(points)==true ){
                         continue;
                     }
+                    if(Geometry2D::get_singleton()->triangulate_polygon(points).is_empty()==false  ){
+                        rs->canvas_item_add_polygon(textureRenderInstance,points,{fillColor},uvPoints,fillTexture->get_rid() );
+                    }
                     
-                    rs->canvas_item_add_polygon(textureRenderInstance,points,{fillColor},uvPoints,fillTexture->get_rid() );
                 }
 
                 
@@ -469,18 +477,23 @@ void QMeshNode::vector_render_in_runtime()
                         if(subPolygonPoints.size()>2 ){
                             TypedArray<PackedVector2Array> partedPolygons=Geometry2D::get_singleton()->intersect_polygons(subPolygonPoints,subPolygonPoints);
                             for(size_t j=0;j<partedPolygons.size();++j ){
-                                
+
                                 rs->canvas_item_add_polygon(polygonDrawInstance,partedPolygons[j],{fillColors} );
+                                
                             }
                         }
      
                     }
                     
                 }else{
-                    rs->canvas_item_add_polygon(polygonDrawInstance,polygonPoints,{fillColors} );
+                    if(Geometry2D::get_singleton()->triangulate_polygon(polygonPoints).is_empty()==false  ){
+                        rs->canvas_item_add_polygon(polygonDrawInstance,polygonPoints,{fillColors} );
+                    }
                 }
             }else{
-                 rs->canvas_item_add_polygon(polygonDrawInstance,polygonPoints,{fillColors} );
+                if(Geometry2D::get_singleton()->triangulate_polygon(polygonPoints).is_empty()==false  ){
+                    rs->canvas_item_add_polygon(polygonDrawInstance,polygonPoints,{fillColors} );
+                }
             }
 
             
