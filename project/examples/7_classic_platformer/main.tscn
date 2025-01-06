@@ -1,23 +1,68 @@
-[gd_scene load_steps=6 format=3 uid="uid://dw06ipgwyx2cc"]
+[gd_scene load_steps=11 format=4 uid="uid://dw06ipgwyx2cc"]
 
 [ext_resource type="Script" path="res://examples/7_classic_platformer/player.gd" id="1_b5iax"]
+[ext_resource type="Texture2D" uid="uid://d3j7v6kge2who" path="res://examples/7_classic_platformer/sprites/tileset.png" id="1_ibcbn"]
 [ext_resource type="Script" path="res://examples/7_classic_platformer/moveable_platform.gd" id="2_hvcqu"]
 [ext_resource type="Script" path="res://examples/7_classic_platformer/door_button.gd" id="2_ndt36"]
+[ext_resource type="Script" path="res://addons/quarkphysics/helper_nodes/qtilemap_collider.gd" id="2_yuswt"]
 [ext_resource type="Script" path="res://examples/7_classic_platformer/coin.gd" id="3_5al4l"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_2ckbs"]
 font_size = 36
 font_color = Color(0, 0, 0, 0.254902)
 
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_pburd"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_qdrbb"]
+texture = ExtResource("1_ibcbn")
+texture_region_size = Vector2i(64, 64)
+0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(32, 0, 32, 32, -32, 32)
+1:0/0 = 0
+1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, 0, 32, -32, 32, 32, -32, 32)
+2:0/0 = 0
+2:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
+3:0/0 = 0
+3:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, 32, -32, -32, 32, 0, 32, 32)
+4:0/0 = 0
+4:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, 0, 32, 32, -32, 32)
+0:1/0 = 0
+0:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 0)
+1:1/0 = 0
+1:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 0)
+2:1/0 = 0
+3:1/0 = 0
+3:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 0, -32, 32)
+4:1/0 = 0
+4:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, -32, 0)
+0:2/0 = 0
+0:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(32, -32, 32, 32, -32, 32)
+1:2/0 = 0
+1:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, 32, -32, 32)
+2:2/0 = 0
+2:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -32, 16, -32, 32, 0, 16, 32, -16, 32, -32, 0)
+3:2/0 = 0
+3:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32)
+4:2/0 = 0
+4:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, -32, 32)
+
+[sub_resource type="TileSet" id="TileSet_2ktbh"]
+tile_size = Vector2i(64, 64)
+physics_layer_0/collision_layer = 2
+physics_layer_0/physics_material = SubResource("PhysicsMaterial_pburd")
+sources/1 = SubResource("TileSetAtlasSource_qdrbb")
+
 [node name="Node2D" type="Node2D"]
 metadata/_edit_horizontal_guides_ = [352.0]
 
 [node name="QWorldNode" type="QWorldNode" parent="."]
 debug_renderer = false
+enable_debug_mouse_interactions = true
 
 [node name="background" type="ColorRect" parent="."]
-offset_right = 1030.0
-offset_bottom = 580.0
+offset_left = -80.0
+offset_right = 1008.0
+offset_bottom = 672.0
 mouse_filter = 2
 
 [node name="Label" type="Label" parent="."]
@@ -31,28 +76,11 @@ key w: jump
 "
 label_settings = SubResource("LabelSettings_2ckbs")
 
-[node name="QPlatformerBodyNode" type="QPlatformerBodyNode" parent="."]
-specific_platform_layers = 2
-position = Vector2(128, 512)
-script = ExtResource("1_b5iax")
-
-[node name="QMeshRectNode" type="QMeshRectNode" parent="QPlatformerBodyNode"]
-enable_vector_rendering = true
-fill_color = Color(0.0627451, 0.823529, 0.458824, 1)
-enable_stroke = true
-data_particle_positions = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
-data_particle_radius = PackedFloat32Array(0.5, 0.5, 0.5, 0.5)
-data_particle_is_internal = PackedByteArray(0, 0, 0, 0)
-data_springs = Array[PackedInt32Array]([PackedInt32Array(0, 1), PackedInt32Array(1, 2), PackedInt32Array(2, 3), PackedInt32Array(3, 0)])
-data_internal_springs = Array[PackedInt32Array]([PackedInt32Array(0, 2), PackedInt32Array(1, 3)])
-data_polygon = PackedInt32Array(0, 1, 2, 3)
-data_uv_maps = Array[PackedInt32Array]([PackedInt32Array(0, 1, 3), PackedInt32Array(1, 2, 3)])
-
 [node name="DoorButton" type="QRigidBodyNode" parent="." node_paths=PackedStringArray("door")]
 fixed_rotation = true
 mass = 0.1
 layers = 0
-position = Vector2(64, 528)
+position = Vector2(64, 512)
 script = ExtResource("2_ndt36")
 door = NodePath("../Door")
 
@@ -63,155 +91,60 @@ fill_color = Color(1, 0.14902, 0.454902, 1)
 enable_stroke = true
 data_particle_positions = PackedVector2Array(0, 0)
 data_particle_radius = PackedFloat32Array(16)
-data_particle_is_internal = PackedByteArray(0)
+data_particle_is_internal = PackedByteArray("AA==")
+
+[node name="TileMapLayer" type="TileMapLayer" parent="."]
+tile_map_data = PackedByteArray("AAD+/wMAAQACAAAAAAD+/wQAAQACAAAAAAD+/wUAAQACAAAAAAD+/wYAAQACAAAAAAD+/wcAAQACAAAAAAD+/wgAAQACAAAAAAD+/wkAAQACAAAAAAD+/woAAQACAAAAAAD//wMAAQACAAAAAAD//wQAAQACAAAAAAD//wUAAQACAAAAAAD//wYAAQACAAAAAAD//wcAAQACAAAAAAD//wgAAQACAAAAAAD//wkAAQACAAAAAAD//woAAQACAAAAAAAAAAIAAQACAAAAAAAAAAUAAQACAAEAAAAAAAgAAQACAAAAAAAAAAkAAQACAAAAAAAAAAoAAQACAAAAAAABAAIAAQACAAAAAAABAAUAAQACAAAAAAABAAgAAQACAAAAAAABAAkAAQACAAAAAAABAAoAAQACAAAAAAACAAIAAQACAAAAAAACAAUAAQACAAAAAAACAAgAAQACAAAAAAACAAkAAQACAAAAAAACAAoAAQACAAAAAAADAAIAAQACAAAAAAADAAgAAQACAAAAAAADAAkAAQACAAAAAAADAAoAAQACAAAAAAAEAAIAAQACAAAAAAAEAAcAAQAAAAAAAAAEAAgAAQACAAAAAAAEAAkAAQACAAAAAAAEAAoAAQACAAAAAAAFAAIAAQACAAAAAAAFAAcAAQABAAAAAAAFAAgAAQACAAAAAAAFAAkAAQACAAAAAAAFAAoAAQACAAAAAAAGAAIAAQACAAAAAAAGAAcAAQACAAAAAAAGAAgAAQACAAAAAAAGAAkAAQACAAAAAAAGAAoAAQACAAAAAAAHAAIAAQACAAAAAAAHAAcAAQACAAAAAAAHAAgAAQACAAAAAAAHAAkAAQACAAAAAAAHAAoAAQACAAAAAAAIAAIAAQACAAAAAAAIAAcAAQACAAAAAAAIAAgAAQACAAAAAAAIAAkAAQACAAAAAAAIAAoAAQACAAAAAAAJAAkAAQACAAAAAAAJAAoAAQACAAAAAAALAAkAAQACAAAAAAALAAoAAQACAAAAAAAAAAEAAQACAAEAAAAAAAMAAQACAAEAAAAAAAQAAQACAAEAAAAAAAYAAQACAAEAAAAAAAcAAQACAAEAAAADAAUAAQACAAAAAAAJAAIAAQACAAAAAAANAAMAAQACAAAAAAANAAQAAQACAAAAAAANAAUAAQACAAAAAAAQAAEAAQACAAAAAAAQAAIAAQACAAAAAAAQAAMAAQACAAAAAAAQAAQAAQACAAAAAAAQAAUAAQACAAAAAAAQAAYAAQACAAAAAAAQAAcAAQACAAAAAAAQAAgAAQACAAAAAAAQAAkAAQACAAAAAAAQAAoAAQACAAAAAAAOAAgAAQACAAAAAAAPAAkAAQACAAAAAAAOAAkAAQACAAAAAAAMAAoAAQACAAAAAAANAAoAAQACAAAAAAAOAAoAAQACAAAAAAAPAAoAAQACAAAAAAAPAAgAAQACAAAAAAAMAAMAAQACAAAAAAAPAAcAAQACAAAAAAAPAAYAAQACAAAAAAAPAAUAAQACAAAAAAAPAAQAAQACAAAAAAAPAAMAAQACAAAAAAAPAAIAAQACAAAAAAAPAAEAAQACAAAAAAAPAAAAAQACAAAAAAAQAAAAAQACAAAAAAD+/wAAAQACAAAAAAD//wAAAQACAAAAAAAAAAAAAQACAAAAAAABAAAAAQACAAAAAAACAAAAAQACAAAAAAADAAAAAQACAAAAAAAEAAAAAQACAAAAAAAFAAAAAQACAAAAAAAGAAAAAQACAAAAAAAHAAAAAQACAAAAAAAIAAAAAQACAAAAAAAJAAAAAQACAAAAAAAKAAAAAQACAAAAAAALAAAAAQACAAAAAAAMAAAAAQACAAAAAAANAAAAAQACAAAAAAAOAAAAAQACAAAAAAAMAAgAAQACAAAAAAANAAgAAQACAAAAAAANAAkAAQACAAAAAAAMAAkAAQACAAAAAAAJAAcAAQABAAIAAAAJAAgAAQACAAAAAAANAAcAAQACAAAAAAAOAAcAAQACAAAAAAALAAgAAQACAAAAAAAMAAcAAQACAAAAAAALAAcAAQACAAAAAAD//wIAAQACAAAAAAD+/wIAAQACAAAAAAD+/wEAAQACAAAAAAD//wEAAQACAAAAAAD+////AQACAAAAAAD/////AQACAAAAAAAAAP//AQACAAAAAAABAP//AQACAAAAAAACAP//AQACAAAAAAADAP//AQACAAAAAAAEAP//AQACAAAAAAAFAP//AQACAAAAAAAGAP//AQACAAAAAAAHAP//AQACAAAAAAAIAP//AQACAAAAAAAJAP//AQACAAAAAAAKAP//AQACAAAAAAALAP//AQACAAAAAAAMAP//AQACAAAAAAANAP//AQACAAAAAAAOAP//AQACAAAAAAAPAP//AQACAAAAAAAQAP//AQACAAAAAAA=")
+tile_set = SubResource("TileSet_2ktbh")
+collision_enabled = false
+collision_visibility_mode = 1
+
+[node name="QTileMapCollider" type="Node2D" parent="TileMapLayer"]
+script = ExtResource("2_yuswt")
+
+[node name="QPlatformerBodyNode" type="QPlatformerBodyNode" parent="."]
+specific_platform_layers = 2
+position = Vector2(128, 496)
+script = ExtResource("1_b5iax")
+
+[node name="QMeshRectNode" type="QMeshRectNode" parent="QPlatformerBodyNode"]
+enable_vector_rendering = true
+fill_color = Color(0.0627451, 0.823529, 0.458824, 1)
+enable_stroke = true
+data_particle_positions = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+data_particle_radius = PackedFloat32Array(0.5, 0.5, 0.5, 0.5)
+data_particle_is_internal = PackedByteArray("AAAAAA==")
+data_springs = Array[PackedInt32Array]([PackedInt32Array(0, 1), PackedInt32Array(1, 2), PackedInt32Array(2, 3), PackedInt32Array(3, 0)])
+data_internal_springs = Array[PackedInt32Array]([PackedInt32Array(0, 2), PackedInt32Array(1, 3)])
+data_polygon = PackedInt32Array(0, 1, 2, 3)
+data_uv_maps = Array[PackedInt32Array]([PackedInt32Array(0, 1, 3), PackedInt32Array(1, 2, 3)])
 
 [node name="Door" type="QRigidBodyNode" parent="."]
 fixed_rotation = true
 mode = 1
 mass = 0.1
 layers = 0
-position = Vector2(496, 32)
+position = Vector2(496, 96)
 
 [node name="QMeshRectNode" type="QMeshRectNode" parent="Door"]
-rectangle_size = Vector2(16, 128)
+rectangle_size = Vector2(28, 64)
 enable_vector_rendering = true
 fill_color = Color(1, 0.501961, 0.643137, 1)
 enable_stroke = true
-data_particle_positions = PackedVector2Array(-8, -64, 8, -64, 8, 64, -8, 64)
+data_particle_positions = PackedVector2Array(-14, -32, 14, -32, 14, 32, -14, 32)
 data_particle_radius = PackedFloat32Array(0.5, 0.5, 0.5, 0.5)
-data_particle_is_internal = PackedByteArray(0, 0, 0, 0)
+data_particle_is_internal = PackedByteArray("AAAAAA==")
 data_springs = Array[PackedInt32Array]([PackedInt32Array(0, 1), PackedInt32Array(1, 2), PackedInt32Array(2, 3), PackedInt32Array(3, 0)])
 data_internal_springs = Array[PackedInt32Array]([PackedInt32Array(0, 2), PackedInt32Array(1, 3)])
 data_polygon = PackedInt32Array(0, 1, 2, 3)
 data_uv_maps = Array[PackedInt32Array]([PackedInt32Array(0, 1, 3), PackedInt32Array(1, 2, 3)])
-
-[node name="Platform" type="QRigidBodyNode" parent="."]
-mode = 1
-layers = 2
-position = Vector2(272, 624)
-
-[node name="QMeshAdvancedNode" type="QMeshAdvancedNode" parent="Platform"]
-enable_vector_rendering = true
-fill_color = Color(0.980392, 0.992157, 1, 1)
-enable_stroke = true
-data_particle_positions = PackedVector2Array(-96, -96, 80, -176, 288, -176, 288, 192, -400, 192, -400, -96)
-data_particle_radius = PackedFloat32Array(0.5, 0.5, 0.5, 0.5, 0.5, 0.5)
-data_particle_is_internal = PackedByteArray(0, 0, 0, 0, 0, 0)
-data_polygon = PackedInt32Array(5, 0, 1, 2, 3, 4)
-
-[node name="Platform2" type="QRigidBodyNode" parent="."]
-mode = 1
-layers = 2
-position = Vector2(880, 592)
-
-[node name="QMeshAdvancedNode" type="QMeshAdvancedNode" parent="Platform2"]
-enable_vector_rendering = true
-fill_color = Color(0.980392, 0.992157, 1, 1)
-enable_stroke = true
-data_particle_positions = PackedVector2Array(-144, -144, 64, -144, 64, -704, 160, -704, 160, 144, -144, 144)
-data_particle_radius = PackedFloat32Array(0.5, 0.5, 0.5, 0.5, 0.5, 0.5)
-data_particle_is_internal = PackedByteArray(0, 0, 0, 0, 0, 0)
-data_polygon = PackedInt32Array(0, 1, 2, 3, 4, 5)
-
-[node name="Platform3" type="QRigidBodyNode" parent="."]
-mode = 1
-layers = 2
-position = Vector2(832, 288)
-
-[node name="QMeshRectNode" type="QMeshRectNode" parent="Platform3"]
-rectangle_size = Vector2(100, 192)
-enable_vector_rendering = true
-fill_color = Color(0.980392, 0.992157, 1, 1)
-enable_stroke = true
-data_particle_positions = PackedVector2Array(-50, -96, 50, -96, 50, 96, -50, 96)
-data_particle_radius = PackedFloat32Array(0.5, 0.5, 0.5, 0.5)
-data_particle_is_internal = PackedByteArray(0, 0, 0, 0)
-data_springs = Array[PackedInt32Array]([PackedInt32Array(0, 1), PackedInt32Array(1, 2), PackedInt32Array(2, 3), PackedInt32Array(3, 0)])
-data_internal_springs = Array[PackedInt32Array]([PackedInt32Array(0, 2), PackedInt32Array(1, 3)])
-data_polygon = PackedInt32Array(0, 1, 2, 3)
-data_uv_maps = Array[PackedInt32Array]([PackedInt32Array(0, 1, 3), PackedInt32Array(1, 2, 3)])
-position = Vector2(-16, -32)
-
-[node name="Platform4" type="QRigidBodyNode" parent="."]
-mode = 1
-layers = 2
-position = Vector2(96, 336)
-
-[node name="QMeshRectNode" type="QMeshRectNode" parent="Platform4"]
-rectangle_size = Vector2(200, 32)
-enable_vector_rendering = true
-fill_color = Color(0.980392, 0.992157, 1, 1)
-enable_stroke = true
-data_particle_positions = PackedVector2Array(-100, -16, 100, -16, 100, 16, -100, 16)
-data_particle_radius = PackedFloat32Array(0.5, 0.5, 0.5, 0.5)
-data_particle_is_internal = PackedByteArray(0, 0, 0, 0)
-data_springs = Array[PackedInt32Array]([PackedInt32Array(0, 1), PackedInt32Array(1, 2), PackedInt32Array(2, 3), PackedInt32Array(3, 0)])
-data_internal_springs = Array[PackedInt32Array]([PackedInt32Array(0, 2), PackedInt32Array(1, 3)])
-data_polygon = PackedInt32Array(0, 1, 2, 3)
-data_uv_maps = Array[PackedInt32Array]([PackedInt32Array(0, 1, 3), PackedInt32Array(1, 2, 3)])
-
-[node name="Platform6" type="QRigidBodyNode" parent="."]
-mode = 1
-layers = 2
-position = Vector2(208, 112)
-
-[node name="QMeshRectNode" type="QMeshRectNode" parent="Platform6"]
-rectangle_size = Vector2(600, 32)
-enable_vector_rendering = true
-fill_color = Color(0.980392, 0.992157, 1, 1)
-enable_stroke = true
-data_particle_positions = PackedVector2Array(-300, -16, 300, -16, 300, 16, -300, 16)
-data_particle_radius = PackedFloat32Array(0.5, 0.5, 0.5, 0.5)
-data_particle_is_internal = PackedByteArray(0, 0, 0, 0)
-data_springs = Array[PackedInt32Array]([PackedInt32Array(0, 1), PackedInt32Array(1, 2), PackedInt32Array(2, 3), PackedInt32Array(3, 0)])
-data_internal_springs = Array[PackedInt32Array]([PackedInt32Array(0, 2), PackedInt32Array(1, 3)])
-data_polygon = PackedInt32Array(0, 1, 2, 3)
-data_uv_maps = Array[PackedInt32Array]([PackedInt32Array(0, 1, 3), PackedInt32Array(1, 2, 3)])
-
-[node name="Platform5" type="QRigidBodyNode" parent="."]
-mode = 1
-layers = 2
-position = Vector2(-80, 352)
-
-[node name="QMeshRectNode" type="QMeshRectNode" parent="Platform5"]
-rectangle_size = Vector2(192, 1000)
-enable_vector_rendering = true
-fill_color = Color(0.980392, 0.992157, 1, 1)
-enable_stroke = true
-data_particle_positions = PackedVector2Array(-96, -500, 96, -500, 96, 500, -96, 500)
-data_particle_radius = PackedFloat32Array(0.5, 0.5, 0.5, 0.5)
-data_particle_is_internal = PackedByteArray(0, 0, 0, 0)
-data_springs = Array[PackedInt32Array]([PackedInt32Array(0, 1), PackedInt32Array(1, 2), PackedInt32Array(2, 3), PackedInt32Array(3, 0)])
-data_internal_springs = Array[PackedInt32Array]([PackedInt32Array(0, 2), PackedInt32Array(1, 3)])
-data_polygon = PackedInt32Array(0, 1, 2, 3)
-data_uv_maps = Array[PackedInt32Array]([PackedInt32Array(0, 1, 3), PackedInt32Array(1, 2, 3)])
-position = Vector2(-16, -32)
-
-[node name="Platform7" type="QRigidBodyNode" parent="."]
-mode = 1
-layers = 2
-position = Vector2(464, -48)
-
-[node name="QMeshRectNode" type="QMeshRectNode" parent="Platform7"]
-rectangle_size = Vector2(1200, 192)
-enable_vector_rendering = true
-fill_color = Color(0.980392, 0.992157, 1, 1)
-enable_stroke = true
-data_particle_positions = PackedVector2Array(-600, -96, 600, -96, 600, 96, -600, 96)
-data_particle_radius = PackedFloat32Array(0.5, 0.5, 0.5, 0.5)
-data_particle_is_internal = PackedByteArray(0, 0, 0, 0)
-data_springs = Array[PackedInt32Array]([PackedInt32Array(0, 1), PackedInt32Array(1, 2), PackedInt32Array(2, 3), PackedInt32Array(3, 0)])
-data_internal_springs = Array[PackedInt32Array]([PackedInt32Array(0, 2), PackedInt32Array(1, 3)])
-data_polygon = PackedInt32Array(0, 1, 2, 3)
-data_uv_maps = Array[PackedInt32Array]([PackedInt32Array(0, 1, 3), PackedInt32Array(1, 2, 3)])
-position = Vector2(-16, -32)
 
 [node name="MoveablePlatform" type="QRigidBodyNode" parent="."]
 kinematic = true
 layers = 3
-position = Vector2(640, 176)
+position = Vector2(685, 251)
 script = ExtResource("2_hvcqu")
-next_location = Vector2(330, 303)
+next_location = Vector2(330, 340)
 
 [node name="QMeshRectNode" type="QMeshRectNode" parent="MoveablePlatform"]
 rectangle_size = Vector2(100, 32)
@@ -220,7 +153,7 @@ fill_color = Color(0.980392, 0.992157, 1, 1)
 enable_stroke = true
 data_particle_positions = PackedVector2Array(-50, -16, 50, -16, 50, 16, -50, 16)
 data_particle_radius = PackedFloat32Array(0.5, 0.5, 0.5, 0.5)
-data_particle_is_internal = PackedByteArray(0, 0, 0, 0)
+data_particle_is_internal = PackedByteArray("AAAAAA==")
 data_springs = Array[PackedInt32Array]([PackedInt32Array(0, 1), PackedInt32Array(1, 2), PackedInt32Array(2, 3), PackedInt32Array(3, 0)])
 data_internal_springs = Array[PackedInt32Array]([PackedInt32Array(0, 2), PackedInt32Array(1, 3)])
 data_polygon = PackedInt32Array(0, 1, 2, 3)
@@ -237,11 +170,15 @@ fill_color = Color(1, 0.517647, 0.14902, 1)
 enable_stroke = true
 data_particle_positions = PackedVector2Array(-30, -30, 30, -30, 30, 30, -30, 30)
 data_particle_radius = PackedFloat32Array(0.5, 0.5, 0.5, 0.5)
-data_particle_is_internal = PackedByteArray(0, 0, 0, 0)
+data_particle_is_internal = PackedByteArray("AAAAAA==")
 data_springs = Array[PackedInt32Array]([PackedInt32Array(0, 1), PackedInt32Array(1, 2), PackedInt32Array(2, 3), PackedInt32Array(3, 0)])
 data_internal_springs = Array[PackedInt32Array]([PackedInt32Array(0, 2), PackedInt32Array(1, 3)])
 data_polygon = PackedInt32Array(0, 1, 2, 3)
 data_uv_maps = Array[PackedInt32Array]([PackedInt32Array(0, 1, 3), PackedInt32Array(1, 2, 3)])
+
+[node name="Box2" type="QRigidBodyNode" parent="."]
+layers = 3
+position = Vector2(656, 416)
 
 [node name="Coins" type="Node2D" parent="."]
 
@@ -256,7 +193,7 @@ fill_color = Color(1, 0.819608, 0, 1)
 enable_stroke = true
 data_particle_positions = PackedVector2Array(0, 0)
 data_particle_radius = PackedFloat32Array(8)
-data_particle_is_internal = PackedByteArray(0)
+data_particle_is_internal = PackedByteArray("AA==")
 
 [node name="Coin2" type="QAreaBodyNode" parent="Coins"]
 position = Vector2(464, 416)
@@ -269,7 +206,7 @@ fill_color = Color(1, 0.819608, 0, 1)
 enable_stroke = true
 data_particle_positions = PackedVector2Array(0, 0)
 data_particle_radius = PackedFloat32Array(8)
-data_particle_is_internal = PackedByteArray(0)
+data_particle_is_internal = PackedByteArray("AA==")
 
 [node name="Coin3" type="QAreaBodyNode" parent="Coins"]
 position = Vector2(512, 416)
@@ -282,7 +219,7 @@ fill_color = Color(1, 0.819608, 0, 1)
 enable_stroke = true
 data_particle_positions = PackedVector2Array(0, 0)
 data_particle_radius = PackedFloat32Array(8)
-data_particle_is_internal = PackedByteArray(0)
+data_particle_is_internal = PackedByteArray("AA==")
 
 [node name="Coin4" type="QAreaBodyNode" parent="Coins"]
 position = Vector2(784, 128)
@@ -295,10 +232,10 @@ fill_color = Color(1, 0.819608, 0, 1)
 enable_stroke = true
 data_particle_positions = PackedVector2Array(0, 0)
 data_particle_radius = PackedFloat32Array(8)
-data_particle_is_internal = PackedByteArray(0)
+data_particle_is_internal = PackedByteArray("AA==")
 
 [node name="Coin5" type="QAreaBodyNode" parent="Coins"]
-position = Vector2(848, 128)
+position = Vector2(816, 128)
 script = ExtResource("3_5al4l")
 
 [node name="QMeshCircleNode" type="QMeshCircleNode" parent="Coins/Coin5"]
@@ -308,10 +245,10 @@ fill_color = Color(1, 0.819608, 0, 1)
 enable_stroke = true
 data_particle_positions = PackedVector2Array(0, 0)
 data_particle_radius = PackedFloat32Array(8)
-data_particle_is_internal = PackedByteArray(0)
+data_particle_is_internal = PackedByteArray("AA==")
 
 [node name="Coin6" type="QAreaBodyNode" parent="Coins"]
-position = Vector2(48, 64)
+position = Vector2(64, 96)
 script = ExtResource("3_5al4l")
 
 [node name="QMeshCircleNode" type="QMeshCircleNode" parent="Coins/Coin6"]
@@ -321,10 +258,10 @@ fill_color = Color(1, 0.819608, 0, 1)
 enable_stroke = true
 data_particle_positions = PackedVector2Array(0, 0)
 data_particle_radius = PackedFloat32Array(8)
-data_particle_is_internal = PackedByteArray(0)
+data_particle_is_internal = PackedByteArray("AA==")
 
 [node name="Coin7" type="QAreaBodyNode" parent="Coins"]
-position = Vector2(112, 64)
+position = Vector2(128, 96)
 script = ExtResource("3_5al4l")
 
 [node name="QMeshCircleNode" type="QMeshCircleNode" parent="Coins/Coin7"]
@@ -334,10 +271,10 @@ fill_color = Color(1, 0.819608, 0, 1)
 enable_stroke = true
 data_particle_positions = PackedVector2Array(0, 0)
 data_particle_radius = PackedFloat32Array(8)
-data_particle_is_internal = PackedByteArray(0)
+data_particle_is_internal = PackedByteArray("AA==")
 
 [node name="Coin8" type="QAreaBodyNode" parent="Coins"]
-position = Vector2(176, 64)
+position = Vector2(192, 96)
 script = ExtResource("3_5al4l")
 
 [node name="QMeshCircleNode" type="QMeshCircleNode" parent="Coins/Coin8"]
@@ -347,10 +284,10 @@ fill_color = Color(1, 0.819608, 0, 1)
 enable_stroke = true
 data_particle_positions = PackedVector2Array(0, 0)
 data_particle_radius = PackedFloat32Array(8)
-data_particle_is_internal = PackedByteArray(0)
+data_particle_is_internal = PackedByteArray("AA==")
 
 [node name="Coin9" type="QAreaBodyNode" parent="Coins"]
-position = Vector2(240, 64)
+position = Vector2(256, 96)
 script = ExtResource("3_5al4l")
 
 [node name="QMeshCircleNode" type="QMeshCircleNode" parent="Coins/Coin9"]
@@ -360,4 +297,4 @@ fill_color = Color(1, 0.819608, 0, 1)
 enable_stroke = true
 data_particle_positions = PackedVector2Array(0, 0)
 data_particle_radius = PackedFloat32Array(8)
-data_particle_is_internal = PackedByteArray(0)
+data_particle_is_internal = PackedByteArray("AA==")
