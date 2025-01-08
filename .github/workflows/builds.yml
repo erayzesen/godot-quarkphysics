@@ -80,7 +80,7 @@ jobs:
             arch: wasm32
             target-type: template_debug
             os: ubuntu-20.04
-            addinational_commands: threads=no
+            threads: no
 
         # Release templates
           - platform: linux
