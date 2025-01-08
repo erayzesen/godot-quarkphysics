@@ -27,8 +27,9 @@ inputs:
     default: ''
     description: Location of the gdextension project within the repository. Must not contain relative path signifiers (. or ..). Must be a transparent path part (empty or 'path/to/directory/', ending in a slash).
   threads:
-    default: yes
-    description: Enable/disable multithreading
+    default: 'yes'
+    description: Enable or disable threads (yes or no).
+  
 
 runs:
   using: composite
@@ -106,12 +107,16 @@ runs:
       with:
         path: |
           ${{ github.workspace }}/${{ inputs.gdextension-directory }}${{ inputs.scons-cache }}
-        key: ${{ inputs.platform }}_${{ inputs.arch }}_${{ inputs.float-precision }}_${{ inputs.build-target-type }}_${{ inputs.threads }}_cache
+        key: ${{ inputs.platform }}_${{ inputs.arch }}_${{ inputs.float-precision }}_${{ inputs.build-target-type }}_cache
 # Build gdextension
     - name: Build GDExtension Debug Build
       shell: sh
       env:
         SCONS_CACHE: ${{ github.workspace }}/${{ inputs.gdextension-directory }}${{ inputs.scons-cache }}
       run: |
-        scons target=${{ inputs.build-target-type }} platform=${{ inputs.platform }} arch=${{ inputs.arch }} precision=${{ inputs.float-precision }} threads=${{ inputs.threads }}
+        if [[ ${{ inputs.platform }} == "web" ]]; then
+          scons target=${{ inputs.build-target-type }} platform=${{ inputs.platform }} arch=${{ inputs.arch }} precision=${{ inputs.float-precision }} threads=${{ inputs.threads }}
+        else
+          scons target=${{ inputs.build-target-type }} platform=${{ inputs.platform }} arch=${{ inputs.arch }} precision=${{ inputs.float-precision }} 
+        fi
       working-directory: ${{ inputs.gdextension-directory }}

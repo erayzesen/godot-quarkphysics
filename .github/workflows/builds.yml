@@ -20,63 +20,63 @@ jobs:
             arch: x86_64
             target-type: template_debug
             os: ubuntu-20.04
-            threads: yes
+            
 
           - platform: windows
             float-precision: single
             arch: x86_32
             target-type: template_debug
             os: windows-latest
-            threads: yes
+            
 
           - platform: windows
             float-precision: single
             arch: x86_64
             target-type: template_debug
             os: windows-latest
-            threads: yes
+            
 
           - platform: macos
             float-precision: single
             arch: universal
             target-type: template_debug
             os: macos-latest
-            threads: yes
+            
 
           - platform: android
             float-precision: single
             arch: arm64
             target-type: template_debug
             os: ubuntu-20.04
-            threads: yes
+            
 
           - platform: android
             float-precision: single
             arch: arm32
             target-type: template_debug
             os: ubuntu-20.04
-            threads: yes
+            
 
           - platform: android
             float-precision: single
             arch: x86_64
             target-type: template_debug
             os: ubuntu-20.04
-            threads: yes
+            
 
           - platform: android
             float-precision: single
             arch: x86_32
             target-type: template_debug
             os: ubuntu-20.04
-            threads: yes
+            
 
           - platform: ios
             float-precision: single
             arch: arm64
             target-type: template_debug
             os: macos-latest
-            threads: yes
+            
 
           - platform: web
             float-precision: single
@@ -84,6 +84,7 @@ jobs:
             target-type: template_debug
             os: ubuntu-20.04
             threads: yes
+            
           
           - platform: web
             float-precision: single
@@ -91,6 +92,7 @@ jobs:
             target-type: template_debug
             os: ubuntu-20.04
             threads: no
+            
 
         # Release templates
           - platform: linux
@@ -98,7 +100,7 @@ jobs:
             arch: x86_64
             target-type: template_release
             os: ubuntu-20.04
-            threads: yes
+            
 
           # - platform: windows
           #   float-precision: single
@@ -161,70 +163,70 @@ jobs:
             arch: x86_64
             target-type: template_debug
             os: ubuntu-20.04
-            threads: yes
+            
 
           - platform: windows
             float-precision: double
             arch: x86_32
             target-type: template_debug
             os: windows-latest
-            threads: yes
+            
 
           - platform: windows
             float-precision: double
             arch: x86_64
             target-type: template_debug
             os: windows-latest
-            threads: yes
+            
 
           - platform: macos
             float-precision: double
             arch: universal
             target-type: template_debug
             os: macos-latest
-            threads: yes
+            
 
           - platform: android
             float-precision: double
             arch: arm64
             target-type: template_debug
             os: ubuntu-20.04
-            threads: yes
+            
 
           - platform: android
             float-precision: double
             arch: arm32
             target-type: template_debug
             os: ubuntu-20.04
-            threads: yes
+            
 
           - platform: android
             float-precision: double
             arch: x86_64
             target-type: template_debug
             os: ubuntu-20.04
-            threads: yes
+            
 
           - platform: android
             float-precision: double
             arch: x86_32
             target-type: template_debug
             os: ubuntu-20.04
-            threads: yes
+            
 
           - platform: ios
             float-precision: double
             arch: arm64
             target-type: template_debug
             os: macos-latest
-            threads: yes
+            
 
           - platform: web
             float-precision: double
             arch: wasm32
             target-type: template_debug
             os: ubuntu-20.04
-            threads: yes
+            
 
         # Double precision release templates
           - platform: linux
@@ -232,7 +234,6 @@ jobs:
             arch: x86_64
             target-type: template_release
             os: ubuntu-20.04
-            threads: yes
 
           # - platform: windows
           #   float-precision: double
@@ -312,7 +313,6 @@ jobs:
           arch: ${{ matrix.arch }}
           float-precision: ${{ matrix.float-precision }}
           build-target-type: ${{ matrix.target-type }}
-          threads: ${{ matrix.threads }}
           
 
 # Sign
