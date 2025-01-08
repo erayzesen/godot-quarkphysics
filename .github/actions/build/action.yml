@@ -27,7 +27,7 @@ inputs:
     default: ''
     description: Location of the gdextension project within the repository. Must not contain relative path signifiers (. or ..). Must be a transparent path part (empty or 'path/to/directory/', ending in a slash).
   threads:
-    default: 'yes'
+    default: yes
     description: Enable or disable threads (yes or no).
   
 

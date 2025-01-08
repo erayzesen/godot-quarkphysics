@@ -321,6 +321,7 @@ jobs:
           arch: ${{ matrix.arch }}
           float-precision: ${{ matrix.float-precision }}
           build-target-type: ${{ matrix.target-type }}
+          ${{ matrix.platform == 'web' && 'threads' || '' }}: ${{ matrix.platform == 'web' && matrix.threads || '' }}
           
 
 # Sign
