@@ -74,6 +74,13 @@ jobs:
             arch: wasm32
             target-type: template_debug
             os: ubuntu-20.04
+          
+          - platform: web
+            float-precision: single
+            arch: wasm32
+            target-type: template_debug
+            os: ubuntu-20.04
+            addinational_commands: threads=no
 
         # Release templates
           - platform: linux

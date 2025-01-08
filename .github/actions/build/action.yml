@@ -26,6 +26,9 @@ inputs:
   gdextension-directory:
     default: ''
     description: Location of the gdextension project within the repository. Must not contain relative path signifiers (. or ..). Must be a transparent path part (empty or 'path/to/directory/', ending in a slash).
+  addinational-commands:
+    default: ''
+    description: Addinatiınal commands for compilation
 
 runs:
   using: composite
@@ -110,5 +113,5 @@ runs:
       env:
         SCONS_CACHE: ${{ github.workspace }}/${{ inputs.gdextension-directory }}${{ inputs.scons-cache }}
       run: |
-        scons target=${{ inputs.build-target-type }} platform=${{ inputs.platform }} arch=${{ inputs.arch }} precision=${{ inputs.float-precision }}
+        scons target=${{ inputs.build-target-type }} platform=${{ inputs.platform }} arch=${{ inputs.arch }} precision=${{ inputs.float-precision }} ${{ inputs.addinational-commands }}
       working-directory: ${{ inputs.gdextension-directory }}
