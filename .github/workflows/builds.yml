@@ -314,14 +314,24 @@ jobs:
       #    clang-format src/** --dry-run --Werror
 
 # Build
-      - name: 🔗 GDExtension Debug Build
+      - name: 🔗 GDExtension Debug Build for Web Platform (Threads Exception )
+        if: ${{ matrix.platform == 'web' }}
         uses: ./.github/actions/build
         with:
           platform: ${{ matrix.platform }}
           arch: ${{ matrix.arch }}
           float-precision: ${{ matrix.float-precision }}
           build-target-type: ${{ matrix.target-type }}
-          ${{ matrix.platform == 'web' && 'threads' || '' }}: ${{ matrix.platform == 'web' && matrix.threads || '' }}
+          threads: ${{ matrix.threads }}
+
+      - name: 🔗 GDExtension Debug Build for Other Platforms
+        if: ${{ matrix.platform != 'web' }}
+        uses: ./.github/actions/build
+        with:
+          platform: ${{ matrix.platform }}
+          arch: ${{ matrix.arch }}
+          float-precision: ${{ matrix.float-precision }}
+          build-target-type: ${{ matrix.target-type }}
           
 
 # Sign
