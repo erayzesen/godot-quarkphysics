@@ -336,7 +336,15 @@ jobs:
         shell: pwsh
         run: |
           Remove-Item project/addons/quarkphysics/bin/* -Include *.exp,*.lib,*.pdb -Force
-      - name: Upload Artifact
+      - name: Upload Artifact for Web with Threads 
+        if: matrix.platform == 'web' && matrix.threads != ''
+        uses: actions/upload-artifact@v4
+        with:
+          name: libquarkphysics-${{ matrix.platform }}-${{ matrix.arch }}-${{ matrix.float-precision }}-${{ matrix.target-type }}-${{ matrix.threads }}
+          path: |
+            ${{ github.workspace }}/project/addons/quarkphysics/bin/**
+      - name: Upload Artifact for Non-Web platforms
+        if: matrix.platform != 'web'
         uses: actions/upload-artifact@v4
         with:
           name: libquarkphysics-${{ matrix.platform }}-${{ matrix.arch }}-${{ matrix.float-precision }}-${{ matrix.target-type }}
