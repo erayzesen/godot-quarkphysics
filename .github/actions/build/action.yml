@@ -106,7 +106,7 @@ runs:
       with:
         path: |
           ${{ github.workspace }}/${{ inputs.gdextension-directory }}${{ inputs.scons-cache }}
-        key: ${{ inputs.platform }}_${{ inputs.arch }}_${{ inputs.float-precision }}_${{ inputs.build-target-type }}_cache
+        key: ${{ inputs.platform }}_${{ inputs.arch }}_${{ inputs.float-precision }}_${{ inputs.build-target-type }}_cache_${{ inputs.addinational-commands }}
 # Build gdextension
     - name: Build GDExtension Debug Build
       shell: sh
