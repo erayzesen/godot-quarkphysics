@@ -58,6 +58,16 @@ bool QBody::GetIntegratedVelocitiesEnabled() {
 	return enableIntegratedVelocities;
 }
 
+bool QBody::GetCustomGravityEnabled()
+{
+    return enableCustomGravity;
+}
+
+QVector QBody::GetCustomGravity()
+{
+    return customGravity;
+}
+
 QBody *QBody::SetVelocityLimit(float value)
 {
 	velocityLimit=value;
@@ -123,6 +133,18 @@ bool QBody::CanCollide(QBody *bodyA, QBody *bodyB,bool checkBodiesAreEnabled)
 QBody *QBody::SetIntegratedVelocitiesEnabled(bool value) {
 	enableIntegratedVelocities=value;
 	return this;
+}
+
+QBody *QBody::SetCustomGravityEnabled(bool value)
+{
+	enableCustomGravity=value;
+    return this;
+}
+
+QBody *QBody::SetCustomGravity(QVector value)
+{
+	customGravity=value;
+    return this;
 }
 
 QBody *QBody::AddMesh(QMesh *mesh) {

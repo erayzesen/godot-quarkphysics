@@ -118,7 +118,11 @@ void QSoftBody::Update()
 			if(enableIntegratedVelocities==true ){
 				particle->ApplyForce(vel-(vel*airFriction) );
 				if(!(particle->GetIsInternal()==true && enablePassivationOfInternalSprings==true) ){
-					particle->ApplyForce(mass*world->GetGravity()*ts);
+					if (enableCustomGravity){
+						particle->ApplyForce(mass*customGravity*ts);
+					}else{
+						particle->ApplyForce(mass*world->GetGravity()*ts);
+					}
 				}
 			}
 			particle->ApplyForce(particle->GetForce());
