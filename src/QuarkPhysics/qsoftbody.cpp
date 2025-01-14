@@ -78,9 +78,12 @@ QSoftBody::QSoftBody()
 
 void QSoftBody::Update()
 {
+	QBody::Update();
+	
 	if (mode==QBody::STATIC){
 		return;
 	}
+
 
 	//Sleep Feature
 
@@ -107,6 +110,8 @@ void QSoftBody::Update()
 		QMesh *mesh=_meshes[i];
 		for(int n=0;n<mesh->GetParticleCount();n++){
 			QParticle *particle=mesh->GetParticleAt(n);
+
+			
 			/* if(GetPassivationOfInternalSpringsEnabled() && particle->GetIsInternal())
 				continue; */
 			auto vel=particle->GetGlobalPosition()-particle->GetPreviousGlobalPosition();

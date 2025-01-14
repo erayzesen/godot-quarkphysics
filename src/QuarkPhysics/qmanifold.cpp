@@ -127,6 +127,8 @@ void QManifold::Solve()
 	for(int i=0;i<contacts.size();i++){
 		QCollision::Contact *contact=contacts[i];
 
+		
+
 		if(betweenRigidbodies){
 			contact->penetration*=0.75f;
 		}else if(betweenPressuredSoftbodies){
@@ -150,6 +152,12 @@ void QManifold::Solve()
 
 		QBody *referenceBody=contact->referenceParticles[0]->GetOwnerMesh()->GetOwnerBody();
 		QBody *incidentBody=contact->particle->GetOwnerMesh()->GetOwnerBody();
+
+
+		
+			
+
+		
 
 
 
@@ -211,14 +219,66 @@ void QManifold::Solve()
 		}
 
 		
-
+		//Exceptions of Returns of Events.
 
 		if(collisionEnabledByRef==false || collisionEnabledByInc==false){
 			cancelSolving=true;
 		}
 
+
 		if(cancelSolving==true)
 			continue;
+
+
+		//Exceptions of Disabled Particles
+		if(contact->particle->GetEnabled()==false  )
+			continue;
+
+		for (size_t n=0;n<contact->referenceParticles.size();++n ){
+			if (contact->referenceParticles[n]->GetEnabled()==false ){
+				cancelSolving=true;
+				break;
+			}
+				
+		}
+
+		if(cancelSolving==true)
+			continue;
+
+
+
+		
+
+		
+
+		//Exceptions of the One Time Collisions of Particles
+		if (contact->particle->GetOneTimeCollisionEnabled() )
+			contact->particle->previousCollidedBodies.insert(referenceBody);
+
+		for (size_t n=0;n<contact->referenceParticles.size();++n ){
+			if (contact->referenceParticles[n]->GetOneTimeCollisionEnabled() )
+				contact->referenceParticles[n]->previousCollidedBodies.insert(incidentBody);
+		}
+
+		if (contact->particle->GetOneTimeCollisionEnabled() ){
+			if( contact->particle->oneTimeCollidedBodies.find(referenceBody)!=contact->particle->oneTimeCollidedBodies.end() ){
+				continue;
+			}
+		}
+		
+		for (size_t n=0;n<contact->referenceParticles.size();++n ){
+			if (contact->referenceParticles[n]->GetOneTimeCollisionEnabled() ){
+				if( contact->referenceParticles[n]->oneTimeCollidedBodies.find(incidentBody)!=contact->referenceParticles[n]->oneTimeCollidedBodies.end()  )
+					cancelSolving=true;
+					break;
+			}
+				
+		}
+
+		if(cancelSolving==true)
+			continue;
+
+		
 
 
 

@@ -101,6 +101,9 @@ QRigidBody *QRigidBody::AddAngularForce(float value)
 
 void QRigidBody::Update()
 {
+	QBody::Update();
+
+	
     if(mode==QBody::STATIC){
 		return;
 	}

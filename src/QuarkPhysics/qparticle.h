@@ -53,8 +53,21 @@ class QParticle
 
 	std::vector<QVector> accumulatedForces;
 
+	bool enabled=true;
+
+	bool enableOneTimeCollision=false; 
+
+	void ClearOneTimeCollisions();
+
 protected:
 	std::unordered_set<QParticle*> springConnectedParticles;
+
+	unordered_set<QBody*> oneTimeCollidedBodies; 
+	unordered_set<QBody*> previousCollidedBodies;
+
+	void ResetOneTimeCollisions();
+
+	
 public:
 	QParticle();
 	QParticle(float posX,float posY,float radius=0.5f);
@@ -96,6 +109,19 @@ public:
 	/** Returns the current force value of the particle. */
 	QVector GetForce(){
 		return force;
+	}
+	/** Returns whether the particle is enabled. Disabled particles are not exempt from the collision tests that involve the meshes they belong to, but the solutions of their manifolds are not applied. Additionally, in body types where particles can move freely individually (e.g., QSoftBody), force and velocity integrations are not applied.
+	 * @note Disabled particles in QRigidBody objects may appear to move because they are transformed based on the position and rotation of the rigid body.
+	*/
+	bool GetEnabled(){
+		return enabled;
+	}
+	/**
+	 * Returns whether the particle's one-time collision feature is enabled. When the one-time collision feature is active, an interaction occurs once at the beginning of the collision with objects. For subsequent collision interactions, the object must exit the collision and re-enter to trigger another interaction.
+	 */
+
+	bool GetOneTimeCollisionEnabled(){
+		return enableOneTimeCollision;
 	}
 
 	//Set Methods
@@ -147,6 +173,22 @@ public:
 	 */
 	QParticle *SetIsInternal(bool value);
 
+	/** Sets whether the particle is enabled. Disabled particles are not exempt from the collision tests that involve the meshes they belong to, but the solutions of their manifolds are not applied. Additionally, in body types where particles can move freely individually (e.g., QSoftBody), force and velocity integrations are not applied.
+	 * @note Disabled particles in QRigidBody objects may appear to move because they are transformed based on the position and rotation of the rigid body.
+	 * @param value A value to set. 
+	 * @return A pointer to the particle itself.
+	*/
+
+	QParticle *SetEnabled(bool value);
+
+	/**
+	 * Sets whether the particle's one-time collision feature is enabled. When the one-time collision feature is active, an interaction occurs once at the beginning of the collision with objects. For subsequent collision interactions, the object must exit the collision and re-enter to trigger another interaction.
+	 * @param value A value to set.
+	 * @return A pointer to the particle itself.
+	 */
+
+	QParticle *SetOneTimeCollisionEnabled(bool value);
+
 	//
 	/** Applies a force immediately to the particle. You can use the method safely before the physics step (e.g. at the OnPreStep event of QBody objects). If you want to use this method after physics step, it can break the simulation.(Collisions and constraints may not be applied properly.) if you want to apply force at the next physic step safely, use SetForce() and AddForce() methods.  
 	 * @param value A force value to apply. 
@@ -193,7 +235,10 @@ public:
 	 */
 	static void ApplyForceToParticleSegment(QParticle *pA,QParticle *pB,QVector force,QVector fromPosition);
 
+
 	friend class QMesh;
+	friend class QBody;
+	friend class QManifold;
 
 	
 };

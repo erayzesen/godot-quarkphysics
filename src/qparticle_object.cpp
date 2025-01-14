@@ -13,6 +13,9 @@ void QParticleObject::_bind_methods() {
     ClassDB::bind_method(D_METHOD( "get_radius" ),&QParticleObject::get_radius );
     ClassDB::bind_method(D_METHOD( "get_is_internal" ),&QParticleObject::get_is_internal );
     ClassDB::bind_method(D_METHOD( "get_force" ),&QParticleObject::get_force );
+    ClassDB::bind_method(D_METHOD( "get_enabled" ),&QParticleObject::get_enabled );
+    ClassDB::bind_method(D_METHOD( "get_one_time_collision_enabled" ),&QParticleObject::get_one_time_collision_enabled );
+
     //Set
     ClassDB::bind_method(D_METHOD( "set_global_position","value" ),&QParticleObject::set_global_position );
     ClassDB::bind_method(D_METHOD( "add_global_position","value" ),&QParticleObject::add_global_position );
@@ -26,6 +29,8 @@ void QParticleObject::_bind_methods() {
     ClassDB::bind_method(D_METHOD( "apply_force","value" ),&QParticleObject::apply_force );
     ClassDB::bind_method(D_METHOD( "set_force","value" ),&QParticleObject::set_force );
     ClassDB::bind_method(D_METHOD( "add_force","value" ),&QParticleObject::add_force );
+    ClassDB::bind_method(D_METHOD( "set_enabled","value" ),&QParticleObject::set_enabled );
+    ClassDB::bind_method(D_METHOD( "set_one_time_collision_enabled","value" ),&QParticleObject::set_one_time_collision_enabled );
 
 
 }
@@ -65,6 +70,16 @@ bool QParticleObject::get_is_internal() {
 Vector2 QParticleObject::get_force() {
 	QVector value=particleObject->GetForce();
 	return Vector2(value.x,value.y);
+}
+
+bool QParticleObject::get_enabled()
+{
+    return particleObject->GetEnabled();
+}
+
+bool QParticleObject::get_one_time_collision_enabled()
+{
+    return particleObject->GetOneTimeCollisionEnabled();
 }
 
 //SET METHODS
@@ -125,5 +140,17 @@ Ref<QParticleObject> QParticleObject::set_force(Vector2 value) {
 
 Ref<QParticleObject> QParticleObject::add_force(Vector2 value) {
 	particleObject->AddForce(QVector(value.x,value.y) );
+    return Ref<QParticleObject>(this);
+}
+
+Ref<QParticleObject> QParticleObject::set_enabled(bool value)
+{
+    particleObject->SetEnabled(value);
+    return Ref<QParticleObject>(this);
+}
+
+Ref<QParticleObject> QParticleObject::set_one_time_collision_enabled(bool value)
+{
+    particleObject->SetOneTimeCollisionEnabled(value);
     return Ref<QParticleObject>(this);
 }
