@@ -93,6 +93,8 @@ void QBodyNode::_bind_methods() {
      ClassDB::bind_method(D_METHOD("get_enabled"),&QBodyNode::get_enabled );
      ClassDB::bind_method(D_METHOD("get_velocity_limit"),&QBodyNode::get_velocity_limit );
      ClassDB::bind_method(D_METHOD("get_integrated_velocities_enabled"),&QBodyNode::get_integrated_velocities_enabled );
+     ClassDB::bind_method(D_METHOD("get_custom_gravity_enabled"),&QBodyNode::get_custom_gravity_enabled );
+     ClassDB::bind_method(D_METHOD("get_custom_gravity"),&QBodyNode::get_custom_gravity );
 
      //Set
      ClassDB::bind_method(D_METHOD("set_body_position","value","with_previous_position"),&QBodyNode::set_body_position );
@@ -117,6 +119,8 @@ void QBodyNode::_bind_methods() {
      ClassDB::bind_method(D_METHOD("set_enabled","value"),&QBodyNode::set_enabled );
      ClassDB::bind_method(D_METHOD("set_velocity_limit","value"),&QBodyNode::set_velocity_limit );
      ClassDB::bind_method(D_METHOD("set_integrated_velocities_enabled","value"),&QBodyNode::set_integrated_velocities_enabled );
+     ClassDB::bind_method(D_METHOD("set_custom_gravity_enabled","value"),&QBodyNode::set_custom_gravity_enabled );
+     ClassDB::bind_method(D_METHOD("set_custom_gravity","value"),&QBodyNode::set_custom_gravity );
      ClassDB::bind_method(D_METHOD("wake_up"),&QBodyNode::wake_up );
 
      ClassDB::bind_method(D_METHOD("add_mesh_node","mesh_node"),&QBodyNode::add_mesh_node );
@@ -131,6 +135,8 @@ void QBodyNode::_bind_methods() {
      ADD_PROPERTY( PropertyInfo(Variant::INT, "mode", PROPERTY_HINT_ENUM, "Dynamic,Static"),"set_mode","get_mode" );
      ADD_PROPERTY( PropertyInfo(Variant::BOOL, "can_sleep"),"set_can_sleep","get_can_sleep" );
      ADD_PROPERTY( PropertyInfo(Variant::FLOAT, "velocity_limit"),"set_velocity_limit","get_velocity_limit" );
+     ADD_PROPERTY( PropertyInfo(Variant::BOOL, "use_custom_gravity"),"set_custom_gravity_enabled","get_custom_gravity_enabled" );
+     ADD_PROPERTY( PropertyInfo(Variant::VECTOR2, "custom_gravity"),"set_custom_gravity","get_custom_gravity" );
 
      ADD_GROUP("Physics Properties","");
      ADD_PROPERTY( PropertyInfo(Variant::FLOAT, "mass"),"set_mass","get_mass" );
@@ -283,6 +289,17 @@ bool QBodyNode::get_integrated_velocities_enabled() {
 	return bodyObject->GetIntegratedVelocitiesEnabled();
 }
 
+bool QBodyNode::get_custom_gravity_enabled()
+{
+    return bodyObject->GetCustomGravityEnabled();
+}
+
+Vector2 QBodyNode::get_custom_gravity()
+{
+    QVector customGravity=bodyObject->GetCustomGravity();
+    return Vector2(customGravity.x,customGravity.y);
+}
+
 //SET METHODS
 
 QBodyNode *QBodyNode::set_body_position(Vector2 value, bool with_previous_position) {
@@ -408,6 +425,18 @@ QBodyNode *QBodyNode::set_velocity_limit(float value) {
 QBodyNode *QBodyNode::set_integrated_velocities_enabled(bool value) {
     bodyObject->SetIntegratedVelocitiesEnabled(value);
 	return this;
+}
+
+QBodyNode *QBodyNode::set_custom_gravity_enabled(bool value)
+{
+    bodyObject->SetCustomGravityEnabled(value);
+    return this;
+}
+
+QBodyNode *QBodyNode::set_custom_gravity(Vector2 value)
+{
+    bodyObject->SetCustomGravity(QVector(value.x,value.y) );
+    return this;
 }
 
 QBodyNode *QBodyNode::wake_up() {

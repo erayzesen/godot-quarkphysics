@@ -99,6 +99,8 @@ protected:
 	bool enabled=true;
 	float velocityLimit=0.0f;
 	bool enableIntegratedVelocities=true;
+	bool enableCustomGravity=false;
+	QVector customGravity=QVector::Zero();
 
 	//Material Properties;
 
@@ -357,6 +359,16 @@ protected:
 		 */
 		bool GetIntegratedVelocitiesEnabled();
 
+		/**
+		 * Returns whether a specific custom gravity value, defined using the SetCustomGravity() method, will be applied to the body instead of the gravity defined for the physics world.
+		 */
+		bool GetCustomGravityEnabled();
+		
+		/*
+			Returns the gravity vector specifically defined for the body.
+		*/
+		QVector GetCustomGravity();
+
 
 
 		//General Set Methods
@@ -568,8 +580,24 @@ protected:
 
 		/**
 		 * Sets whether the application of gravity and various velocity integrators necessary for the body's movement in the physics world is enabled. It is set to true by default. Typically, it is disabled for specific body objects that require manual control.
+		 * @param value A value to set
+		 * @return A pointer to the body itself.
 		 */
 		QBody *SetIntegratedVelocitiesEnabled(bool value);
+
+		/**
+		 * Sets whether a specific custom gravity value, defined using the SetCustomGravity() method, will be applied to the body instead of the gravity defined for the physics world.
+		 * @param value A value to set
+		 * @return A pointer to the body itself.
+		 */
+		QBody *SetCustomGravityEnabled(bool value);
+
+		/**
+		 * Sets whether a specific custom gravity value, defined using the SetCustomGravity() method, will be applied to the body instead of the gravity defined for the physics world.
+		 * @param value A value to set
+		 * @return A pointer to the body itself.
+		 */
+		QBody *SetCustomGravity(QVector value);
 
 
 		//Mesh Methods

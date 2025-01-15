@@ -138,6 +138,10 @@ public:
 
     bool get_integrated_velocities_enabled();
 
+    bool get_custom_gravity_enabled();
+
+    Vector2 get_custom_gravity();
+
     //Set Methods
 
     QBodyNode *set_body_position(Vector2 value,bool with_previous_position=true);
@@ -185,6 +189,10 @@ public:
     QBodyNode *set_velocity_limit(float value);
 
     QBodyNode *set_integrated_velocities_enabled(bool value);
+
+    QBodyNode *set_custom_gravity_enabled(bool value);
+
+    QBodyNode *set_custom_gravity(Vector2 value);
 
     //Sleeping
 
