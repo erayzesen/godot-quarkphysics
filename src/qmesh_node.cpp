@@ -607,13 +607,35 @@ QMesh::MeshData QMeshNode::convert_mesh_node_data_to_mesh_data()
     for(size_t i=0;i<dataParticlePositions.size();++i){
         qData.particlePositions.push_back( QVector( dataParticlePositions[i].x, dataParticlePositions[i].y) );
     }
-
-    for(size_t i=0;i<dataParticleRadius.size();++i){
-        qData.particleRadValues.push_back( dataParticleRadius[i] );
+    
+    for(size_t i=0;i<dataParticlePositions.size();++i){
+        if (i>=dataParticleRadius.size())
+            qData.particleRadValues.push_back( 0.5 );
+        else 
+            qData.particleRadValues.push_back( dataParticleRadius[i] );
     }
 
-    for(size_t i=0;i<dataParticleIsInternal.size();++i){
-        qData.particleInternalValues.push_back( dataParticleIsInternal[i] );
+    
+
+    for(size_t i=0;i<dataParticlePositions.size();++i){
+        if (i>=dataParticleIsInternal.size())
+            qData.particleInternalValues.push_back( false );
+        else
+            qData.particleInternalValues.push_back( dataParticleIsInternal[i] );
+    }
+
+    for(size_t i=0;i<dataParticlePositions.size();++i){
+        if (i>=dataParticleIsEnabled.size())
+            qData.particleEnabledValues.push_back( true );
+        else
+            qData.particleEnabledValues.push_back( dataParticleIsEnabled[i] );
+    }
+
+    for(size_t i=0;i<dataParticlePositions.size();++i){
+        if (i>=dataParticleIsLazy.size())
+            qData.particleLazyValues.push_back( false );
+        else
+            qData.particleLazyValues.push_back( dataParticleIsLazy[i] );
     }
 
     for(size_t i=0;i<dataSprings.size();++i){
@@ -651,6 +673,8 @@ void QMeshNode::apply_mesh_data_to_mesh_node_data(QMesh::MeshData data)
     dataParticlePositions.clear();
     dataParticleRadius.clear();
     dataParticleIsInternal.clear();
+    dataParticleIsEnabled.clear();
+    dataParticleIsLazy.clear();
     dataSprings.clear();
     dataInternalSprings.clear();
     dataPolygon.clear();
@@ -666,6 +690,14 @@ void QMeshNode::apply_mesh_data_to_mesh_node_data(QMesh::MeshData data)
 
     for(size_t i=0;i<data.particleInternalValues.size();++i ){
         dataParticleIsInternal.push_back(  data.particleInternalValues[i] );
+    }
+
+    for(size_t i=0;i<data.particleEnabledValues.size();++i ){
+        dataParticleIsEnabled.push_back(data.particleEnabledValues[i] );
+    }
+
+    for(size_t i=0;i<data.particleLazyValues.size();++i ){
+        dataParticleIsLazy.push_back(data.particleLazyValues[i] );
     }
 
     for(size_t i=0;i<data.springList.size();++i ){
@@ -833,6 +865,12 @@ void QMeshNode::_bind_methods()
     ClassDB::bind_method(D_METHOD("set_data_particle_is_internal","collection"),&QMeshNode::set_data_particle_is_internal );
     ClassDB::bind_method(D_METHOD("get_data_particle_is_internal"),&QMeshNode::get_data_particle_is_internal);
 
+    ClassDB::bind_method(D_METHOD("set_data_particle_is_enabled","collection"),&QMeshNode::set_data_particle_is_enabled );
+    ClassDB::bind_method(D_METHOD("get_data_particle_is_enabled"),&QMeshNode::get_data_particle_is_enabled);
+
+    ClassDB::bind_method(D_METHOD("set_data_particle_is_lazy","collection"),&QMeshNode::set_data_particle_is_lazy );
+    ClassDB::bind_method(D_METHOD("get_data_particle_is_lazy"),&QMeshNode::get_data_particle_is_lazy);
+
     ClassDB::bind_method(D_METHOD("set_data_springs","collection"),&QMeshNode::set_data_springs );
     ClassDB::bind_method(D_METHOD("get_data_springs"),&QMeshNode::get_data_springs);
 
@@ -875,6 +913,8 @@ void QMeshNode::_bind_methods()
     ADD_PROPERTY( PropertyInfo(Variant::PACKED_VECTOR2_ARRAY, "data_particle_positions"),"set_data_particle_positions","get_data_particle_positions" );
     ADD_PROPERTY( PropertyInfo(Variant::PACKED_FLOAT32_ARRAY, "data_particle_radius"),"set_data_particle_radius","get_data_particle_radius" );
     ADD_PROPERTY( PropertyInfo(Variant::ARRAY, "data_particle_is_internal", PROPERTY_HINT_ARRAY_TYPE,"bool"),"set_data_particle_is_internal","get_data_particle_is_internal" );
+    ADD_PROPERTY( PropertyInfo(Variant::ARRAY, "data_particle_is_enabled", PROPERTY_HINT_ARRAY_TYPE,"bool"),"set_data_particle_is_enabled","get_data_particle_is_enabled" );
+    ADD_PROPERTY( PropertyInfo(Variant::ARRAY, "data_particle_is_lazy", PROPERTY_HINT_ARRAY_TYPE,"bool"),"set_data_particle_is_lazy","get_data_particle_is_lazy" );
     ADD_PROPERTY( PropertyInfo(Variant::ARRAY, "data_springs", PROPERTY_HINT_ARRAY_TYPE,"PackedInt32Array"),"set_data_springs","get_data_springs" );
     ADD_PROPERTY( PropertyInfo(Variant::ARRAY, "data_internal_springs", PROPERTY_HINT_ARRAY_TYPE,"PackedInt32Array"),"set_data_internal_springs","get_data_internal_springs" );
     ADD_PROPERTY( PropertyInfo(Variant::PACKED_INT32_ARRAY, "data_polygon"),"set_data_polygon","get_data_polygon" );

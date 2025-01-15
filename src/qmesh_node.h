@@ -93,6 +93,8 @@ protected:
     PackedVector2Array dataParticlePositions;
     PackedFloat32Array dataParticleRadius;
     PackedByteArray dataParticleIsInternal;
+    PackedByteArray dataParticleIsEnabled;
+    PackedByteArray dataParticleIsLazy;
     TypedArray<PackedInt32Array> dataSprings;
     TypedArray<PackedInt32Array> dataInternalSprings;
     PackedInt32Array dataPolygon;
@@ -394,6 +396,22 @@ public:
     }
     PackedByteArray get_data_particle_is_internal(){
         return dataParticleIsInternal;
+    }
+
+    void set_data_particle_is_enabled(PackedByteArray collection){
+        dataParticleIsEnabled=collection;
+    }
+
+    PackedByteArray get_data_particle_is_enabled(){
+        return dataParticleIsEnabled;
+    }
+
+    void set_data_particle_is_lazy(PackedByteArray collection){
+        dataParticleIsLazy=collection;
+    }
+
+    PackedByteArray get_data_particle_is_lazy(){
+        return dataParticleIsLazy;
     }
 
     void set_data_springs(TypedArray<PackedInt32Array> collection){

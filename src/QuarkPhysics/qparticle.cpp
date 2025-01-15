@@ -140,10 +140,9 @@ QParticle *QParticle::SetEnabled(bool value)
     return this;
 }
 
-QParticle *QParticle::SetOneTimeCollisionEnabled(bool value)
+QParticle *QParticle::SetIsLazy(bool value)
 {
-	enableOneTimeCollision=value;
-	ClearOneTimeCollisions();
+	lazy=value;
     return this;
 }
 

@@ -79,6 +79,7 @@ func _enter_tree() -> void:
 func on_tool_bar_edit_pressed(toggled_on:bool):
 	if toggled_on :
 		edit_mode=true
+		QMeshEditorTool.solve_faulty_particle_data_issues(meshNode)
 		tool_bar.get_node("SelectButton").visible=true
 		tool_bar.get_node("ParticleButton").visible=true
 		tool_bar.get_node("SpringButton").visible=true
@@ -95,7 +96,9 @@ func on_tool_bar_edit_pressed(toggled_on:bool):
 		tool_bar.get_node("SpringButton").visible=false
 		tool_bar.get_node("PolygonButton").visible=false
 		tool_bar.get_node("UVButton").visible=false
+		tool_bar.get_node("EnabledCheckBox").visible=false
 		tool_bar.get_node("InternalCheckBox").visible=false
+		tool_bar.get_node("LazyCheckBox").visible=false
 		tool_bar.get_node("RadiusBar").visible=false
 		tool_bar.get_node("OperationOptionButton").visible=false
 		update_overlays()
@@ -110,42 +113,58 @@ func on_tool_button_pressed(button: BaseButton) :
 	match button:
 		select_button:
 			editor_tool=QMeshEditorToolSelect.new()
+			tool_bar.get_node("EnabledCheckBox").visible=true
 			tool_bar.get_node("InternalCheckBox").visible=true
+			tool_bar.get_node("LazyCheckBox").visible=true
 			tool_bar.get_node("RadiusBar").visible=true
 			tool_bar.get_node("OperationOptionButton").visible=false
+			tool_bar.get_node("EnabledCheckBox").connect("toggled",editor_tool._enabled_checkbox_toggled)
 			tool_bar.get_node("InternalCheckBox").connect("toggled",editor_tool._internal_checkbox_toggled)
+			tool_bar.get_node("LazyCheckBox").connect("toggled",editor_tool._lazy_checkbox_toggled)
 			tool_bar.get_node("RadiusBar/SpinBox").connect("value_changed",editor_tool._radius_bar_changed)
 			tool_bar.get_node("InternalCheckBox").disabled=true
+			tool_bar.get_node("EnabledCheckBox").disabled=true
+			tool_bar.get_node("LazyCheckBox").disabled=true
 		particle_button:
 			editor_tool=QMeshEditorToolParticle.new()
+			tool_bar.get_node("EnabledCheckBox").visible=false
 			tool_bar.get_node("InternalCheckBox").visible=true
+			tool_bar.get_node("LazyCheckBox").visible=false
 			tool_bar.get_node("RadiusBar").visible=false
 			tool_bar.get_node("OperationOptionButton").visible=true
 			tool_bar.get_node("OperationOptionButton").selected=0
 			tool_bar.get_node("InternalCheckBox").disabled=false
 		spring_button:
 			editor_tool=QMeshEditorToolSpring.new()
+			tool_bar.get_node("EnabledCheckBox").visible=false
 			tool_bar.get_node("InternalCheckBox").visible=true
+			tool_bar.get_node("LazyCheckBox").visible=false
 			tool_bar.get_node("RadiusBar").visible=false
 			tool_bar.get_node("OperationOptionButton").visible=true
 			tool_bar.get_node("OperationOptionButton").selected=0
 			tool_bar.get_node("InternalCheckBox").disabled=false
 		polygon_button:
 			editor_tool=QMeshEditorToolPolygon.new()
+			tool_bar.get_node("EnabledCheckBox").visible=false
 			tool_bar.get_node("InternalCheckBox").visible=false
+			tool_bar.get_node("LazyCheckBox").visible=false
 			tool_bar.get_node("RadiusBar").visible=false
 			tool_bar.get_node("OperationOptionButton").visible=true
 			tool_bar.get_node("OperationOptionButton").selected=0
 		uv_button:
 			editor_tool=QMeshEditorToolUV.new()
+			tool_bar.get_node("EnabledCheckBox").visible=false
 			tool_bar.get_node("InternalCheckBox").visible=false
+			tool_bar.get_node("LazyCheckBox").visible=false
 			tool_bar.get_node("RadiusBar").visible=false
 			tool_bar.get_node("OperationOptionButton").visible=true
 			tool_bar.get_node("OperationOptionButton").selected=0
 	editor_tool.plugin=self
 	editor_tool.meshNode=meshNode
 	editor_tool.radiusSpinBox=tool_bar.get_node("RadiusBar/SpinBox")
+	editor_tool.enabledCheckBox=tool_bar.get_node("EnabledCheckBox")
 	editor_tool.internalCheckBox=tool_bar.get_node("InternalCheckBox")
+	editor_tool.lazyCheckBox=tool_bar.get_node("LazyCheckBox")
 	editor_tool.operationOptionButton=tool_bar.get_node("OperationOptionButton")
 	editor_tool.radiusSpinBox.editable=false
 	

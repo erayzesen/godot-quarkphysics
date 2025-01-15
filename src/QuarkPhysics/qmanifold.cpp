@@ -251,23 +251,31 @@ void QManifold::Solve()
 
 		
 
-		//Exceptions of the One Time Collisions of Particles
-		if (contact->particle->GetOneTimeCollisionEnabled() )
+		//Exceptions of Lazy Particles
+		bool incidentParticleIsLazy=false;
+		bool referenceParticlesAreLazy=false;
+		if (contact->particle->GetIsLazy() ){
 			contact->particle->previousCollidedBodies.insert(referenceBody);
-
-		for (size_t n=0;n<contact->referenceParticles.size();++n ){
-			if (contact->referenceParticles[n]->GetOneTimeCollisionEnabled() )
-				contact->referenceParticles[n]->previousCollidedBodies.insert(incidentBody);
+			incidentParticleIsLazy=true;
+			isCollisionOneSide=true;
 		}
 
-		if (contact->particle->GetOneTimeCollisionEnabled() ){
+		for (size_t n=0;n<contact->referenceParticles.size();++n ){
+			if (contact->referenceParticles[n]->GetIsLazy() ){
+				contact->referenceParticles[n]->previousCollidedBodies.insert(incidentBody);
+				isCollisionOneSide=true;
+				referenceParticlesAreLazy=true;
+			}
+		}
+
+		if (contact->particle->GetIsLazy() ){
 			if( contact->particle->oneTimeCollidedBodies.find(referenceBody)!=contact->particle->oneTimeCollidedBodies.end() ){
 				continue;
 			}
 		}
 		
 		for (size_t n=0;n<contact->referenceParticles.size();++n ){
-			if (contact->referenceParticles[n]->GetOneTimeCollisionEnabled() ){
+			if (contact->referenceParticles[n]->GetIsLazy() ){
 				if( contact->referenceParticles[n]->oneTimeCollidedBodies.find(incidentBody)!=contact->referenceParticles[n]->oneTimeCollidedBodies.end()  )
 					cancelSolving=true;
 					break;
@@ -296,7 +304,7 @@ void QManifold::Solve()
 			incResponseForce*=referenceBody->GetMass()*invMass;
 		}
 
-		if(incidentBody->CanGiveCollisionResponseTo(referenceBody)){
+		if(incidentBody->CanGiveCollisionResponseTo(referenceBody) && incidentParticleIsLazy==false){
 			contact->solved=true;
 			if(refRigidBody!=nullptr){
 				//For RigidBodies
@@ -311,7 +319,7 @@ void QManifold::Solve()
 			}
 		}
 
-		if(referenceBody->CanGiveCollisionResponseTo(incidentBody)){
+		if(referenceBody->CanGiveCollisionResponseTo(incidentBody) && referenceParticlesAreLazy==false){
 			contact->solved=true;
 			if(incRigidBody!=nullptr){
 				//For RigidBodies
@@ -321,6 +329,9 @@ void QManifold::Solve()
 				contact->particle->ApplyForce(incResponseForce);
 			}
 		}
+
+		if(incidentParticleIsLazy || referenceParticlesAreLazy)
+			contact->solved=false;
 
 
 

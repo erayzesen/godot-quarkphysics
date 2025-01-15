@@ -251,7 +251,7 @@ void QBody::Update()
 	for (auto mesh: _meshes){
 		for(size_t i=0;i<mesh->GetParticleCount();++i ){
 			QParticle *particle=mesh->GetParticleAt(i);
-			if (particle->GetOneTimeCollisionEnabled()==true ){
+			if (particle->GetIsLazy()==true ){
 				particle->ResetOneTimeCollisions();
 			}
 		}

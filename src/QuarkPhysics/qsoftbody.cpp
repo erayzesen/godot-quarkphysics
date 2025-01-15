@@ -110,7 +110,9 @@ void QSoftBody::Update()
 		QMesh *mesh=_meshes[i];
 		for(int n=0;n<mesh->GetParticleCount();n++){
 			QParticle *particle=mesh->GetParticleAt(n);
-
+			if (particle->GetEnabled()==false ){
+				continue;
+			}
 			
 			/* if(GetPassivationOfInternalSpringsEnabled() && particle->GetIsInternal())
 				continue; */
@@ -218,6 +220,8 @@ void QSoftBody::PreserveAreas()
 		for(int n=0;n<mesh->polygon.size();n++){
 			QParticle *pp=mesh->polygon[ (n-1+mesh->polygon.size())%mesh->polygon.size() ];
 			QParticle *np=mesh->polygon[ (n+1)%mesh->polygon.size() ];
+			if (pp->GetEnabled()==false || np->GetEnabled()==false )
+				continue;
 			QVector centerPos=(np->GetGlobalPosition()+pp->GetGlobalPosition())*0.5f;
 			QParticle::ApplyForceToParticleSegment(pp,np,volumeForces[n],centerPos);
 			//GetWorld()->GetGizmos()->push_back( new QGizmoLine( centerPos,centerPos+volumeForces[n]*30,true ) );
@@ -277,6 +281,9 @@ void QSoftBody::ApplyShapeMatching()
 		
 		for(int n=0;n<particles.size();n++){
 			QParticle * particle=particles[n];
+
+			if (particle->GetEnabled()==false )
+				continue;
 			
 			QVector targetPos=matchingPositions[n];
 			//world->GetGizmos()->push_back(new QGizmoCircle(targetPos,3.0f) );

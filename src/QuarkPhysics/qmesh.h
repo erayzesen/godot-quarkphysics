@@ -97,6 +97,10 @@ public:
 		vector<float> particleRadValues;
 		/** The collection of boolean values indicating whether a particle is internal. */
 		vector<bool> particleInternalValues;
+		/** The collection of boolean values indicating whether a particle is enabled.  */
+		vector<bool> particleEnabledValues;
+		/** The collection of boolean values indicating whether a particle is lazy.  */
+		vector<bool> particleLazyValues;
 		/** The collection of integer pairs to define springs. 
 		 * The integer values define the indices of particles in the particlePositions collection.  
 		 * */

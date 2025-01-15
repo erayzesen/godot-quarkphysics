@@ -14,7 +14,7 @@ void QParticleObject::_bind_methods() {
     ClassDB::bind_method(D_METHOD( "get_is_internal" ),&QParticleObject::get_is_internal );
     ClassDB::bind_method(D_METHOD( "get_force" ),&QParticleObject::get_force );
     ClassDB::bind_method(D_METHOD( "get_enabled" ),&QParticleObject::get_enabled );
-    ClassDB::bind_method(D_METHOD( "get_one_time_collision_enabled" ),&QParticleObject::get_one_time_collision_enabled );
+    ClassDB::bind_method(D_METHOD( "get_is_lazy" ),&QParticleObject::get_is_lazy );
 
     //Set
     ClassDB::bind_method(D_METHOD( "set_global_position","value" ),&QParticleObject::set_global_position );
@@ -30,7 +30,7 @@ void QParticleObject::_bind_methods() {
     ClassDB::bind_method(D_METHOD( "set_force","value" ),&QParticleObject::set_force );
     ClassDB::bind_method(D_METHOD( "add_force","value" ),&QParticleObject::add_force );
     ClassDB::bind_method(D_METHOD( "set_enabled","value" ),&QParticleObject::set_enabled );
-    ClassDB::bind_method(D_METHOD( "set_one_time_collision_enabled","value" ),&QParticleObject::set_one_time_collision_enabled );
+    ClassDB::bind_method(D_METHOD( "set_is_lazy","value" ),&QParticleObject::set_is_lazy );
 
 
 }
@@ -77,9 +77,9 @@ bool QParticleObject::get_enabled()
     return particleObject->GetEnabled();
 }
 
-bool QParticleObject::get_one_time_collision_enabled()
+bool QParticleObject::get_is_lazy()
 {
-    return particleObject->GetOneTimeCollisionEnabled();
+    return particleObject->GetIsLazy();
 }
 
 //SET METHODS
@@ -149,8 +149,8 @@ Ref<QParticleObject> QParticleObject::set_enabled(bool value)
     return Ref<QParticleObject>(this);
 }
 
-Ref<QParticleObject> QParticleObject::set_one_time_collision_enabled(bool value)
+Ref<QParticleObject> QParticleObject::set_is_lazy(bool value)
 {
-    particleObject->SetOneTimeCollisionEnabled(value);
+    particleObject->SetIsLazy(value);
     return Ref<QParticleObject>(this);
 }

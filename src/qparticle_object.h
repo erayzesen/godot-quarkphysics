@@ -78,7 +78,7 @@ public:
     bool get_is_internal();
     Vector2 get_force();
     bool get_enabled();
-    bool get_one_time_collision_enabled();
+    bool get_is_lazy();
 
     //Set Methods
     Ref<QParticleObject> set_global_position(Vector2 value);
@@ -94,7 +94,7 @@ public:
     Ref<QParticleObject> set_force(Vector2 value);
     Ref<QParticleObject> add_force(Vector2 value);
     Ref<QParticleObject> set_enabled(bool value);
-    Ref<QParticleObject> set_one_time_collision_enabled(bool value);
+    Ref<QParticleObject> set_is_lazy(bool value);
 
     
 

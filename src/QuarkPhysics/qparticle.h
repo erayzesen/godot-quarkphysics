@@ -31,6 +31,7 @@
 #include <vector>
 #include <unordered_set>
 
+class QBody;
 class QMesh;
 /** @brief QParticle objects form the network structures of QMesh objects defined for all body object types. They are the smallest building blocks of physics simulation and are manipulated differently in different body object types. For example, in QRigidBody objects, particles are collectively forced into positions obtained through various calculations based on the current body properties. However, in soft body objects, simulation particles are individually manipulated and can move freely, determining the next steps of the simulation through their individual movements. QMesh objects offer a number of methods to manage particles. For more information on restrictions between particles in soft body objects, see the QSpring object.
  */
@@ -55,7 +56,7 @@ class QParticle
 
 	bool enabled=true;
 
-	bool enableOneTimeCollision=false; 
+	bool lazy=false; 
 
 	void ClearOneTimeCollisions();
 
@@ -117,11 +118,11 @@ public:
 		return enabled;
 	}
 	/**
-	 * Returns whether the particle's one-time collision feature is enabled. When the one-time collision feature is active, an interaction occurs once at the beginning of the collision with objects. For subsequent collision interactions, the object must exit the collision and re-enter to trigger another interaction.
+	 * Returns whether the particle's lazy feature is enabled. This feature allows the particle to react once in a one-sided manner when colliding with an object; after that, it won't react again until it exits and re-enters the collision. This feature is used for particles that lightly interact with surrounding objects when necessary.
 	 */
 
-	bool GetOneTimeCollisionEnabled(){
-		return enableOneTimeCollision;
+	bool GetIsLazy(){
+		return lazy;
 	}
 
 	//Set Methods
@@ -182,12 +183,12 @@ public:
 	QParticle *SetEnabled(bool value);
 
 	/**
-	 * Sets whether the particle's one-time collision feature is enabled. When the one-time collision feature is active, an interaction occurs once at the beginning of the collision with objects. For subsequent collision interactions, the object must exit the collision and re-enter to trigger another interaction.
+	 * Sets whether the particle's lazy feature is enabled. This feature allows the particle to react once in a one-sided manner when colliding with an object; after that, it won't react again until it exits and re-enters the collision. This feature is used for particles that lightly interact with surrounding objects when necessary.
 	 * @param value A value to set.
 	 * @return A pointer to the particle itself.
 	 */
 
-	QParticle *SetOneTimeCollisionEnabled(bool value);
+	QParticle *SetIsLazy(bool value);
 
 	//
 	/** Applies a force immediately to the particle. You can use the method safely before the physics step (e.g. at the OnPreStep event of QBody objects). If you want to use this method after physics step, it can break the simulation.(Collisions and constraints may not be applied properly.) if you want to apply force at the next physic step safely, use SetForce() and AddForce() methods.  
