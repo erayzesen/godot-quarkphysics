@@ -306,6 +306,7 @@ public:
 	void PreserveAreas();
 	/** Applies the shape matching operation to the body. */ 
 	void ApplyShapeMatching();
+
 	
 
 };

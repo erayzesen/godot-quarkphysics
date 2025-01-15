@@ -56,6 +56,8 @@ func _handle_event(event:InputEvent)->bool:
 				#Update Radius SpinBox 	
 				update_radius_spin_box()
 				update_internal_check_box()
+				update_enabled_check_box()
+				update_lazy_check_box()
 					
 						
 				#Clearing the selection rect and mouse drag&repositioning values	
@@ -125,6 +127,38 @@ func _internal_checkbox_toggled(toggled_on:bool) :
 		undo_redo.add_do_method(self,"command_set_particle_internal_values",plugin,meshNode,particle_indexes,new_values )
 		undo_redo.commit_action(true)
 		
+func _enabled_checkbox_toggled(toggled_on:bool) :
+	var value:int=1 if toggled_on else 0
+	if selected_particle_indexes.size()>0 :
+		var particle_indexes:PackedInt32Array=selected_particle_indexes.duplicate()
+		var new_values:PackedByteArray
+		var old_values:PackedByteArray
+		for i in range(selected_particle_indexes.size() ) :
+			var p_index=particle_indexes[i]
+			old_values.append(meshNode.data_particle_is_enabled[p_index])
+			new_values.append(value)
+		var undo_redo=plugin.get_undo_redo()
+		undo_redo.create_action("Set Enabled Values of Particles: "+str(value) )
+		undo_redo.add_undo_method(self,"command_set_particle_enabled_values",plugin,meshNode,particle_indexes,old_values )
+		undo_redo.add_do_method(self,"command_set_particle_enabled_values",plugin,meshNode,particle_indexes,new_values )
+		undo_redo.commit_action(true)
+		
+func _lazy_checkbox_toggled(toggled_on:bool) :
+	var value:int=1 if toggled_on else 0
+	if selected_particle_indexes.size()>0 :
+		var particle_indexes:PackedInt32Array=selected_particle_indexes.duplicate()
+		var new_values:PackedByteArray
+		var old_values:PackedByteArray
+		for i in range(selected_particle_indexes.size() ) :
+			var p_index=particle_indexes[i]
+			old_values.append(meshNode.data_particle_is_lazy[p_index])
+			new_values.append(value)
+		var undo_redo=plugin.get_undo_redo()
+		undo_redo.create_action("Set Lazy Values of Particles: "+str(value) )
+		undo_redo.add_undo_method(self,"command_set_particle_lazy_values",plugin,meshNode,particle_indexes,old_values )
+		undo_redo.add_do_method(self,"command_set_particle_lazy_values",plugin,meshNode,particle_indexes,new_values )
+		undo_redo.commit_action(true)
+		
 
 func _radius_bar_changed(value:float) :
 	
@@ -145,7 +179,7 @@ func _radius_bar_changed(value:float) :
 			
 	pass
 	
-func get_common_radius_of_particles(particle_indexes:PackedInt32Array) ->float:
+func get_common_radius_value_of_particles(particle_indexes:PackedInt32Array) ->float:
 	var common_value=0.5
 	if particle_indexes.size()>1 :
 		for i in range(particle_indexes.size()-1) :
@@ -159,7 +193,7 @@ func get_common_radius_of_particles(particle_indexes:PackedInt32Array) ->float:
 		
 	return common_value
 	
-func get_common_internal_mode_of_particles(particle_indexes:PackedInt32Array) ->bool:
+func get_common_internal_value_of_particles(particle_indexes:PackedInt32Array) ->bool:
 	var common_value:bool=false
 	if particle_indexes.size()>1 :
 		for i in range(particle_indexes.size()-1) :
@@ -173,12 +207,40 @@ func get_common_internal_mode_of_particles(particle_indexes:PackedInt32Array) ->
 		
 	return common_value
 	
+func get_common_enabled_value_of_particles(particle_indexes:PackedInt32Array) ->bool:
+	var common_value:bool=false
+	if particle_indexes.size()>1 :
+		for i in range(particle_indexes.size()-1) :
+			var cpr=meshNode.data_particle_is_enabled[particle_indexes[i]]
+			var npr=meshNode.data_particle_is_enabled[particle_indexes[i+1]]
+			common_value=cpr
+			if cpr!=npr :
+				break
+	elif particle_indexes.size()==1 :
+		common_value=meshNode.data_particle_is_enabled[particle_indexes[0]]
+		
+	return common_value
+	
+func get_common_lazy_value_of_particles(particle_indexes:PackedInt32Array) ->bool:
+	var common_value:bool=false
+	if particle_indexes.size()>1 :
+		for i in range(particle_indexes.size()-1) :
+			var cpr=meshNode.data_particle_is_lazy[particle_indexes[i]]
+			var npr=meshNode.data_particle_is_lazy[particle_indexes[i+1]]
+			common_value=cpr
+			if cpr!=npr :
+				break
+	elif particle_indexes.size()==1 :
+		common_value=meshNode.data_particle_is_lazy[particle_indexes[0]]
+		
+	return common_value
+	
 func update_radius_spin_box():
 	if selected_particle_indexes.size()==0:
 		radiusSpinBox.set_value_no_signal(0.5)
 		radiusSpinBox.editable=false
 	else :
-		var common_radius_value=get_common_radius_of_particles(selected_particle_indexes)
+		var common_radius_value=get_common_radius_value_of_particles(selected_particle_indexes)
 		radiusSpinBox.set_value_no_signal(common_radius_value)
 		radiusSpinBox.editable=true
 	pass
@@ -188,9 +250,27 @@ func update_internal_check_box():
 		internalCheckBox.set_pressed_no_signal(false)
 		internalCheckBox.disabled=true
 	else :
-		var common_internal_value=get_common_internal_mode_of_particles(selected_particle_indexes)
-		internalCheckBox.set_pressed_no_signal(common_internal_value)
+		var common_value=get_common_internal_value_of_particles(selected_particle_indexes)
+		internalCheckBox.set_pressed_no_signal(common_value)
 		internalCheckBox.disabled=false
+		
+func update_enabled_check_box():
+	if selected_particle_indexes.size()==0:
+		enabledCheckBox.set_pressed_no_signal(false)
+		enabledCheckBox.disabled=true
+	else :
+		var common_value=get_common_enabled_value_of_particles(selected_particle_indexes)
+		enabledCheckBox.set_pressed_no_signal(common_value)
+		enabledCheckBox.disabled=false
+		
+func update_lazy_check_box():
+	if selected_particle_indexes.size()==0:
+		lazyCheckBox.set_pressed_no_signal(false)
+		lazyCheckBox.disabled=true
+	else :
+		var common_value=get_common_lazy_value_of_particles(selected_particle_indexes)
+		lazyCheckBox.set_pressed_no_signal(common_value)
+		lazyCheckBox.disabled=false
 
 #Tool Commands
 func command_set_particle_radius_values(targetPlugin:EditorPlugin, targetMeshNode:QMeshNode, particle_indexes:PackedInt32Array, values:PackedFloat32Array) :
@@ -210,6 +290,24 @@ func command_set_particle_internal_values(targetPlugin:EditorPlugin, targetMeshN
 	targetMeshNode.queue_redraw()
 	targetPlugin.update_overlays()
 	update_internal_check_box()
+	
+func command_set_particle_enabled_values(targetPlugin:EditorPlugin, targetMeshNode:QMeshNode, particle_indexes:PackedInt32Array, values:PackedByteArray) :
+	for i in range(particle_indexes.size() ):
+		var p_index=particle_indexes[i]
+		var p_value=values[i]
+		targetMeshNode.data_particle_is_enabled[p_index]=p_value
+	targetMeshNode.queue_redraw()
+	targetPlugin.update_overlays()
+	update_enabled_check_box()
+	
+func command_set_particle_lazy_values(targetPlugin:EditorPlugin, targetMeshNode:QMeshNode, particle_indexes:PackedInt32Array, values:PackedByteArray) :
+	for i in range(particle_indexes.size() ):
+		var p_index=particle_indexes[i]
+		var p_value=values[i]
+		targetMeshNode.data_particle_is_lazy[p_index]=p_value
+	targetMeshNode.queue_redraw()
+	targetPlugin.update_overlays()
+	update_lazy_check_box()
 	
 
 func command_move_particle_positions(targetPlugin:EditorPlugin, targetMeshNode:QMeshNode, particle_indexes:PackedInt32Array, delta:Vector2) :

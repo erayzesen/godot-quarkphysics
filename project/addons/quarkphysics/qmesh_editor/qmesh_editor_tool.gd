@@ -10,7 +10,9 @@ var last_mouse_motion_position=Vector2.ZERO
 
 #Plugin References
 var radiusSpinBox:SpinBox
+var enabledCheckBox:CheckBox
 var internalCheckBox:CheckBox
+var lazyCheckBox:CheckBox
 var operationOptionButton:OptionButton
 var plugin:EditorPlugin
 
@@ -30,8 +32,14 @@ func _handle_event(event:InputEvent)->bool:
 	
 func _handle_canvas_draw(overlay: Control):
 	pass
+
+func _enabled_checkbox_toggled(toggled_on:bool) :
+	pass
 	
 func _internal_checkbox_toggled(toggled_on:bool) :
+	pass
+	
+func _lazy_checkbox_toggled(toggled_on:bool) :
 	pass
 
 func _radius_bar_changed(value:float) :
@@ -128,3 +136,33 @@ func is_particle_exist_in_uv(targetMeshNode:QMeshNode,particleIndex:int)->bool:
 			if map[j]==particleIndex :
 				return true
 	return false
+	
+static func solve_faulty_particle_data_issues(targetMeshNode:QMeshNode) :
+	var particleCount=targetMeshNode.data_particle_positions.size()
+	#Check Particle Enabled Values
+	if targetMeshNode.data_particle_is_enabled.size()<particleCount :
+		var temp_collection=targetMeshNode.data_particle_is_enabled.duplicate()
+		for i in range(temp_collection.size(),particleCount) :
+			temp_collection.append(true)
+		targetMeshNode.data_particle_is_enabled=temp_collection
+	#Check Particle Internal Values
+	if targetMeshNode.data_particle_is_internal.size()<particleCount :
+		var temp_collection=targetMeshNode.data_particle_is_internal.duplicate()
+		for i in range(temp_collection.size(),particleCount) :
+			temp_collection.append(false)
+		targetMeshNode.data_particle_is_internal=temp_collection
+	
+	#Check Particle Lazy Values
+	if targetMeshNode.data_particle_is_lazy.size()<particleCount :
+		var temp_collection=targetMeshNode.data_particle_is_lazy.duplicate()
+		for i in range(temp_collection.size(),particleCount) :
+			temp_collection.append(false)
+		targetMeshNode.data_particle_is_lazy=temp_collection
+		
+	#Check Particle Radius Values
+	if targetMeshNode.data_particle_radius.size()<particleCount :
+		var temp_collection=targetMeshNode.data_particle_radius.duplicate()
+		for i in range(temp_collection.size(),particleCount) :
+			temp_collection.append(0.5)
+		targetMeshNode.data_particle_radius=temp_collection
+	pass

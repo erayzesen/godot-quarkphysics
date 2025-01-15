@@ -91,10 +91,20 @@ popup/item_0/text = "ADD"
 popup/item_1/text = "REMOVE"
 popup/item_1/id = 1
 
+[node name="EnabledCheckBox" type="CheckBox" parent="."]
+visible = false
+layout_mode = 2
+text = "Enabled"
+
 [node name="InternalCheckBox" type="CheckBox" parent="."]
 visible = false
 layout_mode = 2
 text = "Internal"
+
+[node name="LazyCheckBox" type="CheckBox" parent="."]
+visible = false
+layout_mode = 2
+text = "Lazy"
 
 [node name="RadiusBar" type="HBoxContainer" parent="."]
 visible = false

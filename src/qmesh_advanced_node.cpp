@@ -100,6 +100,8 @@ void QMeshAdvancedNode::set_export_file_path(String value)
         particleData["position"]=pos;
         particleData["radius"]=dataParticleRadius[i];
         particleData["is_internal"]=dataParticleIsInternal[i]==1;
+        particleData["enabled"]=dataParticleIsEnabled[i]==1;
+        particleData["lazy"]=dataParticleIsLazy[i]==1;
         particles.append(particleData);
     }
     dataDic["particles"]=particles;

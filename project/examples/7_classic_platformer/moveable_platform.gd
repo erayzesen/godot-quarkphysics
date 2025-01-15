@@ -11,6 +11,8 @@ func _ready() -> void:
 	start_location=global_position
 	if Engine.is_editor_hint() :
 		queue_redraw()
+	
+			
 		
 func _enter_tree() -> void:
 	if Engine.is_editor_hint()==false :
