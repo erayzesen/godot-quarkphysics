@@ -10,6 +10,10 @@ var selection_rect:Rect2
 var edit_mode=false
 
 var tool_bar
+
+var hovered_particle_index:int=-1
+
+var particle_select_range:float=15.0
 	
 func _edit(object: Object) -> void:
 	meshNode=object
@@ -51,11 +55,31 @@ func _forward_canvas_draw_over_viewport(overlay: Control) -> void:
 		var circlePos=toScreen( meshNode.global_position+particle_pos )
 		var circleRadius=5
 		var color=Color.GREEN
+		var outline_width=-1
 		if editor_tool.selected_particle_indexes.has(i) :
+			overlay.draw_circle(circlePos,circleRadius,color,true )
 			color=Color.WHITE
-		overlay.draw_circle(circlePos,circleRadius,color,false )
+		if i==hovered_particle_index :
+			overlay.draw_circle(circlePos,circleRadius,Color.WHITE,true )
+			outline_width=2
+			
+		overlay.draw_circle(circlePos,circleRadius,color,false,outline_width )
+		
 	if selection_rect.size!=Vector2.ZERO :
 		overlay.draw_rect(selection_rect,Color.WHITE,false)
+		
+	if hovered_particle_index!=-1 :
+		var pos=meshNode.data_particle_positions[hovered_particle_index].rotated(meshNode.global_rotation)+meshNode.global_position
+		
+		pos=toScreen(pos)
+		pos+=Vector2.UP*16
+		pos+=Vector2.LEFT*12
+		var font=ThemeDB.get_default_theme().default_font
+		overlay.draw_string_outline(font,pos,str(hovered_particle_index),HORIZONTAL_ALIGNMENT_CENTER,24,16,8,Color.BLACK,TextServer.JUSTIFICATION_CONSTRAIN_ELLIPSIS)
+		
+		#overlay.draw_string(font,pos+Vector2.DOWN*1,str(hovered_particle_index),HORIZONTAL_ALIGNMENT_CENTER,-1,16,Color.BLACK )
+		overlay.draw_string(font,pos,str(hovered_particle_index),HORIZONTAL_ALIGNMENT_CENTER,24,16,Color.WHITE,TextServer.JUSTIFICATION_CONSTRAIN_ELLIPSIS )
+		
 		
 	editor_tool._handle_canvas_draw(overlay)
 		
@@ -67,7 +91,11 @@ func _forward_canvas_gui_input(event: InputEvent) -> bool:
 		
 	if event is not InputEventMouse :
 		return false
-		
+	#Mouse Hovering 
+	if event is InputEventMouseMotion :
+		var mPos=fromScreen(event.position)
+		check_hovered_particles(mPos,meshNode)
+	
 	var res=editor_tool._handle_event(event)
 	return res
 
@@ -75,6 +103,16 @@ func _forward_canvas_gui_input(event: InputEvent) -> bool:
 func _enter_tree() -> void:
 	# Initialization of the plugin goes here.
 	pass
+	
+func check_hovered_particles(mPos:Vector2, targetMeshNode:QMeshNode) :
+	hovered_particle_index=-1
+	for i in range(targetMeshNode.data_particle_positions.size()) :
+		var p:Vector2=targetMeshNode.data_particle_positions[i]
+		var distVec:Vector2=mPos-(p.rotated(targetMeshNode.global_rotation)+meshNode.global_position)
+		var dist=distVec.length()
+		if dist<particle_select_range :
+			hovered_particle_index=i
+	update_overlays()
 	
 func on_tool_bar_edit_pressed(toggled_on:bool):
 	if toggled_on :

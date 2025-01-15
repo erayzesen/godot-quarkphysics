@@ -70,6 +70,9 @@ func _handle_event(event:InputEvent)->bool:
 				
 	if event is InputEventMouseMotion :
 		var mPos=fromScreen(event.position)
+		
+		
+		
 		#Mouse drag mode handling
 		if mouse_drag_mode==true :
 			#There are selected particles and the repositioning mode is active

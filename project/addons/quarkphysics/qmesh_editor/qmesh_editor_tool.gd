@@ -45,7 +45,8 @@ func _lazy_checkbox_toggled(toggled_on:bool) :
 func _radius_bar_changed(value:float) :
 	pass
 	
-	
+
+
 func toScreen(point:Vector2) ->Vector2 :
 	var viewport_transform=EditorInterface.get_editor_viewport_2d().get_final_transform()*EditorInterface.get_base_control().get_canvas_transform()
 	return viewport_transform*point
@@ -58,7 +59,7 @@ func fromScreen(point:Vector2)->Vector2 :
 func get_nearest_particle_index(targetMeshNode:QMeshNode,position:Vector2) ->int:
 	for i in range(targetMeshNode.data_particle_positions.size() ) :
 		var point=targetMeshNode.data_particle_positions[i].rotated(meshNode.global_rotation)
-		if ((point+targetMeshNode.global_position)-position).length()<5.0 :
+		if ((point+targetMeshNode.global_position)-position).length()<plugin.particle_select_range :
 			return i
 	return -1;
 	
