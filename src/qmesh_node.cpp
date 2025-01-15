@@ -262,19 +262,21 @@ void QMeshNode::vector_render_in_editor() {
     
 
     //draw particles
-    for(int i=0;i<dataParticlePositions.size();i++){
-        float r=dataParticleRadius[i];
-        if(r<=0.5)
-            continue;
-        Vector2 pos=dataParticlePositions[i];
-        
-        int particleCount=round( (2*M_PI*r)/2 );
-        particleCount=max(particleCount,8);
-        if(enableFill)
-            rs->canvas_item_add_circle(vectorRenderInstance,pos,r,fillColor,true);
-        if(enableStroke)
-            rs->canvas_item_add_polyline(vectorRenderInstance,create_circle_polygon(pos,r+strokeOffset),{strokeColor},strokeWidth,enableAntialias);
-
+    if (enableParticleRendering){
+        for(int i=0;i<dataParticlePositions.size();i++){
+            float r=dataParticleRadius[i];
+            if(r<=0.5)
+                continue;
+            Vector2 pos=dataParticlePositions[i];
+            
+            int particleCount=round( (2*M_PI*r)/2 );
+            particleCount=max(particleCount,8);
+            if(enableFill)
+                rs->canvas_item_add_circle(vectorRenderInstance,pos,r,fillColor,true);
+            if(enableStroke)
+                rs->canvas_item_add_polyline(vectorRenderInstance,create_circle_polygon(pos,r+strokeOffset),{strokeColor},strokeWidth,enableAntialias);
+            
+        }
     }
 
 }
@@ -507,23 +509,27 @@ void QMeshNode::vector_render_in_runtime()
             
     }
     //Drawing particles
-    for(int i=0;i<meshObject->GetParticleCount();i++){
-        QParticle *particle=meshObject->GetParticleAt(i);
-        float r=particle->GetRadius();
-        if(r<=0.5f){
-            continue;
+    if (enableParticleRendering){
+        
+        for(int i=0;i<meshObject->GetParticleCount();i++){
+            QParticle *particle=meshObject->GetParticleAt(i);
+            float r=particle->GetRadius();
+            if(r<=0.5f){
+                continue;
+            }
+            Vector2 pos=Vector2( particle->GetGlobalPosition().x, particle->GetGlobalPosition().y );
+            pos-=get_global_position();
+            pos=pos.rotated(-get_global_rotation() );
+            if(enableFill){
+                rs->canvas_item_add_circle(vectorRenderInstance,pos,r,fillColor,true);
+            }
+            if( enableStroke){
+                int particleCount=round( (2*M_PI*r)/2 );
+                particleCount=max(particleCount,8);
+                rs->canvas_item_add_polyline(vectorRenderInstance,create_circle_polygon(pos,r+strokeOffset),{strokeColor},strokeWidth,enableAntialias);
+            }
         }
-        Vector2 pos=Vector2( particle->GetGlobalPosition().x, particle->GetGlobalPosition().y );
-        pos-=get_global_position();
-        pos=pos.rotated(-get_global_rotation() );
-        if(enableFill){
-            rs->canvas_item_add_circle(vectorRenderInstance,pos,r,fillColor,true);
-        }
-        if( enableStroke){
-            int particleCount=round( (2*M_PI*r)/2 );
-            particleCount=max(particleCount,8);
-            rs->canvas_item_add_polyline(vectorRenderInstance,create_circle_polygon(pos,r+strokeOffset),{strokeColor},strokeWidth,enableAntialias);
-        }
+
     }
              
 }
@@ -830,6 +836,7 @@ void QMeshNode::_bind_methods()
      ClassDB::bind_method(D_METHOD("get_stroke_offset"),&QMeshNode::get_stroke_offset );
      ClassDB::bind_method(D_METHOD("get_curved_corners_enabled"),&QMeshNode::get_curved_corners_enabled );
      ClassDB::bind_method(D_METHOD("get_curve_length"),&QMeshNode::get_curve_length );
+     ClassDB::bind_method(D_METHOD("get_particle_rendering_enabled"),&QMeshNode::get_particle_rendering_enabled );
 
      //Render helper operations
      ClassDB::bind_method(D_METHOD("get_curved_polygon_points","polygonPoints","curve_amount","margin","origin","bake_interval"),&QMeshNode::get_curved_polygon_points );
@@ -853,6 +860,7 @@ void QMeshNode::_bind_methods()
      ClassDB::bind_method(D_METHOD("set_stroke_offset","value"),&QMeshNode::set_stroke_offset );
      ClassDB::bind_method(D_METHOD("set_curved_corners_enabled","value"),&QMeshNode::set_curved_corners_enabled );
      ClassDB::bind_method(D_METHOD("set_curve_length","value"),&QMeshNode::set_curve_length );
+     ClassDB::bind_method(D_METHOD("set_particle_rendering_enabled","value"),&QMeshNode::set_particle_rendering_enabled );
 
 
     //Data
@@ -908,6 +916,7 @@ void QMeshNode::_bind_methods()
     ADD_PROPERTY( PropertyInfo(Variant::FLOAT, "stroke_offset",PROPERTY_HINT_RANGE,"-256.0,256.0,0.25"),"set_stroke_offset","get_stroke_offset" );
     ADD_PROPERTY( PropertyInfo(Variant::BOOL, "enable_curved_corners"),"set_curved_corners_enabled","get_curved_corners_enabled" );
     ADD_PROPERTY( PropertyInfo(Variant::FLOAT, "curve_length"),"set_curve_length","get_curve_length" );
+    ADD_PROPERTY( PropertyInfo(Variant::BOOL, "enable_particle_rendering"),"set_particle_rendering_enabled","get_particle_rendering_enabled" );
 
     ADD_GROUP("Data","");
     ADD_PROPERTY( PropertyInfo(Variant::PACKED_VECTOR2_ARRAY, "data_particle_positions"),"set_data_particle_positions","get_data_particle_positions" );

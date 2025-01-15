@@ -77,6 +77,7 @@ protected:
     float strokeWidth=3.0f;
     Color strokeColor=Color::named("black");
     float strokeOffset=0.0f;
+    bool enableParticleRendering=true;
 
     Ref<Curve2D> curvedPolygon=memnew( Curve2D);
     bool enableCurvedCorners=false;
@@ -286,6 +287,10 @@ public:
         return curveLength;
     }
 
+    bool get_particle_rendering_enabled(){
+        return enableParticleRendering;
+    }
+
     QMeshNode *set_vector_rendering_enabled(bool value){
         enableVectorRendering=value;
         queue_redraw();
@@ -371,6 +376,12 @@ public:
 
     QMeshNode *set_curve_length(float value){
         curveLength=value;
+        queue_redraw();
+        return this;
+    }
+
+    QMeshNode *set_particle_rendering_enabled(bool value){
+        enableParticleRendering=value;
         queue_redraw();
         return this;
     }
