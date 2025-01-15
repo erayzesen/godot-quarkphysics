@@ -49,8 +49,8 @@ class QMeshNode: public Node2D{
     GDCLASS(QMeshNode,Node2D);
 protected:
     
-    bool enableSprings=true;
-    bool enablePolygons=true;
+    bool showSprings=true;
+    bool showPolygon=true;
     float particleRadius=0.5f;
     bool disablePolygonForCollisions=false;
     
@@ -166,8 +166,8 @@ public:
     float get_area();
     float get_polygon_area();
     float get_circumference();
-    bool get_springs_enabled();
-    bool get_polygons_enabled();
+    bool get_show_springs_enabled();
+    bool get_show_polygon_enabled();
     Array get_average_position_and_rotation(TypedArray<QParticleObject> particle_collection);
     Array get_matching_particle_positions(TypedArray<QParticleObject> particle_collection,Vector2 target_position,float target_rotation);
     float get_min_angle_constraint_of_polygon();
@@ -181,8 +181,8 @@ public:
     QMeshNode *set_mesh_position(Vector2 value);
     QMeshNode *set_mesh_global_position(Vector2 value);
     QMeshNode *set_mesh_rotation(float value);
-    QMeshNode *set_springs_enabled(bool value);
-    QMeshNode *set_polygons_enabled(bool value);
+    QMeshNode *set_show_springs_enabled(bool value);
+    QMeshNode *set_show_polygon_enabled(bool value);
     QMeshNode *set_min_angle_constraint_of_polygon(bool value);
     QMeshNode *set_polygon_for_collision_disabled(bool value);
     

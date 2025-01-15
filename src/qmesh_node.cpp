@@ -81,7 +81,7 @@ void QMeshNode::debug_render_in_editor() {
     }
 
     //Draw springs
-    if(enableSprings){
+    if(showSprings){
         //default springs
         for(int i=0;i<dataSprings.size();i++){
             PackedInt32Array spring=dataSprings[i];
@@ -101,7 +101,7 @@ void QMeshNode::debug_render_in_editor() {
     }
 
     //Draw polygons
-    if(enablePolygons){
+    if(showPolygon){
 
         
         for(int n=0;n<dataPolygon.size();n++){
@@ -775,15 +775,15 @@ void QMeshNode::_bind_methods()
     ClassDB::bind_method(D_METHOD("get_polygon_area"),&QMeshNode::get_polygon_area );
     ClassDB::bind_method(D_METHOD("get_circumference"),&QMeshNode::get_circumference );
     ClassDB::bind_method(D_METHOD("get_owner_body_node"),&QMeshNode::get_owner_body_node );
-    ClassDB::bind_method(D_METHOD("get_springs_enabled"),&QMeshNode::get_springs_enabled );
-    ClassDB::bind_method(D_METHOD("get_polygons_enabled"),&QMeshNode::get_polygons_enabled );
+    ClassDB::bind_method(D_METHOD("get_show_springs_enabled"),&QMeshNode::get_show_springs_enabled );
+    ClassDB::bind_method(D_METHOD("get_show_polygon_enabled"),&QMeshNode::get_show_polygon_enabled );
     ClassDB::bind_method(D_METHOD("get_polygon_for_collision_disabled"),&QMeshNode::get_polygon_for_collision_disabled );
     //Set
     ClassDB::bind_method(D_METHOD("set_mesh_position"),&QMeshNode::set_mesh_position );
     ClassDB::bind_method(D_METHOD("set_mesh_global_position"),&QMeshNode::set_mesh_global_position );
     ClassDB::bind_method(D_METHOD("set_mesh_rotation"),&QMeshNode::set_mesh_rotation );
-    ClassDB::bind_method(D_METHOD("set_springs_enabled","value"),&QMeshNode::set_springs_enabled );
-    ClassDB::bind_method(D_METHOD("set_polygons_enabled","value"),&QMeshNode::set_polygons_enabled );
+    ClassDB::bind_method(D_METHOD("set_show_springs_enabled","value"),&QMeshNode::set_show_springs_enabled );
+    ClassDB::bind_method(D_METHOD("set_show_polygon_enabled","value"),&QMeshNode::set_show_polygon_enabled );
     ClassDB::bind_method(D_METHOD("set_polygon_for_collision_disabled","value"),&QMeshNode::set_polygon_for_collision_disabled );
     //Particle Operations
     ClassDB::bind_method(D_METHOD("add_particle","particle_object"),&QMeshNode::add_particle );
@@ -902,10 +902,11 @@ void QMeshNode::_bind_methods()
     //Props
     ADD_PROPERTY( PropertyInfo(Variant::BOOL , "disable_polygon_for_collisions"), "set_polygon_for_collision_disabled","get_polygon_for_collision_disabled" );
 
-    ADD_PROPERTY( PropertyInfo(Variant::BOOL , "enable_springs"), "set_springs_enabled","get_springs_enabled" );
-    ADD_PROPERTY( PropertyInfo(Variant::BOOL , "enable_polygons"), "set_polygons_enabled","get_polygons_enabled" );
+    ADD_GROUP("Debug Rendering","");
+    ADD_PROPERTY( PropertyInfo(Variant::BOOL , "show_springs"), "set_show_springs_enabled","get_show_springs_enabled" );
+    ADD_PROPERTY( PropertyInfo(Variant::BOOL , "show_polygons"), "set_show_polygon_enabled","get_show_polygon_enabled" );
 
-    ADD_GROUP("Rendering","");
+    ADD_GROUP("Vector Rendering","");
     ADD_PROPERTY( PropertyInfo(Variant::BOOL, "enable_vector_rendering"),"set_vector_rendering_enabled","get_vector_rendering_enabled" );
     ADD_PROPERTY( PropertyInfo(Variant::BOOL, "antialias"),"set_antialias_enabled","get_antialias_enabled" );
     ADD_PROPERTY( PropertyInfo(Variant::BOOL, "triangulation"),"set_triangulation_enabled","get_triangulation_enabled" );
@@ -979,12 +980,12 @@ float QMeshNode::get_circumference(){
     return meshObject->GetCircumference();
 }
 
-bool QMeshNode::get_springs_enabled() {
-	return enableSprings;
+bool QMeshNode::get_show_springs_enabled() {
+	return showSprings;
 }
 
-bool QMeshNode::get_polygons_enabled() {
-	return enablePolygons;
+bool QMeshNode::get_show_polygon_enabled() {
+	return showPolygon;
 }
 
 Array QMeshNode::get_average_position_and_rotation(TypedArray<QParticleObject> particle_collection) {
@@ -1054,14 +1055,14 @@ QMeshNode *QMeshNode::set_mesh_rotation(float value) {
 	return this;
 }
 
-QMeshNode *QMeshNode::set_springs_enabled(bool value) {
-    enableSprings=value;
+QMeshNode *QMeshNode::set_show_springs_enabled(bool value) {
+    showSprings=value;
     queue_redraw();
 	return this;
 }
 
-QMeshNode *QMeshNode::set_polygons_enabled(bool value) {
-	enablePolygons=value;
+QMeshNode *QMeshNode::set_show_polygon_enabled(bool value) {
+	showPolygon=value;
     queue_redraw();
 	return this;
 }
