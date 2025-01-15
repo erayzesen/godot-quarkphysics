@@ -52,6 +52,7 @@ protected:
     bool enableSprings=true;
     bool enablePolygons=true;
     float particleRadius=0.5f;
+    bool disablePolygonForCollisions=false;
     
     QMesh *meshObject=nullptr;
     QBodyNode *ownerBodyNode=nullptr;
@@ -171,7 +172,10 @@ public:
     Array get_matching_particle_positions(TypedArray<QParticleObject> particle_collection,Vector2 target_position,float target_rotation);
     float get_min_angle_constraint_of_polygon();
 
+    bool get_polygon_for_collision_disabled();
+
     QBodyNode *get_owner_body_node();
+    
 
     //Set Methods
     QMeshNode *set_mesh_position(Vector2 value);
@@ -180,6 +184,7 @@ public:
     QMeshNode *set_springs_enabled(bool value);
     QMeshNode *set_polygons_enabled(bool value);
     QMeshNode *set_min_angle_constraint_of_polygon(bool value);
+    QMeshNode *set_polygon_for_collision_disabled(bool value);
     
 
     //Particle Operations

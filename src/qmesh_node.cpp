@@ -586,6 +586,10 @@ void QMeshNode::on_post_enter_tree() {
         }
         set_mesh_position(get_position());
         set_mesh_rotation(get_rotation());
+
+        //Re-Set Properties of Mesh Object
+        meshObject->SetPolygonForCollisionsDisabled(disablePolygonForCollisions);
+        
         if(ownerBodyNode==nullptr){
             QBodyNode *bodyNode=QBodyNode::type_cast(get_parent());
             if(bodyNode!=nullptr){
@@ -773,12 +777,14 @@ void QMeshNode::_bind_methods()
     ClassDB::bind_method(D_METHOD("get_owner_body_node"),&QMeshNode::get_owner_body_node );
     ClassDB::bind_method(D_METHOD("get_springs_enabled"),&QMeshNode::get_springs_enabled );
     ClassDB::bind_method(D_METHOD("get_polygons_enabled"),&QMeshNode::get_polygons_enabled );
+    ClassDB::bind_method(D_METHOD("get_polygon_for_collision_disabled"),&QMeshNode::get_polygon_for_collision_disabled );
     //Set
     ClassDB::bind_method(D_METHOD("set_mesh_position"),&QMeshNode::set_mesh_position );
     ClassDB::bind_method(D_METHOD("set_mesh_global_position"),&QMeshNode::set_mesh_global_position );
     ClassDB::bind_method(D_METHOD("set_mesh_rotation"),&QMeshNode::set_mesh_rotation );
     ClassDB::bind_method(D_METHOD("set_springs_enabled","value"),&QMeshNode::set_springs_enabled );
     ClassDB::bind_method(D_METHOD("set_polygons_enabled","value"),&QMeshNode::set_polygons_enabled );
+    ClassDB::bind_method(D_METHOD("set_polygon_for_collision_disabled","value"),&QMeshNode::set_polygon_for_collision_disabled );
     //Particle Operations
     ClassDB::bind_method(D_METHOD("add_particle","particle_object"),&QMeshNode::add_particle );
     ClassDB::bind_method(D_METHOD("remove_particle","particle_object"),&QMeshNode::remove_particle );
@@ -894,6 +900,8 @@ void QMeshNode::_bind_methods()
      
 
     //Props
+    ADD_PROPERTY( PropertyInfo(Variant::BOOL , "disable_polygon_for_collisions"), "set_polygon_for_collision_disabled","get_polygon_for_collision_disabled" );
+
     ADD_PROPERTY( PropertyInfo(Variant::BOOL , "enable_springs"), "set_springs_enabled","get_springs_enabled" );
     ADD_PROPERTY( PropertyInfo(Variant::BOOL , "enable_polygons"), "set_polygons_enabled","get_polygons_enabled" );
 
@@ -1021,6 +1029,11 @@ float QMeshNode::get_min_angle_constraint_of_polygon() {
 	return meshObject->GetMinAngleConstraintOfPolygon();
 }
 
+bool QMeshNode::get_polygon_for_collision_disabled()
+{
+    return disablePolygonForCollisions;
+}
+
 QBodyNode * QMeshNode::get_owner_body_node(){
     return ownerBodyNode;
 }
@@ -1055,6 +1068,15 @@ QMeshNode *QMeshNode::set_polygons_enabled(bool value) {
 
 QMeshNode *QMeshNode::set_min_angle_constraint_of_polygon(bool value) {
 	meshObject->SetMinAngleConstraintOfPolygon(value);
+    return this;
+}
+
+QMeshNode *QMeshNode::set_polygon_for_collision_disabled(bool value)
+{
+    disablePolygonForCollisions=value;
+    if ( Engine::get_singleton()->is_editor_hint()==false && meshObject!=nullptr ){
+        meshObject->SetPolygonForCollisionsDisabled(value);
+    }
     return this;
 }
 
