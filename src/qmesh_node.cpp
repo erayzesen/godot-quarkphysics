@@ -115,17 +115,31 @@ void QMeshNode::debug_render_in_editor() {
     for(int i=0;i<dataParticlePositions.size();i++){
         Vector2 pos=dataParticlePositions[i];
         float radius=dataParticleRadius[i];
+        Color particleColor=colors.COLLIDER_PARTICLE;
+        if (i<dataParticleIsLazy.size() ){
+            if (dataParticleIsLazy[i]==1){
+                particleColor=colors.COLLIDER_PARTICLE_LAZY;
+            }
+        }
+        if (i<dataParticleIsEnabled.size() ){
+            if (dataParticleIsEnabled[i]==0){
+                particleColor=colors.COLLIDER_PARTICLE_DISABLED;
+            }
+        }
+        if (colliderColor==colors.COLLIDER_STATIC){
+            particleColor=colliderColor;
+        }
         if(radius==0.5f){
             //draw_circle(pos,radius,colliderColor);
-            rs->canvas_item_add_circle(debugRenderInstance,pos,radius,colliderColor);
+            rs->canvas_item_add_circle(debugRenderInstance,pos,radius,particleColor);
         }else{
             //draw_arc(pos,radius,0,M_PI*2,particleCount,colliderColor,1.0f);
-            rs->canvas_item_add_polyline(debugRenderInstance,create_circle_polygon(pos,radius),{colliderColor} );
+            rs->canvas_item_add_polyline(debugRenderInstance,create_circle_polygon(pos,radius),{particleColor} );
             
             
             if(dataParticlePositions.size()==1 ){
                 //draw_line(pos,pos+Vector2(radius,0),colliderColor,1.0f );
-                rs->canvas_item_add_line(debugRenderInstance,pos,pos+Vector2(radius,0),colliderColor);
+                rs->canvas_item_add_line(debugRenderInstance,pos,pos+Vector2(radius,0),particleColor);
             }
         }
     }
@@ -322,6 +336,7 @@ void QMeshNode::debug_render_in_runtime()
 
     Color colliderColor=colors.COLLIDER_DYNAMIC;
     if(ownerBodyNode!=nullptr){
+        
         if (ownerBodyNode->get_mode()==QBody::Modes::STATIC){
             colliderColor=colors.COLLIDER_STATIC;
         }  
@@ -343,16 +358,27 @@ void QMeshNode::debug_render_in_runtime()
         Vector2 pos=Vector2( particle->GetGlobalPosition().x, particle->GetGlobalPosition().y )-get_global_position();
         pos=pos.rotated(-get_global_rotation() );
         float radius=particle->GetRadius();
+        Color particleColor=colors.COLLIDER_PARTICLE;
+        if (particle->GetIsLazy()==true){
+            particleColor=colors.COLLIDER_PARTICLE_LAZY;
+        }
+        if(particle->GetEnabled()==false ){
+            particleColor=colors.COLLIDER_PARTICLE_DISABLED;
+        }
+        if (colliderColor==colors.COLLIDER_STATIC){
+            particleColor=colliderColor;
+        }
+        
         if(radius==0.5f){
-            rs->canvas_item_add_circle(debugRenderInstance,pos,radius,colliderColor);
+            rs->canvas_item_add_circle(debugRenderInstance,pos,radius,particleColor);
         }else{
             int particleCount=round( (2*M_PI*radius)/2 );
             particleCount=max(particleCount,8);
-            rs->canvas_item_add_polyline(debugRenderInstance,create_circle_polygon(pos,radius),{colliderColor} );
+            rs->canvas_item_add_polyline(debugRenderInstance,create_circle_polygon(pos,radius),{particleColor} );
             
             if( isOwnerBodyRigid==true && meshObject->GetParticleCount()==1){
                 
-                rs->canvas_item_add_line(debugRenderInstance,pos,( pos+Vector2(radius,0) ) ,colliderColor);
+                rs->canvas_item_add_line(debugRenderInstance,pos,( pos+Vector2(radius,0) ) ,particleColor);
             }
 
         }

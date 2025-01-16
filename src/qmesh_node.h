@@ -475,6 +475,9 @@ public:
 class QDebugColors{
     public:
         const Color COLLIDER_DYNAMIC=Color::named("limegreen"); //green
+        const Color COLLIDER_PARTICLE=Color::named("limegreen");
+        const Color COLLIDER_PARTICLE_DISABLED=Color::named("lightseagreen");
+        const Color COLLIDER_PARTICLE_LAZY=Color::named("deepskyblue");
         const Color COLLIDER_DYNAMIC_SLEEPING=Color::named("seagreen"); //green
         const Color COLLIDER_STATIC=Color::named("deepskyblue"); //blue
         const Color SPRING=Color::named("darkgray"); // gray
