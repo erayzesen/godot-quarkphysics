@@ -161,6 +161,7 @@ collision_visibility_mode = 1
 
 [node name="QTileMapCollider" type="Node2D" parent="TileMapLayer"]
 script = ExtResource("2_yuswt")
+merge_mode = 1
 
 [node name="Door" type="QRigidBodyNode" parent="."]
 fixed_rotation = true

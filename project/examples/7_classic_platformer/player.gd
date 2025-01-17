@@ -33,6 +33,17 @@ func _physics_process(delta: float) -> void:
 			set_gravity_multiplier(1.0)
 	else :
 		set_gravity_multiplier(1.0)
+	
+	var right_wall_test=get_right_wall(1.0)
+	if right_wall_test["body"]!=null :
+		if get_controller_horizontal_velocity().x>0:
+			var penetration=right_wall_test["penetration"]
+			var normal=right_wall_test["normal"]
+			set_controller_horizontal_velocity(Vector2.ZERO)
+			set_body_position_and_collide(get_body_position()+normal*penetration,true)
+			
+			
+		
 		
 	#Jump 
 	if Input.is_action_just_pressed("ui_up") :
