@@ -21,6 +21,9 @@ var PARTICLE_INTERNAL=Color.DARK_SEA_GREEN
 
 	
 func _edit(object: Object) -> void:
+	if object == null and meshNode is QMeshNode:
+		meshNode.modulate.a = 1.0
+
 	meshNode=object
 	update_overlays()
 	if object is QMeshNode :
@@ -54,6 +57,7 @@ func _forward_canvas_draw_over_viewport(overlay: Control) -> void:
 		return
 		
 	if edit_mode==false:
+		meshNode.modulate.a = 1.0
 		return
 		
 	var screen_rect=overlay.get_rect()
