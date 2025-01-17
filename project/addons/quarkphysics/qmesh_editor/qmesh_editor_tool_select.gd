@@ -48,9 +48,10 @@ func _handle_event(event:InputEvent)->bool:
 				if repositioning_particles==true && selected_particle_indexes.size()>0 :
 					var delta=selected_particle_previous_positions[0]-meshNode.data_particle_positions[selected_particle_indexes[0] ]
 					var undo_redo=plugin.get_undo_redo()
+					var particle_indexes_copy:PackedInt32Array=selected_particle_indexes.duplicate()
 					undo_redo.create_action("Move Particle Positions by Delta: "+str(delta) )
-					undo_redo.add_do_method(self,"command_move_particle_positions",plugin,meshNode,selected_particle_indexes,-delta )
-					undo_redo.add_undo_method(self,"command_move_particle_positions",plugin,meshNode,selected_particle_indexes,delta )
+					undo_redo.add_do_method(self,"command_move_particle_positions",plugin,meshNode,particle_indexes_copy,-delta )
+					undo_redo.add_undo_method(self,"command_move_particle_positions",plugin,meshNode,particle_indexes_copy,delta )
 					undo_redo.commit_action(false)
 				
 				#Update Radius SpinBox 	
