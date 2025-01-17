@@ -18,7 +18,7 @@ void QMeshRectNode::_bind_methods() {
     ADD_PROPERTY( PropertyInfo(Variant::FLOAT, "particle_radius"),"set_particle_radius","get_particle_radius" );
     ADD_PROPERTY( PropertyInfo(Variant::VECTOR2, "rectangle_size"),"set_size","get_size" );
     ADD_PROPERTY( PropertyInfo(Variant::VECTOR2, "center_position"),"set_center_position","get_center_position" );
-    ADD_PROPERTY( PropertyInfo(Variant::VECTOR2, "grid"),"set_grid","get_grid" );
+    ADD_PROPERTY( PropertyInfo(Variant::VECTOR2I, "grid"),"set_grid","get_grid" );
     
 }
 
