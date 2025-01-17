@@ -133,7 +133,7 @@ data_uv_maps = Array[PackedInt32Array]([PackedInt32Array(0, 1, 3), PackedInt32Ar
 [node name="Water" type="QSoftBodyNode" parent="."]
 rigidity = 0.01
 use_custom_gravity = true
-position = Vector2(754, 785)
+position = Vector2(656, 496)
 
 [node name="QMeshAdvancedNode" type="QMeshAdvancedNode" parent="Water"]
 disable_polygon_for_collisions = true

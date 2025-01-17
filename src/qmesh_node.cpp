@@ -328,7 +328,7 @@ void QMeshNode::debug_render_in_runtime()
     QDebugColors colors;
 
     bool isOwnerBodyRigid=false;
-
+    Vector2 node_scale_inverse_factor=Vector2(1/get_global_scale().x,1/get_global_scale().y);
     //Drawing springs
     if(ownerBodyNode!=nullptr){
         if(ownerBodyNode->bodyObject->GetBodyType()!=QBody::BodyTypes::RIGID){
@@ -340,6 +340,8 @@ void QMeshNode::debug_render_in_runtime()
                 QVector qpb=spring->GetParticleB()->GetGlobalPosition();
                 Vector2 pA=( Vector2(qpa.x,qpa.y)-get_global_position() ).rotated(-get_global_rotation() );
                 Vector2 pB=( Vector2(qpb.x,qpb.y)-get_global_position() ).rotated(-get_global_rotation() );
+                pA*=node_scale_inverse_factor;
+                pB*=node_scale_inverse_factor;
                 rs->canvas_item_add_line(debugRenderInstance,pA,pB,springColor);
                 
             }
@@ -363,6 +365,8 @@ void QMeshNode::debug_render_in_runtime()
             QVector qpn=meshObject->GetParticleFromPolygon((n+1)%meshObject->GetPolygonParticleCount())->GetGlobalPosition();
             Vector2 p=(Vector2(qp.x,qp.y)-get_global_position() ).rotated(-get_global_rotation() ) ;
             Vector2 pn=( Vector2(qpn.x,qpn.y)-get_global_position() ).rotated(-get_global_rotation() );
+            p*=node_scale_inverse_factor;
+            pn*=node_scale_inverse_factor;
             rs->canvas_item_add_line(debugRenderInstance,p,pn,colliderColor);
         }
     }
@@ -371,6 +375,7 @@ void QMeshNode::debug_render_in_runtime()
         QParticle *particle=meshObject->GetParticleAt(i);
         Vector2 pos=Vector2( particle->GetGlobalPosition().x, particle->GetGlobalPosition().y )-get_global_position();
         pos=pos.rotated(-get_global_rotation() );
+        pos*=node_scale_inverse_factor;
         float radius=particle->GetRadius();
         Color particleColor=colors.COLLIDER_PARTICLE;
         if (particle->GetIsLazy()==true){
@@ -414,6 +419,8 @@ void QMeshNode::vector_render_in_runtime()
     if(enableVectorRendering==false)
         return;
 
+    Vector2 node_scale_inverse_factor=Vector2(1/get_global_scale().x,1/get_global_scale().y);
+
     PackedColorArray fillColors;
     fillColors.push_back(fillColor);	
     PackedColorArray strokeColors;
@@ -426,7 +433,8 @@ void QMeshNode::vector_render_in_runtime()
         for(int n=0;n<polygonSize;n++){
             QVector qpg=meshObject->GetParticleFromPolygon(n)->GetGlobalPosition();
             QVector qpl=meshObject->GetParticleFromPolygon(n)->GetPosition();
-            Vector2 pg=(Vector2(qpg.x,qpg.y)-get_global_position() ).rotated(-get_global_rotation() ); 
+            Vector2 pg=(Vector2(qpg.x,qpg.y)-get_global_position() ).rotated(-get_global_rotation() );
+            pg*=node_scale_inverse_factor; 
             Vector2 pl=Vector2(qpl.x,qpl.y);
             polygonPoints.push_back(pg );
             polygonLocalPoints.push_back(pl );
@@ -657,7 +665,9 @@ QMesh::MeshData QMeshNode::convert_mesh_node_data_to_mesh_data()
 
     QMesh::MeshData qData;
     for(size_t i=0;i<dataParticlePositions.size();++i){
-        qData.particlePositions.push_back( QVector( dataParticlePositions[i].x, dataParticlePositions[i].y) );
+        Vector2 pos=dataParticlePositions[i];
+        pos*=get_global_scale();
+        qData.particlePositions.push_back( QVector( pos.x, pos.y) );
     }
     
     for(size_t i=0;i<dataParticlePositions.size();++i){

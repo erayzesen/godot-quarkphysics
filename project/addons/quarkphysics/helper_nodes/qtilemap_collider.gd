@@ -138,8 +138,12 @@ func parse_tile_map() :
 		bodyNode.collidable_layers=collider_layer["body_collidable_layers_bit"]
 		bodyNodes.add_child(bodyNode)
 		
+		
 		for polygon in collider_layer["polygons"] :
 			var decomp_polygons=Geometry2D.decompose_polygon_in_convex(polygon)
+			for decomp_poly in decomp_polygons : 
+				for i in range(decomp_poly.size()) :
+					decomp_poly[i]=decomp_poly[i]*tile_map.global_scale
 			for decomp_poly in decomp_polygons : 
 				create_and_add_mesh_with_cell_data(bodyNode,decomp_poly)
 		
