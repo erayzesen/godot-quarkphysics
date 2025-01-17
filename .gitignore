@@ -1,13 +1,14 @@
-/**/.os
-/**/.o
+
 
 # Binary Airfacts
 /**/compile_commands.json
 /build
-/**/.framework
-/**/.xcframework
-/**/.dll
-/**/.so
+/**/*.framework
+/**/*.xcframework
+/**/*.dll
+/**/*.so
+/**/*.os
+/**/*.o
 
 # Godot
 /**/.godot
