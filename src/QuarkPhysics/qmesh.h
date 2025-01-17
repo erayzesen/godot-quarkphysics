@@ -67,6 +67,7 @@ protected:
 	QBody *ownerBody=nullptr;
 	CollisionBehaviors collisionBehavior=CollisionBehaviors::CIRCLES;
 	vector<vector<int>> UVMaps=vector<vector<int>>();
+	bool disablePolygonForCollisions=false;
 
 	bool collisionBehaviorNeedsUpdate=false;
 
@@ -242,6 +243,15 @@ public:
 		}
 		return collisionBehavior;
 	}
+	/** Returns whether the polygon is disabled for collisions.
+
+		The polygon defined for the mesh is disabled during collision behavior determination and
+		is not used in collisions. As a result, collisions are handled by the particles.
+		The polygon can optionally be used for rendering purposes and other external
+		purposes in the related simulation.  */
+	bool GetPolygonForCollisionsDisabled(){
+		return disablePolygonForCollisions;
+	}
 
 
 	//General Set Methods
@@ -267,6 +277,20 @@ public:
 	 */
 	QMesh *SetRotation(float value){
 		rotation=value;
+		return this;
+	}
+
+	/** Sets whether the polygon is disabled for collisions.
+	 * The polygon defined for the mesh is disabled during collision behavior determination and
+	 * is not used in collisions. As a result, collisions are handled by the particles.
+	 * The polygon can optionally be used for rendering purposes and other external
+	 * purposes in the related simulation. 
+	 * @param value The boolean value to set.
+	 * @return QMesh* A pointer to mesh itself.
+	 */
+	QMesh *SetPolygonForCollisionsDisabled(bool value){
+		disablePolygonForCollisions=value;
+		collisionBehaviorNeedsUpdate=true;
 		return this;
 	}
 	

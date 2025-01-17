@@ -16,6 +16,10 @@ var lazyCheckBox:CheckBox
 var operationOptionButton:OptionButton
 var plugin:EditorPlugin
 
+#Mesh Node Temp
+var mesh_node_alpha_temp:float=1
+var mesh_node_editing_alpha:float=0.3
+
 #Helpers
 var snapHelper:QMeshSnapHelper=QMeshSnapHelper.new()
 
@@ -45,7 +49,15 @@ func _lazy_checkbox_toggled(toggled_on:bool) :
 func _radius_bar_changed(value:float) :
 	pass
 	
+func make_mesh_graphics_passive() :
+	make_mesh_graphics_active()
+	mesh_node_alpha_temp=meshNode.modulate.a
+	meshNode.modulate.a=mesh_node_editing_alpha
 	
+func make_mesh_graphics_active() :
+	meshNode.modulate.a=mesh_node_alpha_temp
+	
+
 func toScreen(point:Vector2) ->Vector2 :
 	var viewport_transform=EditorInterface.get_editor_viewport_2d().get_final_transform()*EditorInterface.get_base_control().get_canvas_transform()
 	return viewport_transform*point
@@ -58,7 +70,7 @@ func fromScreen(point:Vector2)->Vector2 :
 func get_nearest_particle_index(targetMeshNode:QMeshNode,position:Vector2) ->int:
 	for i in range(targetMeshNode.data_particle_positions.size() ) :
 		var point=targetMeshNode.data_particle_positions[i].rotated(meshNode.global_rotation)
-		if ((point+targetMeshNode.global_position)-position).length()<5.0 :
+		if ((point+targetMeshNode.global_position)-position).length()<plugin.particle_select_range :
 			return i
 	return -1;
 	
@@ -139,6 +151,7 @@ func is_particle_exist_in_uv(targetMeshNode:QMeshNode,particleIndex:int)->bool:
 	
 static func solve_faulty_particle_data_issues(targetMeshNode:QMeshNode) :
 	var particleCount=targetMeshNode.data_particle_positions.size()
+	# SOLVING MISSING FEATURES
 	#Check Particle Enabled Values
 	if targetMeshNode.data_particle_is_enabled.size()<particleCount :
 		var temp_collection=targetMeshNode.data_particle_is_enabled.duplicate()
@@ -165,4 +178,26 @@ static func solve_faulty_particle_data_issues(targetMeshNode:QMeshNode) :
 		for i in range(temp_collection.size(),particleCount) :
 			temp_collection.append(0.5)
 		targetMeshNode.data_particle_radius=temp_collection
-	pass
+		
+	#SOLVING OVERAGE FEATURES
+	#Check Particle Enabled Values
+	while targetMeshNode.data_particle_is_enabled.size()>targetMeshNode.data_particle_positions.size() :
+		var temp=targetMeshNode.data_particle_is_enabled
+		temp.remove_at(temp.size()-1)
+		targetMeshNode.data_particle_is_enabled=temp
+	#Check Particle Radius Values
+	while targetMeshNode.data_particle_radius.size()>targetMeshNode.data_particle_positions.size() :
+		var temp=targetMeshNode.data_particle_radius
+		temp.remove_at(temp.size()-1)
+		targetMeshNode.data_particle_radius=temp
+	#Check Particle Internal Values
+	while targetMeshNode.data_particle_is_internal.size()>targetMeshNode.data_particle_positions.size() :
+		var temp=targetMeshNode.data_particle_is_internal
+		temp.remove_at(temp.size()-1)
+		targetMeshNode.data_particle_is_internal=temp
+	#Check Particle Lazy Values
+	while targetMeshNode.data_particle_is_lazy.size()>targetMeshNode.data_particle_positions.size() :
+		var temp=targetMeshNode.data_particle_is_lazy
+		temp.remove_at(temp.size()-1)
+		targetMeshNode.data_particle_is_lazy=temp
+	

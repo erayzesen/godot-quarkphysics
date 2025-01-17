@@ -15,7 +15,7 @@ func _handle_event(event:InputEvent)->bool:
 					var nearest_particle_index=get_nearest_particle_index(meshNode,mPos)
 					if nearest_particle_index==-1 :
 						selected_particle_indexes.clear()
-						meshNode.modulate.a=1.0
+						make_mesh_graphics_active()
 						plugin.update_overlays()
 					else :
 						var is_particle_exist=false
@@ -31,19 +31,19 @@ func _handle_event(event:InputEvent)->bool:
 							undo_redo.add_undo_method(self,"command_remove_uv_at",plugin,meshNode,uv_maps_size )
 							undo_redo.add_do_method(self,"command_add_uv",plugin,meshNode, new_uv_indexes )
 							undo_redo.commit_action(true)
-							meshNode.modulate.a=1.0
+							make_mesh_graphics_active()
 							selected_particle_indexes.clear()
 							meshNode.queue_redraw()
 							plugin.update_overlays()
 						else :
 							if is_particle_exist==false:
 								selected_particle_indexes.push_back(nearest_particle_index)
-								meshNode.modulate.a=0.3
+								make_mesh_graphics_passive()
 								plugin.update_overlays()
 							else :
 								selected_particle_indexes.clear()
 								plugin.update_overlays()
-								meshNode.modulate.a=1.0
+								make_mesh_graphics_active()
 					last_mouse_pressed_position=mPos
 					last_mouse_motion_position=mPos
 					pass

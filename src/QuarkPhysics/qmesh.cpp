@@ -66,7 +66,7 @@ void QMesh::UpdateCollisionBehavior()
 		return;
 	
 
-	if(GetPolygonParticleCount()>0){
+	if(GetPolygonParticleCount()>0 && disablePolygonForCollisions==false){
 		if(ownerBody->simulationModel==QBody::SimulationModels::RIGID_BODY){
 			collisionBehavior=CollisionBehaviors::POLYGONS;
 		}else{

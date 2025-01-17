@@ -16,7 +16,7 @@ func _handle_event(event:InputEvent)->bool:
 					#Add a new particle
 					var undo_redo=plugin.get_undo_redo()
 					undo_redo.create_action("Add a Particle to Position: "+str(mPos) )
-					undo_redo.add_do_method(self,"command_add_particle",plugin,meshNode,new_particle_local_pos,0.5,false )
+					undo_redo.add_do_method(self,"command_add_particle",plugin,meshNode,new_particle_local_pos,0.5,internalCheckBox.button_pressed )
 					undo_redo.add_undo_method(self,"command_remove_particle",plugin,meshNode,meshNode.data_particle_positions.size() )
 					undo_redo.commit_action(true)
 					
@@ -39,11 +39,13 @@ func _handle_event(event:InputEvent)->bool:
 						var target_particle_position=meshNode.data_particle_positions[nearest_particle_index]
 						var target_particle_radius=meshNode.data_particle_radius[nearest_particle_index]
 						var target_particle_internal=meshNode.data_particle_is_internal[nearest_particle_index]
+						var target_particle_enabled=meshNode.data_particle_is_enabled[nearest_particle_index]
+						var target_particle_lazy=meshNode.data_particle_is_lazy[nearest_particle_index]
 						var undo_redo=plugin.get_undo_redo()
 						
 						undo_redo.create_action("Remove Particle Indexed: "+str(nearest_particle_index) )
 						undo_redo.add_do_method(self,"command_remove_particle",plugin,meshNode,nearest_particle_index )
-						undo_redo.add_undo_method(self,"command_add_particle",plugin,meshNode,target_particle_position,target_particle_radius,target_particle_internal,nearest_particle_index, old_springs,old_internal_springs,old_polygon,old_uv_maps )
+						undo_redo.add_undo_method(self,"command_add_particle",plugin,meshNode,target_particle_position,target_particle_radius,target_particle_internal,target_particle_enabled,target_particle_lazy,nearest_particle_index, old_springs,old_internal_springs,old_polygon,old_uv_maps )
 						undo_redo.commit_action(true)
 						pass
 					pass
@@ -81,7 +83,7 @@ func _radius_bar_changed(value:float) :
 	
 #Commands
 
-func command_add_particle(targetPlugin:EditorPlugin,targetMeshNode:QMeshNode, position:Vector2,radius:float,is_internal:bool,array_position:int=-1, setter_springs:Array=[], setter_internal_springs:Array=[],setter_polygon:PackedInt32Array=[],setter_uv_maps:Array=[]):
+func command_add_particle(targetPlugin:EditorPlugin,targetMeshNode:QMeshNode, position:Vector2,radius:float,is_internal:bool=false,is_enabled:bool=true,is_lazy:bool=false,array_position:int=-1, setter_springs:Array=[], setter_internal_springs:Array=[],setter_polygon:PackedInt32Array=[],setter_uv_maps:Array=[]):
 	var particles=targetMeshNode.data_particle_positions.duplicate()
 	if array_position==-1 :
 		particles.push_back(position)
@@ -112,12 +114,35 @@ func command_add_particle(targetPlugin:EditorPlugin,targetMeshNode:QMeshNode, po
 					targetMeshNode.data_uv_maps[i][j]+=1
 				
 	targetMeshNode.data_particle_positions=particles
+	#radius
 	var particle_radius=targetMeshNode.data_particle_radius
-	particle_radius.append(radius)
+	if array_position==-1 :
+		particle_radius.append(radius)
+	else :
+		particle_radius.insert(array_position,radius)
 	targetMeshNode.data_particle_radius=particle_radius
+	#internal
 	var particles_is_internal=targetMeshNode.data_particle_is_internal
-	particles_is_internal.push_back(is_internal)
+	if array_position==-1 :
+		particles_is_internal.append(is_internal)
+	else :
+		particles_is_internal.insert(array_position,is_internal)
 	targetMeshNode.data_particle_is_internal=particles_is_internal
+	#enabled
+	var particles_is_enabled=targetMeshNode.data_particle_is_enabled
+	if array_position==-1 :
+		particles_is_enabled.append(is_enabled)
+	else :
+		particles_is_enabled.insert(array_position,is_enabled)
+	targetMeshNode.data_particle_is_enabled=particles_is_enabled
+	#lazy
+	var particles_is_lazy=targetMeshNode.data_particle_is_lazy
+	if array_position==-1 :
+		particles_is_lazy.append(is_lazy)
+	else :
+		particles_is_lazy.insert(array_position,is_lazy)
+	targetMeshNode.data_particle_is_lazy=particles_is_lazy
+	
 	if setter_springs.size()>0 :
 		targetMeshNode.data_springs=setter_springs
 	if setter_internal_springs.size()>0 :
@@ -126,7 +151,7 @@ func command_add_particle(targetPlugin:EditorPlugin,targetMeshNode:QMeshNode, po
 		targetMeshNode.data_polygon=setter_polygon
 	if setter_uv_maps.size()>0 :
 		targetMeshNode.data_uv_maps=setter_uv_maps
-		
+	
 	targetMeshNode.queue_redraw()
 	targetPlugin.update_overlays()
 	pass
@@ -226,16 +251,27 @@ func command_remove_particle(targetPlugin:EditorPlugin,targetMeshNode:QMeshNode,
 	targetMeshNode.queue_redraw()
 	
 			
-		
+	#position
 	var particles=targetMeshNode.data_particle_positions
 	particles.remove_at(particle_index)
 	targetMeshNode.data_particle_positions=particles
+	#radius
 	var particle_radius=targetMeshNode.data_particle_radius
 	particle_radius.remove_at(particle_index)
 	targetMeshNode.data_particle_radius=particle_radius
+	#internal
 	var particles_is_internal=targetMeshNode.data_particle_is_internal
 	particles_is_internal.remove_at(particle_index)
 	targetMeshNode.data_particle_is_internal=particles_is_internal
+	#enabled
+	var particles_is_enabled=targetMeshNode.data_particle_is_enabled
+	particles_is_enabled.remove_at(particle_index)
+	targetMeshNode.data_particle_is_enabled=particles_is_enabled
+	#lazy
+	var particles_is_lazy=targetMeshNode.data_particle_is_lazy
+	particles_is_lazy.remove_at(particle_index)
+	targetMeshNode.data_particle_is_lazy=particles_is_lazy
+	
 	targetMeshNode.queue_redraw()
 	targetPlugin.update_overlays()
 	pass

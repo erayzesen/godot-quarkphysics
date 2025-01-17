@@ -508,8 +508,12 @@ QBodyNode *QBodyNode::type_cast(Object *obj) {
 
 void QBodyNode::update_meshes_draw() {
     if( Engine::get_singleton()->is_editor_hint()==true ){
-        for(auto meshNode:meshNodes){
-            meshNode->queue_redraw();
+        for (size_t i=0; i<get_child_count();++i ){
+            Node *child=get_child(i);
+            QMeshNode *meshNode=static_cast<QMeshNode*>(child);
+            if (meshNode!=nullptr){
+                meshNode->queue_redraw();
+            }
         }
     }
 }

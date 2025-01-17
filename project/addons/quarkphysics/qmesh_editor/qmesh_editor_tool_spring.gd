@@ -27,14 +27,19 @@ func _handle_event(event:InputEvent)->bool:
 										undo_redo.add_do_method(self,"command_add_spring",plugin,meshNode,first_selected_particle_index,nearest_particle_index,internalCheckBox.button_pressed )
 										undo_redo.add_undo_method(self,"command_remove_spring",plugin,meshNode,first_selected_particle_index,nearest_particle_index )
 										undo_redo.commit_action(true)
+						make_mesh_graphics_active()
+						
 						first_selected_particle_index=-1
-						meshNode.modulate.a=1.0
+						
 					else :
 						var nearest_particle_index=get_nearest_particle_index(meshNode, mPos)
 						first_selected_particle_index=nearest_particle_index
 						last_mouse_pressed_position=mPos
 						last_mouse_motion_position=mPos
-						meshNode.modulate.a=0.3
+						if nearest_particle_index!=-1 :
+							make_mesh_graphics_passive()
+						else :
+							make_mesh_graphics_active()
 					
 				else :
 					var nearest_spring_index=get_nearest_spring_index(meshNode,mPos,internalCheckBox.button_pressed)
@@ -55,10 +60,6 @@ func _handle_event(event:InputEvent)->bool:
 			#Handling mouse left button released
 			if event.button_index==MOUSE_BUTTON_LEFT :
 				var mPos=fromScreen(event.position)
-				
-							
-							
-					
 				last_mouse_released_position=mPos
 				
 				

@@ -49,9 +49,11 @@ class QMeshNode: public Node2D{
     GDCLASS(QMeshNode,Node2D);
 protected:
     
-    bool enableSprings=true;
-    bool enablePolygons=true;
+    bool showSprings=true;
+    bool showPolygon=true;
+    bool showParticleIndexNumbers=false;
     float particleRadius=0.5f;
+    bool disablePolygonForCollisions=false;
     
     QMesh *meshObject=nullptr;
     QBodyNode *ownerBodyNode=nullptr;
@@ -77,6 +79,7 @@ protected:
     float strokeWidth=3.0f;
     Color strokeColor=Color::named("black");
     float strokeOffset=0.0f;
+    bool enableParticleRendering=true;
 
     Ref<Curve2D> curvedPolygon=memnew( Curve2D);
     bool enableCurvedCorners=false;
@@ -164,21 +167,27 @@ public:
     float get_area();
     float get_polygon_area();
     float get_circumference();
-    bool get_springs_enabled();
-    bool get_polygons_enabled();
+    bool get_show_springs_enabled();
+    bool get_show_polygon_enabled();
+    bool get_show_particle_index_numbers_enabled();
     Array get_average_position_and_rotation(TypedArray<QParticleObject> particle_collection);
     Array get_matching_particle_positions(TypedArray<QParticleObject> particle_collection,Vector2 target_position,float target_rotation);
     float get_min_angle_constraint_of_polygon();
 
+    bool get_polygon_for_collision_disabled();
+
     QBodyNode *get_owner_body_node();
+    
 
     //Set Methods
     QMeshNode *set_mesh_position(Vector2 value);
     QMeshNode *set_mesh_global_position(Vector2 value);
     QMeshNode *set_mesh_rotation(float value);
-    QMeshNode *set_springs_enabled(bool value);
-    QMeshNode *set_polygons_enabled(bool value);
+    QMeshNode *set_show_springs_enabled(bool value);
+    QMeshNode *set_show_polygon_enabled(bool value);
+    QMeshNode *set_show_particle_index_numbers_enabled(bool value);
     QMeshNode *set_min_angle_constraint_of_polygon(bool value);
+    QMeshNode *set_polygon_for_collision_disabled(bool value);
     
 
     //Particle Operations
@@ -286,6 +295,10 @@ public:
         return curveLength;
     }
 
+    bool get_particle_rendering_enabled(){
+        return enableParticleRendering;
+    }
+
     QMeshNode *set_vector_rendering_enabled(bool value){
         enableVectorRendering=value;
         queue_redraw();
@@ -375,6 +388,12 @@ public:
         return this;
     }
 
+    QMeshNode *set_particle_rendering_enabled(bool value){
+        enableParticleRendering=value;
+        queue_redraw();
+        return this;
+    }
+
     //Data
 
     void set_data_particle_positions(PackedVector2Array collection){
@@ -459,6 +478,9 @@ public:
 class QDebugColors{
     public:
         const Color COLLIDER_DYNAMIC=Color::named("limegreen"); //green
+        const Color COLLIDER_PARTICLE=Color::named("limegreen");
+        const Color COLLIDER_PARTICLE_DISABLED=Color::named("lightseagreen");
+        const Color COLLIDER_PARTICLE_LAZY=Color::named("sandybrown");
         const Color COLLIDER_DYNAMIC_SLEEPING=Color::named("seagreen"); //green
         const Color COLLIDER_STATIC=Color::named("deepskyblue"); //blue
         const Color SPRING=Color::named("darkgray"); // gray
