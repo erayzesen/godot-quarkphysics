@@ -51,6 +51,7 @@ protected:
     
     bool showSprings=true;
     bool showPolygon=true;
+    bool showParticleIndexNumbers=false;
     float particleRadius=0.5f;
     bool disablePolygonForCollisions=false;
     
@@ -168,6 +169,7 @@ public:
     float get_circumference();
     bool get_show_springs_enabled();
     bool get_show_polygon_enabled();
+    bool get_show_particle_index_numbers_enabled();
     Array get_average_position_and_rotation(TypedArray<QParticleObject> particle_collection);
     Array get_matching_particle_positions(TypedArray<QParticleObject> particle_collection,Vector2 target_position,float target_rotation);
     float get_min_angle_constraint_of_polygon();
@@ -183,6 +185,7 @@ public:
     QMeshNode *set_mesh_rotation(float value);
     QMeshNode *set_show_springs_enabled(bool value);
     QMeshNode *set_show_polygon_enabled(bool value);
+    QMeshNode *set_show_particle_index_numbers_enabled(bool value);
     QMeshNode *set_min_angle_constraint_of_polygon(bool value);
     QMeshNode *set_polygon_for_collision_disabled(bool value);
     
@@ -477,7 +480,7 @@ class QDebugColors{
         const Color COLLIDER_DYNAMIC=Color::named("limegreen"); //green
         const Color COLLIDER_PARTICLE=Color::named("limegreen");
         const Color COLLIDER_PARTICLE_DISABLED=Color::named("lightseagreen");
-        const Color COLLIDER_PARTICLE_LAZY=Color::named("deepskyblue");
+        const Color COLLIDER_PARTICLE_LAZY=Color::named("sandybrown");
         const Color COLLIDER_DYNAMIC_SLEEPING=Color::named("seagreen"); //green
         const Color COLLIDER_STATIC=Color::named("deepskyblue"); //blue
         const Color SPRING=Color::named("darkgray"); // gray

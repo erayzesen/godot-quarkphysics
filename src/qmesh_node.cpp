@@ -3,7 +3,11 @@
 #include <godot_cpp/core/math.hpp>
 #include <godot_cpp/classes/geometry2d.hpp>
 #include <godot_cpp/variant/utility_functions.hpp>
+#include <godot_cpp/classes/theme_db.hpp>
+#include <godot_cpp/classes/font.hpp>
+#include "string"
 #include "qworld_node.h"
+
 
 
 void QMeshNode::_notification(int what) {
@@ -141,6 +145,16 @@ void QMeshNode::debug_render_in_editor() {
                 //draw_line(pos,pos+Vector2(radius,0),colliderColor,1.0f );
                 rs->canvas_item_add_line(debugRenderInstance,pos,pos+Vector2(radius,0),particleColor);
             }
+        }
+
+        if (showParticleIndexNumbers==true){
+            Ref<Font> font=ThemeDB::get_singleton()->get_fallback_font();
+            
+            Vector2 textPos=pos;
+            textPos+=Vector2(-12,5);
+            font->draw_string_outline(debugRenderInstance,textPos,String::num_int64(i),godot::HORIZONTAL_ALIGNMENT_CENTER,24,10,3.0f,Color::named("black"));
+            font->draw_string(debugRenderInstance,textPos, String::num_int64(i) ,godot::HORIZONTAL_ALIGNMENT_CENTER,24,10,particleColor);
+            
         }
     }
 
@@ -382,6 +396,8 @@ void QMeshNode::debug_render_in_runtime()
             }
 
         }
+
+        
         
 
     }
@@ -803,6 +819,7 @@ void QMeshNode::_bind_methods()
     ClassDB::bind_method(D_METHOD("get_owner_body_node"),&QMeshNode::get_owner_body_node );
     ClassDB::bind_method(D_METHOD("get_show_springs_enabled"),&QMeshNode::get_show_springs_enabled );
     ClassDB::bind_method(D_METHOD("get_show_polygon_enabled"),&QMeshNode::get_show_polygon_enabled );
+    ClassDB::bind_method(D_METHOD("get_show_particle_index_numbers_enabled"),&QMeshNode::get_show_particle_index_numbers_enabled );
     ClassDB::bind_method(D_METHOD("get_polygon_for_collision_disabled"),&QMeshNode::get_polygon_for_collision_disabled );
     //Set
     ClassDB::bind_method(D_METHOD("set_mesh_position"),&QMeshNode::set_mesh_position );
@@ -810,6 +827,7 @@ void QMeshNode::_bind_methods()
     ClassDB::bind_method(D_METHOD("set_mesh_rotation"),&QMeshNode::set_mesh_rotation );
     ClassDB::bind_method(D_METHOD("set_show_springs_enabled","value"),&QMeshNode::set_show_springs_enabled );
     ClassDB::bind_method(D_METHOD("set_show_polygon_enabled","value"),&QMeshNode::set_show_polygon_enabled );
+    ClassDB::bind_method(D_METHOD("set_show_particle_index_numbers_enabled","value"),&QMeshNode::set_show_particle_index_numbers_enabled );
     ClassDB::bind_method(D_METHOD("set_polygon_for_collision_disabled","value"),&QMeshNode::set_polygon_for_collision_disabled );
     //Particle Operations
     ClassDB::bind_method(D_METHOD("add_particle","particle_object"),&QMeshNode::add_particle );
@@ -931,6 +949,7 @@ void QMeshNode::_bind_methods()
     ADD_GROUP("Debug Rendering","");
     ADD_PROPERTY( PropertyInfo(Variant::BOOL , "show_springs"), "set_show_springs_enabled","get_show_springs_enabled" );
     ADD_PROPERTY( PropertyInfo(Variant::BOOL , "show_polygons"), "set_show_polygon_enabled","get_show_polygon_enabled" );
+    ADD_PROPERTY( PropertyInfo(Variant::BOOL , "show_particle_index_numbers"), "set_show_particle_index_numbers_enabled","get_show_particle_index_numbers_enabled" );
 
     ADD_GROUP("Vector Rendering","");
     ADD_PROPERTY( PropertyInfo(Variant::BOOL, "enable_vector_rendering"),"set_vector_rendering_enabled","get_vector_rendering_enabled" );
@@ -1014,6 +1033,11 @@ bool QMeshNode::get_show_polygon_enabled() {
 	return showPolygon;
 }
 
+bool QMeshNode::get_show_particle_index_numbers_enabled()
+{
+    return showParticleIndexNumbers;
+}
+
 Array QMeshNode::get_average_position_and_rotation(TypedArray<QParticleObject> particle_collection) {
     Array result;
     vector<QParticle*> particleObjects;
@@ -1091,6 +1115,13 @@ QMeshNode *QMeshNode::set_show_polygon_enabled(bool value) {
 	showPolygon=value;
     queue_redraw();
 	return this;
+}
+
+QMeshNode *QMeshNode::set_show_particle_index_numbers_enabled(bool value)
+{
+    showParticleIndexNumbers=value;
+    queue_redraw();
+    return this;
 }
 
 QMeshNode *QMeshNode::set_min_angle_constraint_of_polygon(bool value) {
