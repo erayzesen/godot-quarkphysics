@@ -86,8 +86,12 @@ protected:
     float walkDecelerationRate=0.1f;
 
     //Jump
-    bool prevJumpMode=false;
-    bool jumpMode=false;
+    enum JumpModes{
+        RELEASED,
+        PRESSED,
+        PRESSING,
+    };
+    enum JumpModes jumpMode=JumpModes::RELEASED;
     float jumpForce=5.0f;
     int maxJumpCount=2;
     int currentJumpCount=0;
@@ -95,7 +99,6 @@ protected:
     int jumpFrameCountDown=0;
     float jumpGravityMultiplier=0.4f;
     float jumpFallGravityMultiplier=1.0f;
-    bool jumpReleased=true;
 
     
 
