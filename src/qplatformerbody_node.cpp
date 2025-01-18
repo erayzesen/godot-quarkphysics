@@ -70,8 +70,6 @@ void QPlatformerBodyNode::_bind_methods() {
     
     ClassDB::bind_method(D_METHOD("release_jump"), &QPlatformerBodyNode::release_jump );
 
-    ClassDB::bind_method(D_METHOD("get_is_jumping"), &QPlatformerBodyNode::get_is_jumping );
-
     ClassDB::bind_method(D_METHOD("get_is_jump_released"), &QPlatformerBodyNode::get_is_jump_released );
 
     ClassDB::bind_method(D_METHOD("set_specific_platform_layers","value"), &QPlatformerBodyNode::set_specific_platform_layers);
@@ -312,10 +310,7 @@ QPlatformerBodyNode *QPlatformerBodyNode::release_jump() {
 	return this;
 }
 
-bool QPlatformerBodyNode::get_is_jumping() {
-	QPlatformerBody *body=(QPlatformerBody*)bodyObject;
-	return body->GetIsJumping();
-}
+
 
 bool QPlatformerBodyNode::get_is_jump_released() {
 	QPlatformerBody *body=(QPlatformerBody*)bodyObject;

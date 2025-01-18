@@ -592,12 +592,13 @@ bool QWorld::CollideWithWorld(QBody *body){
 
 vector<QManifold> QWorld::TestCollisionWithWorld(QBody *body)
 {
-	sort(bodies.begin(),bodies.end(),SortBodiesHorizontal);
+	vector<QBody*> bodiesCopy(bodies);
+	sort(bodiesCopy.begin(),bodiesCopy.end(),SortBodiesHorizontal);
 	bool seperated=false;
 
 	vector<QManifold> manifoldList;
-	for(unsigned int q=0;q<bodies.size();q++){
-		QBody * otherBody=bodies[q];
+	for(unsigned int q=0;q<bodiesCopy.size();q++){
+		QBody * otherBody=bodiesCopy[q];
 		if(otherBody->GetEnabled()==false )
 			continue;
 		if(body==otherBody)continue;

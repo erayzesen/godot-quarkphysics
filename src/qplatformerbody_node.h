@@ -115,8 +115,6 @@ public:
 
     QPlatformerBodyNode *release_jump();
 
-    bool get_is_jumping();
-
     bool get_is_jump_released();
 
     QPlatformerBodyNode *set_specific_platform_layers(int layersBit);
