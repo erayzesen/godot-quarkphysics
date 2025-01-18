@@ -68,6 +68,8 @@ QVector QBody::GetCustomGravity()
     return customGravity;
 }
 
+
+
 QBody *QBody::SetVelocityLimit(float value)
 {
 	velocityLimit=value;

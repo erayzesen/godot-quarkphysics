@@ -212,6 +212,10 @@ public:
 
     void update_meshes_draw();
 
+    //Forces
+
+    QBodyNode *apply_force(Vector2 value);
+
 
     //Events 
 

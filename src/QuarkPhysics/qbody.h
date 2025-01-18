@@ -43,6 +43,7 @@ class QWorld;
 class QBody{
 	float inertia=0.0f;
 	float circumference=0.0f;
+	
 public:
 	/**
 	 * Determines whether the body is dynamic or static. A static body does not react to any force, constraint or collision and does not move.A dynamic body reacts to forces, constraints, collisions, and any other world event.
@@ -124,7 +125,9 @@ protected:
 	int fixedAngularTick=0;
 	bool canSleep=true;
 
+	
 
+	
 	void UpdateAABB();
 	void UpdateMeshTransforms();
 	/** Updates properties of the soft body and applies needed physical dynamics. */
@@ -215,6 +218,8 @@ protected:
 		QAABB GetAABB()const{
 			return aabb;
 		}
+
+		
 		
 		/** Returns the total initial area of the body. Initial area means the calculated total area with non-transformed meshes of the body. */
 		float GetTotalInitialArea(){
@@ -369,6 +374,8 @@ protected:
 		*/
 		QVector GetCustomGravity();
 
+		
+
 
 
 		//General Set Methods
@@ -397,6 +404,11 @@ protected:
 		QBody *AddPosition(QVector value, bool withPreviousPosition=true){
 			return SetPosition(GetPosition()+value,withPreviousPosition);
 		}
+		/** Applies a force immediately to the body. The way the force is applied may vary depending on the QBody type, and some QBody types may not respond to the applied forces. You can use the method safely before the physics step (e.g. at the OnPreStep event). If you want to use this method after physics step, it can break the simulation.(Collisions and constraints may not be applied properly.) if you want to apply force at the next physic step safely, use SetForce() and AddForce() methods.  
+		 * @param value The force to apply.
+		 * @return A pointer to the body itself.
+		 */
+		virtual  QBody* ApplyForce(QVector value){return this;}; 
 		/** Sets the previous position of the body. 
 		 * @param value A position value to set. 
 		 * @return A pointer to the body itself.
@@ -457,8 +469,7 @@ protected:
 		QBody *AddPreviousRotation(float angleRadian){
 			return SetPreviousRotation(GetPreviousRotation()+angleRadian);
 		}
-		
-		
+
 
 
 		
@@ -650,12 +661,16 @@ protected:
 		friend class QParticle;
 		friend class QJoint;
 		friend class QBroadPhase;
+		friend class QAreaBody;
 
 	protected:
 		vector<QMesh*> _meshes=vector<QMesh*>();
 		SimulationModels simulationModel=SimulationModels::RIGID_BODY;
 		static QVector ComputeFriction(QBody *bodyA, QBody *bodyB, QVector &normal, float penetration, QVector &relativeVelocity);
 		static bool CanCollide(QBody *bodyA,QBody *bodyB,bool checkBodiesAreEnabled=true);
+		//For Gravity-Free Feature of QArea Bodies  
+		bool ignoreGravity=false;
+
 
 
 };

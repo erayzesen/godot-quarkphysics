@@ -287,6 +287,25 @@ QPlatformerBody::CollisionTestInfo QPlatformerBody::GetCeiling(float offset)
     return QPlatformerBody::CollisionTestInfo();
 }
 
+QPlatformerBody *QPlatformerBody::ApplyForce(QVector value)
+{
+	if(value==QVector::Zero() )
+		return this;
+	
+	//Converting force to horizontal axis
+	QVector horizontalForce=value.Dot(rightDirection)*rightDirection;
+	//Converting force to vertical axis
+	QVector verticalForce=value.Dot(upDirection)*upDirection;
+
+	horizontalVelocity+=horizontalForce;
+	verticalVelocity+=verticalForce;
+
+	SetPositionAndCollide(GetPosition()+value);
+	WakeUp();
+
+    return this;
+}
+
 float QPlatformerBody::GetWalkDecelerationRate()
 {
     return walkDecelerationRate;
@@ -384,6 +403,10 @@ void QPlatformerBody::PostUpdate()
 	
 
 	QVector gravityAmount=gravity*gravityMultiplier;
+
+	if (ignoreGravity){
+		gravityAmount=QVector::Zero();
+	}
 
 	//Saving Current Position before Tests
 	QVector tempPosition=GetPosition();

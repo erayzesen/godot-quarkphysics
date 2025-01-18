@@ -45,17 +45,32 @@ void QAreaBody::AddCollidedBody(QBody* body){
 void QAreaBody::CheckBodies(){
 	vector<QBody*> blackList;
 	for(auto body:bodies){
+		bool bodyIsOnBlackList=false;
 		if(body->GetEnabled()==false){
 			blackList.push_back(body);
+			bodyIsOnBlackList=true;
 		}
 		if(body->GetEnabled()==false || world->GetCollisions(this,body).size()==0 ){
 			blackList.push_back(body);
+			bodyIsOnBlackList=true;
+		}
+		if(bodyIsOnBlackList==false){
+			if (gravityFree==true){
+				body->ignoreGravity=true;
+			}
+			if (linearForceToApply!=QVector::Zero() && (body->GetBodyType()==QBody::SOFT || body->GetBodyType()==QBody::RIGID) && body->GetMode()!=QBody::STATIC ){
+				body->ApplyForce(linearForceToApply);
+			}
+			
 		}
 	}
 	while (blackList.size()!=0) {
 		OnCollisionExit(blackList[0]);
 		if(CollisionExitEventListener!=nullptr)
 			CollisionExitEventListener(this,blackList[0]);
+		if (gravityFree==true && blackList[0]->ignoreGravity==true ){
+			blackList[0]->ignoreGravity=false;
+		}
 		bodies.erase(blackList[0]);
 		blackList.erase(blackList.begin());
 	}

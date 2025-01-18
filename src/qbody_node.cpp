@@ -121,6 +121,7 @@ void QBodyNode::_bind_methods() {
      ClassDB::bind_method(D_METHOD("set_integrated_velocities_enabled","value"),&QBodyNode::set_integrated_velocities_enabled );
      ClassDB::bind_method(D_METHOD("set_custom_gravity_enabled","value"),&QBodyNode::set_custom_gravity_enabled );
      ClassDB::bind_method(D_METHOD("set_custom_gravity","value"),&QBodyNode::set_custom_gravity );
+     ClassDB::bind_method(D_METHOD("apply_force","value"),&QBodyNode::apply_force );
      ClassDB::bind_method(D_METHOD("wake_up"),&QBodyNode::wake_up );
 
      ClassDB::bind_method(D_METHOD("add_mesh_node","mesh_node"),&QBodyNode::add_mesh_node );
@@ -516,6 +517,18 @@ void QBodyNode::update_meshes_draw() {
             }
         }
     }
+}
+
+QBodyNode *QBodyNode::apply_force(Vector2 value)
+{
+    if(bodyObject==nullptr)
+        return this;
+
+    if(value==Vector2(0,0)) 
+        return this;
+
+    bodyObject->ApplyForce(QVector(value.x,value.y));
+    return this;
 }
 
 bool QBodyNode::on_collision_callback(QBody *body, QBody::CollisionInfo info) {
