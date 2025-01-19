@@ -71,10 +71,24 @@ QSoftBody::QSoftBody()
 	bodyType=QBody::BodyTypes::SOFT;
 }
 
-
-
-
-
+QSoftBody *QSoftBody::ApplyForce(QVector force)
+{
+	if (GetMode()==QBody::Modes::STATIC || GetEnabled()==false ){
+		return this;
+	}
+	
+	for(int i=0;i<_meshes.size();i++){
+		QMesh *mesh=_meshes[i];
+		for(int n=0;n<mesh->GetParticleCount();n++){
+			QParticle *particle=mesh->GetParticleAt(n);
+			if(particle->GetEnabled()==false)
+				continue;
+			particle->ApplyForce(force);
+			
+		}
+	}
+    return this;
+}
 
 void QSoftBody::Update()
 {
@@ -124,11 +138,14 @@ void QSoftBody::Update()
 			particle->SetPreviousGlobalPosition(particle->GetGlobalPosition() );
 			if(enableIntegratedVelocities==true ){
 				particle->ApplyForce(vel-(vel*airFriction) );
-				if(!(particle->GetIsInternal()==true && enablePassivationOfInternalSprings==true) ){
-					if (enableCustomGravity){
-						particle->ApplyForce(mass*customGravity*ts);
-					}else{
-						particle->ApplyForce(mass*world->GetGravity()*ts);
+				//Gravity Forces
+				if (ignoreGravity==false){
+					if(!(particle->GetIsInternal()==true && enablePassivationOfInternalSprings==true) ){
+						if (enableCustomGravity){
+							particle->ApplyForce(mass*customGravity*ts);
+						}else{
+							particle->ApplyForce(mass*world->GetGravity()*ts);
+						}
 					}
 				}
 			}
@@ -139,7 +156,8 @@ void QSoftBody::Update()
 	}
 	
 	for (auto mesh:_meshes){
-		mesh->ApplyAngleConstraintsToPolygon();
+		if(mesh->GetPolygonForCollisionsDisabled()==false)
+			mesh->ApplyAngleConstraintsToPolygon();
 	}
 
 	

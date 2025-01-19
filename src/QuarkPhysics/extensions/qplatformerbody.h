@@ -420,6 +420,11 @@ public:
      */
     QPlatformerBody::CollisionTestInfo GetCeiling(float offset);
 
+    /** A force is applied to the platformer body. You can use the method safely before the physics step (e.g. at the OnPreStep event). If you want to use this method after physics step, it can break the simulation.(Collisions and constraints may not be applied properly.) if you want to apply force at the next physic step safely, use SetForce() and AddForce() methods.  
+	 * @param force The force to apply.
+	 */
+    virtual QPlatformerBody * ApplyForce(QVector value) override;
+
     
 
 

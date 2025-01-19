@@ -43,11 +43,11 @@ func _physics_process(delta: float) -> void:
 		# If the player is on the Wall
 		if wall_mode==true :
 			if get_is_jump_released() :
-				jump(4.5,true)
+				jump(4.0,true)
 				set_controller_horizontal_velocity(Vector2.RIGHT*10.0*-wall_side)
 		else :
 			#Default Jump
-			jump(4.5,false)
+			jump(4.0,false)
 		
 	if Input.is_action_just_released("ui_up") :
 		release_jump()

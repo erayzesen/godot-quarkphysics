@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=4 uid="uid://dw06ipgwyx2cc"]
+[gd_scene load_steps=16 format=4 uid="uid://dw06ipgwyx2cc"]
 
 [ext_resource type="Script" path="res://examples/7_classic_platformer/player.gd" id="1_b5iax"]
 [ext_resource type="Texture2D" uid="uid://d3j7v6kge2who" path="res://examples/7_classic_platformer/sprites/tileset.png" id="1_ibcbn"]
@@ -6,10 +6,33 @@
 [ext_resource type="Script" path="res://examples/7_classic_platformer/door_button.gd" id="2_ndt36"]
 [ext_resource type="Script" path="res://addons/quarkphysics/helper_nodes/qtilemap_collider.gd" id="2_yuswt"]
 [ext_resource type="Script" path="res://examples/7_classic_platformer/coin.gd" id="3_5al4l"]
+[ext_resource type="Script" path="res://examples/7_classic_platformer/finish_area.gd" id="4_mmqkf"]
+[ext_resource type="Script" path="res://examples/7_classic_platformer/flag.gd" id="8_b3t3c"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_2ckbs"]
 font_size = 36
 font_color = Color(0, 0, 0, 0.254902)
+
+[sub_resource type="Curve" id="Curve_p1je6"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.993407, 0.00701892), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_hu1ci"]
+curve = SubResource("Curve_p1je6")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_wjf8p"]
+particle_flag_disable_z = true
+direction = Vector3(0, -1, 0)
+initial_velocity_max = 322.0
+angular_velocity_min = -193.56
+angular_velocity_max = 442.85
+gravity = Vector3(0, 70, 0)
+scale_min = 10.0
+scale_max = 10.0
+scale_curve = SubResource("CurveTexture_hu1ci")
+color = Color(0.745314, 0, 0.269557, 1)
+hue_variation_min = -1.0
+hue_variation_max = 1.0
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_pburd"]
 
@@ -56,6 +79,7 @@ sources/1 = SubResource("TileSetAtlasSource_qdrbb")
 metadata/_edit_horizontal_guides_ = [352.0]
 
 [node name="QWorldNode" type="QWorldNode" parent="."]
+debug_renderer = false
 enable_debug_mouse_interactions = true
 
 [node name="background" type="ColorRect" parent="."]
@@ -66,9 +90,9 @@ mouse_filter = 2
 
 [node name="Label" type="Label" parent="."]
 offset_left = 336.0
-offset_top = 256.0
+offset_top = 264.0
 offset_right = 736.0
-offset_bottom = 463.0
+offset_bottom = 471.0
 text = "key a: move left 
 key d: move right
 key w: jump
@@ -79,7 +103,7 @@ label_settings = SubResource("LabelSettings_2ckbs")
 fixed_rotation = true
 mass = 0.1
 layers = 0
-position = Vector2(64, 512)
+position = Vector2(200, 512)
 script = ExtResource("2_ndt36")
 door = NodePath("../Door")
 
@@ -95,12 +119,12 @@ data_particle_is_internal = PackedByteArray("AA==")
 [node name="QPlatformerBodyNode" type="QPlatformerBodyNode" parent="."]
 specific_platform_layers = 2
 jump_duration_frame_count = 20
-position = Vector2(200, 496)
+position = Vector2(64, 496)
 script = ExtResource("1_b5iax")
 
 [node name="QMeshRectNode" type="QMeshRectNode" parent="QPlatformerBodyNode"]
 enable_vector_rendering = true
-fill_color = Color(0.0627451, 0.823529, 0.458824, 1)
+fill_color = Color(0.984045, 0.374761, 0.322941, 1)
 enable_stroke = true
 data_particle_positions = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
 data_particle_radius = PackedFloat32Array(0.5, 0.5, 0.5, 0.5)
@@ -131,8 +155,92 @@ data_internal_springs = Array[PackedInt32Array]([PackedInt32Array(0, 2), PackedI
 data_polygon = PackedInt32Array(0, 1, 2, 3)
 data_uv_maps = Array[PackedInt32Array]([PackedInt32Array(0, 1, 3), PackedInt32Array(1, 2, 3)])
 
+[node name="FinishFlagStick" type="QSoftBodyNode" parent="."]
+rigidity = 0.5
+shape_matching = true
+shape_matching_rate = 1.0
+use_custom_gravity = true
+custom_gravity = Vector2(0, -0.2)
+position = Vector2(104, 93)
+
+[node name="QMeshAdvancedNode" type="QMeshAdvancedNode" parent="FinishFlagStick"]
+disable_polygon_for_collisions = true
+enable_vector_rendering = true
+enable_stroke = true
+enable_curved_corners = true
+curve_length = 4.0
+data_particle_positions = PackedVector2Array(0, 40, 0, 24, 0, 8, 0, -24.125, 8, -24, 8, 8, 8, 40, 8, 24, 8, 32, 0, 32, 3.5, -23)
+data_particle_radius = PackedFloat32Array(0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 6)
+data_particle_is_internal = PackedByteArray("AAAAAAAAAAAAAAA=")
+data_particle_is_enabled = PackedByteArray("AAEBAQEBAAEAAAE=")
+data_particle_is_lazy = PackedByteArray("AAEBAQEBAAEAAAE=")
+data_springs = Array[PackedInt32Array]([PackedInt32Array(3, 4), PackedInt32Array(5, 2), PackedInt32Array(2, 3), PackedInt32Array(5, 7), PackedInt32Array(7, 8), PackedInt32Array(8, 6), PackedInt32Array(6, 0), PackedInt32Array(0, 9), PackedInt32Array(9, 1), PackedInt32Array(1, 2), PackedInt32Array(7, 1), PackedInt32Array(8, 9), PackedInt32Array(4, 5), PackedInt32Array(2, 10), PackedInt32Array(5, 10), PackedInt32Array(4, 10), PackedInt32Array(3, 10), PackedInt32Array(1, 5), PackedInt32Array(9, 7), PackedInt32Array(0, 8)])
+data_polygon = PackedInt32Array(0, 9, 1, 2, 3, 4, 5, 7, 8, 6)
+
+[node name="Flag" type="QSoftBodyNode" parent="FinishFlagStick"]
+rigidity = 0.1
+shape_matching = true
+can_sleep = false
+use_custom_gravity = true
+custom_gravity = Vector2(0, 0.05)
+mass = 0.0
+layers = 0
+collidable_layers = 0
+show_behind_parent = true
+position = Vector2(16, -8)
+script = ExtResource("8_b3t3c")
+
+[node name="QMeshAdvancedNode" type="QMeshAdvancedNode" parent="FinishFlagStick/Flag"]
+disable_polygon_for_collisions = true
+show_polygons = false
+enable_vector_rendering = true
+triangulation = true
+fill_color = Color(0.0625162, 0.823636, 0.458717, 1)
+fill_texture_offset = Vector2(-4, 0.1)
+enable_stroke = true
+enable_curved_corners = true
+curve_length = 2.0
+data_particle_positions = PackedVector2Array(-8, -16.125, 28.125, 3.125, -8, 16, 0.625, -11.75, 9.375, -7, 18.25, -2, 17.5, 7.375, 8.5, 11, 0, 13.75)
+data_particle_radius = PackedFloat32Array(0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5)
+data_particle_is_internal = PackedByteArray("AAAAAAAAAAAA")
+data_particle_is_enabled = PackedByteArray("AQEBAQEBAQEB")
+data_particle_is_lazy = PackedByteArray("AAAAAAAAAAAA")
+data_springs = Array[PackedInt32Array]([PackedInt32Array(2, 0), PackedInt32Array(0, 3), PackedInt32Array(3, 4), PackedInt32Array(4, 5), PackedInt32Array(5, 1), PackedInt32Array(1, 6), PackedInt32Array(6, 7), PackedInt32Array(7, 8), PackedInt32Array(8, 2)])
+data_polygon = PackedInt32Array(2, 0, 3, 4, 5, 1, 6, 7, 8)
+data_uv_maps = Array[PackedInt32Array]([PackedInt32Array(2, 0, 3), PackedInt32Array(3, 8, 2), PackedInt32Array(3, 4, 8), PackedInt32Array(8, 4, 7), PackedInt32Array(7, 4, 5), PackedInt32Array(7, 5, 6), PackedInt32Array(6, 5, 1)])
+
+[node name="FinishArea" type="QAreaBodyNode" parent="."]
+position = Vector2(111, 93)
+script = ExtResource("4_mmqkf")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="FinishArea"]
+z_index = 1000
+position = Vector2(-3, 34)
+emitting = false
+amount = 30
+process_material = SubResource("ParticleProcessMaterial_wjf8p")
+lifetime = 10.0
+one_shot = true
+speed_scale = 2.0
+explosiveness = 1.0
+visibility_rect = Rect2(-500, -500, 1000, 1000)
+
+[node name="QMeshRectNode" type="QMeshRectNode" parent="FinishArea"]
+rectangle_size = Vector2(32, 72)
+data_particle_positions = PackedVector2Array(-16, -36, 16, -36, 16, 36, -16, 36)
+data_particle_radius = PackedFloat32Array(0.5, 0.5, 0.5, 0.5)
+data_particle_is_internal = PackedByteArray("AAAAAA==")
+data_particle_is_enabled = PackedByteArray("AQEBAQ==")
+data_particle_is_lazy = PackedByteArray("AAAAAA==")
+data_springs = Array[PackedInt32Array]([PackedInt32Array(0, 1), PackedInt32Array(1, 2), PackedInt32Array(2, 3), PackedInt32Array(3, 0)])
+data_internal_springs = Array[PackedInt32Array]([PackedInt32Array(0, 2), PackedInt32Array(1, 3)])
+data_polygon = PackedInt32Array(0, 1, 2, 3)
+data_uv_maps = Array[PackedInt32Array]([PackedInt32Array(0, 1, 3), PackedInt32Array(1, 2, 3)])
+
 [node name="Water" type="QSoftBodyNode" parent="."]
-rigidity = 0.01
+rigidity = 0.1
+shape_matching = true
+shape_matching_rate = 0.1
 use_custom_gravity = true
 position = Vector2(656, 496)
 
@@ -144,18 +252,31 @@ enable_stroke = true
 enable_curved_corners = true
 curve_length = 4.0
 enable_particle_rendering = false
-data_particle_positions = PackedVector2Array(-73, -20, -25, -20, 31, -20, 87, -20, 151, -20, -72, 16, -24, 16, 32, 16, 88, 16, 152, 16, -72, 56, -24, 56, 32, 56, 88, 56, 152, 56, -72, 104, -24, 104, 32, 104, 88, 104, 152, 104)
-data_particle_radius = PackedFloat32Array(18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18)
-data_particle_is_internal = PackedByteArray("AAAAAAAAAQEBAAABAQEAAAAAAAA=")
-data_particle_is_enabled = PackedByteArray("AAEBAQAAAAEBAAAAAQEAAAAAAAA=")
-data_particle_is_lazy = PackedByteArray("AAEBAQAAAQEBAAABAQEAAAAAAAA=")
-data_springs = Array[PackedInt32Array]([PackedInt32Array(0, 1), PackedInt32Array(1, 2), PackedInt32Array(2, 3), PackedInt32Array(3, 4), PackedInt32Array(4, 9), PackedInt32Array(9, 14), PackedInt32Array(14, 19), PackedInt32Array(15, 10), PackedInt32Array(10, 5), PackedInt32Array(5, 0)])
-data_internal_springs = Array[PackedInt32Array]([PackedInt32Array(0, 6), PackedInt32Array(1, 7), PackedInt32Array(1, 5), PackedInt32Array(1, 6), PackedInt32Array(2, 6), PackedInt32Array(2, 7), PackedInt32Array(3, 9), PackedInt32Array(3, 8), PackedInt32Array(4, 8), PackedInt32Array(6, 5), PackedInt32Array(5, 11), PackedInt32Array(7, 6), PackedInt32Array(6, 12), PackedInt32Array(6, 10), PackedInt32Array(6, 11), PackedInt32Array(8, 7), PackedInt32Array(7, 13), PackedInt32Array(7, 11), PackedInt32Array(7, 12), PackedInt32Array(9, 8), PackedInt32Array(8, 14), PackedInt32Array(8, 12), PackedInt32Array(8, 13), PackedInt32Array(9, 13), PackedInt32Array(11, 10), PackedInt32Array(10, 16), PackedInt32Array(12, 11), PackedInt32Array(11, 17), PackedInt32Array(11, 15), PackedInt32Array(11, 16), PackedInt32Array(13, 12), PackedInt32Array(12, 18), PackedInt32Array(12, 16), PackedInt32Array(12, 17), PackedInt32Array(14, 13), PackedInt32Array(13, 19), PackedInt32Array(13, 17), PackedInt32Array(13, 18), PackedInt32Array(14, 18), PackedInt32Array(16, 15), PackedInt32Array(17, 16), PackedInt32Array(18, 17), PackedInt32Array(19, 18), PackedInt32Array(3, 7), PackedInt32Array(2, 8)])
-data_polygon = PackedInt32Array(0, 1, 2, 3, 4, 9, 14, 19, 18, 17, 16, 15, 10, 5)
-data_uv_maps = Array[PackedInt32Array]([PackedInt32Array(0, 1, 5), PackedInt32Array(1, 6, 5), PackedInt32Array(1, 2, 6), PackedInt32Array(2, 7, 6), PackedInt32Array(2, 3, 7), PackedInt32Array(3, 8, 7), PackedInt32Array(3, 4, 8), PackedInt32Array(4, 9, 8), PackedInt32Array(5, 6, 10), PackedInt32Array(6, 11, 10), PackedInt32Array(6, 7, 11), PackedInt32Array(7, 12, 11), PackedInt32Array(7, 8, 12), PackedInt32Array(8, 13, 12), PackedInt32Array(8, 9, 13), PackedInt32Array(9, 14, 13), PackedInt32Array(10, 11, 15), PackedInt32Array(11, 16, 15), PackedInt32Array(11, 12, 16), PackedInt32Array(12, 17, 16), PackedInt32Array(12, 13, 17), PackedInt32Array(13, 18, 17), PackedInt32Array(13, 14, 18), PackedInt32Array(14, 19, 18)])
+data_particle_positions = PackedVector2Array(-48, 16, -32, 16, 8, 16, 40, 16, 72, 16, 104, 16, 144, 16, 144, 80, -48, 80, -8, 16, 24, 16, 56, 16, 88, 16, 128, 16)
+data_particle_radius = PackedFloat32Array(0.5, 12, 12, 12, 12, 12, 0.5, 0.5, 0.5, 12, 12, 12, 12, 12)
+data_particle_is_internal = PackedByteArray("AAAAAAAAAAAAAAAAAAA=")
+data_particle_is_enabled = PackedByteArray("AAABAQEBAAAAAQEBAQA=")
+data_particle_is_lazy = PackedByteArray("AAABAQEBAAAAAQEBAQA=")
+data_springs = Array[PackedInt32Array]([PackedInt32Array(1, 9), PackedInt32Array(9, 2), PackedInt32Array(2, 10), PackedInt32Array(10, 3), PackedInt32Array(3, 11), PackedInt32Array(11, 4), PackedInt32Array(4, 12), PackedInt32Array(12, 5), PackedInt32Array(5, 13), PackedInt32Array(13, 6), PackedInt32Array(6, 7), PackedInt32Array(8, 0)])
+data_polygon = PackedInt32Array(0, 1, 9, 2, 10, 3, 11, 4, 12, 5, 13, 6, 7, 8)
+
+[node name="QAreaBodyNode" type="QAreaBodyNode" parent="Water"]
+gravity_free = true
+linear_force_to_apply = Vector2(0, -0.2)
+
+[node name="QMeshRectNode" type="QMeshAdvancedNode" parent="Water/QAreaBodyNode"]
+data_particle_positions = PackedVector2Array(-144, 32, 128, 32, 128, 80, -144, 80)
+data_particle_radius = PackedFloat32Array(0.5, 0.5, 0.5, 0.5)
+data_particle_is_internal = PackedByteArray("AAAAAA==")
+data_particle_is_enabled = PackedByteArray("AQEBAQ==")
+data_particle_is_lazy = PackedByteArray("AAAAAA==")
+data_springs = Array[PackedInt32Array]([PackedInt32Array(0, 1), PackedInt32Array(1, 2), PackedInt32Array(2, 3), PackedInt32Array(3, 0)])
+data_internal_springs = Array[PackedInt32Array]([PackedInt32Array(0, 2), PackedInt32Array(1, 3)])
+data_polygon = PackedInt32Array(0, 1, 2, 3)
+data_uv_maps = Array[PackedInt32Array]([PackedInt32Array(0, 1, 3), PackedInt32Array(1, 2, 3)])
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
-tile_map_data = PackedByteArray("AAD+/wMAAQACAAAAAAD+/wQAAQACAAAAAAD+/wUAAQACAAAAAAD+/wYAAQACAAAAAAD+/wcAAQACAAAAAAD+/wgAAQACAAAAAAD+/wkAAQACAAAAAAD+/woAAQACAAAAAAD//wMAAQACAAAAAAD//wQAAQACAAAAAAD//wUAAQACAAAAAAD//wYAAQACAAAAAAD//wcAAQACAAAAAAD//wgAAQACAAAAAAD//wkAAQACAAAAAAD//woAAQACAAAAAAAAAAIAAQACAAAAAAAAAAUAAQACAAAAAAAAAAgAAQACAAAAAAAAAAkAAQACAAAAAAAAAAoAAQACAAAAAAABAAIAAQACAAAAAAABAAUAAQACAAAAAAABAAgAAQACAAAAAAABAAkAAQACAAAAAAABAAoAAQACAAAAAAACAAIAAQACAAAAAAACAAUAAQACAAAAAAACAAgAAQACAAAAAAACAAkAAQACAAAAAAACAAoAAQACAAAAAAADAAIAAQACAAAAAAADAAgAAQACAAAAAAADAAkAAQACAAAAAAADAAoAAQACAAAAAAAEAAIAAQACAAAAAAAEAAcAAQAAAAAAAAAEAAgAAQACAAAAAAAEAAkAAQACAAAAAAAEAAoAAQACAAAAAAAFAAIAAQACAAAAAAAFAAcAAQABAAAAAAAFAAgAAQACAAAAAAAFAAkAAQACAAAAAAAFAAoAAQACAAAAAAAGAAIAAQACAAAAAAAGAAcAAQACAAAAAAAGAAgAAQACAAAAAAAGAAkAAQACAAAAAAAGAAoAAQACAAAAAAAHAAIAAQACAAAAAAAHAAcAAQACAAAAAAAHAAgAAQACAAAAAAAHAAkAAQACAAAAAAAHAAoAAQACAAAAAAAIAAIAAQACAAAAAAAIAAcAAQACAAAAAAAIAAgAAQACAAAAAAAIAAkAAQACAAAAAAAIAAoAAQACAAAAAAALAAkAAQACAAAAAAALAAoAAQACAAAAAAAAAAEAAQACAAEAAAAAAAMAAQACAAEAAAAAAAQAAQACAAEAAAAAAAYAAQACAAEAAAAAAAcAAQACAAEAAAADAAUAAQACAAAAAAAJAAIAAQACAAAAAAANAAMAAQACAAAAAAANAAQAAQACAAAAAAANAAUAAQACAAAAAAAQAAEAAQACAAAAAAAQAAIAAQACAAAAAAAQAAMAAQACAAAAAAAQAAQAAQACAAAAAAAQAAUAAQACAAAAAAAQAAYAAQACAAAAAAAQAAcAAQACAAAAAAAQAAgAAQACAAAAAAAQAAkAAQACAAAAAAAQAAoAAQACAAAAAAAOAAgAAQACAAAAAAAPAAkAAQACAAAAAAAOAAkAAQACAAAAAAAMAAoAAQACAAAAAAANAAoAAQACAAAAAAAOAAoAAQACAAAAAAAPAAoAAQACAAAAAAAPAAgAAQACAAAAAAAMAAMAAQACAAAAAAAPAAcAAQACAAAAAAAPAAYAAQACAAAAAAAPAAUAAQACAAAAAAAPAAQAAQACAAAAAAAPAAMAAQACAAAAAAAPAAIAAQACAAAAAAAPAAEAAQACAAAAAAAPAAAAAQACAAAAAAAQAAAAAQACAAAAAAD+/wAAAQACAAAAAAD//wAAAQACAAAAAAAAAAAAAQACAAAAAAABAAAAAQACAAAAAAACAAAAAQACAAAAAAADAAAAAQACAAAAAAAEAAAAAQACAAAAAAAFAAAAAQACAAAAAAAGAAAAAQACAAAAAAAHAAAAAQACAAAAAAAIAAAAAQACAAAAAAAJAAAAAQACAAAAAAAKAAAAAQACAAAAAAALAAAAAQACAAAAAAAMAAAAAQACAAAAAAANAAAAAQACAAAAAAAOAAAAAQACAAAAAAAMAAgAAQACAAAAAAANAAgAAQACAAAAAAANAAkAAQACAAAAAAAMAAkAAQACAAAAAAANAAcAAQACAAAAAAAOAAcAAQACAAAAAAAMAAcAAQACAAAAAAD//wIAAQACAAAAAAD+/wIAAQACAAAAAAD+/wEAAQACAAAAAAD//wEAAQACAAAAAAD+////AQACAAAAAAD/////AQACAAAAAAAAAP//AQACAAAAAAABAP//AQACAAAAAAACAP//AQACAAAAAAADAP//AQACAAAAAAAEAP//AQACAAAAAAAFAP//AQACAAAAAAAGAP//AQACAAAAAAAHAP//AQACAAAAAAAIAP//AQACAAAAAAAJAP//AQACAAAAAAAKAP//AQACAAAAAAALAP//AQACAAAAAAAMAP//AQACAAAAAAANAP//AQACAAAAAAAOAP//AQACAAAAAAAPAP//AQACAAAAAAAQAP//AQACAAAAAAAJAAoAAQACAAAAAAAKAAoAAQACAAAAAAAJAAkAAQACAAAAAAAKAAkAAQACAAAAAAAJAAgAAQACAAAAAAAJAAcAAQABAAIAAAAKAAgAAQACAAAAAAA=")
+tile_map_data = PackedByteArray("AAD+/wMAAQACAAAAAAD+/wQAAQACAAAAAAD+/wUAAQACAAAAAAD+/wYAAQACAAAAAAD+/wcAAQACAAAAAAD+/wgAAQACAAAAAAD+/wkAAQACAAAAAAD+/woAAQACAAAAAAD//wMAAQACAAAAAAD//wQAAQACAAAAAAD//wUAAQACAAAAAAD//wYAAQACAAAAAAD//wcAAQACAAAAAAD//wgAAQACAAAAAAD//wkAAQACAAAAAAD//woAAQACAAAAAAAAAAIAAQACAAAAAAAAAAUAAQACAAAAAAAAAAgAAQACAAAAAAAAAAkAAQACAAAAAAAAAAoAAQACAAAAAAABAAIAAQACAAAAAAABAAUAAQACAAAAAAABAAgAAQACAAAAAAABAAkAAQACAAAAAAABAAoAAQACAAAAAAACAAIAAQACAAAAAAACAAUAAQACAAAAAAACAAgAAQACAAAAAAACAAkAAQACAAAAAAACAAoAAQACAAAAAAADAAIAAQACAAAAAAADAAgAAQACAAAAAAADAAkAAQACAAAAAAADAAoAAQACAAAAAAAEAAIAAQACAAAAAAAEAAcAAQAAAAAAAAAEAAgAAQACAAAAAAAEAAkAAQACAAAAAAAEAAoAAQACAAAAAAAFAAIAAQACAAAAAAAFAAcAAQABAAAAAAAFAAgAAQACAAAAAAAFAAkAAQACAAAAAAAFAAoAAQACAAAAAAAGAAIAAQACAAAAAAAGAAcAAQACAAAAAAAGAAgAAQACAAAAAAAGAAkAAQACAAAAAAAGAAoAAQACAAAAAAAHAAIAAQACAAAAAAAHAAcAAQACAAAAAAAHAAgAAQACAAAAAAAHAAkAAQACAAAAAAAHAAoAAQACAAAAAAAIAAIAAQACAAAAAAAIAAcAAQACAAAAAAAIAAgAAQACAAAAAAAIAAkAAQACAAAAAAAIAAoAAQACAAAAAAALAAkAAQACAAAAAAALAAoAAQACAAAAAAAAAAEAAQACAAEAAAAAAAMAAQACAAEAAAAAAAQAAQACAAEAAAAAAAYAAQACAAEAAAAAAAcAAQACAAEAAAADAAUAAQACAAAAAAAJAAIAAQACAAAAAAANAAMAAQACAAAAAAANAAQAAQACAAAAAAANAAUAAQACAAAAAAAQAAEAAQACAAAAAAAQAAIAAQACAAAAAAAQAAMAAQACAAAAAAAQAAQAAQACAAAAAAAQAAUAAQACAAAAAAAQAAYAAQACAAAAAAAQAAcAAQACAAAAAAAQAAgAAQACAAAAAAAQAAkAAQACAAAAAAAQAAoAAQACAAAAAAAOAAgAAQACAAAAAAAPAAkAAQACAAAAAAAOAAkAAQACAAAAAAAMAAoAAQACAAAAAAANAAoAAQACAAAAAAAOAAoAAQACAAAAAAAPAAoAAQACAAAAAAAPAAgAAQACAAAAAAAMAAMAAQACAAAAAAAPAAcAAQACAAAAAAAPAAYAAQACAAAAAAAPAAUAAQACAAAAAAAPAAQAAQACAAAAAAAPAAMAAQACAAAAAAAPAAIAAQACAAAAAAAPAAEAAQACAAAAAAAPAAAAAQACAAAAAAAQAAAAAQACAAAAAAD+/wAAAQACAAAAAAD//wAAAQACAAAAAAAMAAgAAQACAAAAAAANAAgAAQACAAAAAAANAAkAAQACAAAAAAAMAAkAAQACAAAAAAANAAcAAQACAAAAAAAOAAcAAQACAAAAAAAMAAcAAQACAAAAAAD//wIAAQACAAAAAAD+/wIAAQACAAAAAAD+/wEAAQACAAAAAAD//wEAAQACAAAAAAD+////AQACAAAAAAD/////AQACAAAAAAAAAP//AQACAAAAAAABAP//AQACAAAAAAACAP//AQACAAAAAAADAP//AQACAAAAAAAEAP//AQACAAAAAAAFAP//AQACAAAAAAAGAP//AQACAAAAAAAHAP//AQACAAAAAAAIAP//AQACAAAAAAAJAP//AQACAAAAAAAKAP//AQACAAAAAAALAP//AQACAAAAAAAMAP//AQACAAAAAAANAP//AQACAAAAAAAOAP//AQACAAAAAAAPAP//AQACAAAAAAAQAP//AQACAAAAAAAJAAoAAQACAAAAAAAKAAoAAQACAAAAAAAJAAkAAQACAAAAAAAKAAkAAQACAAAAAAAAAP3/AQACAAAAAAAAAP7/AQACAAAAAAABAP3/AQACAAAAAAABAP7/AQACAAAAAAACAP3/AQACAAAAAAACAP7/AQACAAAAAAADAP3/AQACAAAAAAADAP7/AQACAAAAAAAEAP3/AQACAAAAAAAEAP7/AQACAAAAAAAFAP3/AQACAAAAAAAFAP7/AQACAAAAAAAGAP3/AQACAAAAAAAGAP7/AQACAAAAAAAHAP3/AQACAAAAAAAHAP7/AQACAAAAAAAIAP3/AQACAAAAAAAIAP7/AQACAAAAAAAJAP3/AQACAAAAAAAJAP7/AQACAAAAAAAKAP3/AQACAAAAAAAKAP7/AQACAAAAAAALAP3/AQACAAAAAAALAP7/AQACAAAAAAAMAP3/AQACAAAAAAAMAP7/AQACAAAAAAANAP3/AQACAAAAAAANAP7/AQACAAAAAAAOAP3/AQACAAAAAAAOAP7/AQACAAAAAAAPAP3/AQACAAAAAAAPAP7/AQACAAAAAAD+//3/AQACAAAAAAD+//7/AQACAAAAAAD///3/AQACAAAAAAD///7/AQACAAAAAAAJAAgAAQACAAAAAAAJAAcAAQABAAIAAAA=")
 tile_set = SubResource("TileSet_2ktbh")
 collision_enabled = false
 collision_visibility_mode = 1
@@ -169,14 +290,15 @@ fixed_rotation = true
 mode = 1
 mass = 0.1
 layers = 0
-position = Vector2(496, 96)
+collidable_layers = 3
+position = Vector2(496, 64)
 
 [node name="QMeshRectNode" type="QMeshRectNode" parent="Door"]
-rectangle_size = Vector2(28, 64)
+rectangle_size = Vector2(28, 128)
 enable_vector_rendering = true
 fill_color = Color(1, 0.501961, 0.643137, 1)
 enable_stroke = true
-data_particle_positions = PackedVector2Array(-14, -32, 14, -32, 14, 32, -14, 32)
+data_particle_positions = PackedVector2Array(-14, -64, 14, -64, 14, 64, -14, 64)
 data_particle_radius = PackedFloat32Array(0.5, 0.5, 0.5, 0.5)
 data_particle_is_internal = PackedByteArray("AAAAAA==")
 data_particle_is_enabled = PackedByteArray("AQEBAQ==")
@@ -294,7 +416,7 @@ data_particle_radius = PackedFloat32Array(8)
 data_particle_is_internal = PackedByteArray("AA==")
 
 [node name="Coin6" type="QAreaBodyNode" parent="Coins"]
-position = Vector2(64, 96)
+position = Vector2(280, 96)
 script = ExtResource("3_5al4l")
 
 [node name="QMeshCircleNode" type="QMeshCircleNode" parent="Coins/Coin6"]
@@ -307,7 +429,7 @@ data_particle_radius = PackedFloat32Array(8)
 data_particle_is_internal = PackedByteArray("AA==")
 
 [node name="Coin7" type="QAreaBodyNode" parent="Coins"]
-position = Vector2(128, 96)
+position = Vector2(344, 96)
 script = ExtResource("3_5al4l")
 
 [node name="QMeshCircleNode" type="QMeshCircleNode" parent="Coins/Coin7"]
@@ -320,7 +442,7 @@ data_particle_radius = PackedFloat32Array(8)
 data_particle_is_internal = PackedByteArray("AA==")
 
 [node name="Coin8" type="QAreaBodyNode" parent="Coins"]
-position = Vector2(192, 96)
+position = Vector2(408, 96)
 script = ExtResource("3_5al4l")
 
 [node name="QMeshCircleNode" type="QMeshCircleNode" parent="Coins/Coin8"]

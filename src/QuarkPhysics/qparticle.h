@@ -68,6 +68,9 @@ protected:
 
 	void ResetOneTimeCollisions();
 
+	//For Gravity-Free Feature of QArea Bodies  
+	bool ignoreGravity=false;
+
 	
 public:
 	QParticle();
@@ -126,12 +129,12 @@ public:
 	}
 
 	//Set Methods
-	/** Sets the local position of the particle. 
+	/** Sets the global position of the particle. 
 	 * @param value A position value to set. 
 	 * @return A pointer to the particle itself.
 	 */
 	QParticle *SetGlobalPosition(QVector value);
-	/** Sets the global position of the particle. 
+	/** Adds a value to the global position of the particle. 
 	 * @param value A position value to set. 
 	 * @return A pointer to the particle itself.
 	 */
@@ -146,6 +149,10 @@ public:
 	 * @return A pointer to the particle itself.
 	 */
 	QParticle *AddPreviousGlobalPosition(QVector value);
+	/** Sets local position of the particle.
+	 * @param value A value to set.
+	 * @return A pointer to the particle itself.
+	 */
 	QParticle *SetPosition(QVector value);
 	/** Adds a value to the local position of the particle. 
 	 * @param value A value to add. 
@@ -240,6 +247,7 @@ public:
 	friend class QMesh;
 	friend class QBody;
 	friend class QManifold;
+	friend class QAreaBody;
 
 	
 };

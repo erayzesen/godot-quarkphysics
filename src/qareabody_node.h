@@ -35,6 +35,8 @@
 class QAreaBodyNode : public QBodyNode {
     GDCLASS(QAreaBodyNode,QBodyNode);
 protected:
+    bool enableGravityFree=false;
+    Vector2 linearForceToApply=Vector2(0,0);
     
     static void _bind_methods();
 public:
@@ -55,6 +57,18 @@ public:
 
     void collision_enter_call_back(QAreaBody *areaBody,QBody *collidingBody);
     void collision_exit_call_back(QAreaBody *areaBody,QBody *collidingBody);
+
+    //Get Methods
+    bool get_gravity_free_enabled(){
+        return enableGravityFree;
+    };
+    Vector2 get_linear_force_to_apply(){
+        return linearForceToApply;
+    };
+
+    //Set Methods
+    void set_gravity_free_enabled(bool value);
+    void set_linear_force_to_apply(Vector2 value);
     
 
 };
