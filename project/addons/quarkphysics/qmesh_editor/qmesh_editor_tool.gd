@@ -68,11 +68,16 @@ func fromScreen(point:Vector2)->Vector2 :
 	return inverse_transform * point
 	
 func get_nearest_particle_index(targetMeshNode:QMeshNode,position:Vector2) ->int:
+	var min_dist=INF
+	var finded_index=-1
 	for i in range(targetMeshNode.data_particle_positions.size() ) :
 		var point=targetMeshNode.data_particle_positions[i].rotated(meshNode.global_rotation)
-		if ((point+targetMeshNode.global_position)-position).length()<plugin.particle_select_range :
-			return i
-	return -1;
+		var dist=((point+targetMeshNode.global_position)-position).length()
+		if dist<plugin.particle_select_range && dist<min_dist:
+			min_dist=dist
+			finded_index=i
+			
+	return finded_index;
 	
 func get_nearest_spring_index(targetMeshNode:QMeshNode, position:Vector2, internal:bool)->int :
 	var min_distance:float=INF

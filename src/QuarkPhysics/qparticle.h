@@ -68,6 +68,9 @@ protected:
 
 	void ResetOneTimeCollisions();
 
+	//For Gravity-Free Feature of QArea Bodies  
+	bool ignoreGravity=false;
+
 	
 public:
 	QParticle();
@@ -244,6 +247,7 @@ public:
 	friend class QMesh;
 	friend class QBody;
 	friend class QManifold;
+	friend class QAreaBody;
 
 	
 };

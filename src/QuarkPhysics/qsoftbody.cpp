@@ -156,7 +156,8 @@ void QSoftBody::Update()
 	}
 	
 	for (auto mesh:_meshes){
-		mesh->ApplyAngleConstraintsToPolygon();
+		if(mesh->GetPolygonForCollisionsDisabled()==false)
+			mesh->ApplyAngleConstraintsToPolygon();
 	}
 
 	

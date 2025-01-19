@@ -50,19 +50,85 @@ void QAreaBody::CheckBodies(){
 			blackList.push_back(body);
 			bodyIsOnBlackList=true;
 		}
-		if(body->GetEnabled()==false || world->GetCollisions(this,body).size()==0 ){
+		vector<QCollision::Contact*> collisionContacts=world->GetCollisions(this,body);
+		if(body->GetEnabled()==false || collisionContacts.size()==0 ){
 			blackList.push_back(body);
 			bodyIsOnBlackList=true;
 		}
-		if(bodyIsOnBlackList==false){
-			if (gravityFree==true){
-				body->ignoreGravity=true;
-			}
-			if (linearForceToApply!=QVector::Zero() && (body->GetBodyType()==QBody::SOFT || body->GetBodyType()==QBody::RIGID) && body->GetMode()!=QBody::STATIC ){
-				body->ApplyForce(linearForceToApply);
+
+		if(body->GetBodyType()==QBody::BodyTypes::RIGID){
+			if(bodyIsOnBlackList){
+				if (gravityFree==true){
+					body->ignoreGravity=false;
+				}
+			}else{
+				if (gravityFree==true && body->ignoreGravity==false){
+					body->ignoreGravity=true;
+				}
+				if(linearForceToApply!=QVector::Zero() ){
+					body->ApplyForce(linearForceToApply);
+				}
 			}
 			
+
+		}else if (body->GetBodyType()==QBody::SOFT ){
+			for(size_t i=0;i<collisionContacts.size();++i ){
+				QCollision::Contact* contact=collisionContacts[i];
+				for(size_t j=0;j<contact->referenceParticles.size();++j ){
+					QParticle * rp=contact->referenceParticles[j];
+					
+					if(rp->GetEnabled()==false || rp->GetIsLazy()==false ){
+						if(gravityFree==true && rp->ignoreGravity==true ){
+							rp->ignoreGravity=false;
+						}
+						continue;
+					}
+					
+		
+					if(rp->GetOwnerMesh()!=nullptr){
+						QBody *meshOwnerBody=rp->GetOwnerMesh()->GetOwnerBody();
+						if(meshOwnerBody!=nullptr && meshOwnerBody==body ){
+							if (linearForceToApply!=QVector::Zero() && body->GetMode()!=QBody::STATIC ){
+								if(bodyIsOnBlackList==false){
+									rp->ApplyForce(linearForceToApply);
+								}
+							}
+							if (gravityFree==true  ){
+								if(bodyIsOnBlackList){
+									rp->ignoreGravity=false;
+								}else{
+									rp->ignoreGravity=true;
+								}
+							}
+						}
+					}
+				}
+
+				QParticle *p=contact->particle;
+				if(p->GetOwnerMesh()!=nullptr && p->GetEnabled()==true && p->GetIsLazy()==false){
+					QBody *meshOwnerBody=p->GetOwnerMesh()->GetOwnerBody();
+					if(meshOwnerBody!=nullptr && meshOwnerBody==body && meshOwnerBody->GetMode()!=QBody::Modes::STATIC ){
+						if(bodyIsOnBlackList==false){
+							if(linearForceToApply!=QVector::Zero() ){
+								p->ApplyForce(linearForceToApply);
+							}
+						}else{
+
+						}
+						if (gravityFree==true  ){
+							if(bodyIsOnBlackList){
+								p->ignoreGravity=false;
+							}else{
+								p->ignoreGravity=true;
+							}
+						}
+					}
+				}
+				
+				
+			}
 		}
+		
 	}
 	while (blackList.size()!=0) {
 		OnCollisionExit(blackList[0]);

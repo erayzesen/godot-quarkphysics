@@ -139,11 +139,13 @@ func _enter_tree() -> void:
 	
 func check_hovered_particles(mPos:Vector2, targetMeshNode:QMeshNode) :
 	hovered_particle_index=-1
+	var min_dist=INF
 	for i in range(targetMeshNode.data_particle_positions.size()) :
 		var p:Vector2=targetMeshNode.data_particle_positions[i]
 		var distVec:Vector2=mPos-(p.rotated(targetMeshNode.global_rotation)+meshNode.global_position)
 		var dist=distVec.length()
-		if dist<particle_select_range :
+		if dist<particle_select_range && dist<min_dist :
+			min_dist=dist
 			hovered_particle_index=i
 	update_overlays()
 	
