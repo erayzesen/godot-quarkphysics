@@ -467,6 +467,8 @@ QWorld *QWorld::RemoveBodyAt(int index)
 		//Remove springs if there is body
 		RemoveMatchingSprings(body);
 
+		cout<<"removed body at:"<<index<<endl;
+
 		bodies.erase(bodies.begin()+index);
 
 		
@@ -634,8 +636,10 @@ vector<QManifold> QWorld::TestCollisionWithWorld(QBody *body)
 void QWorld::ClearBodies(){
 	for(int i=0;i<bodies.size();i++){
 		if (bodies[i]!=nullptr){
-			delete bodies[i];
-			bodies[i]=nullptr;
+			if(bodies[i]->deleteProtected==false ){
+				delete bodies[i];
+				bodies[i]=nullptr;
+			}
 		}
 	}
 	
@@ -644,8 +648,10 @@ void QWorld::ClearBodies(){
 QWorld* QWorld::ClearJoints(){
 	for(int i=0;i<joints.size();i++){
 		if (joints[i]!=nullptr){
-			delete joints[i];
-			joints[i]=nullptr;
+			if(joints[i]->deleteProtected==false ){
+				delete joints[i];
+				joints[i]=nullptr;
+			}
 		}
 	}
 	joints.clear();
@@ -656,8 +662,10 @@ QWorld* QWorld::ClearSprings()
 {
 	for(int i=0;i<springs.size();i++){
 		if (springs[i]!=nullptr){
-			delete springs[i];
-			springs[i]=nullptr;
+			if(springs[i]->deleteProtected==false){
+				delete springs[i];
+				springs[i]=nullptr;
+			}
 		}
 	}
 	springs.clear();
@@ -668,8 +676,10 @@ QWorld* QWorld::ClearRaycasts()
 {
 	for(int i=0;i<raycasts.size();i++){
 		if (raycasts[i]!=nullptr){
-			delete raycasts[i];
-			raycasts[i]=nullptr;
+			if(raycasts[i]->deleteProtected ==false ){
+				delete raycasts[i];
+				raycasts[i]=nullptr;
+			}
 		}
 	}
 	raycasts.clear();

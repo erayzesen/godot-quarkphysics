@@ -66,12 +66,7 @@ public:
     QBodyNode(){
         
     };
-    ~QBodyNode(){
-        if(bodyObject!=nullptr){
-            delete bodyObject;
-            bodyObject=nullptr;
-        }
-    };
+    ~QBodyNode();
 
     virtual void init_events(){
         bodyObject->CollisionEventListener=bind(&QBodyNode::on_collision_callback,this,placeholders::_1,placeholders::_2);

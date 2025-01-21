@@ -54,6 +54,7 @@ protected:
 public:
     QJointObject(){
         jointObject=new QJoint(nullptr,QVector(0,0),QVector(0,0),nullptr);
+        jointObject->deleteProtected=true;
     };
     ~QJointObject(){
         if(jointObject!=nullptr){

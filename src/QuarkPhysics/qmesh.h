@@ -636,13 +636,13 @@ public:
 	static vector<QVector> GetMatchingParticlePositions(vector<QParticle*> particleCollection,QVector targetPosition, float targetRotation);
 
 
+	/**
+	 * By default, objects included in the physics engine are deleted by the destructors of the objects they belong to. When this flag is enabled, it indicates that this object should never be deleted by this engine. It is disabled by default, and it is recommended to keep it disabled. However, it can be used if needed for advanced purposes and integrations.
+	 */
+	bool deleteProtected=false;
+
+
 	
-	
-
-
-
-
-
 };
 
 #endif // QMESH_H

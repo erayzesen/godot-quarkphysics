@@ -1,9 +1,11 @@
 #include "qbody_node.h"
 #include "qworld_node.h"
 #include "QuarkPhysics/qsoftbody.h"
+#include "QuarkPhysics/qworld.h"
 
 #include <godot_cpp/classes/scene_tree.hpp>
 #include <godot_cpp/variant/utility_functions.hpp>
+
 
 
 void QBodyNode::_notification(int what) {
@@ -14,9 +16,19 @@ void QBodyNode::_notification(int what) {
             break;
         
         case NOTIFICATION_PREDELETE:
-            if(Engine::get_singleton()->is_editor_hint()==false && bodyObject!=nullptr){
+            if(Engine::get_singleton()->is_editor_hint()==false){
+
                 if(worldNode!=nullptr){
                     worldNode->remove_body_node(this);
+                }
+
+                for(size_t i=0;i<meshNodes.size();++i ){
+                    meshNodes[i]->ownerBodyNode=nullptr;
+                }
+                
+               if(bodyObject!=nullptr){
+                    delete bodyObject;
+                    bodyObject=nullptr;
                 }
             }
             break;    
@@ -58,6 +70,7 @@ void QBodyNode::on_post_enter_tree() {
                 
         }
         worldNode->add_body(this);
+        bodyObject->deleteProtected=true;
         isConfigured=true;
 
     }
@@ -163,6 +176,10 @@ void QBodyNode::_bind_methods() {
 
 }
 
+QBodyNode::~QBodyNode()
+{
+    
+};
 
 //GET METHODS
 QWorldNode *QBodyNode::get_world_node(){

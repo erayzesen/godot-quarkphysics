@@ -43,8 +43,10 @@ QBody::~QBody()
 {
 	for(int i=0;i<_meshes.size();i++){
 		if (_meshes[i]!=nullptr){
-			delete _meshes[i];
-			_meshes[i]=nullptr;
+			if (_meshes[i]->deleteProtected==false){
+				delete _meshes[i];
+				_meshes[i]=nullptr;
+			}
 		}
 	}
 	_meshes.clear();

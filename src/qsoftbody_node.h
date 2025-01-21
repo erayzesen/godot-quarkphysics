@@ -38,6 +38,7 @@ protected:
 public:
     QSoftBodyNode(){
         bodyObject=new QSoftBody();
+        bodyObject->deleteProtected=true;
         bodyNodeType=QBodyNode::bodyNodeTypes::SOFT;
         init_events();
     };
