@@ -44,7 +44,7 @@ QMesh::~QMesh()
 {
 	for(int i=0;i<particles.size();i++){
 		if (particles[i]!=nullptr){
-			if(particles[i]->deleteProtected==false ){
+			if(particles[i]->manualDeletion==false ){
 				delete particles[i];
 				particles[i]=nullptr;
 			}
@@ -54,7 +54,7 @@ QMesh::~QMesh()
 
 	for(int i=0;i<springs.size();i++){
 		if(springs[i]!=nullptr){
-			if(springs[i]->deleteProtected==false){
+			if(springs[i]->manualDeletion==false){
 				delete springs[i];
 				springs[i]=nullptr;
 			}

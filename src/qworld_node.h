@@ -78,6 +78,7 @@ public:
         spatialHashing=new QSpatialHashing(worldObject->bodies,cellSize);
     };
     ~QWorldNode(){
+        
         if(worldObject!=nullptr){
             delete worldObject;
             worldObject=nullptr;

@@ -39,7 +39,7 @@ protected:
 public:
     QRigidBodyNode(){
         bodyObject=new QRigidBody();
-        bodyObject->deleteProtected=true;
+        bodyObject->manualDeletion=true;
         bodyNodeType=QBodyNode::bodyNodeTypes::RIGID;
         init_events();
     };

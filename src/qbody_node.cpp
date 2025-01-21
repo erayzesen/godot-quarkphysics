@@ -52,9 +52,21 @@ void QBodyNode::on_post_enter_tree() {
                     worldNode=(QWorldNode*)root_world_node;
                 }
             }else{
-                godot::UtilityFunctions::printerr("Quark Physics Error: Physics needs a world! Add a QWorldNode to the root node of the scene. ");
-                
-                return;
+                Node *matchedWorldNode=nullptr;
+                for(size_t i=0;i<root->get_child_count();++i){
+                    Node * child=root->get_child(i);
+                    if (child->is_class("QWorldNode") ){
+                        matchedWorldNode=child;
+                        break;
+                    }
+                }
+                if(matchedWorldNode==nullptr){
+                    godot::UtilityFunctions::printerr("Quark Physics Error: Physics needs a world! Add a QWorldNode to the root node of the current scene. ");
+                    
+                    return;
+                }else{
+                    worldNode=(QWorldNode*)matchedWorldNode;
+                }
             }
         }
         
@@ -70,7 +82,7 @@ void QBodyNode::on_post_enter_tree() {
                 
         }
         worldNode->add_body(this);
-        bodyObject->deleteProtected=true;
+        bodyObject->manualDeletion=true;
         isConfigured=true;
 
     }

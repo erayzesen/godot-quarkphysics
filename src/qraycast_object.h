@@ -51,7 +51,7 @@ protected:
 public:
     QRaycastObject(){
         raycastObject=new QRaycast(QVector::Zero(),QVector::Zero(),false);
-        raycastObject->deleteProtected=true;
+        raycastObject->manualDeletion=true;
     };
     ~QRaycastObject(){
         if(raycastObject!=nullptr){

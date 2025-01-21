@@ -615,14 +615,14 @@ void QMeshNode::on_post_enter_tree() {
                 update_mesh_node_data();
                 QMesh::MeshData qData=convert_mesh_node_data_to_mesh_data();
                 meshObject=QMesh::CreateWithMeshData( qData );
-                meshObject->deleteProtected=true;
+                meshObject->manualDeletion=true;
 
                   
 
             }else{
                 QMesh::MeshData qData=convert_mesh_node_data_to_mesh_data();
                 meshObject=QMesh::CreateWithMeshData(qData ) ;
-                meshObject->deleteProtected=true;
+                meshObject->manualDeletion=true;
                 
             }
             //Creating object and node versions of the mesh

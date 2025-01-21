@@ -52,11 +52,11 @@ protected:
 public:
     QSpringObject(){
         springObject=new QSpring(nullptr,nullptr,0.0f,false);
-        springObject->deleteProtected=true;
+        springObject->manualDeletion=true;
     };
     QSpringObject(QSpring *obj){
         springObject=obj;
-        springObject->deleteProtected=true;
+        springObject->manualDeletion=true;
     };
     ~QSpringObject(){
         if(springObject!=nullptr){

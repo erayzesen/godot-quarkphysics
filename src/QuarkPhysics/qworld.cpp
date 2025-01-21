@@ -636,7 +636,7 @@ vector<QManifold> QWorld::TestCollisionWithWorld(QBody *body)
 void QWorld::ClearBodies(){
 	for(int i=0;i<bodies.size();i++){
 		if (bodies[i]!=nullptr){
-			if(bodies[i]->deleteProtected==false ){
+			if(bodies[i]->manualDeletion==false ){
 				delete bodies[i];
 				bodies[i]=nullptr;
 			}
@@ -648,7 +648,7 @@ void QWorld::ClearBodies(){
 QWorld* QWorld::ClearJoints(){
 	for(int i=0;i<joints.size();i++){
 		if (joints[i]!=nullptr){
-			if(joints[i]->deleteProtected==false ){
+			if(joints[i]->manualDeletion==false ){
 				delete joints[i];
 				joints[i]=nullptr;
 			}
@@ -662,7 +662,7 @@ QWorld* QWorld::ClearSprings()
 {
 	for(int i=0;i<springs.size();i++){
 		if (springs[i]!=nullptr){
-			if(springs[i]->deleteProtected==false){
+			if(springs[i]->manualDeletion==false){
 				delete springs[i];
 				springs[i]=nullptr;
 			}
@@ -676,7 +676,7 @@ QWorld* QWorld::ClearRaycasts()
 {
 	for(int i=0;i<raycasts.size();i++){
 		if (raycasts[i]!=nullptr){
-			if(raycasts[i]->deleteProtected ==false ){
+			if(raycasts[i]->manualDeletion ==false ){
 				delete raycasts[i];
 				raycasts[i]=nullptr;
 			}

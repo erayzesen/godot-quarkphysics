@@ -96,6 +96,11 @@ key w: jump
 "
 label_settings = SubResource("LabelSettings_2ckbs")
 
+[node name="QWorldNode" type="QWorldNode" parent="."]
+debug_renderer = false
+enable_debug_mouse_interactions = true
+script = ExtResource("4_5rs6g")
+
 [node name="DoorButton" type="QRigidBodyNode" parent="." node_paths=PackedStringArray("door")]
 fixed_rotation = true
 mass = 0.1
@@ -330,11 +335,6 @@ data_uv_maps = Array[PackedInt32Array]([PackedInt32Array(0, 1, 3), PackedInt32Ar
 [node name="Box2" type="QRigidBodyNode" parent="."]
 layers = 3
 position = Vector2(845, 410)
-
-[node name="QWorldNode" type="QWorldNode" parent="."]
-debug_renderer = false
-enable_debug_mouse_interactions = true
-script = ExtResource("4_5rs6g")
 
 [node name="Coins" type="Node2D" parent="."]
 
