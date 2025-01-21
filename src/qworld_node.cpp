@@ -25,6 +25,11 @@ void QWorldNode::_notification(int what) {
 		} */
 		break;
 	case NOTIFICATION_PREDELETE :
+		for (auto bodyNode:bodyNodes ){
+			bodyNode->worldNode=nullptr;
+		}
+
+		
 		
 		break;
     
@@ -153,7 +158,9 @@ QWorldNode *QWorldNode::remove_body_at(int index) {
 	}
 	QBodyNode *bodyNode=get_body_at(index);
 	if (worldObject!=nullptr){
-		worldObject->RemoveBody(bodyNode->bodyObject);
+		if(bodyNode->bodyObject!=nullptr){
+			worldObject->RemoveBody(bodyNode->bodyObject);
+		}
 	}
 	bodyNodes.erase(bodyNodes.begin()+index);
 

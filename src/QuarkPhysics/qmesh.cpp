@@ -44,16 +44,20 @@ QMesh::~QMesh()
 {
 	for(int i=0;i<particles.size();i++){
 		if (particles[i]!=nullptr){
-			delete particles[i];
-			particles[i]=nullptr;
+			if(particles[i]->manualDeletion==false ){
+				delete particles[i];
+				particles[i]=nullptr;
+			}
 		}
 	}
 	particles.clear();
 
 	for(int i=0;i<springs.size();i++){
 		if(springs[i]!=nullptr){
-			delete springs[i];
-			springs[i]=nullptr;
+			if(springs[i]->manualDeletion==false){
+				delete springs[i];
+				springs[i]=nullptr;
+			}
 		}
 	}
 	springs.clear();

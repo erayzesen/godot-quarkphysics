@@ -49,9 +49,11 @@ private:
 public:
     QParticleObject(){
         particleObject=new QParticle();
+        particleObject->manualDeletion=true;
     };
     QParticleObject(QParticle *obj){
         particleObject=obj;
+        particleObject->manualDeletion=true;
     };
     Ref<QParticleObject> configure(Vector2 position,float radius){
         set_position(position);

@@ -44,6 +44,8 @@ void QMeshNode::_notification(int what) {
             if(bodyNode!=nullptr){
                 bodyNode->add_mesh_node(this);
                 ownerBodyNode=bodyNode;
+            }else{
+                ownerBodyNode=nullptr;
             }
         }
         break;
@@ -51,14 +53,16 @@ void QMeshNode::_notification(int what) {
         if(Engine::get_singleton()->is_editor_hint()==false && meshObject!=nullptr){
             if(ownerBodyNode!=nullptr){
                 ownerBodyNode->remove_mesh_node(this);
-            }
+                ownerBodyNode=nullptr;
+            } 
         }
         break;
     case NOTIFICATION_PREDELETE:
         if(Engine::get_singleton()->is_editor_hint()==false && meshObject!=nullptr){
             if(ownerBodyNode!=nullptr){
                 ownerBodyNode->remove_mesh_node(this);
-            }
+                ownerBodyNode=nullptr;
+            } 
             
         }
         break;
@@ -611,11 +615,14 @@ void QMeshNode::on_post_enter_tree() {
                 update_mesh_node_data();
                 QMesh::MeshData qData=convert_mesh_node_data_to_mesh_data();
                 meshObject=QMesh::CreateWithMeshData( qData );
+                meshObject->manualDeletion=true;
+
                   
 
             }else{
                 QMesh::MeshData qData=convert_mesh_node_data_to_mesh_data();
                 meshObject=QMesh::CreateWithMeshData(qData ) ;
+                meshObject->manualDeletion=true;
                 
             }
             //Creating object and node versions of the mesh
@@ -650,9 +657,11 @@ void QMeshNode::on_post_enter_tree() {
 
         set_process(true);
 
+        
+
         isConfigured=true;
 
-        cout<<"on post enter tree finished!"<<endl;
+        //cout<<"on post enter tree finished!"<<endl;
         
 
         

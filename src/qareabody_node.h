@@ -43,6 +43,7 @@ public:
     QAreaBodyNode(){
         QAreaBody *areaBodyObject=new QAreaBody();
         bodyObject=areaBodyObject;
+        bodyObject->manualDeletion=true;
         bodyNodeType=QBodyNode::bodyNodeTypes::AREA;
         init_events();
         //Area Body Events

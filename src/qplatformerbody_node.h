@@ -42,6 +42,7 @@ protected:
 public:
     QPlatformerBodyNode(){
         bodyObject=new QPlatformerBody();
+        bodyObject->manualDeletion=true;
         bodyNodeType=QBodyNode::bodyNodeTypes::RIGID;
         init_events();
     };

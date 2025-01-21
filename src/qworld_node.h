@@ -78,16 +78,8 @@ public:
         spatialHashing=new QSpatialHashing(worldObject->bodies,cellSize);
     };
     ~QWorldNode(){
+        
         if(worldObject!=nullptr){
-            for(size_t i=0;i<jointObjects.size();++i ){
-                jointObjects[i]->jointObject=nullptr;
-            }
-            for(size_t i=0;i<springObjects.size();++i ){
-                springObjects[i]->springObject=nullptr;
-            }
-            for(size_t i=0;i<raycastObjects.size();++i ){
-                raycastObjects[i]->raycastObject=nullptr;
-            }
             delete worldObject;
             worldObject=nullptr;
         }
