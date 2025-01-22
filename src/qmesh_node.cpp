@@ -632,6 +632,11 @@ void QMeshNode::on_post_enter_tree() {
             }
             for(int i=0;i<meshObject->GetSpringCount();i++ ){ //springs
                 Ref<QSpringObject> s=memnew( QSpringObject(meshObject->GetSpringAt(i)) );
+                Ref<QParticleObject> pA=get_particle_object_with_particle(meshObject->GetSpringAt(i)->GetParticleA() );
+                Ref<QParticleObject> pB=get_particle_object_with_particle(meshObject->GetSpringAt(i)->GetParticleB() );
+                s->pA=pA;
+                s->pB=pB;
+                
                 springObjects.push_back(s);
             }
             

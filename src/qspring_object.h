@@ -70,8 +70,6 @@ public:
             return this;
         }
 
-        pA=particle_object_a;
-        pB=particle_object_b;
         
         set_particle_a(particle_object_a);
         set_particle_b(particle_object_b);
@@ -87,8 +85,6 @@ public:
             return Ref<QSpringObject>(this);
         }
 
-        pA=particle_object_a;
-        pB=particle_object_b;
         
         set_particle_a(particle_object_a);
         set_particle_b(particle_object_b);
