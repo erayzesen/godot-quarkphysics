@@ -69,6 +69,9 @@ public:
             //print_error ("Quark Physics Error: Invalid particle object type! | QSpringObject.create_with_current_distance() ");
             return this;
         }
+
+        pA=particle_object_a;
+        pB=particle_object_b;
         
         set_particle_a(particle_object_a);
         set_particle_b(particle_object_b);
@@ -83,6 +86,10 @@ public:
             //print_error ("Quark Physics Error: Invalid particle object type! | QSpringObject.create_with_current_distance() ");
             return Ref<QSpringObject>(this);
         }
+
+        pA=particle_object_a;
+        pB=particle_object_b;
+        
         set_particle_a(particle_object_a);
         set_particle_b(particle_object_b);
         set_length(length);
