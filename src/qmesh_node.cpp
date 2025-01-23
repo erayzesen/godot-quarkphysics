@@ -12,7 +12,6 @@
 
 void QMeshNode::_notification(int what) {
     switch (what){
-
     case NOTIFICATION_POST_ENTER_TREE:
         if(Engine::get_singleton()->is_editor_hint()==false){
             on_post_enter_tree();
@@ -610,21 +609,16 @@ void QMeshNode::on_process() {
 
 void QMeshNode::on_post_enter_tree() {
     if(isConfigured==false){
-        if(meshObject==nullptr){
+        if (meshObject==nullptr){
+            
             if(useMeshData==true){
                 update_mesh_node_data();
-                QMesh::MeshData qData=convert_mesh_node_data_to_mesh_data();
-                meshObject=QMesh::CreateWithMeshData( qData );
-                meshObject->manualDeletion=true;
-
-                  
-
-            }else{
-                QMesh::MeshData qData=convert_mesh_node_data_to_mesh_data();
-                meshObject=QMesh::CreateWithMeshData(qData ) ;
-                meshObject->manualDeletion=true;
-                
             }
+            QMesh::MeshData qData=convert_mesh_node_data_to_mesh_data();
+            meshObject=QMesh::CreateWithMeshData(qData ) ;
+            meshObject->manualDeletion=true;
+                
+            
             //Creating object and node versions of the mesh
             for(int i=0;i<meshObject->GetParticleCount();i++ ){ //particles
                 Ref<QParticleObject> p=memnew( QParticleObject(meshObject->GetParticleAt(i)) );
@@ -646,31 +640,33 @@ void QMeshNode::on_post_enter_tree() {
                 polygon.push_back(p);
             } 
         }
-        set_mesh_position(get_position());
-        set_mesh_rotation(get_rotation());
-
-        //Re-Set Properties of Mesh Object
-        meshObject->SetPolygonForCollisionsDisabled(disablePolygonForCollisions);
-        
-        if(ownerBodyNode==nullptr){
-            QBodyNode *bodyNode=QBodyNode::type_cast(get_parent());
-            if(bodyNode!=nullptr){
-                bodyNode->add_mesh_node(this);
-                ownerBodyNode=bodyNode;
-            }
-        }
-
-        set_process(true);
-
-        
-
-        isConfigured=true;
-
-        //cout<<"on post enter tree finished!"<<endl;
-        
-
-        
     }
+
+    set_mesh_position(get_position());
+    set_mesh_rotation(get_rotation());
+
+    //Re-Set Properties of Mesh Object
+    meshObject->SetPolygonForCollisionsDisabled(disablePolygonForCollisions);
+    
+    if(ownerBodyNode==nullptr){
+        QBodyNode *bodyNode=QBodyNode::type_cast(get_parent());
+        if(bodyNode!=nullptr){
+            bodyNode->add_mesh_node(this);
+            ownerBodyNode=bodyNode;
+        }
+    }
+
+    set_process(true);
+
+    
+
+    isConfigured=true;
+
+    //cout<<"on post enter tree finished!"<<endl;
+    
+    //godot::UtilityFunctions::print("Quark Physics Status: QMeshNode Configured! | QMeshNode::on_post_enter_tree() ");
+        
+    
     
 }
 
@@ -1012,40 +1008,76 @@ void QMeshNode::_bind_methods()
 //GET
 
 Vector2 QMeshNode::get_mesh_position() {
+    if(meshObject==nullptr){
+        godot::UtilityFunctions::printerr("Quark Physics Error: The mesh object not configured yet! | QMeshNode.get_mesh_position() ");
+        return Vector2(0,0);
+    }
     QVector value=meshObject->GetPosition();
 	return Vector2(value.x,value.y);
 }
 
 Vector2 QMeshNode::get_mesh_global_position() {
+    if(meshObject==nullptr){
+        godot::UtilityFunctions::printerr("Quark Physics Error: The mesh object not configured yet! | QMeshNode.get_mesh_global_position() ");
+        return Vector2(0,0);
+    }
     QVector value=meshObject->GetGlobalPosition();
 	return Vector2(value.x,value.y);
 }
 
 float QMeshNode::get_mesh_rotation() {
+    if(meshObject==nullptr){
+        godot::UtilityFunctions::printerr("Quark Physics Error: The mesh object not configured yet! | QMeshNode.get_mesh_rotation() ");
+        return 0.0;
+    }
 	return meshObject->GetRotation();
 }
 
 float QMeshNode::get_mesh_global_rotation() {
+    if(meshObject==nullptr){
+        godot::UtilityFunctions::printerr("Quark Physics Error: The mesh object not configured yet! | QMeshNode.get_mesh_global_rotation() ");
+        return 0.0;
+    }
 	return meshObject->GetGlobalRotation();
 }
 
 float QMeshNode::get_initial_area() {
+    if(meshObject==nullptr){
+        godot::UtilityFunctions::printerr("Quark Physics Error: The mesh object not configured yet! | QMeshNode.get_initial_area() ");
+        return 0.0;
+    }
 	return meshObject->GetInitialArea();
 }
 
 float QMeshNode::get_initial_polygons_area() {
+    if(meshObject==nullptr){
+        godot::UtilityFunctions::printerr("Quark Physics Error: The mesh object not configured yet! | QMeshNode.get_initial_polygons_area() ");
+        return 0.0;
+    }
 	return meshObject->GetInitialPolygonsArea();
 }
 
 float QMeshNode::get_area() {
+    if(meshObject==nullptr){
+        godot::UtilityFunctions::printerr("Quark Physics Error: The mesh object not configured yet! | QMeshNode.get_area() ");
+        return 0.0;
+    }
 	return meshObject->GetArea();
 }
 
 float QMeshNode::get_polygon_area() {
+    if(meshObject==nullptr){
+        godot::UtilityFunctions::printerr("Quark Physics Error: The mesh object not configured yet! | QMeshNode.get_polygon_area() ");
+        return 0.0;
+    }
 	return meshObject->GetPolygonsArea();
 }
 
 float QMeshNode::get_circumference(){
+    if(meshObject==nullptr){
+        godot::UtilityFunctions::printerr("Quark Physics Error: The mesh object not configured yet! | QMeshNode.get_circumference() ");
+        return 0.0;
+    }
     return meshObject->GetCircumference();
 }
 
@@ -1063,13 +1095,19 @@ bool QMeshNode::get_show_particle_index_numbers_enabled()
 }
 
 Array QMeshNode::get_average_position_and_rotation(TypedArray<QParticleObject> particle_collection) {
+    
     Array result;
+
+    if(meshObject==nullptr){
+        godot::UtilityFunctions::printerr("Quark Physics Error: The mesh object not configured yet! | QMeshNode.get_average_position_and_rotation() ");
+        return result;
+    }
     vector<QParticle*> particleObjects;
     
     for(int i=0;i<particle_collection.size();i++){
         Ref<QParticleObject> pObj=particle_collection[i];
         if(pObj.is_valid()==false || pObj==nullptr){
-            godot::UtilityFunctions::printerr("Quark Physics Error: The element of the polygon array isn't a valid particle object type! | QMeshNode.add_polygon() ");
+            godot::UtilityFunctions::printerr("Quark Physics Error: There are an invalid object type in the particle collection! | QMeshNode.get_average_position_and_rotation() ");
             return result;
         }
         particleObjects.push_back(pObj->particleObject);
@@ -1082,12 +1120,17 @@ Array QMeshNode::get_average_position_and_rotation(TypedArray<QParticleObject> p
 }
 
 Array QMeshNode::get_matching_particle_positions(TypedArray<QParticleObject> particle_collection, Vector2 target_position, float target_rotation) {
+    
 	Array result;
+    if(meshObject==nullptr){
+        godot::UtilityFunctions::printerr("Quark Physics Error: The mesh object not configured yet! | QMeshNode.get_matching_particle_positions() ");
+        return result;
+    }
     vector<QParticle*> particleObjects;
     for(int i=0;i<particle_collection.size();i++){
         Ref<QParticleObject> pObj=particle_collection[i];
         if(pObj.is_valid()==false || pObj==nullptr){
-            godot::UtilityFunctions::printerr("Quark Physics Error: The element of the polygon array isn't a valid particle object type! | QMeshNode.add_polygon() ");
+            godot::UtilityFunctions::printerr("Quark Physics Error: The element of the particle_collection array isn't a valid particle object type! | QMeshNode.get_matching_particle_positions() ");
             return result;
         }
 
@@ -1101,6 +1144,10 @@ Array QMeshNode::get_matching_particle_positions(TypedArray<QParticleObject> par
 }
 
 float QMeshNode::get_min_angle_constraint_of_polygon() {
+    if(meshObject==nullptr){
+        godot::UtilityFunctions::printerr("Quark Physics Error: The mesh object not configured yet! | QMeshNode.get_min_angle_constraint_of_polygon() ");
+        return 0.0f;
+    }
 	return meshObject->GetMinAngleConstraintOfPolygon();
 }
 
@@ -1116,15 +1163,27 @@ QBodyNode * QMeshNode::get_owner_body_node(){
 //SET
 
 QMeshNode *QMeshNode::set_mesh_position(Vector2 value) {
+    if(meshObject==nullptr){
+        godot::UtilityFunctions::printerr("Quark Physics Error: The mesh object not configured yet! | QMeshNode.set_mesh_position() ");
+        return this;
+    }
     meshObject->SetPosition(QVector(value.x,value.y) );
 	return this;
 }
 QMeshNode *QMeshNode::set_mesh_global_position(Vector2 value) {
+    if(meshObject==nullptr){
+        godot::UtilityFunctions::printerr("Quark Physics Error: The mesh object not configured yet! | QMeshNode.set_mesh_global_position() ");
+        return this;
+    }
     meshObject->SetGlobalPosition(QVector(value.x,value.y) );
 	return this;
 }
 
 QMeshNode *QMeshNode::set_mesh_rotation(float value) {
+    if(meshObject==nullptr){
+        godot::UtilityFunctions::printerr("Quark Physics Error: The mesh object not configured yet! | QMeshNode.set_mesh_rotation() ");
+        return this;
+    }
     meshObject->SetRotation(value);
 	return this;
 }
@@ -1149,12 +1208,17 @@ QMeshNode *QMeshNode::set_show_particle_index_numbers_enabled(bool value)
 }
 
 QMeshNode *QMeshNode::set_min_angle_constraint_of_polygon(bool value) {
+    if(meshObject==nullptr){
+        godot::UtilityFunctions::printerr("Quark Physics Error: The mesh object not configured yet! | QMeshNode.set_min_angle_constraint_of_polygon() ");
+        return this;
+    }
 	meshObject->SetMinAngleConstraintOfPolygon(value);
     return this;
 }
 
 QMeshNode *QMeshNode::set_polygon_for_collision_disabled(bool value)
 {
+    
     disablePolygonForCollisions=value;
     if ( Engine::get_singleton()->is_editor_hint()==false && meshObject!=nullptr ){
         meshObject->SetPolygonForCollisionsDisabled(value);
@@ -1168,15 +1232,18 @@ QMeshNode *QMeshNode::add_particle(Ref<QParticleObject> particle_object) {
         godot::UtilityFunctions::printerr("Quark Physics Error: Not a valid particle object type! | QMeshNode.add_particle() ");
         return this;
     }
-
+    if(meshObject==nullptr){
+        meshObject=new QMesh();
+    }
     particleObjects.push_back(particle_object);
     meshObject->AddParticle(particle_object->particleObject);
+    
 	return this;
 }
 
 QMeshNode *QMeshNode::remove_particle(Ref<QParticleObject> particle_object) {
     if(particle_object.is_valid()==false){
-        godot::UtilityFunctions::printerr("Quark Physics Error: Not a valid particle object type! | QMeshNode.add_particle() ");
+        godot::UtilityFunctions::printerr("Quark Physics Error: Not a valid particle object type! | QMeshNode.remove_particle() ");
         return this;
     }
 
@@ -1189,6 +1256,10 @@ QMeshNode *QMeshNode::remove_particle(Ref<QParticleObject> particle_object) {
 }
 
 QMeshNode *QMeshNode::remove_particle_at(int index) {
+    if(meshObject==nullptr){
+        godot::UtilityFunctions::printerr("Quark Physics Error: The mesh object not configured yet! | QMeshNode.remove_particle_at() ");
+        return this;
+    }
 
     Ref<QParticleObject> particle_object=particleObjects[index];
     //Remove linked springs
@@ -1235,6 +1306,10 @@ int QMeshNode::get_particle_count() {
 
 int QMeshNode::get_particle_index(Ref<QParticleObject> particle_object)
 {
+    if(meshObject==nullptr){
+        godot::UtilityFunctions::printerr("Quark Physics Error: The mesh object not configured yet! | QMeshNode.get_particle_index() ");
+        return -1;
+    }
     return meshObject->GetParticleIndex(particle_object->particleObject);
 }
 
@@ -1253,6 +1328,15 @@ QMeshNode *QMeshNode::add_spring(Ref<QSpringObject> spring_object) {
         godot::UtilityFunctions::printerr("Quark Physics Error: Not a valid spring object type! | QMeshNode.add_spring() ");
         return this;
     }
+    if(meshObject==nullptr){
+        godot::UtilityFunctions::printerr("Quark Physics Error: The mesh object not configured yet! | QMeshNode.add_spring() ");
+        return this;
+    }else{
+        if (meshObject->GetParticleCount()==0){
+            godot::UtilityFunctions::printerr("Quark Physics Error: There aren't particle objects to create a new spring! | QMeshNode.add_spring() ");
+            return this;
+        }
+    }
     
     springObjects.push_back(spring_object);
     meshObject->AddSpring(spring_object->springObject);
@@ -1261,7 +1345,7 @@ QMeshNode *QMeshNode::add_spring(Ref<QSpringObject> spring_object) {
 
 QMeshNode *QMeshNode::remove_spring(Ref<QSpringObject> spring_object) {
 	if(spring_object->get_class()!="QSpringObject"){
-        godot::UtilityFunctions::printerr("Quark Physics Error: Not a valid particle object type! | QMeshNode.add_spring() ");
+        godot::UtilityFunctions::printerr("Quark Physics Error: Not a valid particle object type! | QMeshNode.remove_spring() ");
         return this;
     }
     
@@ -1274,6 +1358,10 @@ QMeshNode *QMeshNode::remove_spring(Ref<QSpringObject> spring_object) {
 }
 
 QMeshNode *QMeshNode::remove_spring_at(int index) {
+    if(index>=springObjects.size() ){
+        godot::UtilityFunctions::printerr("Quark Physics Error: The index value is out of the range!! | QMeshNode.remove_spring_at() ");
+        return this;
+    }
 	springObjects.erase(springObjects.begin()+index);
     meshObject->RemoveSpringAt(index);
 	return this;
@@ -1289,12 +1377,26 @@ int QMeshNode::get_spring_count() {
 
 int QMeshNode::get_spring_index(Ref<QSpringObject> spring_object)
 {
+    if(meshObject==nullptr){
+        godot::UtilityFunctions::printerr("Quark Physics Error: The mesh object not configured yet! | QMeshNode.get_spring_index() ");
+        return -1;
+    }
     return meshObject->GetSpringIndex(spring_object->springObject);
 }
 
 //Polygon Operations
 
 QMeshNode *QMeshNode::set_polygon(TypedArray<QParticleObject> particleCollection) {
+
+    if(meshObject==nullptr){
+        godot::UtilityFunctions::printerr("Quark Physics Error: The mesh object not configured yet! | QMeshNode.set_polygon() ");
+        return this;
+    }else{
+        if (meshObject->GetParticleCount()==0){
+            godot::UtilityFunctions::printerr("Quark Physics Error: There aren't particle objects to create a new polygon! | QMeshNode.set_polygon() ");
+            return this;
+        }
+    }
 
 	vector<Ref<QParticleObject>> polygonParticleObjects;
     vector<QParticle*> polygonParticles;
@@ -1303,7 +1405,7 @@ QMeshNode *QMeshNode::set_polygon(TypedArray<QParticleObject> particleCollection
         
         Ref<QParticleObject> element=particleCollection[i];
         if(element.is_valid()==false || element==nullptr ){
-            godot::UtilityFunctions::printerr("Quark Physics Error: The element of the polygon array isn't a valid particle object type! | QMeshNode.add_polygon() ");
+            godot::UtilityFunctions::printerr("Quark Physics Error: The element of the polygon array isn't a valid particle object type! | QMeshNode.set_polygon() ");
             return this;
         }
         polygonParticleObjects.push_back(element);
@@ -1317,12 +1419,22 @@ QMeshNode *QMeshNode::set_polygon(TypedArray<QParticleObject> particleCollection
 }
 
 QMeshNode *QMeshNode::add_particle_to_polygon(Ref<QParticleObject> particleObject) {
-
+    if(meshObject==nullptr){
+        godot::UtilityFunctions::printerr("Quark Physics Error: The mesh object not configured yet! | QMeshNode.add_particle_to_polygon() ");
+        return this;
+    }else{
+        if (meshObject->GetParticleCount()==0){
+            godot::UtilityFunctions::printerr("Quark Physics Error: There aren't particle objects to add a new particle to the polygon! | QMeshNode.add_particle_to_polygon() ");
+            return this;
+        }
+    }
     
     if(particleObject.is_valid()==false){
         godot::UtilityFunctions::printerr("Quark Physics Error: There is no a valid particle object type! | QMeshNode.add_particle_to_polygon() ");
         return this;
     }
+
+    
     
     polygon.push_back(particleObject);
     meshObject->AddParticleToPolygon(particleObject->particleObject);
@@ -1331,11 +1443,7 @@ QMeshNode *QMeshNode::add_particle_to_polygon(Ref<QParticleObject> particleObjec
 }
 
 QMeshNode *QMeshNode::remove_particle_from_polygon(Ref<QParticleObject> particleObject) {
-    if(particleObject.is_valid()==false){
-        godot::UtilityFunctions::printerr("Quark Physics Error: There is no a valid particle object type! | QMeshNode.remove_particle_from_polygon() ");
-        return this;
-    }
-    
+       
 
     auto findedIt=find(polygon.begin(),polygon.end(),particleObject );
     if(findedIt!=polygon.end() ){
@@ -1348,8 +1456,12 @@ QMeshNode *QMeshNode::remove_particle_from_polygon(Ref<QParticleObject> particle
 }
 
 QMeshNode *QMeshNode::remove_particle_from_polygon_at(int index) {
+    if(meshObject==nullptr){
+        godot::UtilityFunctions::printerr("Quark Physics Error: The mesh object not configured yet! | QMeshNode.remove_particle_from_polygon_at() ");
+        return this;
+    }
     if(index>=polygon.size() ){
-        godot::UtilityFunctions::printerr("Quark Physics Error: the index value is out of the range! | QMeshNode.remove_particle_from_polygon_at() ");
+        godot::UtilityFunctions::printerr("Quark Physics Error: The index value is out of the range! | QMeshNode.remove_particle_from_polygon_at() ");
         return this;
     }
     
@@ -1361,6 +1473,10 @@ QMeshNode *QMeshNode::remove_particle_from_polygon_at(int index) {
 }
 
 QMeshNode *QMeshNode::remove_polygon() {
+    if(meshObject==nullptr){
+        godot::UtilityFunctions::printerr("Quark Physics Error: The mesh object not configured yet! | QMeshNode.remove_polygon() ");
+        return this;
+    }
     meshObject->RemovePolygon();
     polygon.clear();
 	return this;
@@ -1368,7 +1484,7 @@ QMeshNode *QMeshNode::remove_polygon() {
 
 Ref<QParticleObject> QMeshNode::get_particle_from_polygon(int index) {
     if(index>=polygon.size() ){
-        godot::UtilityFunctions::printerr("Quark Physics Error: the index value is out of the range! | QMeshNode.get_particle_from_polygon() ");
+        godot::UtilityFunctions::printerr("Quark Physics Error: The index value is out of the range! | QMeshNode.get_particle_from_polygon() ");
         return nullptr;
     }
 	return polygon[index];
@@ -1381,6 +1497,11 @@ int QMeshNode::get_polygon_particle_count() {
 
 
 Array QMeshNode::get_decomposited_polygon() {
+    Array result;
+    if(meshObject==nullptr){
+        godot::UtilityFunctions::printerr("Quark Physics Error: The mesh object not configured yet! | QMeshNode.get_decomposited_polygon() ");
+        return result;
+    }
     PackedVector2Array polygonPoints;
     for (size_t i=0;i<meshObject->GetPolygonParticleCount();++i ){
         QVector p=meshObject->GetParticleFromPolygon(i)->GetGlobalPosition();
@@ -1390,7 +1511,7 @@ Array QMeshNode::get_decomposited_polygon() {
 
     Array decompositedPolygon=Geometry2D::get_singleton()->decompose_polygon_in_convex(polygonPoints);
 
-    Array result;
+    
 
     for(int i=0;i<decompositedPolygon.size();++i ){
         PackedVector2Array polyOrg=decompositedPolygon[i];
@@ -1408,11 +1529,21 @@ Array QMeshNode::get_decomposited_polygon() {
 //UV Operations
 
 int QMeshNode::get_uv_map_count(){
+    if(meshObject==nullptr){
+        godot::UtilityFunctions::printerr("Quark Physics Error: The mesh object not configured yet! | QMeshNode.get_uv_map_count() ");
+        return 0;
+    }
     return meshObject->GetUVMapCount();
     
 }
 
 PackedInt32Array QMeshNode::get_uv_map_at(int index){
+    if(meshObject==nullptr){
+        
+        godot::UtilityFunctions::printerr("Quark Physics Error: The mesh object not configured yet! | QMeshNode.get_uv_map_at() ");
+     
+        return PackedInt32Array();
+    }
     PackedInt32Array res;
     vector<int> map=meshObject->GetUVMapAt(index);
     for(size_t i=0;i<map.size();++i){
@@ -1424,6 +1555,10 @@ PackedInt32Array QMeshNode::get_uv_map_at(int index){
 
 QMeshNode *QMeshNode::add_uv_map(PackedInt32Array map)
 {
+    if(meshObject==nullptr){
+        godot::UtilityFunctions::printerr("Quark Physics Error: The mesh object not configured yet! | QMeshNode.add_uv_map() ");
+        return this;
+    }
     vector<int> vmap;
     for(size_t i=0;i<map.size();++i){
         vmap.push_back(map[i]);
@@ -1434,6 +1569,10 @@ QMeshNode *QMeshNode::add_uv_map(PackedInt32Array map)
 
 QMeshNode *QMeshNode::remove_uv_map_at(int index)
 {
+    if(meshObject==nullptr){
+        godot::UtilityFunctions::printerr("Quark Physics Error: The mesh object not configured yet! | QMeshNode.remove_uv_map_at() ");
+        return this;
+    }
     meshObject->RemoveUVMapAt(index);
     
     return this;

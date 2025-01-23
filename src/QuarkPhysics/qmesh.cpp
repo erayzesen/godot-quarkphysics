@@ -88,8 +88,7 @@ QMesh *QMesh::AddParticle(QParticle *particle){
 	particles.push_back(particle);
 	particles.back()->SetOwnerMesh(this);
 	if(ownerBody!=nullptr){
-		if (ownerBody->mode==QBody::Modes::STATIC)
-			ownerBody->UpdateMeshTransforms();
+		ownerBody->UpdateMeshTransforms();
 		ownerBody->inertiaNeedsUpdate=true;
 		ownerBody->circumferenceNeedsUpdate=true;
 	}
