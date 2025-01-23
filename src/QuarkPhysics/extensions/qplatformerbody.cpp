@@ -476,7 +476,7 @@ void QPlatformerBody::PostUpdate()
 	//Checking Floor
 	onFloor=false;
 
-	AddPosition(dirFloor*1.0f);
+	AddPosition(dirFloor*1.0);
 	vector<QManifold>  nextFloorManifolds=world->TestCollisionWithWorld(this);
 	SetPosition(tempPosition);
 
@@ -500,6 +500,11 @@ void QPlatformerBody::PostUpdate()
 			
 			float floorAngle=QVector::AngleBetweenTwoVectors(normal,upDirection);
 			if( abs(floorAngle)<maxFloorAngle ){
+				//For soft body vertical collision responses
+				if (collidedBody->GetBodyType()==QBody::BodyTypes::SOFT){
+					AddPosition(dirFloor*1.0);
+					manifold.Solve();
+				}
 				onFloor=true;
 				if(collidedBody->GetBodyType()==QBody::BodyTypes::RIGID){
 					QRigidBody *collidedRigidBody=static_cast<QRigidBody*>(collidedBody);
