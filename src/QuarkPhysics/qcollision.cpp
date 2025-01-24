@@ -594,7 +594,6 @@ void QCollision::CircleAndCircle(vector<QParticle*> &particlesA,vector<QParticle
 				//normal=distVec.Normalized();
 				//The normal with previous positions gives us more realistic collision normals in the simulation.
 				normal=(pB->GetPreviousGlobalPosition()-pA->GetPreviousGlobalPosition()).Normalized();
-				//normal=(pB->GetGlobalPosition()-pA->GetGlobalPosition()).Normalized();
 
 				penetration=totalRadius-positionalPenetration;
 

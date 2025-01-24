@@ -363,14 +363,40 @@ void QMeshNode::debug_render_in_runtime()
     }
     //Drawing polygons
     if(meshObject->GetPolygonParticleCount()>2 ){
+        PackedVector2Array polygonPoints;
         for(int n=0;n<meshObject->GetPolygonParticleCount();n++){
+            
             QVector qp=meshObject->GetParticleFromPolygon(n)->GetGlobalPosition();
-            QVector qpn=meshObject->GetParticleFromPolygon((n+1)%meshObject->GetPolygonParticleCount())->GetGlobalPosition();
             Vector2 p=(Vector2(qp.x,qp.y)-get_global_position() ).rotated(-get_global_rotation() ) ;
-            Vector2 pn=( Vector2(qpn.x,qpn.y)-get_global_position() ).rotated(-get_global_rotation() );
             p*=node_scale_inverse_factor;
-            pn*=node_scale_inverse_factor;
-            rs->canvas_item_add_line(debugRenderInstance,p,pn,colliderColor);
+            polygonPoints.push_back(p);
+            
+        }
+        polygonPoints.append(polygonPoints[0]);
+        if(polygonPoints.size()!=0){
+            PackedColorArray colors;
+            colors.append(colliderColor);
+            rs->canvas_item_add_polyline(debugRenderInstance,polygonPoints,colors);
+        }
+        //Sub Convex Polygons Rendering
+        for(int n=0;n<meshObject->GetSubConvexPolygonCount();++n){
+            vector<QParticle*> subPolygon=meshObject->GetSubConvexPolygonAt(n);
+            PackedVector2Array points;
+            for(int m=0;m<subPolygon.size();m++){
+                
+                QVector qp=subPolygon[m]->GetGlobalPosition();
+                Vector2 p=(Vector2(qp.x,qp.y)-get_global_position() ).rotated(-get_global_rotation() ) ;
+                p*=node_scale_inverse_factor;
+                points.push_back(p);
+                
+            }
+            points.append(points[0]);
+            Color subPolygonColor=colliderColor;
+            subPolygonColor.a=0.2f;
+            PackedColorArray colors;
+            colors.append(subPolygonColor);
+            rs->canvas_item_add_polyline(debugRenderInstance,points,colors);
+            
         }
     }
     //Drawing particles
