@@ -19,8 +19,9 @@ env.Append(CPPPATH=["src/"])
 env.Append(CPPPATH=["src/QuarkPhysics/"])
 env.Append(CPPPATH=["src/QuarkPhysics/extensions/"])
 env.Append(CPPPATH=["src/QuarkPhysics/json/"])
+env.Append(CPPPATH=["src/QuarkPhysics/polypartition/"])
 #env.Append(CPPPATH=[env.Dir(d) for d in source_path])
-sources = [ Glob("src/*.cpp"),Glob("src/QuarkPhysics/*.cpp"),Glob("src/QuarkPhysics/extensions/*.cpp"),Glob("src/QuarkPhysics/json/*.cpp") ]
+sources = [ Glob("src/*.cpp"),Glob("src/QuarkPhysics/*.cpp"),Glob("src/QuarkPhysics/extensions/*.cpp"),Glob("src/QuarkPhysics/json/*.cpp"),Glob("src/QuarkPhysics/polypartition/*.cpp") ]
 #sources = Glob("src/*.cpp")
 
 

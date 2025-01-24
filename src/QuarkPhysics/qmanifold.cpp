@@ -229,6 +229,28 @@ void QManifold::Solve()
 		if(cancelSolving==true)
 			continue;
 
+
+		//Exceptions of Disabled Particles
+		if(contact->particle->GetEnabled()==false  )
+			continue;
+
+		for (size_t n=0;n<contact->referenceParticles.size();++n ){
+			if (contact->referenceParticles[n]->GetEnabled()==false ){
+				cancelSolving=true;
+				break;
+			}
+				
+		}
+
+		if(cancelSolving==true)
+			continue;
+
+
+
+		
+
+		
+
 		//Exceptions of Lazy Particles
 		bool incidentParticleIsLazy=false;
 		bool referenceParticlesAreLazy=false;
@@ -264,24 +286,7 @@ void QManifold::Solve()
 		if(cancelSolving==true)
 			continue;
 
-
-		//Exceptions of Disabled Particles
-		if(contact->particle->GetEnabled()==false  )
-			continue;
-
-		for (size_t n=0;n<contact->referenceParticles.size();++n ){
-			if (contact->referenceParticles[n]->GetEnabled()==false ){
-				cancelSolving=true;
-				break;
-			}
-				
-		}
-
-		if(cancelSolving==true)
-			continue;
-
-
-
+		
 
 
 

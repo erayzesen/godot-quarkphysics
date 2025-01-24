@@ -7,10 +7,10 @@ script = ExtResource("1_nagly")
 
 [node name="QWorldNode" type="QWorldNode" parent="."]
 gravity = Vector2(0, 0.1)
-debug_renderer = false
 enable_debug_mouse_interactions = true
 
 [node name="background" type="ColorRect" parent="."]
+visible = false
 offset_right = 1030.0
 offset_bottom = 580.0
 mouse_filter = 2
