@@ -912,6 +912,15 @@ void QMeshNode::_bind_methods()
     ClassDB::bind_method(D_METHOD("get_uv_map_count"),&QMeshNode::get_uv_map_count );
     ClassDB::bind_method(D_METHOD("add_uv_map","map"),&QMeshNode::add_uv_map );
     ClassDB::bind_method(D_METHOD("remove_uv_map_at","index"),&QMeshNode::remove_uv_map_at );
+
+
+    //Angle Constraint Operations
+    ClassDB::bind_method(D_METHOD("add_angle_constraint","angle_constraint_object"),&QMeshNode::add_angle_constraint );
+    ClassDB::bind_method(D_METHOD("remove_angle_constraint","angle_constraint_object"),&QMeshNode::remove_angle_constraint );
+    ClassDB::bind_method(D_METHOD("remove_angle_constraint_at","index"),&QMeshNode::remove_angle_constraint_at );
+    ClassDB::bind_method(D_METHOD("get_angle_constraint_at","index"),&QMeshNode::get_angle_constraint_at );
+    ClassDB::bind_method(D_METHOD("get_angle_constraint_count"),&QMeshNode::get_angle_constraint_count );
+    ClassDB::bind_method(D_METHOD("get_angle_constraint_index","angle_constraint_object"),&QMeshNode::get_angle_constraint_index );
     
 
     
@@ -1260,6 +1269,7 @@ QMeshNode *QMeshNode::add_particle(Ref<QParticleObject> particle_object) {
     }
     if(meshObject==nullptr){
         meshObject=new QMesh();
+        meshObject->manualDeletion=true;
     }
     particleObjects.push_back(particle_object);
     meshObject->AddParticle(particle_object->particleObject);
@@ -1604,10 +1614,68 @@ QMeshNode *QMeshNode::remove_uv_map_at(int index)
     return this;
 }
 
+int QMeshNode::get_angle_constraint_count()
+{
+    return angleConstraintObjects.size();
+}
 
+Ref<QAngleConstraintObject> QMeshNode::get_angle_constraint_at(int index)
+{
+    if(meshObject==nullptr){
+        godot::UtilityFunctions::printerr("Quark Physics Error: The mesh object not configured yet! | QMeshNode.get_angle_constraint_at ");
+        return nullptr;
+    }
+    return angleConstraintObjects[index];
+}
 
+QMeshNode *QMeshNode::add_angle_constraint(Ref<QAngleConstraintObject> angleConstraint)
+{
+    if(meshObject==nullptr){
+        godot::UtilityFunctions::printerr("Quark Physics Error: The mesh object not configured yet! | QMeshNode.add_angle_constraint() ");
+        return this;
+    }
+    angleConstraintObjects.push_back(angleConstraint);
+    meshObject->AddAngleConstraint(angleConstraint->angleConstraintObject);
+    return this;
+}
 
+int QMeshNode::get_angle_constraint_index(Ref<QAngleConstraintObject> angleConstraint)
+{
+    if(meshObject==nullptr){
+        godot::UtilityFunctions::printerr("Quark Physics Error: The mesh object not configured yet! | QMeshNode.get_angle_constraint_index() ");
+        return -1;
+    }
+    return meshObject->GetAngleConstraintIndex(angleConstraint->angleConstraintObject);
+}
 
+QMeshNode *QMeshNode::remove_angle_constraint(Ref<QAngleConstraintObject> angleConstraint)
+{
+    if(meshObject==nullptr){
+        godot::UtilityFunctions::printerr("Quark Physics Error: The mesh object not configured yet! | QMeshNode.remove_angle_constraint() ");
+        return this;
+    }
+
+    auto findedIt=find(angleConstraintObjects.begin(),angleConstraintObjects.end(),angleConstraint );
+    if(findedIt!=angleConstraintObjects.end()){
+        int index=findedIt-angleConstraintObjects.begin();
+        remove_angle_constraint_at(index);
+    }
+
+    return this;
+}
+
+QMeshNode *QMeshNode::remove_angle_constraint_at(int index)
+{
+    if(index>=angleConstraintObjects.size() ){
+        godot::UtilityFunctions::printerr("Quark Physics Error: The index value is out of the range!! | QMeshNode.remove_angle_constraint_at() ");
+        return this;
+    }
+
+    angleConstraintObjects.erase(angleConstraintObjects.begin()+index);
+    meshObject->RemoveAngleConstraintAt(index);
+
+    return this;
+}
 
 //Render Helper Operations
 

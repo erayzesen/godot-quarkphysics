@@ -222,9 +222,10 @@ float QBodyNode::get_body_rotation_degree() {
 
 Rect2 QBodyNode::get_aabb() {
 	QAABB aabb=bodyObject->GetAABB();
-    QVector center=aabb.GetCenterPosition();
+    QVector pos=aabb.GetMin();
     QVector size=aabb.GetSize();
-    Rect2 res(Vector2(center.x,center.y),Vector2(size.x,size.y) );
+    Rect2 res(Vector2(pos.x,pos.y),Vector2(size.x,size.y) );
+    
     return res;
 }
 
@@ -529,7 +530,7 @@ QMeshNode *QBodyNode::get_mesh_node_with_object(QMesh *mesh_object) {
 QBodyNode *QBodyNode::type_cast(Object *obj) {
 	Node2D *node=Object::cast_to<Node2D>(obj);
     if(node!=nullptr){
-        if(node->get_class()=="QBodyNode" || node->get_class()=="QRigidBodyNode" || node->get_class()=="QSoftBodyNode" || node->get_class()=="QAreaBodyNode" || node->get_class()=="QPlatformerBodyNode" ){
+        if(node->get_class()=="QBodyNode" || node->get_class()=="QRigidBodyNode" || node->get_class()=="QSoftBodyNode" || node->get_class()=="QAreaBodyNode" || node->get_class()=="QPlatformerBodyNode" || node->get_class()=="QTexturedPBDBodyNode" ){
             return static_cast<QBodyNode*>(node);
         }
     }

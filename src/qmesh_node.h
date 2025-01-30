@@ -32,6 +32,7 @@
 #include "QuarkPhysics/qmesh.h"
 #include "qparticle_object.h"
 #include "qspring_object.h"
+#include "qangleconstraint_object.h"
 
 #include <godot_cpp/core/class_db.hpp>
 #include <gdextension_interface.h>
@@ -91,6 +92,7 @@ protected:
     vector<Ref<QParticleObject>> particleObjects;
     vector<Ref<QSpringObject>> springObjects;
     vector<Ref<QParticleObject>> polygon;
+    vector<Ref<QAngleConstraintObject>> angleConstraintObjects;
 
     //Data Collections
     PackedVector2Array dataParticlePositions;
@@ -226,6 +228,15 @@ public:
     PackedInt32Array get_uv_map_at(int index);
     QMeshNode * add_uv_map(PackedInt32Array map);
     QMeshNode * remove_uv_map_at(int index);
+
+    //Angle Constraint Operations
+    int get_angle_constraint_count();
+    Ref<QAngleConstraintObject> get_angle_constraint_at(int index);
+    QMeshNode* add_angle_constraint(Ref<QAngleConstraintObject> angleConstraint);
+    int get_angle_constraint_index(Ref<QAngleConstraintObject> angleConstraint);
+    QMeshNode* remove_angle_constraint(Ref<QAngleConstraintObject> angleConstraint);
+    QMeshNode* remove_angle_constraint_at(int index);
+
     
 
     //Render helper operations

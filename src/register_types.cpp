@@ -12,9 +12,12 @@
 #include "qmesh_advanced_node.h"
 #include "qparticle_object.h"
 #include "qspring_object.h"
+#include "qangleconstraint_object.h"
 #include "qjoint_object.h"
 #include "qraycast_object.h"
 #include "qplatformerbody_node.h"
+#include "qtexturedpbdbody_node.h"
+
 
 
 #include <gdextension_interface.h>
@@ -34,6 +37,7 @@ void initialize_quarkphysics_module(ModuleInitializationLevel p_level) {
     GDREGISTER_CLASS( QSoftBodyNode) ;
     GDREGISTER_CLASS( QAreaBodyNode) ;
     GDREGISTER_CLASS( QPlatformerBodyNode) ;
+    GDREGISTER_CLASS( QTexturedPBDBodyNode) ;
     GDREGISTER_CLASS( QWorldNode) ;
     GDREGISTER_CLASS( QMeshNode) ;
     GDREGISTER_CLASS( QMeshRectNode) ;
@@ -42,6 +46,7 @@ void initialize_quarkphysics_module(ModuleInitializationLevel p_level) {
     GDREGISTER_CLASS( QMeshAdvancedNode) ;
     GDREGISTER_CLASS( QParticleObject) ;
     GDREGISTER_CLASS( QSpringObject) ;
+    GDREGISTER_CLASS( QAngleConstraintObject) ;
     GDREGISTER_CLASS( QJointObject) ;
     GDREGISTER_CLASS( QRaycastObject) ;
 }
