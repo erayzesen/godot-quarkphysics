@@ -36,6 +36,7 @@ data_uv_maps = Array[PackedInt32Array]([PackedInt32Array(0, 1, 3), PackedInt32Ar
 [node name="SoftBodyRect" type="QSoftBodyNode" parent="."]
 rigidity = 0.05
 shape_matching = true
+particle_spesific_mass = true
 position = Vector2(270, -112)
 
 [node name="QMeshRectNode" type="QMeshRectNode" parent="SoftBodyRect"]

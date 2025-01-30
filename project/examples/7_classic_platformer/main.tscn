@@ -97,6 +97,7 @@ key w: jump
 label_settings = SubResource("LabelSettings_2ckbs")
 
 [node name="QWorldNode" type="QWorldNode" parent="."]
+debug_renderer = false
 enable_debug_mouse_interactions = true
 script = ExtResource("4_5rs6g")
 

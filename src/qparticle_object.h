@@ -101,6 +101,7 @@ public:
     
 
     friend class QSpringObject;
+    friend class QAngleConstraintObject;
     friend class QMeshNode;
     friend class QRenderer;
 
