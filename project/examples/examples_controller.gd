@@ -13,6 +13,7 @@ func _ready() -> void:
 	option_button.add_item("5-So Soft World",4)
 	option_button.add_item("6-Box Stack",5)
 	option_button.add_item("7-Classic Platformer",5)
+	option_button.add_item("8-PBD Dynamics",5)
 	option_button.set_global_position(Vector2(32,32) )
 	add_child(option_button)
 	option_button.selected=-1
@@ -38,6 +39,8 @@ func on_example_selected(value:int) :
 			get_tree().change_scene_to_file("res://examples/6_box_stack/main.tscn")
 		6:
 			get_tree().change_scene_to_file("res://examples/7_classic_platformer/main.tscn")
+		7:
+			get_tree().change_scene_to_file("res://examples/8_pbd_bodies/main.tscn")
 	
 	
 	

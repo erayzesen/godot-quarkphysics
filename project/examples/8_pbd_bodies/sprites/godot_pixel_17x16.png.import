@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ojuguaw1u74o"
-path="res://.godot/imported/godot_pixel_kenney.png-5063dfda5bb9e63ab2298615b90515b8.ctex"
+uid="uid://dd5t0hki4gur8"
+path="res://.godot/imported/godot_pixel_17x16.png-1bc62bc0bab32cbd55e97670e03f3c9e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://examples/8_pbd_bodies/sprites/godot_pixel_kenney.png"
-dest_files=["res://.godot/imported/godot_pixel_kenney.png-5063dfda5bb9e63ab2298615b90515b8.ctex"]
+source_file="res://examples/8_pbd_bodies/sprites/godot_pixel_17x16.png"
+dest_files=["res://.godot/imported/godot_pixel_17x16.png-1bc62bc0bab32cbd55e97670e03f3c9e.ctex"]
 
 [params]
 

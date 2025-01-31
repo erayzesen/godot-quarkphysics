@@ -402,12 +402,16 @@ QTexturedPBDBodyNode *QTexturedPBDBodyNode::create_mesh_with_texture()
     size_t i=0;
     while (i<meshNode->get_particle_count() ){
         if(particleColors[i].a==0.0f){
+            cout<<i<<endl;
             meshNode->remove_particle_at(i);
             particleColors.remove_at(i);
+            
         }else{
             ++i;
         }
     }
+
+    cout<<"Particle Remove operation finished! "<<endl;
 
 
     add_child(meshNode);

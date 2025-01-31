@@ -556,10 +556,14 @@ void QCollision::CircleAndCircle(vector<QParticle*> &particlesA,vector<QParticle
 		sizeGreaterThenOne=true;
 	}
 
+	
+
 	//A. Start the loop for all points of orderedParticlesA
 
 	for(size_t i=0;i<sizeA;++i ){
 		QParticle *pA=orderedParticlesA[i];
+
+		cout<<"particleA AABB minX:"<<pA->GetAABB().GetMin()<<" minY:"<<pA->GetAABB().GetMax()<<endl;
 
 
 		if(sizeGreaterThenOne){
