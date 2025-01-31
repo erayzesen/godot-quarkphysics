@@ -12,6 +12,7 @@
 
 # Godot
 /**/.godot
+/**/export_presets.cfg
 
 
 # CMake

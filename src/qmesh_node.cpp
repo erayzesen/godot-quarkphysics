@@ -1303,11 +1303,24 @@ QMeshNode *QMeshNode::remove_particle_at(int index) {
     while(i<springObjects.size()){
         Ref<QSpringObject> sp=springObjects[i];
         if(sp->get_particle_a()==particle_object || sp->get_particle_b()==particle_object){
-            springObjects.erase(springObjects.begin()+i);
+            remove_spring_at(i);
         }else{
-            i++;
+            ++i;
+        }
+       
+    }
+
+    //Remove linked angle constraints
+    i=0;
+    while(i<angleConstraintObjects.size()){
+        Ref<QAngleConstraintObject> ac=angleConstraintObjects[i];
+        if(ac->get_particle_a()==particle_object || ac->get_particle_b()==particle_object || ac->get_particle_c()==particle_object){
+            remove_angle_constraint_at(i);
+        }else{
+            ++i;
         }
     }
+
     //Remove linked polygons
     
     
@@ -1316,14 +1329,16 @@ QMeshNode *QMeshNode::remove_particle_at(int index) {
     int n=0;
     while(n<pol.size() ){
         if(pol[n]==particle_object){
-            pol.erase(pol.begin()+n );
+            remove_particle_from_polygon_at(n);
             matched=true;
         }else{
             ++n;
         }
     }
     if(matched==true && pol.size()<3){
-        polygon.clear();
+        while(get_polygon_particle_count()>0 ){
+            remove_particle_from_polygon_at(0);
+        }
     }
     
 

@@ -946,7 +946,7 @@ vector<QCollision::Contact*> QWorld::GetCollisions(QBody *bodyA, QBody *bodyB){
 				if(bodyA->GetBodyType()==QBody::BodyTypes::RIGID && bodyB->GetBodyType()==QBody::BodyTypes::RIGID){
 					velocitySensitive=true;
 				}
-				QCollision::CircleAndCircle(meshA->particles,meshB->particles,bboxB,contactList,velocitySensitive);
+				QCollision::CircleAndCircle(meshA->particles,meshB->particles,bboxB,contactList,0.0f,velocitySensitive);
 
 			}else if(QMesh::CheckCollisionBehaviors(meshA,meshB,QMesh::POLYLINE, QMesh::POLYGONS )){
 				QMesh *polylineMesh=meshA->collisionBehavior==QMesh::POLYLINE ? meshA:meshB;
