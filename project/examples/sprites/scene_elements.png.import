@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d3j7v6kge2who"
-path="res://.godot/imported/tileset.png-6d4cfabf3c43ee3c68b234ec7b5a5eef.ctex"
+uid="uid://d0lukl6iat7d8"
+path="res://.godot/imported/scene_elements.png-a029e70cbde1ab756786e38fa891c1d6.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://examples/7_classic_platformer/sprites/tileset.png"
-dest_files=["res://.godot/imported/tileset.png-6d4cfabf3c43ee3c68b234ec7b5a5eef.ctex"]
+source_file="res://examples/sprites/scene_elements.png"
+dest_files=["res://.godot/imported/scene_elements.png-a029e70cbde1ab756786e38fa891c1d6.ctex"]
 
 [params]
 

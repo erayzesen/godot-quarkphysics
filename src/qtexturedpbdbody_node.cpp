@@ -490,11 +490,14 @@ QTexturedPBDBodyNode *QTexturedPBDBodyNode::create_mesh_with_texture()
     }
 
     multiMeshInstance->set_material(shader_material);
+    
 
     if(enableSDFRendering==false){
         add_child(multiMeshInstance);
+        multiMeshInstance->set_global_rotation(0.0f);
         return this;
     }
+    
     
 
     if(SFDTexture!=nullptr){
@@ -524,11 +527,14 @@ QTexturedPBDBodyNode *QTexturedPBDBodyNode::create_mesh_with_texture()
 
 
     add_child(SDFViewport);
+    
 
     SDFViewport->add_child(multiMeshInstance);
+    multiMeshInstance->set_global_rotation(0.0f);
 
     SDFSprite=memnew(Sprite2D);
     add_child(SDFSprite);
+    SDFSprite->set_global_rotation(0.0f);
     SDFSprite->set_texture(SDFViewport->get_texture());
     SDFSprite->set_centered(false);
     SDFSprite->set_global_position(viewportRect.position );

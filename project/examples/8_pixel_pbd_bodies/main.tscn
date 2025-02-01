@@ -1,0 +1,172 @@
+[gd_scene load_steps=11 format=3 uid="uid://b07dx1g015v5r"]
+
+[ext_resource type="Texture2D" uid="uid://rci713q1m1a8" path="res://examples/sprites/prototype_bg_light.png" id="1_m1l2c"]
+[ext_resource type="Texture2D" uid="uid://d0lukl6iat7d8" path="res://examples/sprites/scene_elements.png" id="3_x8l4j"]
+[ext_resource type="Texture2D" uid="uid://dd5t0hki4gur8" path="res://examples/sprites/godot_pixel_17x16.png" id="5_pdko6"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j36ak"]
+atlas = ExtResource("3_x8l4j")
+region = Rect2(64, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k1jxb"]
+atlas = ExtResource("3_x8l4j")
+region = Rect2(0, 32, 128, 112)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gtp5k"]
+atlas = ExtResource("3_x8l4j")
+region = Rect2(80, 8, 16, 24)
+
+[sub_resource type="Gradient" id="Gradient_5kq2g"]
+offsets = PackedFloat32Array(0.159836, 0.635246)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_f3c86"]
+gradient = SubResource("Gradient_5kq2g")
+width = 256
+height = 256
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(1, 1)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r1ohy"]
+atlas = ExtResource("3_x8l4j")
+region = Rect2(96, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f3en8"]
+atlas = ExtResource("3_x8l4j")
+region = Rect2(112, 0, 16, 32)
+
+[node name="Node2D" type="Node2D"]
+
+[node name="QWorldNode" type="QWorldNode" parent="."]
+gravity = Vector2(0, 0.1)
+iteration_count = 2
+debug_renderer = false
+enable_debug_mouse_interactions = true
+
+[node name="background" type="TextureRect" parent="."]
+modulate = Color(0.266575, 0.266575, 0.266575, 1)
+offset_left = -384.0
+offset_top = -432.0
+offset_right = 1360.0
+offset_bottom = 1024.0
+mouse_filter = 2
+texture = ExtResource("1_m1l2c")
+stretch_mode = 1
+
+[node name="Trap2" type="QRigidBodyNode" parent="."]
+mode = 1
+texture_filter = 1
+position = Vector2(527, 354)
+
+[node name="QMeshRectNode" type="QMeshAdvancedNode" parent="Trap2"]
+enable_stroke = true
+data_particle_positions = PackedVector2Array(1.41418, -89.5528, 42.3873, 66.8959, -40.4731, 67.103)
+data_particle_radius = PackedFloat32Array(0.5, 0.5, 0.5)
+data_particle_is_internal = PackedByteArray(0, 0, 0)
+data_particle_is_enabled = PackedByteArray(1, 1, 1)
+data_particle_is_lazy = PackedByteArray(0, 0, 0)
+data_springs = Array[PackedInt32Array]([PackedInt32Array(0, 1), PackedInt32Array(1, 2)])
+data_internal_springs = Array[PackedInt32Array]([PackedInt32Array(0, 2)])
+data_polygon = PackedInt32Array(0, 1, 2)
+data_uv_maps = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2)])
+
+[node name="Sprite2D" type="Sprite2D" parent="Trap2"]
+position = Vector2(0, -11)
+scale = Vector2(5, 5)
+texture = SubResource("AtlasTexture_j36ak")
+
+[node name="Floor" type="QRigidBodyNode" parent="."]
+mode = 1
+texture_filter = 3
+position = Vector2(519, 704)
+
+[node name="QMeshRectNode" type="QMeshRectNode" parent="Floor"]
+rectangle_size = Vector2(640, 560)
+enable_stroke = true
+data_particle_positions = PackedVector2Array(-320, -280, 320, -280, 320, 280, -320, 280)
+data_particle_radius = PackedFloat32Array(0.5, 0.5, 0.5, 0.5)
+data_particle_is_internal = PackedByteArray(0, 0, 0, 0)
+data_particle_is_enabled = PackedByteArray(1, 1, 1, 1)
+data_particle_is_lazy = PackedByteArray(0, 0, 0, 0)
+data_springs = Array[PackedInt32Array]([PackedInt32Array(0, 1), PackedInt32Array(1, 2), PackedInt32Array(2, 3), PackedInt32Array(3, 0)])
+data_internal_springs = Array[PackedInt32Array]([PackedInt32Array(0, 2), PackedInt32Array(1, 3)])
+data_polygon = PackedInt32Array(0, 1, 2, 3)
+data_uv_maps = Array[PackedInt32Array]([PackedInt32Array(0, 1, 3), PackedInt32Array(1, 2, 3)])
+
+[node name="Sprite2D" type="Sprite2D" parent="Floor"]
+scale = Vector2(5, 5)
+texture = SubResource("AtlasTexture_k1jxb")
+
+[node name="QTexturedPBDBodyNode2" type="QTexturedPBDBodyNode" parent="."]
+texture = SubResource("AtlasTexture_gtp5k")
+texture_scale = 7.0
+enable_sdf_rendering = false
+sfd_texture = SubResource("GradientTexture2D_f3c86")
+sfd_texture_scale = 1.4
+sfd_shader_alpha_threshold = 0.4
+breakable = true
+break_distance = 6.0
+pixel_step_size = 1.0
+rigidity = 0.5
+self_collision = true
+shape_matching_rate = 0.1
+friction = 0.5
+layers = 2
+position = Vector2(520, -160)
+
+[node name="QTexturedPBDBodyNode3" type="QTexturedPBDBodyNode" parent="."]
+texture = SubResource("AtlasTexture_r1ohy")
+texture_scale = 7.0
+enable_sdf_rendering = false
+sfd_texture = SubResource("GradientTexture2D_f3c86")
+sfd_texture_scale = 1.4
+sfd_shader_alpha_threshold = 0.4
+breakable = true
+break_distance = 5.0
+pixel_step_size = 1.0
+rigidity = 0.5
+self_collision = true
+shape_matching_rate = 0.1
+friction = 0.5
+layers = 4
+position = Vector2(548, -686)
+
+[node name="QTexturedPBDBodyNode4" type="QTexturedPBDBodyNode" parent="."]
+texture = SubResource("AtlasTexture_f3en8")
+texture_scale = 7.0
+enable_sdf_rendering = false
+sfd_texture = SubResource("GradientTexture2D_f3c86")
+sfd_texture_scale = 1.4
+sfd_shader_alpha_threshold = 0.4
+breakable = true
+break_distance = 5.0
+pixel_step_size = 1.0
+rigidity = 0.5
+self_collision = true
+shape_matching_rate = 0.1
+friction = 0.5
+layers = 8
+position = Vector2(548, -1076)
+rotation = -0.785398
+
+[node name="QTexturedPBDBodyNode5" type="QTexturedPBDBodyNode" parent="."]
+texture = ExtResource("5_pdko6")
+texture_scale = 7.0
+enable_sdf_rendering = false
+sfd_texture = SubResource("GradientTexture2D_f3c86")
+sfd_texture_scale = 1.4
+sfd_shader_alpha_threshold = 0.4
+breakable = true
+break_distance = 1.0
+pixel_step_size = 1.0
+rigidity = 0.5
+self_collision = true
+shape_matching_rate = 0.1
+friction = 0.5
+layers = 8
+position = Vector2(527, -1452)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+anchor_mode = 0
+metadata/_edit_lock_ = true

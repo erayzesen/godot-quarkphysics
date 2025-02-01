@@ -588,7 +588,7 @@ bool QWorld::CollideWithWorld(QBody *body){
 	if(manifoldList.size()==0)
 		return false;
 
-	std::cout<<manifoldList.size()<<endl;
+	//std::cout<<manifoldList.size()<<endl;
 	for (auto manifold : manifoldList) {
 		manifold.Solve();
 	}

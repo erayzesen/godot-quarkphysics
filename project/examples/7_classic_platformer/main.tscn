@@ -1,7 +1,7 @@
 [gd_scene load_steps=17 format=4 uid="uid://dw06ipgwyx2cc"]
 
 [ext_resource type="Script" path="res://examples/7_classic_platformer/player.gd" id="1_b5iax"]
-[ext_resource type="Texture2D" uid="uid://d3j7v6kge2who" path="res://examples/7_classic_platformer/sprites/tileset.png" id="1_ibcbn"]
+[ext_resource type="Texture2D" uid="uid://d3j7v6kge2who" path="res://examples/sprites/tileset.png" id="1_ibcbn"]
 [ext_resource type="Script" path="res://examples/7_classic_platformer/moveable_platform.gd" id="2_hvcqu"]
 [ext_resource type="Script" path="res://examples/7_classic_platformer/door_button.gd" id="2_ndt36"]
 [ext_resource type="Script" path="res://addons/quarkphysics/helper_nodes/qtilemap_collider.gd" id="2_yuswt"]
