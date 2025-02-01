@@ -24,7 +24,7 @@ ExamplesController="*res://examples/examples_controller.gd"
 window/size/viewport_width=1031
 window/size/viewport_height=580
 window/size/initial_position=Vector2i(515, 290)
-window/stretch/mode="canvas_items"
+window/stretch/mode="viewport"
 
 [editor_plugins]
 
