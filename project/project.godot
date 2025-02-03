@@ -57,6 +57,10 @@ ui_up={
 ]
 }
 
+[physics]
+
+2d/solver/solver_iterations=300
+
 [rendering]
 
 renderer/rendering_method="gl_compatibility"
