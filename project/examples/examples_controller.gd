@@ -13,7 +13,8 @@ func _ready() -> void:
 	option_button.add_item("5-So Soft World",4)
 	option_button.add_item("6-Box Stack",5)
 	option_button.add_item("7-Classic Platformer",6)
-	option_button.add_item("8-Pixel PBD Dynamics ",7)
+	option_button.add_item("8-Box Benchmark ",7)
+	option_button.add_item("9-Box Benchmark Godot ",8)
 	option_button.set_global_position(Vector2(32,32) )
 	add_child(option_button)
 	option_button.selected=-1
@@ -40,7 +41,9 @@ func on_example_selected(value:int) :
 		6:
 			get_tree().change_scene_to_file("res://examples/7_classic_platformer/main.tscn")
 		7:
-			get_tree().change_scene_to_file("res://examples/8_pixel_pbd_bodies/main.tscn")
+			get_tree().change_scene_to_file("res://examples/8_box_benchmark/main.tscn")
+		8:
+			get_tree().change_scene_to_file("res://examples/9_box_benchmark_godot/main.tscn")
 	
 	
 	

@@ -1,0 +1,129 @@
+[gd_scene load_steps=6 format=3 uid="uid://c6ced1wv2av66"]
+
+[ext_resource type="Script" path="res://examples/9_box_benchmark_godot/benchmark_godot.gd" id="1_axogq"]
+[ext_resource type="Script" path="res://examples/9_box_benchmark_godot/iteration_option_button.gd" id="2_kqk1o"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3yjbm"]
+size = Vector2(300, 3000)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_eva3r"]
+size = Vector2(300, 3000)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8oa7t"]
+size = Vector2(3000, 300)
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_axogq")
+metadata/_edit_vertical_guides_ = [168.0, 80.0]
+
+[node name="wall" type="RigidBody2D" parent="."]
+position = Vector2(-96, 208)
+freeze = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="wall"]
+position = Vector2(0, -16)
+shape = SubResource("RectangleShape2D_3yjbm")
+
+[node name="ColorRect" type="ColorRect" parent="wall"]
+custom_minimum_size = Vector2(300, 3000)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -150.0
+offset_top = -1500.0
+offset_right = 150.0
+offset_bottom = 1500.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.490196, 0.490196, 0.490196, 1)
+
+[node name="wall2" type="RigidBody2D" parent="."]
+position = Vector2(1120, 208)
+freeze = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="wall2"]
+shape = SubResource("RectangleShape2D_eva3r")
+
+[node name="ColorRect2" type="ColorRect" parent="wall2"]
+custom_minimum_size = Vector2(300, 3000)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -150.0
+offset_top = -1500.0
+offset_right = 150.0
+offset_bottom = 1500.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.490196, 0.490196, 0.490196, 1)
+
+[node name="floor" type="RigidBody2D" parent="."]
+position = Vector2(560, 672)
+freeze = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="floor"]
+position = Vector2(-96, 0)
+shape = SubResource("RectangleShape2D_8oa7t")
+
+[node name="ColorRect3" type="ColorRect" parent="floor"]
+custom_minimum_size = Vector2(3000, 300)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -1500.0
+offset_top = -150.0
+offset_right = 1500.0
+offset_bottom = 150.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.490196, 0.490196, 0.490196, 1)
+
+[node name="Control" type="HBoxContainer" parent="."]
+z_index = 4096
+offset_right = 1024.0
+offset_bottom = 40.0
+size_flags_horizontal = 3
+size_flags_vertical = 8
+mouse_filter = 2
+alignment = 2
+
+[node name="Label" type="Label" parent="Control"]
+custom_minimum_size = Vector2(256, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 9
+theme_override_font_sizes/font_size = 19
+text = "Box Count: "
+horizontal_alignment = 2
+vertical_alignment = 1
+uppercase = true
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="Control"]
+custom_minimum_size = Vector2(32, 0)
+layout_mode = 2
+
+[node name="OptionButton" type="OptionButton" parent="Control"]
+layout_mode = 2
+item_count = 4
+popup/item_0/text = "Iteration 16(Engine Default)"
+popup/item_1/text = "Iteration 100"
+popup/item_1/id = 1
+popup/item_2/text = "Iteration 200"
+popup/item_2/id = 2
+popup/item_3/text = "Iteration 300"
+popup/item_3/id = 3
+script = ExtResource("2_kqk1o")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control"]
+custom_minimum_size = Vector2(128, 0)
+layout_mode = 2

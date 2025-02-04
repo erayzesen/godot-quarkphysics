@@ -16,7 +16,6 @@
 #include "qjoint_object.h"
 #include "qraycast_object.h"
 #include "qplatformerbody_node.h"
-#include "qtexturedpbdbody_node.h"
 
 
 
@@ -37,7 +36,6 @@ void initialize_quarkphysics_module(ModuleInitializationLevel p_level) {
     GDREGISTER_CLASS( QSoftBodyNode) ;
     GDREGISTER_CLASS( QAreaBodyNode) ;
     GDREGISTER_CLASS( QPlatformerBodyNode) ;
-    GDREGISTER_CLASS( QTexturedPBDBodyNode) ;
     GDREGISTER_CLASS( QWorldNode) ;
     GDREGISTER_CLASS( QMeshNode) ;
     GDREGISTER_CLASS( QMeshRectNode) ;
