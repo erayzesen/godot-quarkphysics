@@ -109,7 +109,7 @@ Ref<QParticleObject> QParticleObject::set_position(Vector2 value) {
 }
 
 Ref<QParticleObject> QParticleObject::add_position(Vector2 value) {
-	particleObject->AddGlobalPosition(QVector(value.x,value.y) );
+	particleObject->AddPosition(QVector(value.x,value.y) );
     return Ref<QParticleObject>(this);
 }
 
