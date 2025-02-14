@@ -3,7 +3,7 @@ extends OptionButton
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	set_physics_iteration(300)
+	set_physics_iteration(16)
 	call_deferred("set_option_bar_to_current_iteration")	
 	connect("item_selected",on_item_selected)
 	

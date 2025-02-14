@@ -24,6 +24,7 @@ func _physics_process(delta: float) -> void:
 	var wall_mode:bool=false 
 	var wall_offset=3.0
 	#Checking Walls according to the offset
+	
 	var wall_side= int( get_right_wall(3.0)["body"] !=null ) - int( get_left_wall(3.0)["body"]!=null )
 	if get_is_on_floor()==false and wall_side!=0 :
 		wall_mode=true
@@ -33,10 +34,6 @@ func _physics_process(delta: float) -> void:
 			set_gravity_multiplier(1.0)
 	else :
 		set_gravity_multiplier(1.0)
-
-	
-			
-	
 		
 	#Jump 
 	if Input.is_action_pressed("ui_up") :
@@ -56,7 +53,7 @@ func on_collision(body,info) :
 	var collided_body=info["body"]
 	if collided_body is Coin :
 		collided_body.queue_free()
-	pass
+	
 		
 		
 	
