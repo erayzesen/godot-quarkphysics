@@ -8,10 +8,8 @@ script = ExtResource("1_k2mxf")
 metadata/_edit_vertical_guides_ = [168.0, 80.0]
 
 [node name="QWorldNode" type="QWorldNode" parent="."]
-gravity = Vector2(0, 0.1)
 iteration_count = 3
 debug_renderer = false
-enable_debug_mouse_interactions = true
 
 [node name="background" type="ColorRect" parent="."]
 visible = false
