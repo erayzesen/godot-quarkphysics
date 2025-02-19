@@ -28,7 +28,7 @@ QuarkPhysics is a physics engine for 2D games, capable of simulating Rigid Body,
 
 ## Any Documentation? 
 * Official 
-   * [Wiki](https://github.com/erayzesen/godot-quarkphysics/wiki) ( Under the Construction )
+   * [Wiki](https://github.com/erayzesen/godot-quarkphysics/wiki) ( Work in progress  )
    * [QuarkPhysics API](https://erayzesen.github.io/QuarkPhysics/documentation/)
 
 * Communnity
