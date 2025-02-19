@@ -317,7 +317,6 @@ data_polygon = PackedInt32Array(0, 1, 2, 3)
 data_uv_maps = Array[PackedInt32Array]([PackedInt32Array(0, 1, 3), PackedInt32Array(1, 2, 3)])
 
 [node name="box8" type="QRigidBodyNode" parent="boxes"]
-mass = 3.0
 position = Vector2(768, 176)
 
 [node name="QMeshRectNode" type="QMeshRectNode" parent="boxes/box8"]
