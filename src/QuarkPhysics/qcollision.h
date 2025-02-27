@@ -134,6 +134,7 @@ public:
 	 * @param contacts A collection where collision contact information will be stored.
 	 */
 	static void CircleAndPolygon(vector<QParticle*> &circleParticles,vector<QParticle*> &polygonParticles,vector<QCollision::Contact*> &contacts);
+	static void CircleAndPolygon2(vector<QParticle*> &circleParticles,vector<QParticle*> &polygonParticles,vector<QCollision::Contact*> &contacts);
 	/** Checks collisions between circle(s) and circle(s). 
 	 * @param particlesA A collection of particles representing one or more circles, each having a radius.
 	 * @param particlesB Another collection of particles representing one or more circles, each having a radius.

@@ -803,7 +803,160 @@ void QCollision::CircleAndCircleSelf(vector<QParticle *> &particles, vector<QCol
 
 }
 
+
 void QCollision::CircleAndPolygon(vector<QParticle*> &circleParticles,vector<QParticle*> &polygonParticles,vector<QCollision::Contact*> &contacts){
+
+	//The Algorithm is an implement of the Seperating Axis Theorem(SAT)
+	/*
+	  A.Find Voronoi Region of the Polygon
+	   a1. Find the nearest vertice of the polygon
+	   a2. Find the nearest edge of the polygon  
+	   a3. Define the voronoi region; vertex, edge, inside 
+	  B. Test collisions to vertex/edge of the polygon
+	  C. If there is a collision between circle and vertex/edge create a new contact, else exit from the loop 
+
+	*/
+	
+	int polygonParticlesSize=polygonParticles.size();
+	int circleParticlesSize=circleParticles.size();
+
+	for (int n=0;n<circleParticlesSize;n++){
+
+		QParticle *circleParticle=circleParticles[n];
+
+		//A.Find Voronoi Region of the Polygon
+
+		//Nearest Particle Properties
+		QParticle *nearestPolygonParticle;
+		float nearestParticlePenetrationSq=QWorld::MAX_WORLD_SIZE;
+		QVector nearestParticleNormal;
+
+		//Nearest Edge Properties
+		array<QParticle*,2> nearestEdgeParticles={nullptr,nullptr};
+		float nearestEdgePenetration=QWorld::MAX_WORLD_SIZE;
+		float nearestEdgeMinDist=QWorld::MAX_WORLD_SIZE;
+		QVector nearestEdgeNormal;
+
+
+		for(int pi=0; pi<polygonParticlesSize; pi++){
+			QParticle *p=polygonParticles[pi];
+			QParticle *np=polygonParticles[ (pi+1) % polygonParticlesSize ];
+
+			//a1. Find the nearest vertice of the polygon
+			QVector circleToParticleVec=circleParticle->GetGlobalPosition()-p->GetGlobalPosition();
+			float circleToParticleDistSq=circleToParticleVec.LengthSquared();
+			if(circleToParticleDistSq<nearestParticlePenetrationSq){
+				nearestPolygonParticle=p;
+				nearestParticlePenetrationSq=circleToParticleDistSq;
+				nearestParticleNormal=circleToParticleVec.Normalized();
+
+			}
+
+			//a2. Find the nearest edge of the polygon 
+
+			QVector edgeVec=np->GetGlobalPosition()-p->GetGlobalPosition();
+			QVector edgeVecUnit=edgeVec.Normalized();
+			QVector edgeVecNormal=edgeVecUnit.Perpendicular();
+
+			float circleToEdgePenetration=circleToParticleVec.Dot(edgeVecNormal ) ;
+
+			if(abs(circleToEdgePenetration) < nearestEdgeMinDist){
+				float circleToEdgeRangeProject=circleToParticleVec.Dot(edgeVecUnit);
+				if(circleToEdgeRangeProject>=0.0f && circleToEdgeRangeProject<=edgeVec.Length() ){
+					nearestEdgeMinDist=abs(circleToEdgePenetration);
+					nearestEdgePenetration=circleToEdgePenetration;
+					nearestEdgeParticles[0]=p;
+					nearestEdgeParticles[1]=np;
+					nearestEdgeNormal=edgeVecNormal;
+				}
+				
+
+			}
+
+		}
+
+		float nearestParticlePenetration=sqrt(nearestParticlePenetrationSq);
+		
+
+		//a3. Define the voronoi region; vertex, edge, inside 
+		int voronoiRegion; // 0: vertice,  1:edge, 2: inside
+		if(nearestEdgeParticles[0]==nullptr ){
+			voronoiRegion=0;
+		}else {
+			if(nearestParticlePenetration>nearestEdgeMinDist){
+				if(nearestEdgePenetration<0){
+					voronoiRegion=2;
+				}else{
+					voronoiRegion=1;
+				}
+			}else{
+				voronoiRegion=0;
+			}
+		}
+
+		//B. Test collisions to vertex/edge of the polygon
+
+		if(voronoiRegion==0){ //vertice region : vertice
+
+			if(nearestParticlePenetration<circleParticle->GetRadius() ){
+				float penetration=circleParticle->GetRadius()-nearestParticlePenetration;
+				QVector contactPosition=circleParticle->GetGlobalPosition();
+				if(circleParticle->GetRadius()>0.5f){
+					contactPosition-=circleParticle->GetRadius()*nearestParticleNormal;
+				}
+				QCollision::Contact *contact=QCollision::GetContactPool().Create().data;
+				contact->Configure(circleParticle,contactPosition,nearestParticleNormal,penetration,vector<QParticle*>{ nearestPolygonParticle } );
+				contacts.push_back(contact);
+
+			}
+
+
+		}else if(voronoiRegion==1) { //vertice region: edge
+
+			if(nearestEdgePenetration<circleParticle->GetRadius() ){
+				float penetration=circleParticle->GetRadius()-nearestEdgePenetration;
+
+				QVector contactPosition=circleParticle->GetGlobalPosition();
+				if(circleParticle->GetRadius()>0.5f){
+					contactPosition-=circleParticle->GetRadius()*nearestEdgeNormal;
+				}
+				vector<QParticle*> refSegment={ nearestEdgeParticles[0],nearestEdgeParticles[1] };
+
+				
+				
+				QCollision::Contact *contact=QCollision::GetContactPool().Create().data;
+				contact->Configure(circleParticle,contactPosition,nearestEdgeNormal,penetration,refSegment );
+				contacts.push_back(contact);
+			}
+
+
+		}else if(voronoiRegion==2) { //vertice region: inside
+			float penetration=circleParticle->GetRadius()-nearestEdgePenetration;
+
+			QVector contactPosition=circleParticle->GetGlobalPosition();
+			if(circleParticle->GetRadius()>0.5f){
+				contactPosition-=circleParticle->GetRadius()*nearestEdgeNormal;
+			}
+			vector<QParticle*> refSegment={ nearestEdgeParticles[0],nearestEdgeParticles[1] };
+
+			
+			QCollision::Contact *contact=QCollision::GetContactPool().Create().data;
+			contact->Configure(circleParticle,contactPosition,nearestEdgeNormal,penetration,refSegment );
+			contacts.push_back(contact);
+		}
+		
+
+	}
+
+
+
+
+
+
+	
+}
+
+void QCollision::CircleAndPolygon2(vector<QParticle*> &circleParticles,vector<QParticle*> &polygonParticles,vector<QCollision::Contact*> &contacts){
 	//The algorithm is an implement of the Separating Axis Theorem(SAT).
 	/*
 		A. Get a nearest points of polygonParticles
@@ -818,6 +971,13 @@ void QCollision::CircleAndPolygon(vector<QParticle*> &circleParticles,vector<QPa
 	int polygonParticlesSize=polygonParticles.size();
 	int circleParticlesSize=circleParticles.size();
 
+	//Get Polygon Center
+	QVector polygonCenter;
+	for(size_t i=0;i<polygonParticlesSize;++i ){
+		polygonCenter+=polygonParticles[i]->GetGlobalPosition();
+	}
+	polygonCenter/=polygonParticlesSize;
+
 
 	//A. Get a nearest points of polygonParticles
 	for (int n=0;n<circleParticlesSize;n++){
@@ -830,10 +990,22 @@ void QCollision::CircleAndPolygon(vector<QParticle*> &circleParticles,vector<QPa
 		QVector penetrationVec;
 		float penetration=0.0f;
 		QVector normal=QVector::Zero();
+
+		//Circle To Polygon Center Normal
+		QVector circleToPolygonCenter=(circleParticle->GetGlobalPosition()-polygonCenter).Normalized();
 		for(int pi=0; pi<polygonParticlesSize; pi++){
 			QParticle *p=polygonParticles[pi];
 			QVector bridgeVec=circleParticle->GetGlobalPosition()-p->GetGlobalPosition();
 			float dist=bridgeVec.Length();
+
+			//Polygon Particle to Polygon Center Normal
+			QVector pToPolygonCenter=(p->GetGlobalPosition()-polygonCenter).Normalized();
+			// Checking the Polygon Particle is on the right side 
+			if(circleToPolygonCenter.Dot(pToPolygonCenter)<0 ){
+				continue;
+			}
+
+			
 
 			if(dist<minDistance){
 				penetrationVec=bridgeVec;
