@@ -803,148 +803,158 @@ void QCollision::CircleAndCircleSelf(vector<QParticle *> &particles, vector<QCol
 
 }
 
+
 void QCollision::CircleAndPolygon(vector<QParticle*> &circleParticles,vector<QParticle*> &polygonParticles,vector<QCollision::Contact*> &contacts){
-	//The algorithm is an implement of the Separating Axis Theorem(SAT).
+
+	//The Algorithm is an implement of the Seperating Axis Theorem(SAT)
 	/*
-		A. Get a nearest points of polygonParticles
-		B. Find the segments that contain nearest point.
-		C. Make collision test with these segments
-		D. If collision doesn't exist, make collision test with this nearest points
-		E. If collission still doesn't exist, exit the function
+	  A.Find Voronoi Region of the Polygon
+	   a1. Find the nearest vertice of the polygon
+	   a2. Find the nearest edge of the polygon  
+	   a3. Define the voronoi region; vertex, edge, inside 
+	  B. Test collisions to vertex/edge of the polygon
+
 	*/
-
-
-
+	
 	int polygonParticlesSize=polygonParticles.size();
 	int circleParticlesSize=circleParticles.size();
 
-
-	//A. Get a nearest points of polygonParticles
 	for (int n=0;n<circleParticlesSize;n++){
 
 		QParticle *circleParticle=circleParticles[n];
-		// A. Get nearest point of polygonObject
-		float minDistance=QWorld::MAX_WORLD_SIZE;
-		//npi: nearest point index
-		int npi=-1;
-		QVector penetrationVec;
-		float penetration=0.0f;
-		QVector normal=QVector::Zero();
+
+		//A.Find Voronoi Region of the Polygon
+
+		//Nearest Particle Properties
+		QParticle *nearestPolygonParticle=nullptr;
+		float nearestParticlePenetrationSq=QWorld::MAX_WORLD_SIZE;
+		QVector nearestParticleNormal;
+
+		//Nearest Edge Properties
+		array<QParticle*,2> nearestEdgeParticles={nullptr,nullptr};
+		float nearestEdgePenetration=QWorld::MAX_WORLD_SIZE;
+		float nearestEdgeMinDist=QWorld::MAX_WORLD_SIZE;
+		QVector nearestEdgeNormal;
+
+
 		for(int pi=0; pi<polygonParticlesSize; pi++){
 			QParticle *p=polygonParticles[pi];
-			QVector bridgeVec=circleParticle->GetGlobalPosition()-p->GetGlobalPosition();
-			float dist=bridgeVec.Length();
+			QParticle *np=polygonParticles[ (pi+1) % polygonParticlesSize ];
 
-			if(dist<minDistance){
-				penetrationVec=bridgeVec;
-				minDistance=dist;
-				npi=pi;
-				penetration=dist;
-				normal=bridgeVec.Normalized();
+			//a1. Find the nearest vertice of the polygon
+			QVector circleToParticleVec=circleParticle->GetGlobalPosition()-p->GetGlobalPosition();
+			float circleToParticleDistSq=circleToParticleVec.LengthSquared();
+			if(circleToParticleDistSq<nearestParticlePenetrationSq){
+				nearestPolygonParticle=p;
+				nearestParticlePenetrationSq=circleToParticleDistSq;
+				nearestParticleNormal=circleToParticleVec.Normalized();
 
 			}
-		}
 
-		if(npi==-1)continue;
+			//a2. Find the nearest edge of the polygon 
 
+			QVector edgeVec=np->GetGlobalPosition()-p->GetGlobalPosition();
+			QVector edgeVecUnit=edgeVec.Normalized();
+			QVector edgeVecNormal=edgeVecUnit.Perpendicular();
 
-		//B. Find potantial segments that contain nearest point.
-		//  np: nearest point
+			float circleToEdgePenetration=circleToParticleVec.Dot(edgeVecNormal ) ;
 
-		int potantialSegmentIndexes[2][2]{ { ((npi-1)+polygonParticlesSize)%polygonParticlesSize, npi  }, // Segment Option A
-									 { npi ,(npi+1)%polygonParticlesSize } }; // Segment Option B
-
-
-
-		//C. Make the collision test with these segments and find reference segment
-		minDistance=QWorld::MAX_WORLD_SIZE;
-		bool seperationAxisDedected=false;
-		int segmentIndex=-1;
-
-		for(int i=0;i<2;i++){
-			auto segmentOption=potantialSegmentIndexes[i];
-			QParticle *sp1=polygonParticles[ segmentOption[0] ];
-			QParticle *sp2=polygonParticles[ segmentOption[1] ];
-
-
-
-			QVector segmentVector=sp2->GetGlobalPosition()-sp1->GetGlobalPosition();
-			QVector segmentUnit=segmentVector.Normalized();
-			QVector segmentNormal=segmentUnit.Perpendicular();
-
-			QVector bridgeVec=circleParticle->GetGlobalPosition()-sp1->GetGlobalPosition();
-
-
-			float projPerp=bridgeVec.Dot(segmentNormal);
-
-			//If a seperation axis dedected, the collision doesn't exist with the circle point
-			if(projPerp>=circleParticle->GetRadius()){
-				seperationAxisDedected=true;
-				break;
-			}
-
-			if(abs(projPerp)<minDistance && projPerp<circleParticle->GetRadius() ){
-				float proj=bridgeVec.Dot(segmentUnit);
-				if(proj>=0 && proj<=segmentVector.Length()){
-					segmentIndex=i;
-					minDistance=abs(projPerp);
-					penetration=circleParticle->GetRadius()-projPerp;
-					normal=segmentNormal;
-					penetrationVec=penetration*normal;
+			if(abs(circleToEdgePenetration) < nearestEdgeMinDist){
+				float circleToEdgeRangeProject=circleToParticleVec.Dot(edgeVecUnit);
+				if(circleToEdgeRangeProject>=0.0f && circleToEdgeRangeProject<=edgeVec.Length() ){
+					nearestEdgeMinDist=abs(circleToEdgePenetration);
+					nearestEdgePenetration=circleToEdgePenetration;
+					nearestEdgeParticles[0]=p;
+					nearestEdgeParticles[1]=np;
+					nearestEdgeNormal=edgeVecNormal;
 				}
+				
+
 			}
 
 		}
 
-
-
-		if(seperationAxisDedected==true){
-			continue;
-		}
-
-		//If we can find a reference segment
-		if(segmentIndex!=-1){
-
-			auto refSegmentIndexes=potantialSegmentIndexes[segmentIndex];
-
-			QVector contactPosition=circleParticle->GetGlobalPosition();
-			if(circleParticle->GetRadius()>0.5f){
-				contactPosition-=circleParticle->GetRadius()*normal;
-			}
-			vector<QParticle*> refSegment={ polygonParticles[ refSegmentIndexes[0] ],polygonParticles[ refSegmentIndexes[1] ] };
-
-			
-			
-			QCollision::Contact *contact=QCollision::GetContactPool().Create().data;
-			contact->Configure(circleParticle,contactPosition,normal,penetration,refSegment );
-			contacts.push_back(contact);
-
-			continue;
-
-
-		}
-
-
+		float nearestParticlePenetration=sqrt(nearestParticlePenetrationSq);
 		
-		//D. If collision doesn't exist, make collision test with this nearest point
-		if(abs(penetration)<circleParticle->GetRadius()){
-			penetration=circleParticle->GetRadius()-abs(penetration);
+
+		//a3. Define the voronoi region; vertex, edge, inside 
+		int voronoiRegion; // 0: vertice,  1:edge, 2: inside
+		if(nearestEdgeParticles[0]==nullptr ){
+			voronoiRegion=0;
+		}else {
+			if(nearestParticlePenetration>nearestEdgeMinDist){
+				if(nearestEdgePenetration<0){
+					voronoiRegion=2;
+				}else{
+					voronoiRegion=1;
+				}
+			}else{
+				voronoiRegion=0;
+			}
+		}
+
+		//B. Test collisions to vertex/edge of the polygon
+
+		if(voronoiRegion==0){ //vertice region : vertice
+
+			if(nearestParticlePenetration<circleParticle->GetRadius() ){
+				float penetration=circleParticle->GetRadius()-nearestParticlePenetration;
+				QVector contactPosition=circleParticle->GetGlobalPosition();
+				if(circleParticle->GetRadius()>0.5f){
+					contactPosition-=circleParticle->GetRadius()*nearestParticleNormal;
+				}
+				QCollision::Contact *contact=QCollision::GetContactPool().Create().data;
+				contact->Configure(circleParticle,contactPosition,nearestParticleNormal,penetration,vector<QParticle*>{ nearestPolygonParticle } );
+				contacts.push_back(contact);
+
+			}
+
+
+		}else if(voronoiRegion==1) { //vertice region: edge
+
+			if(nearestEdgePenetration<circleParticle->GetRadius() ){
+				float penetration=circleParticle->GetRadius()-nearestEdgePenetration;
+
+				QVector contactPosition=circleParticle->GetGlobalPosition();
+				if(circleParticle->GetRadius()>0.5f){
+					contactPosition-=circleParticle->GetRadius()*nearestEdgeNormal;
+				}
+				vector<QParticle*> refSegment={ nearestEdgeParticles[0],nearestEdgeParticles[1] };
+
+				
+				
+				QCollision::Contact *contact=QCollision::GetContactPool().Create().data;
+				contact->Configure(circleParticle,contactPosition,nearestEdgeNormal,penetration,refSegment );
+				contacts.push_back(contact);
+			}
+
+
+		}else if(voronoiRegion==2) { //vertice region: inside
+			float penetration=circleParticle->GetRadius()-nearestEdgePenetration;
+
 			QVector contactPosition=circleParticle->GetGlobalPosition();
 			if(circleParticle->GetRadius()>0.5f){
-				contactPosition-=circleParticle->GetRadius()*normal;
+				contactPosition-=circleParticle->GetRadius()*nearestEdgeNormal;
 			}
-			
+			vector<QParticle*> refSegment={ nearestEdgeParticles[0],nearestEdgeParticles[1] };
+
 			
 			QCollision::Contact *contact=QCollision::GetContactPool().Create().data;
-			contact->Configure(circleParticle,contactPosition,normal,penetration,vector<QParticle*>{ polygonParticles[npi] } );
+			contact->Configure(circleParticle,contactPosition,nearestEdgeNormal,penetration,refSegment );
 			contacts.push_back(contact);
-
 		}
+		
+
 	}
 
 
 
+
+
+
+	
 }
+
 
 QCollision::~QCollision()
 {
