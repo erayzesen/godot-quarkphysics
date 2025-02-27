@@ -51,6 +51,9 @@ func parse_tile_map() :
 				if cell_data!=null :
 					if cell_data.get_collision_polygons_count(l)!=0 :
 						var polygon=LocalPolygonToGlobal( cell_data.get_collision_polygon_points(l,0),cell_pos )
+						var is_cw=Geometry2D.is_polygon_clockwise(polygon)
+						if is_cw==false :
+							polygon.reverse()
 						if (merge_mode==MergeModes.DISABLE || merge_mode==MergeModes.VERTICAL) :
 							polygon_list.append(polygon)
 							continue
