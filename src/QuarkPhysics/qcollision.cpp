@@ -813,7 +813,6 @@ void QCollision::CircleAndPolygon(vector<QParticle*> &circleParticles,vector<QPa
 	   a2. Find the nearest edge of the polygon  
 	   a3. Define the voronoi region; vertex, edge, inside 
 	  B. Test collisions to vertex/edge of the polygon
-	  C. If there is a collision between circle and vertex/edge create a new contact, else exit from the loop 
 
 	*/
 	
@@ -827,7 +826,7 @@ void QCollision::CircleAndPolygon(vector<QParticle*> &circleParticles,vector<QPa
 		//A.Find Voronoi Region of the Polygon
 
 		//Nearest Particle Properties
-		QParticle *nearestPolygonParticle;
+		QParticle *nearestPolygonParticle=nullptr;
 		float nearestParticlePenetrationSq=QWorld::MAX_WORLD_SIZE;
 		QVector nearestParticleNormal;
 
