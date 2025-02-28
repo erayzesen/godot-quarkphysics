@@ -170,10 +170,7 @@ public:
 	/** Returns the total area of the mesh with local positions of particles */
 	float GetInitialArea(){
 		float res=0.0f;
-		for(size_t n=0;n<GetSubConvexPolygonCount();n++){
-
-			res+=GetPolygonArea(GetSubConvexPolygonAt(n),true);
-		}
+		res+=GetPolygonArea(polygon,true);
 		for(auto particle:particles){
 			if(particle->GetRadius()>0.5f){
 				res+=particle->GetRadius()*particle->GetRadius();
@@ -182,20 +179,15 @@ public:
 		return res;
 	}
 	/** Returns the total polygon area of the mesh with local positions of particles */
-	float GetInitialPolygonsArea(){
-		float res=0.0f;
-		for(size_t n=0;n<GetSubConvexPolygonCount();n++){
-			res+=GetPolygonArea(GetSubConvexPolygonAt(n),true);
-		}
+	float GetInitialPolygonArea(){
+		float res=GetPolygonArea(polygon,true);
 		return res;
 	}
 	/** Returns total area of the mesh with global positions of particles */
 
 	float GetArea(){
 		float res=0.0f;
-		for(size_t n=0;n<GetSubConvexPolygonCount();n++){
-			res+=GetPolygonArea(GetSubConvexPolygonAt(n));
-		}
+		res+=GetPolygonArea(polygon,false);
 		for(auto particle:particles){
 			if(particle->GetRadius()>0.5f){
 				res+=particle->GetRadius()*particle->GetRadius();
@@ -204,11 +196,8 @@ public:
 		return res;
 	}
 	/** Returns total polygon area of the mesh with global positions of particles */
-	float GetPolygonsArea(){
-		float res=0.0f;
-		for(size_t n=0;n<GetSubConvexPolygonCount();n++){
-			res+=GetPolygonArea(GetSubConvexPolygonAt(n));
-		}
+	float GetPolygonArea(){
+		float res=GetPolygonArea(polygon,false);
 
 		return res;
 	}
@@ -216,18 +205,13 @@ public:
 	/** Returns total circumference of all polygons of the mesh (Calculates with local positions of particles) */
 	float GetCircumference(){
 		float res=0.0f;
-		for(size_t n=0;n<GetSubConvexPolygonCount();n++){
-			auto polygon=GetSubConvexPolygonAt(n);
-			for(int i=0;i<polygon.size();i++){
-				QParticle *p=polygon[i];
-				QParticle *np=polygon[(i+1)%polygon.size()];
-				float length=(np->GetPosition()-p->GetPosition()).Length();
-				res+=length;
-			}
+		for(int i=0;i<polygon.size();i++){
+			QParticle *p=polygon[i];
+			QParticle *np=polygon[(i+1)%polygon.size()];
+			float length=(np->GetPosition()-p->GetPosition()).Length();
+			res+=length;
 		}
-//		for(auto spring:springs){
-//			res+=(spring.GetParticleA()->GetGlobalPosition()-spring.GetParticleB()->GetGlobalPosition()).Length();
-//		}
+
 		return res;
 	}
 	/** Returns owner body of the mesh. 

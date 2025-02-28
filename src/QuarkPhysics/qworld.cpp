@@ -951,21 +951,45 @@ vector<QCollision::Contact*> QWorld::GetCollisions(QBody *bodyA, QBody *bodyB){
 			}else if(QMesh::CheckCollisionBehaviors(meshA,meshB,QMesh::POLYLINE, QMesh::POLYGONS )){
 				QMesh *polylineMesh=meshA->collisionBehavior==QMesh::POLYLINE ? meshA:meshB;
 				QMesh *polygonMesh=meshA->collisionBehavior==QMesh::POLYGONS ? meshA:meshB;
-				for(size_t b=0;b<polygonMesh->GetSubConvexPolygonCount();b++){
+				/* for(size_t b=0;b<polygonMesh->GetSubConvexPolygonCount();b++){
 					vector<QParticle*> polygonSub=polygonMesh->GetSubConvexPolygonAt(b);
 					QCollision::CircleAndPolygon(polylineMesh->polygon,polygonSub,contactList);
 					QCollision::PolylineAndPolygon(polylineMesh->polygon,polygonSub,contactList);
+				} */
+
+				for(size_t a=0;a<polylineMesh->GetSubConvexPolygonCount();a++){
+					vector<QParticle*> polylineSub=polylineMesh->GetSubConvexPolygonAt(a);
+					for(size_t b=0;b<polygonMesh->GetSubConvexPolygonCount();b++){
+						vector<QParticle*> polygonSub=polygonMesh->GetSubConvexPolygonAt(b);
+						QCollision::PolygonAndPolygon(polylineSub,polygonSub,contactList);
+
+					}
 				}
+
+				
+
+				
+				
+				
 			}else if(QMesh::CheckCollisionBehaviors(meshA,meshB,QMesh::POLYLINE, QMesh::POLYLINE )){
 				
 				
 				
-				if(bodyA->simulationModel==QBody::SimulationModels::MASS_SPRING && bodyB->simulationModel==QBody::SimulationModels::MASS_SPRING){
+				/* if(bodyA->simulationModel==QBody::SimulationModels::MASS_SPRING && bodyB->simulationModel==QBody::SimulationModels::MASS_SPRING){
 					
 					QCollision::CircleAndCircle(meshA->polygon,meshB->polygon,bboxB, contactList);
 					QCollision::CircleAndPolyline(meshA->polygon,meshB->polygon,bboxB,contactList,true);
 					QCollision::CircleAndPolyline(meshB->polygon,meshA->polygon,bboxA, contactList,true);	
 						
+				} */
+
+				for(size_t a=0;a<meshA->GetSubConvexPolygonCount();a++){
+					vector<QParticle*> polygonA=meshA->GetSubConvexPolygonAt(a);
+					for(size_t b=0;b<meshB->GetSubConvexPolygonCount();b++){
+						vector<QParticle*> polygonB=meshB->GetSubConvexPolygonAt(b);
+						QCollision::PolygonAndPolygon(polygonA,polygonB,contactList);
+
+					}
 				}
 				
 				
