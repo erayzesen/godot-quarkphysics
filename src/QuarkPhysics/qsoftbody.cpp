@@ -166,6 +166,9 @@ void QSoftBody::Update()
 	if(enableAreaPreserving){
 		PreserveAreas();
 	}
+	for(auto mesh:_meshes){
+		mesh->UpdateSubConvexPolygons();
+	}
 	
 
 
@@ -199,7 +202,7 @@ void QSoftBody::PreserveAreas()
 	for(auto mesh:_meshes){
 
 		if(mesh->GetSpringCount()==0)continue;
-		float currentMeshesArea=mesh->GetPolygonsArea();
+		float currentMeshesArea=mesh->GetPolygonArea(mesh->polygon,false);
 
 		if(currentMeshesArea<-targetPreservationArea*5){
 			currentMeshesArea=-targetPreservationArea*5;

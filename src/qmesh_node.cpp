@@ -858,7 +858,7 @@ void QMeshNode::_bind_methods()
     ClassDB::bind_method(D_METHOD("get_mesh_rotation"),&QMeshNode::get_mesh_rotation );
     ClassDB::bind_method(D_METHOD("get_mesh_global_rotation"),&QMeshNode::get_mesh_global_rotation );
     ClassDB::bind_method(D_METHOD("get_initial_area"),&QMeshNode::get_initial_area );
-    ClassDB::bind_method(D_METHOD("get_initial_polygons_area"),&QMeshNode::get_initial_polygons_area );
+    ClassDB::bind_method(D_METHOD("get_initial_polygon_area"),&QMeshNode::get_initial_polygon_area );
     ClassDB::bind_method(D_METHOD("get_area"),&QMeshNode::get_area );
     ClassDB::bind_method(D_METHOD("get_polygon_area"),&QMeshNode::get_polygon_area );
     ClassDB::bind_method(D_METHOD("get_circumference"),&QMeshNode::get_circumference );
@@ -1084,12 +1084,12 @@ float QMeshNode::get_initial_area() {
 	return meshObject->GetInitialArea();
 }
 
-float QMeshNode::get_initial_polygons_area() {
+float QMeshNode::get_initial_polygon_area() {
     if(meshObject==nullptr){
-        godot::UtilityFunctions::printerr("Quark Physics Error: The mesh object not configured yet! | QMeshNode.get_initial_polygons_area() ");
+        godot::UtilityFunctions::printerr("Quark Physics Error: The mesh object not configured yet! | QMeshNode.get_initial_polygon_area() ");
         return 0.0;
     }
-	return meshObject->GetInitialPolygonsArea();
+	return meshObject->GetInitialPolygonArea();
 }
 
 float QMeshNode::get_area() {
@@ -1105,7 +1105,7 @@ float QMeshNode::get_polygon_area() {
         godot::UtilityFunctions::printerr("Quark Physics Error: The mesh object not configured yet! | QMeshNode.get_polygon_area() ");
         return 0.0;
     }
-	return meshObject->GetPolygonsArea();
+	return meshObject->GetPolygonArea();
 }
 
 float QMeshNode::get_circumference(){
