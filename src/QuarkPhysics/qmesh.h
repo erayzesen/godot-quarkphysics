@@ -90,6 +90,7 @@ protected:
 	static void DecompositePolygon(vector<QParticle*> &polygonParticles,vector<vector<QParticle*>> &polygons);
 	static void DecompositePolygon2(vector<QParticle*> &polygonParticles,vector<vector<QParticle*>> &polygons);
 	bool subConvexPolygonsNeedsUpdate=false;
+	bool isPolygonSelfIntersected=false;
 
 public:
 	/** The data struct of the mesh. 

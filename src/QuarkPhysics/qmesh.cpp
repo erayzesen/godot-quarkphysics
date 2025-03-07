@@ -269,6 +269,7 @@ void QMesh::ApplyAngleConstraintsToPolygon()
 		}
 
 	}
+	isPolygonSelfIntersected=polygonIntersection;
 	if(polygonIntersection==true){
 		//cout<<"there is line intersection in polygon"<<endl;
 		pair<QVector,float> averagePosRot=QMesh::GetAveragePositionAndRotation(polygon);

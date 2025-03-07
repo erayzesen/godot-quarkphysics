@@ -200,11 +200,11 @@ void QCollision::PolylineAndPolygon(vector<QParticle*> &polylineParticles, vecto
 
 }
 
-void QCollision::CircleAndPolyline(vector<QParticle *> &circleParticles, vector<QParticle *> &polylineParticles,QAABB polylineAABB,vector<QCollision::Contact*> &contacts,bool circlesArePolygon)
+void QCollision::PolylineAndPolyline(vector<QParticle*> &testPolylineParticles,vector<QParticle*> &targetPolylineParticles,QAABB polylineAABB,vector<QCollision::Contact*> &contacts)
 {
 
-	/* The algorithm detects collisions between one or more particles and a polyline. 
-	It utilizes point-polygon tests, ray casting, and circle-line collision tests if conditions require.
+	/* The algorithm detects collisions between a polyline and a polyline. 
+	It utilizes point-polygon tests, ray casting with bisector vectors, and circle-line collision tests if conditions require.
 
 	A. A loop is performed for each circle particle and subjected to testing. 
 	B. If the circular particle belongs to a collection with 3 or more elements, a ray vector is prepared towards the angle bisector using its edges. 
@@ -220,9 +220,9 @@ void QCollision::CircleAndPolyline(vector<QParticle *> &circleParticles, vector<
 	vector< vector<QParticle*> > nearestSides;
 	
 	//A. A loop is performed for each circle particle and subjected to testing. 
-	for (size_t ia=0;ia<circleParticles.size();ia++ ){
+	for (size_t ia=0;ia<testPolylineParticles.size();ia++ ){
 
-		QParticle * pA=circleParticles[ia];
+		QParticle * pA=testPolylineParticles[ia];
 		
 		QVector particleSize=QVector(pA->GetRadius(),pA->GetRadius() );
 		QAABB particleAABB=QAABB(pA->GetGlobalPosition()-particleSize,pA->GetGlobalPosition()+particleSize );
@@ -231,57 +231,73 @@ void QCollision::CircleAndPolyline(vector<QParticle *> &circleParticles, vector<
 			continue;
 		}
 
-		
 
-		
 
 		int collidedSideIndex=-1;
 
 		//Checking whether the cirlce particle is in the polyline. 
-		bool collisionIsPolygonal=false;
-		if (circlesArePolygon){
-			if (circleParticles!=polylineParticles){
-				if (PointInPolygonWN(pA->GetGlobalPosition(),polylineParticles)){
-					collisionIsPolygonal=true;
-				}else{
-					//intersection tests between target particle sides and polyline
-					if(circleParticles.size()>3 && polylineParticles.size()>3 ){
-						QParticle *ppA=circleParticles[ (ia-1+circleParticles.size() )%circleParticles.size() ];
-						QParticle *npA=circleParticles[ (ia+1 )%circleParticles.size() ];
-						for(size_t j=0;j<polylineParticles.size();++j ){
-							QParticle * pJ=polylineParticles[j];
-							QParticle *npJ=polylineParticles[ (j+1)% polylineParticles.size() ];
-							bool sideIntersectionA=LineIntersectionLine(ppA->GetGlobalPosition(),pA->GetGlobalPosition(),pJ->GetGlobalPosition(), npJ->GetGlobalPosition() ).isNaN()==false;
-							
-							if( sideIntersectionA){
-								bool sideIntersectionB=LineIntersectionLine(pA->GetGlobalPosition(),npA->GetGlobalPosition(),pJ->GetGlobalPosition(), npJ->GetGlobalPosition() ).isNaN()==false;
-								if (sideIntersectionB){
-									collisionIsPolygonal=true;
-								}
-								
+		bool circleCenterInsidePolyline=false;
+		if (testPolylineParticles!=targetPolylineParticles){
+			if (PointInPolygonWN(pA->GetGlobalPosition(),targetPolylineParticles)){
+				circleCenterInsidePolyline=true;
+			}else{
+				//intersection tests between target particle sides and polyline
+				if(testPolylineParticles.size()>3 && targetPolylineParticles.size()>3 ){
+					QParticle *ppA=testPolylineParticles[ (ia-1+testPolylineParticles.size() )%testPolylineParticles.size() ];
+					QParticle *npA=testPolylineParticles[ (ia+1 )%testPolylineParticles.size() ];
+					for(size_t j=0;j<targetPolylineParticles.size();++j ){
+						QParticle * pJ=targetPolylineParticles[j];
+						QParticle *npJ=targetPolylineParticles[ (j+1)% targetPolylineParticles.size() ];
+						bool sideIntersectionA=LineIntersectionLine(ppA->GetGlobalPosition(),pA->GetGlobalPosition(),pJ->GetGlobalPosition(), npJ->GetGlobalPosition() ).isNaN()==false;
+						
+						if( sideIntersectionA){
+							bool sideIntersectionB=LineIntersectionLine(pA->GetGlobalPosition(),npA->GetGlobalPosition(),pJ->GetGlobalPosition(), npJ->GetGlobalPosition() ).isNaN()==false;
+							if (sideIntersectionB){
+								circleCenterInsidePolyline=true;
 							}
+							
 						}
-
 					}
+
 				}
+			}
 		}
 		
 
-		}
-
 
 		
-		if (collisionIsPolygonal) {
+		if (circleCenterInsidePolyline) {
 
+			
 			//B. If the circular particle belongs to a collection with 3 or more elements, a ray vector is prepared towards the angle bisector using its edges.
 			nearestSides.clear();
-			QVector rayEndPoint=QVector::Zero();
+			QVector rayEndPoint=QVector::Zero(); 
 			QVector rayUnit;
-			if(circleParticles.size()>=3){
-				QParticle *prevParticle=circleParticles[ (ia-1+circleParticles.size() )%circleParticles.size() ];
-				QParticle *nextParticle=circleParticles[ (ia+1 )%circleParticles.size() ];
-				rayUnit=QVector::GeteBisectorUnitVector(prevParticle->GetGlobalPosition(), pA->GetGlobalPosition(), nextParticle->GetGlobalPosition() );
-				rayEndPoint=pA->GetGlobalPosition()+rayUnit*QWorld::MAX_WORLD_SIZE;
+			if(testPolylineParticles.size()>=3){
+				QParticle *prevParticle=testPolylineParticles[ (ia-1+testPolylineParticles.size() )%testPolylineParticles.size() ];
+				QParticle *nextParticle=testPolylineParticles[ (ia+1 )%testPolylineParticles.size() ];
+				rayUnit=QVector::GeteBisectorUnitVector(prevParticle->GetGlobalPosition(), pA->GetGlobalPosition(), nextParticle->GetGlobalPosition(),true);
+				QVector centerPoint=(nextParticle->GetGlobalPosition()+prevParticle->GetGlobalPosition() )*0.5f;
+				float cornerLen=(nextParticle->GetPosition()-prevParticle->GetPosition()).Length();
+				float rayLen=cornerLen;
+				float bestDistance=QWorld::MAX_WORLD_SIZE;
+				for(size_t n=0;n<testPolylineParticles.size();++n ){
+					QParticle *s1=testPolylineParticles[n];
+					QParticle *s2=testPolylineParticles[ (n+1)%testPolylineParticles.size() ];
+					if(s1==prevParticle || s1==nextParticle || s1==pA){
+						continue;
+					}
+					QVector bisectorIntersection=LineIntersectionLine(pA->GetGlobalPosition(),pA->GetGlobalPosition()+rayUnit*QWorld::MAX_WORLD_SIZE,s1->GetGlobalPosition(),s2->GetGlobalPosition()  );
+					if(bisectorIntersection!=QVector::NaN() ){
+						float len=(pA->GetGlobalPosition()-bisectorIntersection).Length();
+						if(len<bestDistance){
+							rayLen=len;
+							bestDistance=len;
+						}
+					}
+				}
+				rayLen=max(rayLen,cornerLen);
+				rayEndPoint=pA->GetGlobalPosition()+rayUnit*rayLen;
 				
 			}
 
@@ -289,38 +305,47 @@ void QCollision::CircleAndPolyline(vector<QParticle *> &circleParticles, vector<
 
 			
 
-			int ni=FindNearestParticleOfPolygon(pA,polylineParticles );
-			
-			QParticle *pB=polylineParticles[ni];
+			int ni=FindNearestParticleOfPolygon(pA,targetPolylineParticles );
 
-			nearestSides.push_back(vector<QParticle*>{ polylineParticles[ (ni-1+polylineParticles.size() )%polylineParticles.size() ], pB}  );
-			nearestSides.push_back(vector<QParticle*>{ pB, polylineParticles[ (ni+1)%polylineParticles.size() ]}  );
+			QParticle *pB=targetPolylineParticles[ni];
+
+			nearestSides.push_back(vector<QParticle*>{ targetPolylineParticles[ (ni-1+targetPolylineParticles.size() )%targetPolylineParticles.size() ], pB}  );
+			nearestSides.push_back(vector<QParticle*>{ pB, targetPolylineParticles[ (ni+1)%targetPolylineParticles.size() ]}  );
+
+
+
+
+			
 
 			//Nearest particle is on the outside of the test particle sides.
-			if (circlesArePolygon){
-				bool isNearesParticleOnWrongSide=true;
+			bool useMiniResponse=false;
+			
+			bool isNearesParticleOnWrongSide=true;
 
-				for (size_t j=0;j<nearestSides.size();++j ){
-					QVector sideVec=nearestSides[j][1]->GetGlobalPosition()-nearestSides[j][0]->GetGlobalPosition();
-					QVector sidePerp=sideVec.Perpendicular();
-					QVector bVector=pA->GetGlobalPosition()-nearestSides[j][0]->GetGlobalPosition();
-					if(sidePerp.Dot(rayUnit)>0 ){
-						isNearesParticleOnWrongSide=false;
-					}
-				}
-				if(isNearesParticleOnWrongSide==true  ){
-					nearestSides.clear();
-					for(size_t j=0;j<polylineParticles.size();++j ){
-						int nj=(j+1)%polylineParticles.size();
-
-						QVector sideVec=polylineParticles[nj]->GetGlobalPosition()-polylineParticles[j]->GetGlobalPosition();
-						QVector sidePerp=sideVec.Perpendicular();
-						if(sidePerp.Dot(rayUnit)>0 ){
-							nearestSides.push_back(vector<QParticle*>{ polylineParticles[ j], polylineParticles[ nj]}  );			
-						}
-					}
+			for (size_t j=0;j<nearestSides.size();++j ){
+				QVector sideVec=nearestSides[j][1]->GetGlobalPosition()-nearestSides[j][0]->GetGlobalPosition();
+				QVector sidePerp=sideVec.Perpendicular();
+				QVector bVector=pA->GetGlobalPosition()-nearestSides[j][0]->GetGlobalPosition();
+				if(sidePerp.Dot(rayUnit)>0 ){
+					isNearesParticleOnWrongSide=false;
 				}
 			}
+			
+			if(isNearesParticleOnWrongSide==true  ){
+				nearestSides.clear();
+				for(size_t j=0;j<targetPolylineParticles.size();++j ){
+					int nj=(j+1)%targetPolylineParticles.size();
+
+					QVector sideVec=targetPolylineParticles[nj]->GetGlobalPosition()-targetPolylineParticles[j]->GetGlobalPosition();
+					QVector sidePerp=sideVec.Perpendicular();
+					if(sidePerp.Dot(rayUnit)>0 ){
+						nearestSides.push_back(vector<QParticle*>{ targetPolylineParticles[ j], targetPolylineParticles[ nj]}  );
+					}
+					
+				}
+				useMiniResponse=true;
+			}
+			
 
 
 			
@@ -356,9 +381,9 @@ void QCollision::CircleAndPolyline(vector<QParticle *> &circleParticles, vector<
 					sideNormal=sideVec.Normalized().Perpendicular();
 				}
 
-				if (circleParticles.size()>=3 ){
+				if (testPolylineParticles.size()>=3 ){
 					/*C-1. If the circle particle belongs to a collection with 3 or more elements, a ray intersection test is applied from the particle to the two edges
-		 			of the polyline to find the reference surface.*/
+					of the polyline to find the reference surface.*/
 
 					QVector intersection=LineIntersectionLine(rayEndPoint,pA->GetGlobalPosition(),sAPos,sBPos);
 
@@ -403,14 +428,24 @@ void QCollision::CircleAndPolyline(vector<QParticle *> &circleParticles, vector<
 				continue;
 			}
 
-			
+			if(useMiniResponse){			
+				penetration*=0.2f;
+			}
+		
 
 			//pA->GetOwnerMesh()->GetOwnerBody()->GetWorld()->gizmos.push_back(new QGizmoCircle(pA->GetGlobalPosition(),5.0f ) );
 
 			
 			QCollision::Contact *contact=QCollision::GetContactPool().Create().data;
 			contact->Configure( pA,pA->GetGlobalPosition(),normal,-penetration,vector<QParticle*>{ nearestSides[collidedSideIndex][0],nearestSides[collidedSideIndex][1] }  );
-			contacts.push_back(contact) ;
+			//contacts.push_back(contact) ;
+
+			QManifold manifold(pA->GetOwnerMesh()->GetOwnerBody(),nearestSides[collidedSideIndex][0]->GetOwnerMesh()->GetOwnerBody() );
+			manifold.contacts={contact};
+			manifold.Solve();
+			manifold.SolveFrictionAndVelocities();
+			
+
 			
 
 		}else{
@@ -418,25 +453,31 @@ void QCollision::CircleAndPolyline(vector<QParticle *> &circleParticles, vector<
 			test between the circle diameter and the edges of the nearest particle. */
 			if(pA->GetRadius()>0.5){
 				
-				pair<int,int> ns=FindNearestSideOfPolygon(pA->GetGlobalPosition(),polylineParticles,true );
+				pair<int,int> ns=FindNearestSideOfPolygon(pA->GetGlobalPosition(),targetPolylineParticles,true );
 
 				if(ns.first==-1 && ns.second==-1)
 					continue;
 
-				int ni=FindNearestParticleOfPolygon(pA,vector<QParticle*>{polylineParticles[ns.first],polylineParticles[ns.second] } );
+				int ni=FindNearestParticleOfPolygon(pA,vector<QParticle*>{targetPolylineParticles[ns.first],targetPolylineParticles[ns.second] } );
 				if (ni==0){
 					ni=ns.first;
 				}else{
 					ni=ns.second;
 				}
 
-				QParticle *pB=polylineParticles[ni];
+				QParticle *pB=targetPolylineParticles[ni];
 
 				
 			
 
-				nearestSides.push_back(vector<QParticle*>{ polylineParticles[ (ni-1+polylineParticles.size() )%polylineParticles.size() ], pB}  );
-				nearestSides.push_back(vector<QParticle*>{ pB, polylineParticles[ (ni+1)%polylineParticles.size() ]}  );
+				nearestSides.push_back(vector<QParticle*>{ targetPolylineParticles[ (ni-1+targetPolylineParticles.size() )%targetPolylineParticles.size() ], pB}  );
+				nearestSides.push_back(vector<QParticle*>{ pB, targetPolylineParticles[ (ni+1)%targetPolylineParticles.size() ]}  );
+
+				int nearestSideIndex=-1;
+				float contactPenetration;
+				QVector contactNormal;
+				QVector contactPosition;
+				float minDistance=QWorld::MAX_WORLD_SIZE;
 
 				for(size_t is=0;is<nearestSides.size();is++ ){
 					QParticle *s1=nearestSides[is][0];
@@ -478,21 +519,37 @@ void QCollision::CircleAndPolyline(vector<QParticle *> &circleParticles, vector<
 
 					float perpProj=testBridgeVec.Dot(normal);
 
-					if(abs(perpProj)<pA->GetRadius()){
-						float proj=bridgeVec.Dot(unit);
-						if(proj>=0 && proj<=len){
-							int projSign=perpProj<0 ? -1:1;
-							float penetration=abs( (pA->GetRadius()*projSign)-perpProj);
-							QVector contactPosition=pA->GetGlobalPosition()-(pA->GetRadius()*projSign*normal);
+					if(abs(perpProj)<minDistance){
+						if(abs(perpProj)<pA->GetRadius()){
+							float proj=bridgeVec.Dot(unit);
+							if(proj>=0 && proj<=len){
+								int projSign=perpProj<0 ? -1:1;
+								contactPenetration=abs( (pA->GetRadius()*projSign)-perpProj);
+								contactPosition=pA->GetGlobalPosition()-(pA->GetRadius()*projSign*normal);
+								contactNormal=normal;
+								nearestSideIndex=is;
+								minDistance=abs(perpProj);
+								
+								
 
-							
-							QCollision::Contact *contact=QCollision::GetContactPool().Create().data;
-							contact->Configure(pA,contactPosition,normal,penetration,vector<QParticle*>{s1,s2});
-							contacts.push_back(contact);
-
+							}
 						}
 					}
 
+
+				}
+
+				if(nearestSideIndex!=-1){
+					QParticle *s1=nearestSides[nearestSideIndex][0];
+					QParticle *s2=nearestSides[nearestSideIndex][1];
+					QCollision::Contact *contact=QCollision::GetContactPool().Create().data;
+					contact->Configure(pA,contactPosition,contactNormal,contactPenetration,vector<QParticle*>{s1,s2});
+					//contacts.push_back(contact);
+
+					QManifold manifold(pA->GetOwnerMesh()->GetOwnerBody(),s1->GetOwnerMesh()->GetOwnerBody() );
+					manifold.contacts={contact};
+					manifold.Solve();
+					manifold.SolveFrictionAndVelocities();
 				}
 
 			}
@@ -506,9 +563,97 @@ void QCollision::CircleAndPolyline(vector<QParticle *> &circleParticles, vector<
 	
 }
 
-void QCollision::CircleAndCircle(vector<QParticle*> &particlesA,vector<QParticle*> &particlesB,QAABB boundingBoxB,vector<QCollision::Contact*> &contacts,float specifiedRadius, bool velocitySensitive){
+void QCollision::CircleAndPolyline2(vector<QParticle *> &particles, vector<QParticle *> &polygonParticles, QAABB polylineAABB, vector<QCollision::Contact *> &contacts)
+{
+	size_t particlesSize=particles.size();
+	size_t polygonParticlesSize=polygonParticles.size();
+	for(size_t i=0;i<particlesSize;++i ){
+		QParticle *particle=particles[i];
 
-	/*
+		int checkingSide=0; //0:inside 1:outside
+
+		if(PointInPolygonWN(particle->GetGlobalPosition(),polygonParticles) ){
+			checkingSide=0;
+		}else{
+			checkingSide=1;
+		}
+
+		if(checkingSide==0) { //inside
+			QVector bisectorRayUnit;
+			QParticle *prevParticle=particles[ (i-1+particlesSize)%particlesSize ];
+			QParticle *nextParticle=particles[ (i+1)%particlesSize ];
+
+			bisectorRayUnit=QVector::GeteBisectorUnitVector(prevParticle->GetGlobalPosition(),particle->GetGlobalPosition(), nextParticle->GetGlobalPosition() );
+			QVector bisectorRay=bisectorRayUnit*32.0f;
+
+			float minIntersectionSideDistance=QWorld::MAX_WORLD_SIZE;
+			int minIntersectionSideIndex=-1;
+			QVector minSideNormal;
+			float minSidePenetration=0.0f;
+
+			for(size_t j=0;j<polygonParticlesSize;++j ){
+				QParticle *sideParticleA=polygonParticles[j];
+				QParticle *sideParticleB=polygonParticles[ (j+1)%polygonParticlesSize ];
+
+				QVector intersection=LineIntersectionLine(particle->GetGlobalPosition(),particle->GetGlobalPosition()+bisectorRay,sideParticleA->GetGlobalPosition(),sideParticleB->GetGlobalPosition() );
+
+				if (intersection!=QVector::NaN() ){
+					float distance=(intersection-particle->GetGlobalPosition()).Length();
+					if(distance<minIntersectionSideDistance){
+						minIntersectionSideIndex=distance;
+						minIntersectionSideIndex=j;
+
+					}
+				}
+
+				
+
+
+			}
+
+			if(minIntersectionSideIndex!=-1){
+				QParticle *sideParticleA=polygonParticles[minIntersectionSideIndex];
+				QParticle *sideParticleB=polygonParticles[ (minIntersectionSideIndex+1)%polygonParticlesSize ];
+
+				QVector sideVec=sideParticleB->GetGlobalPosition()-sideParticleA->GetGlobalPosition();
+				QVector sideVecUnit=sideVec.Normalized();
+				QVector sideVecNormal=sideVecUnit.Perpendicular();
+
+				QVector bVec=particle->GetGlobalPosition()-sideParticleA->GetGlobalPosition();
+
+				float penetration=bVec.Dot(sideVecNormal);
+				QVector normal=sideVecNormal;
+
+				float proj=bVec.Dot(sideVecUnit);
+				if(proj<0.0f){
+					float penetration=(sideParticleA->GetGlobalPosition()-particle->GetGlobalPosition() ).Length();
+					normal=(sideParticleA->GetGlobalPosition()-particle->GetGlobalPosition() ).Normalized();
+				}
+
+				if(proj>sideVec.Length() ){
+					float penetration=(sideParticleB->GetGlobalPosition()-particle->GetGlobalPosition() ).Length();
+					normal=(sideParticleB->GetGlobalPosition()-particle->GetGlobalPosition() ).Normalized();
+				}
+
+				QCollision::Contact *contact=QCollision::GetContactPool().Create().data;
+				contact->Configure( particle,particle->GetGlobalPosition(),normal,abs(penetration),vector<QParticle*>{ sideParticleA,sideParticleB }  );
+				contacts.push_back(contact) ;
+				
+			}
+			
+
+			
+			
+
+
+		}
+	}
+}
+
+void QCollision::CircleAndCircle(vector<QParticle *> &particlesA, vector<QParticle *> &particlesB, QAABB boundingBoxB, vector<QCollision::Contact *> &contacts, float specifiedRadius, bool velocitySensitive)
+{
+
+    /*
 	A. Start the loop for all points of particlesA
 	B. Start the loop for all points of particlesB
 	C. Check the distance between both points
@@ -563,7 +708,7 @@ void QCollision::CircleAndCircle(vector<QParticle*> &particlesA,vector<QParticle
 	for(size_t i=0;i<sizeA;++i ){
 		QParticle *pA=orderedParticlesA[i];
 
-		cout<<"particleA AABB minX:"<<pA->GetAABB().GetMin()<<" minY:"<<pA->GetAABB().GetMax()<<endl;
+		//cout<<"particleA AABB minX:"<<pA->GetAABB().GetMin()<<" minY:"<<pA->GetAABB().GetMax()<<endl;
 
 
 		if(sizeGreaterThenOne){
@@ -706,8 +851,6 @@ void QCollision::CircleAndCircle(vector<QParticle*> &particlesA,vector<QParticle
 			}
 		}
 	} */
-
-
 }
 
 void QCollision::CircleAndCircleSelf(vector<QParticle *> &particles, vector<QCollision::Contact *> &contacts, float specifiedRadius)
@@ -819,6 +962,8 @@ void QCollision::CircleAndPolygon(vector<QParticle*> &circleParticles,vector<QPa
 	int polygonParticlesSize=polygonParticles.size();
 	int circleParticlesSize=circleParticles.size();
 
+	vector<QVector> polygonPositions=ParticlePolygonToPolygon(polygonParticles);
+
 	for (int n=0;n<circleParticlesSize;n++){
 
 		QParticle *circleParticle=circleParticles[n];
@@ -836,13 +981,17 @@ void QCollision::CircleAndPolygon(vector<QParticle*> &circleParticles,vector<QPa
 		float nearestEdgeMinDist=QWorld::MAX_WORLD_SIZE;
 		QVector nearestEdgeNormal;
 
+		
 
 		for(int pi=0; pi<polygonParticlesSize; pi++){
+			size_t npi=(pi+1) % polygonParticlesSize;
 			QParticle *p=polygonParticles[pi];
-			QParticle *np=polygonParticles[ (pi+1) % polygonParticlesSize ];
+			QParticle *np=polygonParticles[ npi ];
+			QVector pPos=polygonPositions[pi];
+			QVector npPos=polygonPositions[npi];
 
 			//a1. Find the nearest vertice of the polygon
-			QVector circleToParticleVec=circleParticle->GetGlobalPosition()-p->GetGlobalPosition();
+			QVector circleToParticleVec=circleParticle->GetGlobalPosition()-pPos;
 			float circleToParticleDistSq=circleToParticleVec.LengthSquared();
 			if(circleToParticleDistSq<nearestParticlePenetrationSq){
 				nearestPolygonParticle=p;
@@ -853,14 +1002,19 @@ void QCollision::CircleAndPolygon(vector<QParticle*> &circleParticles,vector<QPa
 
 			//a2. Find the nearest edge of the polygon 
 
-			QVector edgeVec=np->GetGlobalPosition()-p->GetGlobalPosition();
+
+			QVector edgeVec=npPos-pPos;
 			QVector edgeVecUnit=edgeVec.Normalized();
 			QVector edgeVecNormal=edgeVecUnit.Perpendicular();
 
-			float circleToEdgePenetration=circleToParticleVec.Dot(edgeVecNormal ) ;
+			QVector circleToEdgeBegin=circleParticle->GetGlobalPosition()-pPos;
+
+			
+
+			float circleToEdgePenetration=circleToEdgeBegin.Dot(edgeVecNormal ) ;
 
 			if(abs(circleToEdgePenetration) < nearestEdgeMinDist){
-				float circleToEdgeRangeProject=circleToParticleVec.Dot(edgeVecUnit);
+				float circleToEdgeRangeProject=circleToEdgeBegin.Dot(edgeVecUnit);
 				if(circleToEdgeRangeProject>=0.0f && circleToEdgeRangeProject<=edgeVec.Length() ){
 					nearestEdgeMinDist=abs(circleToEdgePenetration);
 					nearestEdgePenetration=circleToEdgePenetration;
@@ -882,8 +1036,8 @@ void QCollision::CircleAndPolygon(vector<QParticle*> &circleParticles,vector<QPa
 		if(nearestEdgeParticles[0]==nullptr ){
 			voronoiRegion=0;
 		}else {
-			if(nearestParticlePenetration>nearestEdgeMinDist){
-				if(nearestEdgePenetration<0){
+			if(nearestParticlePenetration>nearestEdgeMinDist  ){
+				if(nearestEdgePenetration<0 && PointInPolygonWN(circleParticle->GetGlobalPosition(),polygonParticles) ){
 					voronoiRegion=2;
 				}else{
 					voronoiRegion=1;
@@ -896,17 +1050,26 @@ void QCollision::CircleAndPolygon(vector<QParticle*> &circleParticles,vector<QPa
 		//B. Test collisions to vertex/edge of the polygon
 
 		if(voronoiRegion==0){ //vertice region : vertice
-
-			if(nearestParticlePenetration<circleParticle->GetRadius() ){
-				float penetration=circleParticle->GetRadius()-nearestParticlePenetration;
+			if(PointInPolygonWN(circleParticle->GetGlobalPosition(),polygonParticles)){
+				float penetration=circleParticle->GetRadius()+nearestParticlePenetration;
 				QVector contactPosition=circleParticle->GetGlobalPosition();
-				if(circleParticle->GetRadius()>0.5f){
-					contactPosition-=circleParticle->GetRadius()*nearestParticleNormal;
-				}
 				QCollision::Contact *contact=QCollision::GetContactPool().Create().data;
-				contact->Configure(circleParticle,contactPosition,nearestParticleNormal,penetration,vector<QParticle*>{ nearestPolygonParticle } );
+				contact->Configure(circleParticle,contactPosition,-nearestParticleNormal,penetration,vector<QParticle*>{ nearestPolygonParticle } );
 				contacts.push_back(contact);
 
+			}else{
+
+				if(nearestParticlePenetration<circleParticle->GetRadius() ){
+					float penetration=circleParticle->GetRadius()-nearestParticlePenetration;
+					QVector contactPosition=circleParticle->GetGlobalPosition();
+					if(circleParticle->GetRadius()>0.5f){
+						contactPosition-=circleParticle->GetRadius()*nearestParticleNormal;
+					}
+					QCollision::Contact *contact=QCollision::GetContactPool().Create().data;
+					contact->Configure(circleParticle,contactPosition,nearestParticleNormal,penetration,vector<QParticle*>{ nearestPolygonParticle } );
+					contacts.push_back(contact);
+
+				}
 			}
 
 
@@ -1140,7 +1303,31 @@ void QCollision::ClipContactParticles(QParticle *referenceParticles[], QParticle
 
  }
 
- pair<int, int> QCollision::FindNearestSideOfPolygon(const QVector point, vector<QParticle *> polygonParticles,bool checkSideRange)
+ vector<QVector> QCollision::ParticlePolygonToPolygon(vector<QParticle *> particlePolygon)
+ {
+
+	size_t particlePolygonSize=particlePolygon.size();
+	vector<QVector> polygonPositions;
+
+	for(size_t i=0;i<particlePolygonSize;++i ){
+		QParticle *p=particlePolygon[i];
+		if(p->GetRadius()>0.5f){
+			QParticle *pp=particlePolygon[ (i-1+particlePolygonSize )%particlePolygonSize ];
+			QParticle *np=particlePolygon[ (i+1 )%particlePolygonSize ];
+			QVector bisectorUnit=QVector::GeteBisectorUnitVector(pp->GetGlobalPosition(), p->GetGlobalPosition(), np->GetGlobalPosition() );
+			QVector offsetPos=p->GetGlobalPosition()-bisectorUnit*p->GetRadius();
+			polygonPositions.push_back(offsetPos);
+
+		}else{
+			polygonPositions.push_back(p->GetGlobalPosition() );
+		}
+	}
+
+	return polygonPositions;
+     
+ }
+
+ pair<int, int> QCollision::FindNearestSideOfPolygon(const QVector point, vector<QParticle *> polygonParticles,bool checkSideRange, bool checkNegativeDistance)
  {
 	
 
@@ -1172,6 +1359,10 @@ void QCollision::ClipContactParticles(QParticle *referenceParticles[], QParticle
 		}
 
 		float dist=bridgeVec.Dot( sidePerp );
+
+		if(checkNegativeDistance && dist>0){
+			continue;
+		}
 
 		
 

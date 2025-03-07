@@ -197,3 +197,12 @@ data_particle_is_lazy = PackedByteArray(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
 data_springs = Array[PackedInt32Array]([PackedInt32Array(0, 6), PackedInt32Array(6, 7), PackedInt32Array(7, 8), PackedInt32Array(12, 13), PackedInt32Array(15, 16), PackedInt32Array(9, 10), PackedInt32Array(10, 11), PackedInt32Array(11, 5), PackedInt32Array(5, 4), PackedInt32Array(4, 3), PackedInt32Array(2, 1), PackedInt32Array(1, 0), PackedInt32Array(8, 18), PackedInt32Array(18, 12), PackedInt32Array(13, 17), PackedInt32Array(17, 14), PackedInt32Array(14, 20), PackedInt32Array(20, 15), PackedInt32Array(16, 19), PackedInt32Array(19, 9), PackedInt32Array(2, 3)])
 data_internal_springs = Array[PackedInt32Array]([PackedInt32Array(1, 7), PackedInt32Array(2, 8), PackedInt32Array(3, 9), PackedInt32Array(4, 10), PackedInt32Array(18, 17), PackedInt32Array(20, 19), PackedInt32Array(0, 7), PackedInt32Array(1, 8), PackedInt32Array(3, 10), PackedInt32Array(4, 11), PackedInt32Array(8, 14), PackedInt32Array(9, 14), PackedInt32Array(2, 9), PackedInt32Array(18, 14), PackedInt32Array(12, 17), PackedInt32Array(14, 19), PackedInt32Array(20, 16), PackedInt32Array(8, 9)])
 data_polygon = PackedInt32Array(0, 6, 7, 8, 18, 12, 13, 17, 14, 20, 15, 16, 19, 9, 10, 11, 5, 4, 3, 2, 1)
+
+[node name="QSoftBodyNode" type="QSoftBodyNode" parent="."]
+position = Vector2(408, 286)
+
+[node name="QMeshCircleNode" type="QMeshCircleNode" parent="QSoftBodyNode"]
+circle_radius = 8.0
+data_particle_positions = PackedVector2Array(0, 0)
+data_particle_radius = PackedFloat32Array(8)
+data_particle_is_internal = PackedByteArray(0)

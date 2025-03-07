@@ -3,7 +3,9 @@
 [node name="Node2D" type="Node2D"]
 
 [node name="QWorldNode" type="QWorldNode" parent="."]
+iteration_count = 8
 time_scale = 0.5
+debug_renderer = false
 enable_debug_mouse_interactions = true
 
 [node name="background" type="ColorRect" parent="."]
