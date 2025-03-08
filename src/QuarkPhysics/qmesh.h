@@ -65,16 +65,19 @@ protected:
 	vector<QAngleConstraint*> angleConstraints=vector<QAngleConstraint*>();
 	vector <QParticle*> polygon=vector<QParticle*>();
 	vector<vector<QParticle*>> subConvexPolygons=vector<vector<QParticle*>>();
+	vector<QVector> polygonBisectors;
 	float circumference=0.0f;
 	QBody *ownerBody=nullptr;
 	CollisionBehaviors collisionBehavior=CollisionBehaviors::CIRCLES;
 	vector<vector<int>> UVMaps=vector<vector<int>>();
 	bool disablePolygonForCollisions=false;
+	
 
 	bool collisionBehaviorNeedsUpdate=false;
 
 	//Helper Methods
 	void UpdateCollisionBehavior();
+	
 
 	//Polygon Properties
 	vector<float> lastPolygonCornerAngles;
@@ -82,6 +85,8 @@ protected:
 
 	//Polygon Methods
 	void UpdateSubConvexPolygons(bool majorUpdate=true);
+	void UpdatePolygonBisectors();
+	static vector<QVector> GetBisectors(vector<QParticle*> polygonParticles);
 	void ApplyAngleConstraintsToPolygon();
 	bool CheckIsPolygonConcave(vector<QParticle*> polygonParticles);
 	static bool CheckIsReflex(QVector pA,QVector pB, QVector pC);
@@ -90,6 +95,7 @@ protected:
 	static void DecompositePolygon(vector<QParticle*> &polygonParticles,vector<vector<QParticle*>> &polygons);
 	static void DecompositePolygon2(vector<QParticle*> &polygonParticles,vector<vector<QParticle*>> &polygons);
 	bool subConvexPolygonsNeedsUpdate=false;
+	bool polygonBisectorsNeedsUpdate=true;
 	bool isPolygonSelfIntersected=false;
 
 public:
@@ -416,6 +422,10 @@ public:
 			subConvexPolygonsNeedsUpdate=false;
 		}
 		return subConvexPolygons[index];
+	}
+
+	QVector GetPolygonBisectorVectorAt(int index){
+		return polygonBisectors[index];
 	}
 	
 
