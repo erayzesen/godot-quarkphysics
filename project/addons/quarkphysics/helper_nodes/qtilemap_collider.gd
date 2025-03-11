@@ -3,7 +3,6 @@ class_name QTileMapCollider extends Node2D
 enum MergeModes{
 	DISABLE,
 	HORIZONTAL,
-	VERTICAL,
 	BOTH,
 }
 
@@ -52,9 +51,9 @@ func parse_tile_map() :
 					if cell_data.get_collision_polygons_count(l)!=0 :
 						var polygon=LocalPolygonToGlobal( cell_data.get_collision_polygon_points(l,0),cell_pos )
 						var is_cw=Geometry2D.is_polygon_clockwise(polygon)
-						if is_cw==false :
+						if is_cw==true :
 							polygon.reverse()
-						if (merge_mode==MergeModes.DISABLE || merge_mode==MergeModes.VERTICAL) :
+						if (merge_mode==MergeModes.DISABLE) :
 							polygon_list.append(polygon)
 							continue
 						if prev_polygon_support_points.size()<2 :
@@ -90,7 +89,7 @@ func parse_tile_map() :
 				for poly in row :
 					collider_polygons.append(poly)
 			collider_layer["polygons"]=collider_polygons
-		elif merge_mode==MergeModes.VERTICAL || merge_mode==MergeModes.BOTH :
+		elif merge_mode==MergeModes.BOTH :
 			# *** START OF VERTICAL MERGED POLYGONS ***
 			var collider_polygons:Array[PackedVector2Array]
 			for r in range(polygon_rows.size() ) :
@@ -122,7 +121,24 @@ func parse_tile_map() :
 							break
 						nr+=1
 					collider_polygons.append(final_polygon)
-
+			
+			#Merging All Collider Polygons - last process
+			if merge_mode==MergeModes.BOTH :
+				var ia=0
+				while ia<collider_polygons.size() :
+					var polygon_a=collider_polygons[ia]
+					var ib=ia+1
+					while ib<collider_polygons.size() :
+						var polygon_b=collider_polygons[ib]
+						var merged_polygon=Geometry2D.merge_polygons(polygon_a,polygon_b)
+						if merged_polygon.size()==1  :
+							if merged_polygon[0].size()>0 :
+								collider_polygons[ia]=merged_polygon[0]
+								collider_polygons.remove_at(ib)
+								continue
+						ib+=1
+					ia+=1
+				
 						
 			collider_layer["polygons"]=collider_polygons	
 			# *** END OF VERTICAL MERGED POLYGONS ***	
@@ -135,14 +151,13 @@ func parse_tile_map() :
 		
 	#Creating Body And Colliders
 	for collider_layer in collider_layers :
-		var bodyNode=QRigidBodyNode.new()
-		bodyNode.mode=QBodyNode.STATIC
-		bodyNode.layers=collider_layer["body_layers_bit"]
-		bodyNode.collidable_layers=collider_layer["body_collidable_layers_bit"]
-		bodyNodes.add_child(bodyNode)
-		
-		
 		for polygon in collider_layer["polygons"] :
+			var bodyNode=QRigidBodyNode.new()
+			bodyNode.mode=QBodyNode.STATIC
+			bodyNode.layers=collider_layer["body_layers_bit"]
+			bodyNode.collidable_layers=collider_layer["body_collidable_layers_bit"]
+			bodyNodes.add_child(bodyNode)
+	
 			create_and_add_mesh_with_cell_data(bodyNode,polygon)
 		
 	pass

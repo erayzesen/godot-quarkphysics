@@ -165,7 +165,7 @@ public:
     float get_mesh_rotation();
     float get_mesh_global_rotation();
     float get_initial_area();
-    float get_initial_polygons_area();
+    float get_initial_polygon_area();
     float get_area();
     float get_polygon_area();
     float get_circumference();
