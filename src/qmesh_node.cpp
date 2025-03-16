@@ -5,6 +5,7 @@
 #include <godot_cpp/variant/utility_functions.hpp>
 #include <godot_cpp/classes/theme_db.hpp>
 #include <godot_cpp/classes/font.hpp>
+#include <godot_cpp/classes/material.hpp>
 #include "string"
 #include "qworld_node.h"
 
@@ -169,6 +170,25 @@ void QMeshNode::vector_render_in_editor() {
     rs->canvas_item_clear(textureRenderInstance);
     rs->canvas_item_clear(textureMaskRenderInstance);
 
+    // CanvasItem Features 
+    RenderingServer::CanvasItemTextureFilter textureFilter=RenderingServer::CanvasItemTextureFilter(get_texture_filter() );
+    RenderingServer::CanvasItemTextureRepeat textureRepeat=RenderingServer::CanvasItemTextureRepeat( get_texture_repeat() );
+    //bool useParentMaterial=get_use_parent_material();
+
+    
+
+    //Sync with CanvasItem settings
+    //Texture
+    rs->canvas_item_set_default_texture_filter(textureRenderInstance, textureFilter);
+    rs->canvas_item_set_default_texture_repeat(textureRenderInstance, textureRepeat);
+    //Material
+    if( get_material()!=nullptr ){
+        rs->canvas_item_set_material(textureRenderInstance, get_material()->get_rid() );
+    }
+    //rs->canvas_item_set_use_parent_material(textureRenderInstance,useParentMaterial);
+
+   
+
     if(enableVectorRendering==false){
         return;
     }
@@ -247,6 +267,7 @@ void QMeshNode::vector_render_in_editor() {
                     }
                     if(Geometry2D::get_singleton()->triangulate_polygon(points).is_empty()==false  ){
                         rs->canvas_item_add_polygon(textureRenderInstance,points,{fillColor},uvPoints,fillTexture->get_rid() );
+                        
                     }
 
                 }
@@ -444,6 +465,26 @@ void QMeshNode::vector_render_in_runtime()
     rs->canvas_item_clear(vectorRenderInstance);
     rs->canvas_item_clear(textureRenderInstance);
     rs->canvas_item_clear(textureMaskRenderInstance);
+
+    // CanvasItem Features 
+    RenderingServer::CanvasItemTextureFilter textureFilter=RenderingServer::CanvasItemTextureFilter(get_texture_filter() );
+    RenderingServer::CanvasItemTextureRepeat textureRepeat=RenderingServer::CanvasItemTextureRepeat( get_texture_repeat() );
+    //bool useParentMaterial=get_use_parent_material();
+
+    
+
+    //Sync with CanvasItem settings
+    //Texture
+    rs->canvas_item_set_default_texture_filter(textureRenderInstance, textureFilter);
+    rs->canvas_item_set_default_texture_repeat(textureRenderInstance, textureRepeat);
+    //Material
+    if( get_material()!=nullptr ){
+        rs->canvas_item_set_material(textureRenderInstance, get_material()->get_rid() );
+    }
+    //rs->canvas_item_set_use_parent_material(textureRenderInstance,useParentMaterial);
+
+
+
     
     if(enableVectorRendering==false)
         return;
@@ -536,6 +577,7 @@ void QMeshNode::vector_render_in_runtime()
                     }
                     if(Geometry2D::get_singleton()->triangulate_polygon(points).is_empty()==false  ){
                         rs->canvas_item_add_polygon(textureRenderInstance,points,{fillColor},uvPoints,fillTexture->get_rid() );
+                        
                     }
                     
                 }
