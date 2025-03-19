@@ -75,7 +75,7 @@ void QPlatformerBodyNode::_bind_methods() {
     ClassDB::bind_method(D_METHOD("set_specific_platform_layers","value"), &QPlatformerBodyNode::set_specific_platform_layers);
     ClassDB::bind_method(D_METHOD("get_specific_platform_layers"), &QPlatformerBodyNode::get_specific_platform_layers );
 
-    ClassDB::bind_method(D_METHOD("get_platform_collisions","test_position","nearest_on_axis"), &QPlatformerBodyNode::get_platform_collisions );
+    ClassDB::bind_method(D_METHOD("get_platform_collisions","test_position","filter_by_moving_direction"), &QPlatformerBodyNode::get_platform_collisions );
 
     ClassDB::bind_method(D_METHOD("get_right_wall","offset"), &QPlatformerBodyNode::get_right_wall );
 
@@ -328,9 +328,9 @@ int QPlatformerBodyNode::get_specific_platform_layers() {
 	return body->GetSpecificPlatformLayers();
 }
 
-Dictionary QPlatformerBodyNode::get_platform_collisions(Vector2 test_position, Vector2 nearest_on_axis) {
+Dictionary QPlatformerBodyNode::get_platform_collisions(Vector2 test_position, bool filter_by_moving_direction) {
     QPlatformerBody *body=(QPlatformerBody*)bodyObject;
-    QPlatformerBody::CollisionTestInfo collInfo=body->GetPlatformCollisions(QVector(test_position.x,test_position.y),QVector(nearest_on_axis.x,nearest_on_axis.y) );
+    QPlatformerBody::CollisionTestInfo collInfo=body->GetPlatformCollisions(QVector(test_position.x,test_position.y),filter_by_moving_direction );
 
     Dictionary sum={};
     sum["body"]=worldNode->get_body_node_with_object( collInfo.body);

@@ -121,7 +121,7 @@ public:
     QPlatformerBodyNode *set_specific_platform_layers(int layersBit);
     int get_specific_platform_layers();
 
-    Dictionary get_platform_collisions(Vector2 test_position, Vector2 nearest_on_axis);
+    Dictionary get_platform_collisions(Vector2 test_position, bool filter_by_moving_direction=false);
 
     Dictionary get_right_wall(float offset);
 
