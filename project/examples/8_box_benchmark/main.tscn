@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://dyq123rbomrr1"]
 
-[ext_resource type="Script" path="res://examples/9_box_benchmark_godot/benchmark_qp.gd" id="1_k2mxf"]
-[ext_resource type="Script" path="res://examples/8_box_benchmark/iteration_option_button.gd" id="2_6h8kd"]
+[ext_resource type="Script" uid="uid://cp71ec6aahlvt" path="res://examples/9_box_benchmark_godot/benchmark_qp.gd" id="1_k2mxf"]
+[ext_resource type="Script" uid="uid://cvflpln7x5qur" path="res://examples/8_box_benchmark/iteration_option_button.gd" id="2_6h8kd"]
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_k2mxf")
@@ -150,6 +150,7 @@ layout_mode = 2
 layout_mode = 2
 item_count = 5
 popup/item_0/text = "Iteration 2"
+popup/item_0/id = 0
 popup/item_1/text = "Iteration 3"
 popup/item_1/id = 1
 popup/item_2/text = "Iteration 4 (Engine Default)"

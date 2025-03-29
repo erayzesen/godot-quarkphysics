@@ -1,15 +1,13 @@
-[gd_scene load_steps=18 format=4 uid="uid://dw06ipgwyx2cc"]
+[gd_scene load_steps=16 format=4 uid="uid://dw06ipgwyx2cc"]
 
-[ext_resource type="Script" path="res://examples/7_classic_platformer/player.gd" id="1_b5iax"]
+[ext_resource type="Script" uid="uid://dddcc67iusje5" path="res://examples/7_classic_platformer/player.gd" id="1_b5iax"]
 [ext_resource type="Texture2D" uid="uid://d3j7v6kge2who" path="res://examples/sprites/tileset.png" id="1_ibcbn"]
-[ext_resource type="Script" path="res://examples/7_classic_platformer/moveable_platform.gd" id="2_hvcqu"]
-[ext_resource type="Script" path="res://examples/7_classic_platformer/door_button.gd" id="2_ndt36"]
-[ext_resource type="Script" path="res://addons/quarkphysics/helper_nodes/qtilemap_collider.gd" id="2_yuswt"]
-[ext_resource type="Script" path="res://examples/7_classic_platformer/coin.gd" id="3_5al4l"]
-[ext_resource type="Script" path="res://examples/7_classic_platformer/q_world_node.gd" id="4_5rs6g"]
-[ext_resource type="Script" path="res://examples/7_classic_platformer/finish_area.gd" id="4_mmqkf"]
-[ext_resource type="Texture2D" uid="uid://cm01ugnxqwp12" path="res://examples/icon.svg" id="6_sv6we"]
-[ext_resource type="Script" path="res://examples/7_classic_platformer/flag.gd" id="8_b3t3c"]
+[ext_resource type="Script" uid="uid://cdyfnu6q7f2ny" path="res://examples/7_classic_platformer/moveable_platform.gd" id="2_hvcqu"]
+[ext_resource type="Script" uid="uid://wnw367tv4lxk" path="res://examples/7_classic_platformer/door_button.gd" id="2_ndt36"]
+[ext_resource type="Script" uid="uid://c3qx8l0n7m5sb" path="res://addons/quarkphysics/helper_nodes/qtilemap_collider.gd" id="2_yuswt"]
+[ext_resource type="Script" uid="uid://xi6pk1y23dy4" path="res://examples/7_classic_platformer/coin.gd" id="3_5al4l"]
+[ext_resource type="Script" uid="uid://c36nb3kv818qf" path="res://examples/7_classic_platformer/finish_area.gd" id="4_mmqkf"]
+[ext_resource type="Script" uid="uid://8cc8g1d0v478" path="res://examples/7_classic_platformer/flag.gd" id="8_b3t3c"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_2ckbs"]
 font_size = 36
@@ -100,7 +98,6 @@ label_settings = SubResource("LabelSettings_2ckbs")
 [node name="QWorldNode" type="QWorldNode" parent="."]
 debug_renderer = false
 enable_debug_mouse_interactions = true
-script = ExtResource("4_5rs6g")
 
 [node name="DoorButton" type="QRigidBodyNode" parent="." node_paths=PackedStringArray("door")]
 fixed_rotation = true
@@ -221,12 +218,12 @@ z_index = 1000
 position = Vector2(-3, 34)
 emitting = false
 amount = 30
-process_material = SubResource("ParticleProcessMaterial_wjf8p")
 lifetime = 10.0
 one_shot = true
 speed_scale = 2.0
 explosiveness = 1.0
 visibility_rect = Rect2(-500, -500, 1000, 1000)
+process_material = SubResource("ParticleProcessMaterial_wjf8p")
 
 [node name="QMeshRectNode" type="QMeshRectNode" parent="FinishArea"]
 rectangle_size = Vector2(32, 72)
@@ -239,29 +236,6 @@ data_springs = Array[PackedInt32Array]([PackedInt32Array(0, 1), PackedInt32Array
 data_internal_springs = Array[PackedInt32Array]([PackedInt32Array(0, 2), PackedInt32Array(1, 3)])
 data_polygon = PackedInt32Array(0, 1, 2, 3)
 data_uv_maps = Array[PackedInt32Array]([PackedInt32Array(0, 1, 3), PackedInt32Array(1, 2, 3)])
-
-[node name="QSoftBodyNode" type="QSoftBodyNode" parent="."]
-passivation_of_internal_springs = true
-area_preserving = true
-can_sleep = false
-texture_filter = 1
-position = Vector2(686, 448)
-
-[node name="QMeshPolygonNode" type="QMeshPolygonNode" parent="QSoftBodyNode"]
-side_count = 16
-polar_grid = 3
-enable_vector_rendering = true
-fill_texture = ExtResource("6_sv6we")
-enable_stroke = true
-data_particle_positions = PackedVector2Array(32, 0, 29.5641, 12.2459, 22.6274, 22.6274, 12.2459, 29.5641, -1.39876e-06, 32, -12.2459, 29.5641, -22.6274, 22.6274, -29.5641, 12.2459, -32, -2.79753e-06, -29.5641, -12.2459, -22.6274, -22.6274, -12.2459, -29.5641, 3.81596e-07, -32, 12.2459, -29.5641, 22.6274, -22.6274, 29.5641, -12.2459, 21.3333, 0, 19.7094, 8.16391, 15.0849, 15.0849, 8.16391, 19.7094, -9.3251e-07, 21.3333, -8.16392, 19.7094, -15.0849, 15.0849, -19.7094, 8.16391, -21.3333, -1.86502e-06, -19.7094, -8.16391, -15.0849, -15.0849, -8.16391, -19.7094, 2.54397e-07, -21.3333, 8.16392, -19.7094, 15.0849, -15.0849, 19.7094, -8.16391, 10.6667, 0, 9.85472, 4.08196, 7.54247, 7.54247, 4.08196, 9.85472, -4.66255e-07, 10.6667, -4.08196, 9.85472, -7.54247, 7.54247, -9.85472, 4.08195, -10.6667, -9.3251e-07, -9.85472, -4.08196, -7.54247, -7.54247, -4.08195, -9.85472, 1.27199e-07, -10.6667, 4.08196, -9.85471, 7.54247, -7.54247, 9.85472, -4.08196, 0, 0)
-data_particle_radius = PackedFloat32Array(0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5)
-data_particle_is_internal = PackedByteArray("AAAAAAAAAAAAAAAAAAAAAAEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQ==")
-data_particle_is_enabled = PackedByteArray("AQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQ==")
-data_particle_is_lazy = PackedByteArray("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==")
-data_springs = Array[PackedInt32Array]([PackedInt32Array(0, 1), PackedInt32Array(1, 2), PackedInt32Array(2, 3), PackedInt32Array(3, 4), PackedInt32Array(4, 5), PackedInt32Array(5, 6), PackedInt32Array(6, 7), PackedInt32Array(7, 8), PackedInt32Array(8, 9), PackedInt32Array(9, 10), PackedInt32Array(10, 11), PackedInt32Array(11, 12), PackedInt32Array(12, 13), PackedInt32Array(13, 14), PackedInt32Array(14, 15), PackedInt32Array(15, 0)])
-data_internal_springs = Array[PackedInt32Array]([PackedInt32Array(16, 17), PackedInt32Array(17, 18), PackedInt32Array(18, 19), PackedInt32Array(19, 20), PackedInt32Array(20, 21), PackedInt32Array(21, 22), PackedInt32Array(22, 23), PackedInt32Array(23, 24), PackedInt32Array(24, 25), PackedInt32Array(25, 26), PackedInt32Array(26, 27), PackedInt32Array(27, 28), PackedInt32Array(28, 29), PackedInt32Array(29, 30), PackedInt32Array(30, 31), PackedInt32Array(31, 16), PackedInt32Array(16, 0), PackedInt32Array(16, 1), PackedInt32Array(17, 0), PackedInt32Array(17, 1), PackedInt32Array(17, 1), PackedInt32Array(17, 2), PackedInt32Array(18, 1), PackedInt32Array(18, 2), PackedInt32Array(18, 2), PackedInt32Array(18, 3), PackedInt32Array(19, 2), PackedInt32Array(19, 3), PackedInt32Array(19, 3), PackedInt32Array(19, 4), PackedInt32Array(20, 3), PackedInt32Array(20, 4), PackedInt32Array(20, 4), PackedInt32Array(20, 5), PackedInt32Array(21, 4), PackedInt32Array(21, 5), PackedInt32Array(21, 5), PackedInt32Array(21, 6), PackedInt32Array(22, 5), PackedInt32Array(22, 6), PackedInt32Array(22, 6), PackedInt32Array(22, 7), PackedInt32Array(23, 6), PackedInt32Array(23, 7), PackedInt32Array(23, 7), PackedInt32Array(23, 8), PackedInt32Array(24, 7), PackedInt32Array(24, 8), PackedInt32Array(24, 8), PackedInt32Array(24, 9), PackedInt32Array(25, 8), PackedInt32Array(25, 9), PackedInt32Array(25, 9), PackedInt32Array(25, 10), PackedInt32Array(26, 9), PackedInt32Array(26, 10), PackedInt32Array(26, 10), PackedInt32Array(26, 11), PackedInt32Array(27, 10), PackedInt32Array(27, 11), PackedInt32Array(27, 11), PackedInt32Array(27, 12), PackedInt32Array(28, 11), PackedInt32Array(28, 12), PackedInt32Array(28, 12), PackedInt32Array(28, 13), PackedInt32Array(29, 12), PackedInt32Array(29, 13), PackedInt32Array(29, 13), PackedInt32Array(29, 14), PackedInt32Array(30, 13), PackedInt32Array(30, 14), PackedInt32Array(30, 14), PackedInt32Array(30, 15), PackedInt32Array(31, 14), PackedInt32Array(31, 15), PackedInt32Array(31, 15), PackedInt32Array(31, 0), PackedInt32Array(16, 15), PackedInt32Array(16, 0), PackedInt32Array(32, 33), PackedInt32Array(33, 34), PackedInt32Array(34, 35), PackedInt32Array(35, 36), PackedInt32Array(36, 37), PackedInt32Array(37, 38), PackedInt32Array(38, 39), PackedInt32Array(39, 40), PackedInt32Array(40, 41), PackedInt32Array(41, 42), PackedInt32Array(42, 43), PackedInt32Array(43, 44), PackedInt32Array(44, 45), PackedInt32Array(45, 46), PackedInt32Array(46, 47), PackedInt32Array(47, 32), PackedInt32Array(32, 16), PackedInt32Array(32, 17), PackedInt32Array(33, 16), PackedInt32Array(33, 17), PackedInt32Array(33, 17), PackedInt32Array(33, 18), PackedInt32Array(34, 17), PackedInt32Array(34, 18), PackedInt32Array(34, 18), PackedInt32Array(34, 19), PackedInt32Array(35, 18), PackedInt32Array(35, 19), PackedInt32Array(35, 19), PackedInt32Array(35, 20), PackedInt32Array(36, 19), PackedInt32Array(36, 20), PackedInt32Array(36, 20), PackedInt32Array(36, 21), PackedInt32Array(37, 20), PackedInt32Array(37, 21), PackedInt32Array(37, 21), PackedInt32Array(37, 22), PackedInt32Array(38, 21), PackedInt32Array(38, 22), PackedInt32Array(38, 22), PackedInt32Array(38, 23), PackedInt32Array(39, 22), PackedInt32Array(39, 23), PackedInt32Array(39, 23), PackedInt32Array(39, 24), PackedInt32Array(40, 23), PackedInt32Array(40, 24), PackedInt32Array(40, 24), PackedInt32Array(40, 25), PackedInt32Array(41, 24), PackedInt32Array(41, 25), PackedInt32Array(41, 25), PackedInt32Array(41, 26), PackedInt32Array(42, 25), PackedInt32Array(42, 26), PackedInt32Array(42, 26), PackedInt32Array(42, 27), PackedInt32Array(43, 26), PackedInt32Array(43, 27), PackedInt32Array(43, 27), PackedInt32Array(43, 28), PackedInt32Array(44, 27), PackedInt32Array(44, 28), PackedInt32Array(44, 28), PackedInt32Array(44, 29), PackedInt32Array(45, 28), PackedInt32Array(45, 29), PackedInt32Array(45, 29), PackedInt32Array(45, 30), PackedInt32Array(46, 29), PackedInt32Array(46, 30), PackedInt32Array(46, 30), PackedInt32Array(46, 31), PackedInt32Array(47, 30), PackedInt32Array(47, 31), PackedInt32Array(47, 31), PackedInt32Array(47, 16), PackedInt32Array(32, 31), PackedInt32Array(32, 16), PackedInt32Array(48, 32), PackedInt32Array(48, 33), PackedInt32Array(48, 34), PackedInt32Array(48, 35), PackedInt32Array(48, 36), PackedInt32Array(48, 37), PackedInt32Array(48, 38), PackedInt32Array(48, 39), PackedInt32Array(48, 40), PackedInt32Array(48, 41), PackedInt32Array(48, 42), PackedInt32Array(48, 43), PackedInt32Array(48, 44), PackedInt32Array(48, 45), PackedInt32Array(48, 46), PackedInt32Array(48, 47), PackedInt32Array(46, 32), PackedInt32Array(32, 34), PackedInt32Array(47, 33), PackedInt32Array(33, 35), PackedInt32Array(32, 34), PackedInt32Array(34, 36), PackedInt32Array(33, 35), PackedInt32Array(35, 37), PackedInt32Array(34, 36), PackedInt32Array(36, 38), PackedInt32Array(35, 37), PackedInt32Array(37, 39), PackedInt32Array(36, 38), PackedInt32Array(38, 40), PackedInt32Array(37, 39), PackedInt32Array(39, 41), PackedInt32Array(38, 40), PackedInt32Array(40, 42), PackedInt32Array(39, 41), PackedInt32Array(41, 43), PackedInt32Array(40, 42), PackedInt32Array(42, 44), PackedInt32Array(41, 43), PackedInt32Array(43, 45), PackedInt32Array(42, 44), PackedInt32Array(44, 46), PackedInt32Array(43, 45), PackedInt32Array(45, 47), PackedInt32Array(44, 46), PackedInt32Array(46, 32), PackedInt32Array(45, 47), PackedInt32Array(47, 33)])
-data_polygon = PackedInt32Array(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15)
-data_uv_maps = Array[PackedInt32Array]([PackedInt32Array(0, 1, 16), PackedInt32Array(1, 17, 16), PackedInt32Array(1, 2, 17), PackedInt32Array(2, 18, 17), PackedInt32Array(2, 3, 18), PackedInt32Array(3, 19, 18), PackedInt32Array(3, 4, 19), PackedInt32Array(4, 20, 19), PackedInt32Array(4, 5, 20), PackedInt32Array(5, 21, 20), PackedInt32Array(5, 6, 21), PackedInt32Array(6, 22, 21), PackedInt32Array(6, 7, 22), PackedInt32Array(7, 23, 22), PackedInt32Array(7, 8, 23), PackedInt32Array(8, 24, 23), PackedInt32Array(8, 9, 24), PackedInt32Array(9, 25, 24), PackedInt32Array(9, 10, 25), PackedInt32Array(10, 26, 25), PackedInt32Array(10, 11, 26), PackedInt32Array(11, 27, 26), PackedInt32Array(11, 12, 27), PackedInt32Array(12, 28, 27), PackedInt32Array(12, 13, 28), PackedInt32Array(13, 29, 28), PackedInt32Array(13, 14, 29), PackedInt32Array(14, 30, 29), PackedInt32Array(14, 15, 30), PackedInt32Array(15, 31, 30), PackedInt32Array(15, 0, 31), PackedInt32Array(0, 16, 31), PackedInt32Array(16, 17, 32), PackedInt32Array(17, 33, 32), PackedInt32Array(17, 18, 33), PackedInt32Array(18, 34, 33), PackedInt32Array(18, 19, 34), PackedInt32Array(19, 35, 34), PackedInt32Array(19, 20, 35), PackedInt32Array(20, 36, 35), PackedInt32Array(20, 21, 36), PackedInt32Array(21, 37, 36), PackedInt32Array(21, 22, 37), PackedInt32Array(22, 38, 37), PackedInt32Array(22, 23, 38), PackedInt32Array(23, 39, 38), PackedInt32Array(23, 24, 39), PackedInt32Array(24, 40, 39), PackedInt32Array(24, 25, 40), PackedInt32Array(25, 41, 40), PackedInt32Array(25, 26, 41), PackedInt32Array(26, 42, 41), PackedInt32Array(26, 27, 42), PackedInt32Array(27, 43, 42), PackedInt32Array(27, 28, 43), PackedInt32Array(28, 44, 43), PackedInt32Array(28, 29, 44), PackedInt32Array(29, 45, 44), PackedInt32Array(29, 30, 45), PackedInt32Array(30, 46, 45), PackedInt32Array(30, 31, 46), PackedInt32Array(31, 47, 46), PackedInt32Array(31, 16, 47), PackedInt32Array(16, 32, 47), PackedInt32Array(32, 33, 48), PackedInt32Array(33, 34, 48), PackedInt32Array(34, 35, 48), PackedInt32Array(35, 36, 48), PackedInt32Array(36, 37, 48), PackedInt32Array(37, 38, 48), PackedInt32Array(38, 39, 48), PackedInt32Array(39, 40, 48), PackedInt32Array(40, 41, 48), PackedInt32Array(41, 42, 48), PackedInt32Array(42, 43, 48), PackedInt32Array(43, 44, 48), PackedInt32Array(44, 45, 48), PackedInt32Array(45, 46, 48), PackedInt32Array(46, 47, 48), PackedInt32Array(47, 32, 48)])
 
 [node name="Water" type="QSoftBodyNode" parent="."]
 rigidity = 0.1
