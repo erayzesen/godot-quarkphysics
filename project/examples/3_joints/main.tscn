@@ -1,9 +1,9 @@
 [gd_scene load_steps=5 format=3 uid="uid://bxks5m4pbvxty"]
 
-[ext_resource type="Script" path="res://examples/3_joints/src/pin_joints_example.gd" id="1_ksd4b"]
-[ext_resource type="Script" path="res://examples/3_joints/src/spring_distance_joint_example.gd" id="2_ltebs"]
-[ext_resource type="Script" path="res://examples/3_joints/src/groove_joint_example.gd" id="3_bshe0"]
-[ext_resource type="Script" path="res://examples/3_joints/src/distance_joint_example.gd" id="4_y86bk"]
+[ext_resource type="Script" uid="uid://wmnjkj45ajlx" path="res://examples/3_joints/src/pin_joints_example.gd" id="1_ksd4b"]
+[ext_resource type="Script" uid="uid://hpce60yqsdnc" path="res://examples/3_joints/src/spring_distance_joint_example.gd" id="2_ltebs"]
+[ext_resource type="Script" uid="uid://x6m6v0oayi5p" path="res://examples/3_joints/src/groove_joint_example.gd" id="3_bshe0"]
+[ext_resource type="Script" uid="uid://cc50pmr0vaabb" path="res://examples/3_joints/src/distance_joint_example.gd" id="4_y86bk"]
 
 [node name="Node2D" type="Node2D"]
 

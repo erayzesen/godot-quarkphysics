@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://1iyw5k4em234"]
 
-[ext_resource type="Script" path="res://addons/quarkphysics/qmesh_editor/qmesh_editor_tool_bar.gd" id="1_8n687"]
+[ext_resource type="Script" uid="uid://n0610723pv0r" path="res://addons/quarkphysics/qmesh_editor/qmesh_editor_tool_bar.gd" id="1_8n687"]
 [ext_resource type="Texture2D" uid="uid://dp3nkgnpb61vc" path="res://addons/quarkphysics/src/icon_select_tool.svg" id="2_7b1ko"]
 [ext_resource type="Texture2D" uid="uid://dxqm8s0qwcci" path="res://addons/quarkphysics/src/icon_particle_tool.svg" id="3_ujk4v"]
 [ext_resource type="Texture2D" uid="uid://4flsqjsp3hwi" path="res://addons/quarkphysics/src/icon_spring_tool.svg" id="4_m4cpb"]
@@ -88,6 +88,7 @@ size_flags_vertical = 4
 selected = 0
 item_count = 2
 popup/item_0/text = "ADD"
+popup/item_0/id = 0
 popup/item_1/text = "REMOVE"
 popup/item_1/id = 1
 
