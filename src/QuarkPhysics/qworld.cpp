@@ -982,14 +982,21 @@ vector<QCollision::Contact*> QWorld::GetCollisions(QBody *bodyA, QBody *bodyB){
 					QCollision::CircleAndPolygon(polylineMesh->polygon,polygonMesh->polygon,contactList);
 					QCollision::CircleAndPolygon(polygonMesh->polygon,polylineMesh->polygon,contactList);
 				}else{
-
-					QCollision::CircleAndPolygon(polylineMesh->polygon,polygonMesh->polygon,contactList);
-					if(polygonMesh->GetOwnerBody()->GetMode()==QBody::Modes::DYNAMIC ){
+					vector<QCollision::Contact*> hotContactList;
+					QManifold hotManifold(bodyA,bodyB);
+					QCollision::CircleAndPolygon(polylineMesh->polygon,polygonMesh->polygon,hotContactList);
+					hotManifold.contacts=hotContactList;
+					hotManifold.Solve();
+					hotManifold.SolveFrictionAndVelocities();
+					
+					QCollision::PolylineAndPolygon(polylineMesh->polygon,polygonMesh->polygon,contactList);
+					
+					/* if(polygonMesh->GetOwnerBody()->GetMode()==QBody::Modes::DYNAMIC ){
 						QCollision::PolylineAndPolygon(polylineMesh->polygon,polygonMesh->polygon,contactList);
 					}else{
 						QAABB polylineAABB=polylineMesh==meshA ? bboxA:bboxB; 
 						QCollision::PolylineAndPolyline(polygonMesh->polygon,polylineMesh->polygon,polylineAABB, contactList);
-					}
+					} */
 					
 					
 				}
