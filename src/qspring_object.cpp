@@ -9,6 +9,9 @@ void QSpringObject::_bind_methods() {
     ClassDB::bind_method(D_METHOD("get_length"),&QSpringObject::get_length );
     ClassDB::bind_method(D_METHOD("get_is_internal"),&QSpringObject::get_is_internal );
     ClassDB::bind_method(D_METHOD("get_rigidity"),&QSpringObject::get_rigidity );
+    ClassDB::bind_method(D_METHOD("get_distance_limit_enabled"),&QSpringObject::get_distance_limit_enabled );
+    ClassDB::bind_method(D_METHOD("get_minimum_distance_factor"),&QSpringObject::get_minimum_distance_factor );
+    ClassDB::bind_method(D_METHOD("get_maximum_distance_factor"),&QSpringObject::get_maximum_distance_factor );
     ClassDB::bind_method(D_METHOD("get_enabled"),&QSpringObject::get_enabled );
     //set
     ClassDB::bind_method(D_METHOD("set_particle_a","particle_object"),&QSpringObject::set_particle_a );
@@ -16,6 +19,9 @@ void QSpringObject::_bind_methods() {
     ClassDB::bind_method(D_METHOD("set_length","value"),&QSpringObject::set_length );
     ClassDB::bind_method(D_METHOD("set_is_internal","value"),&QSpringObject::set_is_internal );
     ClassDB::bind_method(D_METHOD("set_rigidity","value"),&QSpringObject::set_rigidity );
+    ClassDB::bind_method(D_METHOD("set_distance_limit_enabled","value"),&QSpringObject::set_distance_limit_enabled );
+    ClassDB::bind_method(D_METHOD("set_minimum_distance_factor","value"),&QSpringObject::set_minimum_distance_factor );
+    ClassDB::bind_method(D_METHOD("set_maximum_distance_factor","value"),&QSpringObject::set_maximum_distance_factor );
     ClassDB::bind_method(D_METHOD("set_enabled","value"),&QSpringObject::set_enabled );
 
     ClassDB::bind_method(D_METHOD("configure","particle_object_a","particle_object_b","length","internal"),&QSpringObject::configure );
@@ -42,6 +48,21 @@ bool QSpringObject::get_is_internal(){
 
 float QSpringObject::get_rigidity() {
 	return springObject->GetRigidity();
+}
+
+bool QSpringObject::get_distance_limit_enabled()
+{
+    return springObject->GetDistanceLimitEnabled();
+}
+
+float QSpringObject::get_minimum_distance_factor()
+{
+    return springObject->GetMinimumDistanceFactor();
+}
+
+float QSpringObject::get_maximum_distance_factor()
+{
+    return springObject->GetMaximumDistanceFactor();
 }
 
 bool QSpringObject::get_enabled() {
@@ -80,6 +101,24 @@ Ref<QSpringObject> QSpringObject::set_is_internal(bool value) {
 Ref<QSpringObject> QSpringObject::set_rigidity(float value) {
 	springObject->SetRigidity(value);
 	return Ref<QSpringObject>(this);
+}
+
+Ref<QSpringObject> QSpringObject::set_distance_limit_enabled(bool value)
+{
+    springObject->SetDistanceLimitEnabled(value);
+    return Ref<QSpringObject>(this);
+}
+
+Ref<QSpringObject> QSpringObject::set_minimum_distance_factor(float value)
+{
+    springObject->SetMinimumDistanceFactor(value);
+    return Ref<QSpringObject>(this);
+}
+
+Ref<QSpringObject> QSpringObject::set_maximum_distance_factor(float value)
+{
+    springObject->SetMaximumDistanceFactor(value);
+    return Ref<QSpringObject>(this);
 }
 
 Ref<QSpringObject> QSpringObject::set_enabled(bool value) {

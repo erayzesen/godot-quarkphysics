@@ -100,6 +100,9 @@ public:
     float get_length();
     bool get_is_internal();
     float get_rigidity();
+    bool get_distance_limit_enabled();
+    float get_minimum_distance_factor();
+    float get_maximum_distance_factor();
     bool get_enabled();
 
     //Set Methods
@@ -108,6 +111,9 @@ public:
     Ref<QSpringObject> set_length(float value);
     Ref<QSpringObject> set_is_internal(bool value);
     Ref<QSpringObject> set_rigidity(float value);
+    Ref<QSpringObject> set_distance_limit_enabled(bool value);
+    Ref<QSpringObject> set_minimum_distance_factor(float value);
+    Ref<QSpringObject> set_maximum_distance_factor(float value);
     Ref<QSpringObject> set_enabled(bool value);
 
     friend class QMeshNode;
