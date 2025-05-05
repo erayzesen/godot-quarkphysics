@@ -19,7 +19,7 @@ jobs:
             float-precision: single
             arch: x86_64
             target-type: template_debug
-            os: ubuntu-20.04
+            os: ubuntu-22.04
             
 
           - platform: windows
@@ -47,28 +47,28 @@ jobs:
             float-precision: single
             arch: arm64
             target-type: template_debug
-            os: ubuntu-20.04
+            os: ubuntu-22.04
             
 
           - platform: android
             float-precision: single
             arch: arm32
             target-type: template_debug
-            os: ubuntu-20.04
+            os: ubuntu-22.04
             
 
           - platform: android
             float-precision: single
             arch: x86_64
             target-type: template_debug
-            os: ubuntu-20.04
+            os: ubuntu-22.04
             
 
           - platform: android
             float-precision: single
             arch: x86_32
             target-type: template_debug
-            os: ubuntu-20.04
+            os: ubuntu-22.04
             
 
           - platform: ios
@@ -82,7 +82,7 @@ jobs:
             float-precision: single
             arch: wasm32
             target-type: template_debug
-            os: ubuntu-20.04
+            os: ubuntu-22.04
             threads: yes
             
           
@@ -90,7 +90,7 @@ jobs:
             float-precision: single
             arch: wasm32
             target-type: template_debug
-            os: ubuntu-20.04
+            os: ubuntu-22.04
             threads: no
             
 
@@ -99,7 +99,7 @@ jobs:
             float-precision: single
             arch: x86_64
             target-type: template_release
-            os: ubuntu-20.04
+            os: ubuntu-22.04
             
 
           - platform: windows
@@ -124,25 +124,25 @@ jobs:
             float-precision: single
             arch: arm64
             target-type: template_release
-            os: ubuntu-20.04
+            os: ubuntu-22.04
 
           - platform: android
             float-precision: single
             arch: arm32
             target-type: template_release
-            os: ubuntu-20.04
+            os: ubuntu-22.04
 
           - platform: android
             float-precision: single
             arch: x86_64
             target-type: template_release
-            os: ubuntu-20.04
+            os: ubuntu-22.04
 
           - platform: android
             float-precision: single
             arch: x86_32
             target-type: template_release
-            os: ubuntu-20.04
+            os: ubuntu-22.04
 
           - platform: ios
             float-precision: single
@@ -154,14 +154,14 @@ jobs:
             float-precision: single
             arch: wasm32
             target-type: template_release
-            os: ubuntu-20.04
+            os: ubuntu-22.04
             threads: yes
 
           - platform: web
             float-precision: single
             arch: wasm32
             target-type: template_release
-            os: ubuntu-20.04
+            os: ubuntu-22.04
             threads: no
 
         # Double precision templates
@@ -170,7 +170,7 @@ jobs:
           #   float-precision: double
           #   arch: x86_64
           #   target-type: template_debug
-          #   os: ubuntu-20.04
+          #   os: ubuntu-22.04
             
 
           # - platform: windows
@@ -198,28 +198,28 @@ jobs:
           #   float-precision: double
           #   arch: arm64
           #   target-type: template_debug
-          #   os: ubuntu-20.04
+          #   os: ubuntu-22.04
             
 
           # - platform: android
           #   float-precision: double
           #   arch: arm32
           #   target-type: template_debug
-          #   os: ubuntu-20.04
+          #   os: ubuntu-22.04
             
 
           # - platform: android
           #   float-precision: double
           #   arch: x86_64
           #   target-type: template_debug
-          #   os: ubuntu-20.04
+          #   os: ubuntu-22.04
             
 
           # - platform: android
           #   float-precision: double
           #   arch: x86_32
           #   target-type: template_debug
-          #   os: ubuntu-20.04
+          #   os: ubuntu-22.04
             
 
           # - platform: ios
@@ -233,7 +233,7 @@ jobs:
           #   float-precision: double
           #   arch: wasm32
           #   target-type: template_debug
-          #   os: ubuntu-20.04
+          #   os: ubuntu-22.04
             
 
         # Double precision release templates
@@ -241,7 +241,7 @@ jobs:
           #   float-precision: double
           #   arch: x86_64
           #   target-type: template_release
-          #   os: ubuntu-20.04
+          #   os: ubuntu-22.04
 
           # - platform: windows
           #   float-precision: double
@@ -265,25 +265,25 @@ jobs:
           #   float-precision: double
           #   arch: arm64
           #   target-type: template_release
-          #   os: ubuntu-20.04
+          #   os: ubuntu-22.04
 
           # - platform: android
           #   float-precision: double
           #   arch: arm32
           #   target-type: template_release
-          #   os: ubuntu-20.04
+          #   os: ubuntu-22.04
 
           # - platform: android
           #   float-precision: double
           #   arch: x86_64
           #   target-type: template_release
-          #   os: ubuntu-20.04
+          #   os: ubuntu-22.04
 
           # - platform: android
           #   float-precision: double
           #   arch: x86_32
           #   target-type: template_release
-          #   os: ubuntu-20.04
+          #   os: ubuntu-22.04
 
           # - platform: ios
           #   float-precision: double
@@ -295,7 +295,7 @@ jobs:
           #   float-precision: double
           #   arch: wasm32
           #   target-type: template_release
-          #   os: ubuntu-20.04
+          #   os: ubuntu-22.04
     runs-on: ${{ matrix.os }}
     steps:
       - name: Checkout
@@ -373,7 +373,7 @@ jobs:
   # Merges all the build artifacts together into a single godot-cpp-template artifact.
   # If you comment out this step, all the builds will be uploaded individually.
   merge:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
     needs: build
     steps:
       - name: Merge Artifacts
@@ -384,7 +384,7 @@ jobs:
           delete-merged: true
 
   package:
-      runs-on: ubuntu-20.04
+      runs-on: ubuntu-22.04
       needs: merge
       steps:
         - name: Checkout
