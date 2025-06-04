@@ -330,6 +330,13 @@ public:
 		}
 		return -1;
 	}
+	/** Returns the averaged position calculated from the global positions of the particles of the mesh.
+	 */
+	QVector GetAveragePosition();
+
+	/** Returns the average rotation angle in radians, computed by comparing the current global positions of the moving particles to their initial positions.
+	 */
+	float GetAverageRotation();
 
 
 

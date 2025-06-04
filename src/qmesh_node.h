@@ -172,6 +172,8 @@ public:
     bool get_show_springs_enabled();
     bool get_show_polygon_enabled();
     bool get_show_particle_index_numbers_enabled();
+    Vector2 get_average_position();
+    float get_average_rotation();
     Array get_average_position_and_rotation(TypedArray<QParticleObject> particle_collection);
     Array get_matching_particle_positions(TypedArray<QParticleObject> particle_collection,Vector2 target_position,float target_rotation);
     float get_min_angle_constraint_of_polygon();

@@ -924,6 +924,8 @@ void QMeshNode::_bind_methods()
     ClassDB::bind_method(D_METHOD("get_particle_at","index"),&QMeshNode::get_particle_at );
     ClassDB::bind_method(D_METHOD("get_particle_count"),&QMeshNode::get_particle_count );
     ClassDB::bind_method(D_METHOD("get_particle_index","particle_object"),&QMeshNode::get_particle_index );
+    ClassDB::bind_method(D_METHOD("get_average_position"),&QMeshNode::get_average_position );
+    ClassDB::bind_method(D_METHOD("get_average_rotation"),&QMeshNode::get_average_rotation );
     ClassDB::bind_method(D_METHOD("get_average_position_and_rotation","particle_collection"),&QMeshNode::get_average_position_and_rotation );
     ClassDB::bind_method(D_METHOD("get_matching_particle_positions","particle_collection","target_position","target_rotation"),&QMeshNode::get_matching_particle_positions );
 
@@ -1169,6 +1171,17 @@ bool QMeshNode::get_show_polygon_enabled() {
 bool QMeshNode::get_show_particle_index_numbers_enabled()
 {
     return showParticleIndexNumbers;
+}
+
+Vector2 QMeshNode::get_average_position()
+{
+    QVector res=meshObject->GetAveragePosition();
+    return Vector2(res.x,res.y);
+}
+
+float QMeshNode::get_average_rotation()
+{
+    return meshObject->GetAverageRotation();
 }
 
 Array QMeshNode::get_average_position_and_rotation(TypedArray<QParticleObject> particle_collection) {
