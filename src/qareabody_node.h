@@ -73,6 +73,8 @@ public:
     };
     Array get_bodies();
 
+    bool has_body(QBodyNode *bodyNode);
+
     //Set Methods
     void set_gravity_free_enabled(bool value);
     void set_linear_force_to_apply(Vector2 value);

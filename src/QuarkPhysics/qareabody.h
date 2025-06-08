@@ -111,8 +111,8 @@ public:
 	}
 
 	/**
-	 * Returns a collection of all QBodyNode objects currently within the area.
-	 * @return A body collection.
+	 * A virtual function that enables the calculation of the **linearForceToApply** value specifically for each **body** object. If not overridden, it applies the **linearForceToApply** value defined for **QAreaBody** as a force to all objects. Additionally, if **ComputeLinearForceListener** is defined and not overridden, it applies the value returned by that listener.
+	 * @return Computed linear force value
 	 */
 	virtual QVector ComputeLinearForce(QBody* body){
 
@@ -120,6 +120,12 @@ public:
 			return ComputeLinearForceListener(body);
 		}
 		return linearForceToApply;
+	}
+	/**
+	 * Returns whether a given body is currently in contact with this QAreaBody.
+	 */
+	bool HasBody(QBody* body){
+		return bodies.find(body) != bodies.end();
 	}
 
 

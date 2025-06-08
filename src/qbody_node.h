@@ -226,6 +226,7 @@ public:
     friend class QJointObject;
     friend class QRenderer;
     friend class QMeshNode;
+    friend class QAreaBodyNode;
 
 };
 

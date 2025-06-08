@@ -6,6 +6,7 @@ void QAreaBodyNode::_bind_methods() {
     ClassDB::bind_method(D_METHOD("get_gravity_free_enabled"), &QAreaBodyNode::get_gravity_free_enabled );
     ClassDB::bind_method(D_METHOD("get_linear_force_to_apply"), &QAreaBodyNode::get_linear_force_to_apply );
     ClassDB::bind_method(D_METHOD("get_bodies"), &QAreaBodyNode::get_bodies );
+    ClassDB::bind_method(D_METHOD("has_body","body_node"), &QAreaBodyNode::has_body );
 
     ClassDB::bind_method(D_METHOD("set_gravity_free_enabled","value"), &QAreaBodyNode::set_gravity_free_enabled );
     ClassDB::bind_method(D_METHOD("set_linear_force_to_apply","value"), &QAreaBodyNode::set_linear_force_to_apply );
@@ -17,7 +18,7 @@ void QAreaBodyNode::_bind_methods() {
     ADD_SIGNAL(MethodInfo("collision_enter",PropertyInfo(Variant::OBJECT,"area_body_node"),PropertyInfo(Variant::OBJECT,"collided_body_node") ) );
     ADD_SIGNAL(MethodInfo("collision_exit",PropertyInfo(Variant::OBJECT,"area_body_node"),PropertyInfo(Variant::OBJECT,"collided_body_node") ) );
 
-    GDVIRTUAL_BIND(_compute_linear_force, "bodyNode");
+    GDVIRTUAL_BIND(_compute_linear_force, "body_node");
 
 }
 
@@ -58,6 +59,12 @@ Array QAreaBodyNode::get_bodies()
     }
 
     return res;
+}
+
+bool QAreaBodyNode::has_body(QBodyNode *bodyNode)
+{
+    QAreaBody *areaObject=static_cast<QAreaBody*>(bodyObject);
+    return areaObject->HasBody( bodyNode->bodyObject );
 }
 
 void QAreaBodyNode::set_gravity_free_enabled(bool value)
