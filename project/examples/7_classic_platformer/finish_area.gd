@@ -12,5 +12,7 @@ func on_collision_enter(area_body_node,collided_body_node) :
 			var message_label:Label=get_parent().get_node("Label")
 			message_label.text="LEVEL FINISHED!"
 			$GPUParticles2D.emitting=true
+		
+	
 			
 	

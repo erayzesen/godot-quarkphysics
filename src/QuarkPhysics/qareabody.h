@@ -62,6 +62,11 @@ public:
 	 */
 	std::function<void(QAreaBody *areaBody,QBody* collidedBody)> CollisionExitEventListener;
 
+	/**  Listener responsible for calculating the LinearForce value to be applied specifically to each body object. If this listener function is defined, it will be used as the return value of the QAreaBody::ComputeLinearForce() virtual function. 
+	 * @param body The body object within the area.
+	 * */
+	std::function<QVector(QBody *body)> ComputeLinearForceListener;
+
 	/**
 	 * Returns whether the option to exempt objects entering the area from gravity is enabled. If enabled, it will disable both the globally defined gravity and the body-specific gravity applied to physics bodies entering the area.
 	 */
@@ -97,9 +102,25 @@ public:
 		return this;
 	}
 
-	
+	/**
+	 * Returns a collection of all QBodyNode objects currently within the area.
+	 * @return A body collection.
+	 */
+	vector<QBody*> GetBodies() const{
+		return vector<QBody*>(bodies.begin(),bodies.end() ); 
+	}
 
-	
+	/**
+	 * Returns a collection of all QBodyNode objects currently within the area.
+	 * @return A body collection.
+	 */
+	virtual QVector ComputeLinearForce(QBody* body){
+
+		if(ComputeLinearForceListener!=nullptr) {
+			return ComputeLinearForceListener(body);
+		}
+		return linearForceToApply;
+	}
 
 
 	friend class QManifold;
