@@ -31,6 +31,8 @@
 
 #include "qbody_node.h"
 #include "QuarkPhysics/qareabody.h"
+#include <godot_cpp/core/binder_common.hpp>
+#include <godot_cpp/core/gdvirtual.gen.inc>
 
 class QAreaBodyNode : public QBodyNode {
     GDCLASS(QAreaBodyNode,QBodyNode);
@@ -49,15 +51,18 @@ public:
         //Area Body Events
         areaBodyObject->CollisionEnterEventListener=bind(&QAreaBodyNode::collision_enter_call_back,this,placeholders::_1,placeholders::_2);
         areaBodyObject->CollisionExitEventListener=bind(&QAreaBodyNode::collision_exit_call_back,this,placeholders::_1,placeholders::_2);
+        areaBodyObject->ComputeLinearForceListener=bind(&QAreaBodyNode::compute_linear_force_call_back,this,placeholders::_1 );
     };
     ~QAreaBodyNode(){};
 
     void init_body_object(){
         
     }
-
+    QVector compute_linear_force_call_back(QBody* body);
     void collision_enter_call_back(QAreaBody *areaBody,QBody *collidingBody);
     void collision_exit_call_back(QAreaBody *areaBody,QBody *collidingBody);
+
+    virtual Vector2 _compute_linear_force(QBodyNode* bodyNode);
 
     //Get Methods
     bool get_gravity_free_enabled(){
@@ -66,10 +71,15 @@ public:
     Vector2 get_linear_force_to_apply(){
         return linearForceToApply;
     };
+    Array get_bodies();
+
+    bool has_body(QBodyNode *bodyNode);
 
     //Set Methods
     void set_gravity_free_enabled(bool value);
     void set_linear_force_to_apply(Vector2 value);
+
+    GDVIRTUAL1RC(Vector2,_compute_linear_force,QBodyNode *);
     
 
 };
