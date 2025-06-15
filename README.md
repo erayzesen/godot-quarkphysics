@@ -21,7 +21,6 @@ QuarkPhysics is a physics engine for 2D games, capable of simulating Rigid Body,
   - No. QuarkPhysics has a completely different API with its own dynamics, and it is not integrated with Godot’s `PhysicsServer` system.  
 To use QuarkPhysics, you'll need to adapt your project to use its specific objects and API.
 
----
 
 * **Why should I use QuarkPhysics if Godot already has a built-in physics engine?**
   
@@ -31,7 +30,6 @@ To use QuarkPhysics, you'll need to adapt your project to use its specific objec
   - **Backward compatibility is a priority**, and effort is made to maintain it so that older projects don’t break after updates.
   - You may want to rapidly prototype a traditional platformer game. QuarkPhysics includes a built-in **platformer character physics object** that saves you the trouble of writing a platformer controller from scratch — allowing for super fast prototyping.
 
----
 
 * **Godot has Jolt as an alternative physics engine. Is that an alternative to QuarkPhysics?**
 
