@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class name="QRigidBodyNode" inherits="QBodyNode" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/godotengine/godot/master/doc/class.xsd">
+	<brief_description>
+	</brief_description>
+	<description>
+	</description>
+	<tutorials>
+	</tutorials>
+	<methods>
+		<method name="add_angular_force">
+			<return type="QRigidBodyNode" />
+			<param index="0" name="value" type="float" />
+			<description>
+			</description>
+		</method>
+		<method name="add_force">
+			<return type="QRigidBodyNode" />
+			<param index="0" name="value" type="Vector2" />
+			<description>
+			</description>
+		</method>
+		<method name="apply_force">
+			<return type="QRigidBodyNode" />
+			<param index="0" name="value" type="Vector2" />
+			<param index="1" name="r" type="Vector2" />
+			<param index="2" name="update_mesh_transforms" type="bool" />
+			<description>
+			</description>
+		</method>
+		<method name="apply_impulse">
+			<return type="QRigidBodyNode" />
+			<param index="0" name="value" type="Vector2" />
+			<param index="1" name="r" type="Vector2" />
+			<description>
+			</description>
+		</method>
+		<method name="get_angular_force">
+			<return type="float" />
+			<description>
+			</description>
+		</method>
+		<method name="get_force">
+			<return type="Vector2" />
+			<description>
+			</description>
+		</method>
+		<method name="set_angular_force">
+			<return type="QRigidBodyNode" />
+			<param index="0" name="value" type="float" />
+			<description>
+			</description>
+		</method>
+		<method name="set_body_position_and_collide">
+			<return type="QRigidBodyNode" />
+			<param index="0" name="value" type="Vector2" />
+			<param index="1" name="with_previous_position" type="bool" />
+			<description>
+			</description>
+		</method>
+		<method name="set_fixed_rotation_enabled">
+			<return type="QRigidBodyNode" />
+			<param index="0" name="value" type="bool" />
+			<description>
+			</description>
+		</method>
+		<method name="set_force">
+			<return type="QRigidBodyNode" />
+			<param index="0" name="value" type="Vector2" />
+			<description>
+			</description>
+		</method>
+		<method name="set_kinematic_collisions_enabled">
+			<return type="QRigidBodyNode" />
+			<param index="0" name="value" type="bool" />
+			<description>
+			</description>
+		</method>
+		<method name="set_kinematic_enabled">
+			<return type="QRigidBodyNode" />
+			<param index="0" name="value" type="bool" />
+			<description>
+			</description>
+		</method>
+	</methods>
+	<members>
+		<member name="fixed_rotation" type="bool" setter="set_fixed_rotation_enabled" getter="get_fixed_rotation_enabled" default="false">
+		</member>
+		<member name="kinematic" type="bool" setter="set_kinematic_enabled" getter="get_kinematic_enabled" default="false">
+		</member>
+		<member name="kinematic_collisions" type="bool" setter="set_kinematic_collisions_enabled" getter="get_kinematic_collisions_enabled" default="false">
+		</member>
+	</members>
+</class>

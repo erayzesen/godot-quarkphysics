@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class name="QJointObject" inherits="RefCounted" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/godotengine/godot/master/doc/class.xsd">
+	<brief_description>
+	</brief_description>
+	<description>
+	</description>
+	<tutorials>
+	</tutorials>
+	<methods>
+		<method name="configure">
+			<return type="QJointObject" />
+			<param index="0" name="rigid_body_node_a" type="Object" />
+			<param index="1" name="anchor_world_pos_a" type="Vector2" />
+			<param index="2" name="anchor_world_pos_b" type="Vector2" />
+			<param index="3" name="rigid_body_node_b" type="Object" />
+			<param index="4" name="length" type="float" />
+			<description>
+			</description>
+		</method>
+		<method name="configure_with_common_anchor_position">
+			<return type="QJointObject" />
+			<param index="0" name="rigid_body_node_a" type="Object" />
+			<param index="1" name="common_anchor_world_pos" type="Vector2" />
+			<param index="2" name="rigid_body_node_b" type="Object" />
+			<description>
+			</description>
+		</method>
+		<method name="configure_with_current_distance">
+			<return type="QJointObject" />
+			<param index="0" name="rigid_body_node_a" type="Object" />
+			<param index="1" name="anchor_world_pos_a" type="Vector2" />
+			<param index="2" name="anchor_world_pos_b" type="Vector2" />
+			<param index="3" name="rigid_body_node_b" type="Object" />
+			<description>
+			</description>
+		</method>
+		<method name="get_anchor_global_position_a">
+			<return type="Vector2" />
+			<description>
+			</description>
+		</method>
+		<method name="get_anchor_global_position_b">
+			<return type="Vector2" />
+			<description>
+			</description>
+		</method>
+		<method name="get_anchor_position_a">
+			<return type="Vector2" />
+			<description>
+			</description>
+		</method>
+		<method name="get_anchor_position_b">
+			<return type="Vector2" />
+			<description>
+			</description>
+		</method>
+		<method name="get_balance">
+			<return type="float" />
+			<description>
+			</description>
+		</method>
+		<method name="get_body_node_a">
+			<return type="QRigidBodyNode" />
+			<description>
+			</description>
+		</method>
+		<method name="get_body_node_b">
+			<return type="QRigidBodyNode" />
+			<description>
+			</description>
+		</method>
+		<method name="get_collisions_enabled">
+			<return type="bool" />
+			<description>
+			</description>
+		</method>
+		<method name="get_enabled">
+			<return type="bool" />
+			<description>
+			</description>
+		</method>
+		<method name="get_groove_enabled">
+			<return type="bool" />
+			<description>
+			</description>
+		</method>
+		<method name="get_length">
+			<return type="float" />
+			<description>
+			</description>
+		</method>
+		<method name="get_rigidity">
+			<return type="float" />
+			<description>
+			</description>
+		</method>
+		<method name="set_anchor_position_a">
+			<return type="QJointObject" />
+			<param index="0" name="value" type="Vector2" />
+			<description>
+			</description>
+		</method>
+		<method name="set_anchor_position_b">
+			<return type="QJointObject" />
+			<param index="0" name="value" type="Vector2" />
+			<description>
+			</description>
+		</method>
+		<method name="set_balance">
+			<return type="QJointObject" />
+			<param index="0" name="value" type="float" />
+			<description>
+			</description>
+		</method>
+		<method name="set_body_node_a">
+			<return type="QJointObject" />
+			<param index="0" name="rigid_body_node" type="Object" />
+			<description>
+			</description>
+		</method>
+		<method name="set_body_node_b">
+			<return type="QJointObject" />
+			<param index="0" name="rigid_body_node" type="Object" />
+			<description>
+			</description>
+		</method>
+		<method name="set_collision_enabled">
+			<return type="QJointObject" />
+			<param index="0" name="value" type="bool" />
+			<description>
+			</description>
+		</method>
+		<method name="set_enabled">
+			<return type="QJointObject" />
+			<param index="0" name="value" type="bool" />
+			<description>
+			</description>
+		</method>
+		<method name="set_groove_enabled">
+			<return type="QJointObject" />
+			<param index="0" name="value" type="bool" />
+			<description>
+			</description>
+		</method>
+		<method name="set_length">
+			<return type="QJointObject" />
+			<param index="0" name="value" type="float" />
+			<description>
+			</description>
+		</method>
+		<method name="set_rigidity">
+			<return type="QJointObject" />
+			<param index="0" name="value" type="float" />
+			<description>
+			</description>
+		</method>
+	</methods>
+</class>

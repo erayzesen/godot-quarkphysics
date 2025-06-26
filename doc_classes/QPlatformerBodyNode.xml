@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class name="QPlatformerBodyNode" inherits="QRigidBodyNode" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/godotengine/godot/master/doc/class.xsd">
+	<brief_description>
+	</brief_description>
+	<description>
+	</description>
+	<tutorials>
+	</tutorials>
+	<methods>
+		<method name="get_ceiling">
+			<return type="Dictionary" />
+			<param index="0" name="offset" type="float" />
+			<description>
+			</description>
+		</method>
+		<method name="get_controller_horizontal_velocity">
+			<return type="Vector2" />
+			<description>
+			</description>
+		</method>
+		<method name="get_controller_vertical_velocity">
+			<return type="Vector2" />
+			<description>
+			</description>
+		</method>
+		<method name="get_floor">
+			<return type="Dictionary" />
+			<param index="0" name="offset" type="float" />
+			<description>
+			</description>
+		</method>
+		<method name="get_floor_max_angle">
+			<return type="float" />
+			<description>
+			</description>
+		</method>
+		<method name="get_gravity_multiplier">
+			<return type="float" />
+			<description>
+			</description>
+		</method>
+		<method name="get_is_falling">
+			<return type="bool" />
+			<description>
+			</description>
+		</method>
+		<method name="get_is_jump_released">
+			<return type="bool" />
+			<description>
+			</description>
+		</method>
+		<method name="get_is_on_ceiling">
+			<return type="bool" />
+			<description>
+			</description>
+		</method>
+		<method name="get_is_on_floor">
+			<return type="bool" />
+			<description>
+			</description>
+		</method>
+		<method name="get_is_rising">
+			<return type="bool" />
+			<description>
+			</description>
+		</method>
+		<method name="get_left_wall">
+			<return type="Dictionary" />
+			<param index="0" name="offset" type="float" />
+			<description>
+			</description>
+		</method>
+		<method name="get_platform_collisions">
+			<return type="Dictionary" />
+			<param index="0" name="test_position" type="Vector2" />
+			<param index="1" name="filter_by_moving_direction" type="bool" />
+			<description>
+			</description>
+		</method>
+		<method name="get_right_wall">
+			<return type="Dictionary" />
+			<param index="0" name="offset" type="float" />
+			<description>
+			</description>
+		</method>
+		<method name="jump">
+			<return type="QPlatformerBodyNode" />
+			<param index="0" name="force" type="float" />
+			<param index="1" name="unconditional" type="bool" />
+			<description>
+			</description>
+		</method>
+		<method name="release_jump">
+			<return type="QPlatformerBodyNode" />
+			<description>
+			</description>
+		</method>
+		<method name="set_controller_horizontal_velocity">
+			<return type="QPlatformerBodyNode" />
+			<param index="0" name="value" type="Vector2" />
+			<description>
+			</description>
+		</method>
+		<method name="set_controller_vertical_velocity">
+			<return type="QPlatformerBodyNode" />
+			<param index="0" name="value" type="Vector2" />
+			<description>
+			</description>
+		</method>
+		<method name="set_floor_max_angle">
+			<return type="QPlatformerBodyNode" />
+			<param index="0" name="value" type="float" />
+			<description>
+			</description>
+		</method>
+		<method name="set_floor_max_angle_degree">
+			<return type="QPlatformerBodyNode" />
+			<param index="0" name="value" type="float" />
+			<description>
+			</description>
+		</method>
+		<method name="set_gravity">
+			<return type="QPlatformerBodyNode" />
+			<param index="0" name="value" type="Vector2" />
+			<description>
+			</description>
+		</method>
+		<method name="set_gravity_multiplier">
+			<return type="QPlatformerBodyNode" />
+			<param index="0" name="value" type="float" />
+			<description>
+			</description>
+		</method>
+		<method name="set_jump_duration_frame_count">
+			<return type="QPlatformerBodyNode" />
+			<param index="0" name="value" type="int" />
+			<description>
+			</description>
+		</method>
+		<method name="set_jump_fall_gravity_multiplier">
+			<return type="QPlatformerBodyNode" />
+			<param index="0" name="value" type="float" />
+			<description>
+			</description>
+		</method>
+		<method name="set_jump_gravity_multiplier">
+			<return type="QPlatformerBodyNode" />
+			<param index="0" name="value" type="float" />
+			<description>
+			</description>
+		</method>
+		<method name="set_max_jump_count">
+			<return type="QPlatformerBodyNode" />
+			<param index="0" name="value" type="int" />
+			<description>
+			</description>
+		</method>
+		<method name="set_moving_floor_snap_offset">
+			<return type="QPlatformerBodyNode" />
+			<param index="0" name="value" type="float" />
+			<description>
+			</description>
+		</method>
+		<method name="set_specific_platform_layers">
+			<return type="QPlatformerBodyNode" />
+			<param index="0" name="value" type="int" />
+			<description>
+			</description>
+		</method>
+		<method name="set_walk_aceleration_rate">
+			<return type="QPlatformerBodyNode" />
+			<param index="0" name="value" type="float" />
+			<description>
+			</description>
+		</method>
+		<method name="set_walk_deceleration_rate">
+			<return type="QPlatformerBodyNode" />
+			<param index="0" name="value" type="float" />
+			<description>
+			</description>
+		</method>
+		<method name="set_walk_speed">
+			<return type="QPlatformerBodyNode" />
+			<param index="0" name="value" type="float" />
+			<description>
+			</description>
+		</method>
+		<method name="walk">
+			<return type="QPlatformerBodyNode" />
+			<param index="0" name="side" type="int" />
+			<description>
+			</description>
+		</method>
+	</methods>
+	<members>
+		<member name="fixed_rotation" type="bool" setter="set_fixed_rotation_enabled" getter="get_fixed_rotation_enabled" overrides="QRigidBodyNode" default="true" />
+		<member name="floor_max_angle_degree" type="float" setter="set_floor_max_angle_degree" getter="get_floor_max_angle_degree" default="45.0">
+		</member>
+		<member name="friction" type="float" setter="set_friction" getter="get_friction" overrides="QBodyNode" default="0.0" />
+		<member name="gravity" type="Vector2" setter="set_gravity" getter="get_gravity" default="Vector2(0, 0.3)">
+		</member>
+		<member name="jump_duration_frame_count" type="int" setter="set_jump_duration_frame_count" getter="get_jump_duration_frame_count" default="30">
+		</member>
+		<member name="jump_fall_gravity_multiplier" type="float" setter="set_jump_fall_gravity_multiplier" getter="get_jump_fall_gravity_multiplier" default="1.0">
+		</member>
+		<member name="jump_gravity_multiplier" type="float" setter="set_jump_gravity_multiplier" getter="get_jump_gravity_multiplier" default="0.4">
+		</member>
+		<member name="kinematic_collisions" type="bool" setter="set_kinematic_collisions_enabled" getter="get_kinematic_collisions_enabled" overrides="QRigidBodyNode" default="true" />
+		<member name="max_jump_count" type="int" setter="set_max_jump_count" getter="get_max_jump_count" default="2">
+		</member>
+		<member name="moving_floor_snap_offset" type="float" setter="set_moving_floor_snap_offset" getter="get_moving_floor_snap_offset" default="10.0">
+		</member>
+		<member name="specific_platform_layers" type="int" setter="set_specific_platform_layers" getter="get_specific_platform_layers" default="0">
+		</member>
+		<member name="walk_aceleration_rate" type="float" setter="set_walk_aceleration_rate" getter="get_walk_aceleration_rate" default="0.1">
+		</member>
+		<member name="walk_deceleration_rate" type="float" setter="set_walk_deceleration_rate" getter="get_walk_deceleration_rate" default="0.1">
+		</member>
+		<member name="walk_speed" type="float" setter="set_walk_speed" getter="get_walk_speed" default="3.0">
+		</member>
+	</members>
+</class>

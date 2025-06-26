@@ -1,0 +1,329 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class name="QBodyNode" inherits="Node2D" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/godotengine/godot/master/doc/class.xsd">
+	<brief_description>
+	</brief_description>
+	<description>
+	</description>
+	<tutorials>
+	</tutorials>
+	<methods>
+		<method name="add_body_position">
+			<return type="QBodyNode" />
+			<param index="0" name="value" type="Vector2" />
+			<description>
+			</description>
+		</method>
+		<method name="add_body_previous_position">
+			<return type="QBodyNode" />
+			<param index="0" name="value" type="Vector2" />
+			<description>
+			</description>
+		</method>
+		<method name="add_body_rotation">
+			<return type="QBodyNode" />
+			<param index="0" name="angle_radian" type="float" />
+			<description>
+			</description>
+		</method>
+		<method name="add_mesh_node">
+			<return type="QBodyNode" />
+			<param index="0" name="mesh_node" type="Object" />
+			<description>
+			</description>
+		</method>
+		<method name="apply_force">
+			<return type="QBodyNode" />
+			<param index="0" name="value" type="Vector2" />
+			<description>
+			</description>
+		</method>
+		<method name="get_aabb">
+			<return type="Rect2" />
+			<description>
+			</description>
+		</method>
+		<method name="get_body_position">
+			<return type="Vector2" />
+			<description>
+			</description>
+		</method>
+		<method name="get_body_previous_position">
+			<return type="Vector2" />
+			<description>
+			</description>
+		</method>
+		<method name="get_body_previous_rotation">
+			<return type="float" />
+			<description>
+			</description>
+		</method>
+		<method name="get_body_rotation">
+			<return type="float" />
+			<description>
+			</description>
+		</method>
+		<method name="get_body_rotation_degree">
+			<return type="float" />
+			<description>
+			</description>
+		</method>
+		<method name="get_body_specific_time_scale">
+			<return type="float" />
+			<description>
+			</description>
+		</method>
+		<method name="get_body_specific_time_scale_enabled">
+			<return type="bool" />
+			<description>
+			</description>
+		</method>
+		<method name="get_integrated_velocities_enabled">
+			<return type="bool" />
+			<description>
+			</description>
+		</method>
+		<method name="get_is_sleeping">
+			<return type="bool" />
+			<description>
+			</description>
+		</method>
+		<method name="get_mesh_at">
+			<return type="QMeshNode" />
+			<param index="0" name="index" type="int" />
+			<description>
+			</description>
+		</method>
+		<method name="get_mesh_count">
+			<return type="int" />
+			<description>
+			</description>
+		</method>
+		<method name="get_overlap_with_collidable_layers_bit">
+			<return type="bool" />
+			<param index="0" name="_unnamed_arg0" type="int" />
+			<description>
+			</description>
+		</method>
+		<method name="get_overlap_with_layers_bit">
+			<return type="bool" />
+			<param index="0" name="_unnamed_arg0" type="int" />
+			<description>
+			</description>
+		</method>
+		<method name="get_total_area">
+			<return type="float" />
+			<description>
+			</description>
+		</method>
+		<method name="get_total_initial_area">
+			<return type="float" />
+			<description>
+			</description>
+		</method>
+		<method name="get_total_polygons_area">
+			<return type="float" />
+			<description>
+			</description>
+		</method>
+		<method name="get_total_polygons_initial_area">
+			<return type="float" />
+			<description>
+			</description>
+		</method>
+		<method name="get_world_node">
+			<return type="QWorldNode" />
+			<description>
+			</description>
+		</method>
+		<method name="remove_mesh_node_at">
+			<return type="QBodyNode" />
+			<param index="0" name="index" type="int" />
+			<description>
+			</description>
+		</method>
+		<method name="set_air_friction">
+			<return type="QBodyNode" />
+			<param index="0" name="value" type="float" />
+			<description>
+			</description>
+		</method>
+		<method name="set_body_position">
+			<return type="QBodyNode" />
+			<param index="0" name="value" type="Vector2" />
+			<param index="1" name="with_previous_position" type="bool" />
+			<description>
+			</description>
+		</method>
+		<method name="set_body_previous_position">
+			<return type="QBodyNode" />
+			<param index="0" name="value" type="Vector2" />
+			<description>
+			</description>
+		</method>
+		<method name="set_body_previous_rotation">
+			<return type="QBodyNode" />
+			<param index="0" name="angle_radian" type="float" />
+			<description>
+			</description>
+		</method>
+		<method name="set_body_rotation">
+			<return type="QBodyNode" />
+			<param index="0" name="angle_radian" type="float" />
+			<param index="1" name="with_previous_rotation" type="bool" />
+			<description>
+			</description>
+		</method>
+		<method name="set_body_rotation_degree">
+			<return type="QBodyNode" />
+			<param index="0" name="angle_radian" type="float" />
+			<param index="1" name="with_previous_rotation" type="bool" />
+			<description>
+			</description>
+		</method>
+		<method name="set_body_spesific_time_scale">
+			<return type="QBodyNode" />
+			<param index="0" name="value" type="float" />
+			<description>
+			</description>
+		</method>
+		<method name="set_body_spesific_time_scale_enabled">
+			<return type="QBodyNode" />
+			<param index="0" name="value" type="bool" />
+			<description>
+			</description>
+		</method>
+		<method name="set_can_sleep">
+			<return type="QBodyNode" />
+			<param index="0" name="value" type="bool" />
+			<description>
+			</description>
+		</method>
+		<method name="set_collidable_layers_bit">
+			<return type="QBodyNode" />
+			<param index="0" name="value" type="int" />
+			<description>
+			</description>
+		</method>
+		<method name="set_custom_gravity">
+			<return type="QBodyNode" />
+			<param index="0" name="value" type="Vector2" />
+			<description>
+			</description>
+		</method>
+		<method name="set_custom_gravity_enabled">
+			<return type="QBodyNode" />
+			<param index="0" name="value" type="bool" />
+			<description>
+			</description>
+		</method>
+		<method name="set_enabled">
+			<return type="QBodyNode" />
+			<param index="0" name="value" type="bool" />
+			<description>
+			</description>
+		</method>
+		<method name="set_friction">
+			<return type="QBodyNode" />
+			<param index="0" name="value" type="float" />
+			<description>
+			</description>
+		</method>
+		<method name="set_integrated_velocities_enabled">
+			<return type="QBodyNode" />
+			<param index="0" name="value" type="bool" />
+			<description>
+			</description>
+		</method>
+		<method name="set_layers_bit">
+			<return type="QBodyNode" />
+			<param index="0" name="value" type="int" />
+			<description>
+			</description>
+		</method>
+		<method name="set_mass">
+			<return type="QBodyNode" />
+			<param index="0" name="value" type="float" />
+			<description>
+			</description>
+		</method>
+		<method name="set_mode">
+			<return type="QBodyNode" />
+			<param index="0" name="value" type="int" enum="QBodyNode.Modes" />
+			<description>
+			</description>
+		</method>
+		<method name="set_restitution">
+			<return type="QBodyNode" />
+			<param index="0" name="value" type="float" />
+			<description>
+			</description>
+		</method>
+		<method name="set_static_friction">
+			<return type="QBodyNode" />
+			<param index="0" name="value" type="float" />
+			<description>
+			</description>
+		</method>
+		<method name="set_velocity_limit">
+			<return type="QBodyNode" />
+			<param index="0" name="value" type="float" />
+			<description>
+			</description>
+		</method>
+		<method name="wake_up">
+			<return type="QBodyNode" />
+			<description>
+			</description>
+		</method>
+	</methods>
+	<members>
+		<member name="air_friction" type="float" setter="set_air_friction" getter="get_air_friction" default="0.01">
+		</member>
+		<member name="can_sleep" type="bool" setter="set_can_sleep" getter="get_can_sleep" default="true">
+		</member>
+		<member name="collidable_layers" type="int" setter="set_collidable_layers_bit" getter="get_collidable_layers_bit" default="1">
+		</member>
+		<member name="custom_gravity" type="Vector2" setter="set_custom_gravity" getter="get_custom_gravity" default="Vector2(0, 0)">
+		</member>
+		<member name="enabled" type="bool" setter="set_enabled" getter="get_enabled" default="true">
+		</member>
+		<member name="friction" type="float" setter="set_friction" getter="get_friction" default="0.2">
+		</member>
+		<member name="layers" type="int" setter="set_layers_bit" getter="get_layers_bit" default="1">
+		</member>
+		<member name="mass" type="float" setter="set_mass" getter="get_mass" default="1.0">
+		</member>
+		<member name="mode" type="int" setter="set_mode" getter="get_mode" enum="QBodyNode.Modes" default="0">
+		</member>
+		<member name="restitution" type="float" setter="set_restitution" getter="get_restitution" default="0.0">
+		</member>
+		<member name="static_friction" type="float" setter="set_static_friction" getter="get_static_friction" default="0.5">
+		</member>
+		<member name="use_custom_gravity" type="bool" setter="set_custom_gravity_enabled" getter="get_custom_gravity_enabled" default="false">
+		</member>
+		<member name="velocity_limit" type="float" setter="set_velocity_limit" getter="get_velocity_limit" default="0.0">
+		</member>
+	</members>
+	<signals>
+		<signal name="collision">
+			<param index="0" name="body_node" type="Object" />
+			<param index="1" name="info" type="Dictionary" />
+			<description>
+			</description>
+		</signal>
+		<signal name="pre_step">
+			<description>
+			</description>
+		</signal>
+		<signal name="step">
+			<description>
+			</description>
+		</signal>
+	</signals>
+	<constants>
+		<constant name="DYNAMIC" value="0">
+		</constant>
+		<constant name="STATIC" value="1">
+		</constant>
+	</constants>
+</class>

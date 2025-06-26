@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class name="QMeshRectNode" inherits="QMeshNode" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/godotengine/godot/master/doc/class.xsd">
+	<brief_description>
+	</brief_description>
+	<description>
+	</description>
+	<tutorials>
+	</tutorials>
+	<methods>
+		<method name="set_particle_radius">
+			<return type="QMeshRectNode" />
+			<param index="0" name="value" type="float" />
+			<description>
+			</description>
+		</method>
+	</methods>
+	<members>
+		<member name="center_position" type="Vector2" setter="set_center_position" getter="get_center_position" default="Vector2(0, 0)">
+		</member>
+		<member name="grid" type="Vector2" setter="set_grid" getter="get_grid" default="Vector2(0, 0)">
+		</member>
+		<member name="particle_radius" type="float" setter="set_particle_radius" getter="get_particle_radius" default="0.5">
+		</member>
+		<member name="rectangle_size" type="Vector2" setter="set_size" getter="get_size" default="Vector2(32, 32)">
+		</member>
+	</members>
+</class>

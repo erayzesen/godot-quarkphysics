@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class name="QAngleConstraintObject" inherits="RefCounted" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/godotengine/godot/master/doc/class.xsd">
+	<brief_description>
+	</brief_description>
+	<description>
+	</description>
+	<tutorials>
+	</tutorials>
+	<methods>
+		<method name="configure">
+			<return type="QAngleConstraintObject" />
+			<param index="0" name="particle_object_a" type="QParticleObject" />
+			<param index="1" name="particle_object_b" type="QParticleObject" />
+			<param index="2" name="particle_object_c" type="QParticleObject" />
+			<param index="3" name="minimum_angle" type="float" />
+			<param index="4" name="maximum_angle" type="float" />
+			<description>
+			</description>
+		</method>
+		<method name="configure_with_angle_of_local_positions">
+			<return type="QAngleConstraintObject" />
+			<param index="0" name="particle_object_a" type="QParticleObject" />
+			<param index="1" name="particle_object_b" type="QParticleObject" />
+			<param index="2" name="particle_object_c" type="QParticleObject" />
+			<param index="3" name="angle_range" type="float" />
+			<description>
+			</description>
+		</method>
+		<method name="get_enabled">
+			<return type="bool" />
+			<description>
+			</description>
+		</method>
+		<method name="get_max_angle">
+			<return type="bool" />
+			<description>
+			</description>
+		</method>
+		<method name="get_min_angle">
+			<return type="float" />
+			<description>
+			</description>
+		</method>
+		<method name="get_particle_a">
+			<return type="QParticleObject" />
+			<description>
+			</description>
+		</method>
+		<method name="get_particle_b">
+			<return type="QParticleObject" />
+			<description>
+			</description>
+		</method>
+		<method name="get_particle_c">
+			<return type="QParticleObject" />
+			<description>
+			</description>
+		</method>
+		<method name="get_rigidity">
+			<return type="float" />
+			<description>
+			</description>
+		</method>
+		<method name="set_enabled">
+			<return type="QAngleConstraintObject" />
+			<param index="0" name="value" type="bool" />
+			<description>
+			</description>
+		</method>
+		<method name="set_max_angle">
+			<return type="QAngleConstraintObject" />
+			<param index="0" name="value" type="float" />
+			<description>
+			</description>
+		</method>
+		<method name="set_min_angle">
+			<return type="QAngleConstraintObject" />
+			<param index="0" name="value" type="float" />
+			<description>
+			</description>
+		</method>
+		<method name="set_particle_a">
+			<return type="QAngleConstraintObject" />
+			<param index="0" name="particle_object" type="QParticleObject" />
+			<description>
+			</description>
+		</method>
+		<method name="set_particle_b">
+			<return type="QAngleConstraintObject" />
+			<param index="0" name="particle_object" type="QParticleObject" />
+			<description>
+			</description>
+		</method>
+		<method name="set_particle_c">
+			<return type="QAngleConstraintObject" />
+			<param index="0" name="particle_object" type="QParticleObject" />
+			<description>
+			</description>
+		</method>
+		<method name="set_rigidity">
+			<return type="QAngleConstraintObject" />
+			<param index="0" name="value" type="float" />
+			<description>
+			</description>
+		</method>
+	</methods>
+</class>

@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class name="QSpringObject" inherits="RefCounted" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/godotengine/godot/master/doc/class.xsd">
+	<brief_description>
+	</brief_description>
+	<description>
+	</description>
+	<tutorials>
+	</tutorials>
+	<methods>
+		<method name="configure">
+			<return type="QSpringObject" />
+			<param index="0" name="particle_object_a" type="QParticleObject" />
+			<param index="1" name="particle_object_b" type="QParticleObject" />
+			<param index="2" name="length" type="float" />
+			<param index="3" name="internal" type="bool" />
+			<description>
+			</description>
+		</method>
+		<method name="configure_with_current_distance">
+			<return type="QSpringObject" />
+			<param index="0" name="particle_object_a" type="QParticleObject" />
+			<param index="1" name="particle_object_b" type="QParticleObject" />
+			<param index="2" name="internal" type="bool" />
+			<description>
+			</description>
+		</method>
+		<method name="get_distance_limit_enabled">
+			<return type="bool" />
+			<description>
+			</description>
+		</method>
+		<method name="get_enabled">
+			<return type="bool" />
+			<description>
+			</description>
+		</method>
+		<method name="get_is_internal">
+			<return type="bool" />
+			<description>
+			</description>
+		</method>
+		<method name="get_length">
+			<return type="float" />
+			<description>
+			</description>
+		</method>
+		<method name="get_maximum_distance_factor">
+			<return type="float" />
+			<description>
+			</description>
+		</method>
+		<method name="get_minimum_distance_factor">
+			<return type="float" />
+			<description>
+			</description>
+		</method>
+		<method name="get_particle_a">
+			<return type="QParticleObject" />
+			<description>
+			</description>
+		</method>
+		<method name="get_particle_b">
+			<return type="QParticleObject" />
+			<description>
+			</description>
+		</method>
+		<method name="get_rigidity">
+			<return type="float" />
+			<description>
+			</description>
+		</method>
+		<method name="set_distance_limit_enabled">
+			<return type="QSpringObject" />
+			<param index="0" name="value" type="bool" />
+			<description>
+			</description>
+		</method>
+		<method name="set_enabled">
+			<return type="QSpringObject" />
+			<param index="0" name="value" type="bool" />
+			<description>
+			</description>
+		</method>
+		<method name="set_is_internal">
+			<return type="QSpringObject" />
+			<param index="0" name="value" type="bool" />
+			<description>
+			</description>
+		</method>
+		<method name="set_length">
+			<return type="QSpringObject" />
+			<param index="0" name="value" type="float" />
+			<description>
+			</description>
+		</method>
+		<method name="set_maximum_distance_factor">
+			<return type="QSpringObject" />
+			<param index="0" name="value" type="float" />
+			<description>
+			</description>
+		</method>
+		<method name="set_minimum_distance_factor">
+			<return type="QSpringObject" />
+			<param index="0" name="value" type="float" />
+			<description>
+			</description>
+		</method>
+		<method name="set_particle_a">
+			<return type="QSpringObject" />
+			<param index="0" name="particle_object" type="QParticleObject" />
+			<description>
+			</description>
+		</method>
+		<method name="set_particle_b">
+			<return type="QSpringObject" />
+			<param index="0" name="particle_object" type="QParticleObject" />
+			<description>
+			</description>
+		</method>
+		<method name="set_rigidity">
+			<return type="QSpringObject" />
+			<param index="0" name="value" type="float" />
+			<description>
+			</description>
+		</method>
+	</methods>
+</class>

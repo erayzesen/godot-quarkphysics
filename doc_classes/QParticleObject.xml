@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class name="QParticleObject" inherits="RefCounted" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/godotengine/godot/master/doc/class.xsd">
+	<brief_description>
+	</brief_description>
+	<description>
+	</description>
+	<tutorials>
+	</tutorials>
+	<methods>
+		<method name="add_force">
+			<return type="QParticleObject" />
+			<param index="0" name="value" type="Vector2" />
+			<description>
+			</description>
+		</method>
+		<method name="add_global_position">
+			<return type="QParticleObject" />
+			<param index="0" name="value" type="Vector2" />
+			<description>
+			</description>
+		</method>
+		<method name="add_position">
+			<return type="QParticleObject" />
+			<param index="0" name="value" type="Vector2" />
+			<description>
+			</description>
+		</method>
+		<method name="add_previous_global_position">
+			<return type="QParticleObject" />
+			<param index="0" name="value" type="Vector2" />
+			<description>
+			</description>
+		</method>
+		<method name="apply_force">
+			<return type="QParticleObject" />
+			<param index="0" name="value" type="Vector2" />
+			<description>
+			</description>
+		</method>
+		<method name="configure">
+			<return type="QParticleObject" />
+			<param index="0" name="position" type="Vector2" />
+			<param index="1" name="radius" type="float" />
+			<description>
+			</description>
+		</method>
+		<method name="get_enabled">
+			<return type="bool" />
+			<description>
+			</description>
+		</method>
+		<method name="get_force">
+			<return type="Vector2" />
+			<description>
+			</description>
+		</method>
+		<method name="get_global_position">
+			<return type="Vector2" />
+			<description>
+			</description>
+		</method>
+		<method name="get_is_internal">
+			<return type="bool" />
+			<description>
+			</description>
+		</method>
+		<method name="get_is_lazy">
+			<return type="bool" />
+			<description>
+			</description>
+		</method>
+		<method name="get_mass">
+			<return type="float" />
+			<description>
+			</description>
+		</method>
+		<method name="get_owner_mesh_node">
+			<return type="QMeshNode" />
+			<description>
+			</description>
+		</method>
+		<method name="get_position">
+			<return type="Vector2" />
+			<description>
+			</description>
+		</method>
+		<method name="get_previous_global_position">
+			<return type="Vector2" />
+			<description>
+			</description>
+		</method>
+		<method name="get_radius">
+			<return type="float" />
+			<description>
+			</description>
+		</method>
+		<method name="set_enabled">
+			<return type="QParticleObject" />
+			<param index="0" name="value" type="bool" />
+			<description>
+			</description>
+		</method>
+		<method name="set_force">
+			<return type="QParticleObject" />
+			<param index="0" name="value" type="Vector2" />
+			<description>
+			</description>
+		</method>
+		<method name="set_global_position">
+			<return type="QParticleObject" />
+			<param index="0" name="value" type="Vector2" />
+			<description>
+			</description>
+		</method>
+		<method name="set_is_internal">
+			<return type="QParticleObject" />
+			<param index="0" name="value" type="bool" />
+			<description>
+			</description>
+		</method>
+		<method name="set_is_lazy">
+			<return type="QParticleObject" />
+			<param index="0" name="value" type="bool" />
+			<description>
+			</description>
+		</method>
+		<method name="set_mass">
+			<return type="QParticleObject" />
+			<param index="0" name="value" type="float" />
+			<description>
+			</description>
+		</method>
+		<method name="set_position">
+			<return type="QParticleObject" />
+			<param index="0" name="value" type="Vector2" />
+			<description>
+			</description>
+		</method>
+		<method name="set_previous_global_position">
+			<return type="QParticleObject" />
+			<param index="0" name="value" type="Vector2" />
+			<description>
+			</description>
+		</method>
+		<method name="set_radius">
+			<return type="QParticleObject" />
+			<param index="0" name="value" type="float" />
+			<description>
+			</description>
+		</method>
+	</methods>
+</class>

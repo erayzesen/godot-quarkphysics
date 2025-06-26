@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class name="QMeshPolygonNode" inherits="QMeshNode" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/godotengine/godot/master/doc/class.xsd">
+	<brief_description>
+	</brief_description>
+	<description>
+	</description>
+	<tutorials>
+	</tutorials>
+	<methods>
+		<method name="set_particle_radius">
+			<return type="QMeshPolygonNode" />
+			<param index="0" name="value" type="float" />
+			<description>
+			</description>
+		</method>
+	</methods>
+	<members>
+		<member name="center_position" type="Vector2" setter="set_center_position" getter="get_center_position" default="Vector2(0, 0)">
+		</member>
+		<member name="particle_radius" type="float" setter="set_particle_radius" getter="get_particle_radius" default="0.5">
+		</member>
+		<member name="polar_grid" type="int" setter="set_polar_grid" getter="get_polar_grid" default="-1">
+		</member>
+		<member name="polygon_radius" type="float" setter="set_polygon_radius" getter="get_polygon_radius" default="32.0">
+		</member>
+		<member name="side_count" type="int" setter="set_side_count" getter="get_side_count" default="8">
+		</member>
+	</members>
+</class>

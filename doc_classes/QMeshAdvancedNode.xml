@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class name="QMeshAdvancedNode" inherits="QMeshNode" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/godotengine/godot/master/doc/class.xsd">
+	<brief_description>
+	</brief_description>
+	<description>
+	</description>
+	<tutorials>
+	</tutorials>
+	<members>
+		<member name="export_qmesh_file" type="String" setter="set_export_file_path" getter="get_export_file_path" default="&quot;&quot;">
+		</member>
+		<member name="import_qmesh_file" type="String" setter="set_import_file_path" getter="get_import_file_path" default="&quot;&quot;">
+		</member>
+	</members>
+</class>

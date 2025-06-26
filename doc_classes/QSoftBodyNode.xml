@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class name="QSoftBodyNode" inherits="QBodyNode" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/godotengine/godot/master/doc/class.xsd">
+	<brief_description>
+	</brief_description>
+	<description>
+	</description>
+	<tutorials>
+	</tutorials>
+	<methods>
+		<method name="get_shape_matching_fixed_position">
+			<return type="Vector2" />
+			<description>
+			</description>
+		</method>
+		<method name="get_shape_matching_fixed_rotation">
+			<return type="float" />
+			<description>
+			</description>
+		</method>
+		<method name="get_target_preservation_area">
+			<return type="float" />
+			<description>
+			</description>
+		</method>
+		<method name="set_area_preserving_enabled">
+			<return type="QSoftBodyNode" />
+			<param index="0" name="value" type="bool" />
+			<description>
+			</description>
+		</method>
+		<method name="set_area_preserving_rate">
+			<return type="QSoftBodyNode" />
+			<param index="0" name="value" type="float" />
+			<description>
+			</description>
+		</method>
+		<method name="set_area_preserving_rigidity">
+			<return type="QSoftBodyNode" />
+			<param index="0" name="value" type="float" />
+			<description>
+			</description>
+		</method>
+		<method name="set_particle_spesific_mass">
+			<return type="QSoftBodyNode" />
+			<param index="0" name="value" type="float" />
+			<description>
+			</description>
+		</method>
+		<method name="set_particle_spesific_mass_enabled">
+			<return type="QSoftBodyNode" />
+			<param index="0" name="value" type="bool" />
+			<description>
+			</description>
+		</method>
+		<method name="set_passivation_of_internal_springs_enabled">
+			<return type="QSoftBodyNode" />
+			<param index="0" name="value" type="bool" />
+			<description>
+			</description>
+		</method>
+		<method name="set_rigidity">
+			<return type="QSoftBodyNode" />
+			<param index="0" name="value" type="float" />
+			<description>
+			</description>
+		</method>
+		<method name="set_self_collision_enabled">
+			<return type="QSoftBodyNode" />
+			<param index="0" name="value" type="bool" />
+			<description>
+			</description>
+		</method>
+		<method name="set_self_collisions_specified_radius">
+			<return type="QSoftBodyNode" />
+			<param index="0" name="value" type="float" />
+			<description>
+			</description>
+		</method>
+		<method name="set_shape_matching_enabled">
+			<return type="QSoftBodyNode" />
+			<param index="0" name="value" type="bool" />
+			<description>
+			</description>
+		</method>
+		<method name="set_shape_matching_fixed_position">
+			<return type="QSoftBodyNode" />
+			<param index="0" name="value" type="Vector2" />
+			<description>
+			</description>
+		</method>
+		<method name="set_shape_matching_fixed_rotation">
+			<return type="QSoftBodyNode" />
+			<param index="0" name="value" type="float" />
+			<description>
+			</description>
+		</method>
+		<method name="set_shape_matching_fixed_transform_enabled">
+			<return type="QSoftBodyNode" />
+			<param index="0" name="value" type="bool" />
+			<description>
+			</description>
+		</method>
+		<method name="set_shape_matching_rate">
+			<return type="QSoftBodyNode" />
+			<param index="0" name="value" type="float" />
+			<description>
+			</description>
+		</method>
+		<method name="set_target_preservation_area">
+			<return type="QSoftBodyNode" />
+			<param index="0" name="value" type="float" />
+			<description>
+			</description>
+		</method>
+	</methods>
+	<members>
+		<member name="area_preserving" type="bool" setter="set_area_preserving_enabled" getter="get_area_preserving_enabled" default="false">
+		</member>
+		<member name="area_preserving_rate" type="float" setter="set_area_preserving_rate" getter="get_area_preserving_rate" default="0.8">
+		</member>
+		<member name="area_preserving_rigidity" type="float" setter="set_area_preserving_rigidity" getter="get_area_preserving_rigidity" default="1.0">
+		</member>
+		<member name="particle_spesific_mass" type="bool" setter="set_particle_spesific_mass_enabled" getter="get_particle_spesific_mass_enabled" default="false">
+		</member>
+		<member name="particle_spesific_mass_value" type="float" setter="set_particle_spesific_mass" getter="get_particle_spesific_mass" default="1.0">
+		</member>
+		<member name="passivation_of_internal_springs" type="bool" setter="set_passivation_of_internal_springs_enabled" getter="get_passivation_of_internal_springs_enabled" default="false">
+		</member>
+		<member name="rigidity" type="float" setter="set_rigidity" getter="get_rigidity" default="1.0">
+		</member>
+		<member name="self_collision" type="bool" setter="set_self_collision_enabled" getter="get_self_collision_enabled" default="false">
+		</member>
+		<member name="self_collision_specified_radius" type="float" setter="set_self_collisions_specified_radius" getter="get_self_collisions_specified_radius" default="0.0">
+		</member>
+		<member name="shape_matching" type="bool" setter="set_shape_matching_enabled" getter="get_shape_matching_enabled" default="false">
+		</member>
+		<member name="shape_matching_fixed_transform" type="bool" setter="set_shape_matching_fixed_transform_enabled" getter="get_shape_matching_fixed_transform_enabled" default="false">
+		</member>
+		<member name="shape_matching_rate" type="float" setter="set_shape_matching_rate" getter="get_shape_matching_rate" default="0.4">
+		</member>
+	</members>
+</class>

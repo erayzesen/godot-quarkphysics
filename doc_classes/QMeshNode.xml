@@ -1,0 +1,500 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class name="QMeshNode" inherits="Node2D" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/godotengine/godot/master/doc/class.xsd">
+	<brief_description>
+	</brief_description>
+	<description>
+	</description>
+	<tutorials>
+	</tutorials>
+	<methods>
+		<method name="add_angle_constraint">
+			<return type="QMeshNode" />
+			<param index="0" name="angle_constraint_object" type="QAngleConstraintObject" />
+			<description>
+			</description>
+		</method>
+		<method name="add_particle">
+			<return type="QMeshNode" />
+			<param index="0" name="particle_object" type="QParticleObject" />
+			<description>
+			</description>
+		</method>
+		<method name="add_particle_to_polygon">
+			<return type="QMeshNode" />
+			<param index="0" name="particleObject" type="QParticleObject" />
+			<description>
+			</description>
+		</method>
+		<method name="add_spring">
+			<return type="QMeshNode" />
+			<param index="0" name="spring_object" type="QSpringObject" />
+			<description>
+			</description>
+		</method>
+		<method name="add_uv_map">
+			<return type="QMeshNode" />
+			<param index="0" name="map" type="PackedInt32Array" />
+			<description>
+			</description>
+		</method>
+		<method name="get_aabb_of_polygon">
+			<return type="Rect2" />
+			<param index="0" name="polygonPoints" type="PackedVector2Array" />
+			<description>
+			</description>
+		</method>
+		<method name="get_angle_constraint_at">
+			<return type="QAngleConstraintObject" />
+			<param index="0" name="index" type="int" />
+			<description>
+			</description>
+		</method>
+		<method name="get_angle_constraint_count">
+			<return type="int" />
+			<description>
+			</description>
+		</method>
+		<method name="get_angle_constraint_index">
+			<return type="int" />
+			<param index="0" name="angle_constraint_object" type="QAngleConstraintObject" />
+			<description>
+			</description>
+		</method>
+		<method name="get_area">
+			<return type="float" />
+			<description>
+			</description>
+		</method>
+		<method name="get_average_position">
+			<return type="Vector2" />
+			<description>
+			</description>
+		</method>
+		<method name="get_average_position_and_rotation">
+			<return type="Array" />
+			<param index="0" name="particle_collection" type="QParticleObject[]" />
+			<description>
+			</description>
+		</method>
+		<method name="get_average_rotation">
+			<return type="float" />
+			<description>
+			</description>
+		</method>
+		<method name="get_circumference">
+			<return type="float" />
+			<description>
+			</description>
+		</method>
+		<method name="get_curved_polygon_points">
+			<return type="PackedVector2Array" />
+			<param index="0" name="polygonPoints" type="PackedVector2Array" />
+			<param index="1" name="curve_amount" type="float" />
+			<param index="2" name="margin" type="float" />
+			<param index="3" name="origin" type="Vector2" />
+			<param index="4" name="bake_interval" type="float" />
+			<description>
+			</description>
+		</method>
+		<method name="get_decomposited_polygon">
+			<return type="Array" />
+			<description>
+			</description>
+		</method>
+		<method name="get_initial_area">
+			<return type="float" />
+			<description>
+			</description>
+		</method>
+		<method name="get_initial_polygon_area">
+			<return type="float" />
+			<description>
+			</description>
+		</method>
+		<method name="get_inner_shadow_of_polygon">
+			<return type="PackedVector2Array" />
+			<param index="0" name="polygon_points" type="PackedVector2Array" />
+			<param index="1" name="offset" type="Vector2" />
+			<description>
+			</description>
+		</method>
+		<method name="get_matching_particle_positions">
+			<return type="Array" />
+			<param index="0" name="particle_collection" type="QParticleObject[]" />
+			<param index="1" name="target_position" type="Vector2" />
+			<param index="2" name="target_rotation" type="float" />
+			<description>
+			</description>
+		</method>
+		<method name="get_mesh_global_position">
+			<return type="Vector2" />
+			<description>
+			</description>
+		</method>
+		<method name="get_mesh_global_rotation">
+			<return type="float" />
+			<description>
+			</description>
+		</method>
+		<method name="get_mesh_position">
+			<return type="Vector2" />
+			<description>
+			</description>
+		</method>
+		<method name="get_mesh_rotation">
+			<return type="float" />
+			<description>
+			</description>
+		</method>
+		<method name="get_min_angle_constraint_of_polygon">
+			<return type="float" />
+			<description>
+			</description>
+		</method>
+		<method name="get_owner_body_node">
+			<return type="QBodyNode" />
+			<description>
+			</description>
+		</method>
+		<method name="get_particle_at">
+			<return type="QParticleObject" />
+			<param index="0" name="index" type="int" />
+			<description>
+			</description>
+		</method>
+		<method name="get_particle_count">
+			<return type="int" />
+			<description>
+			</description>
+		</method>
+		<method name="get_particle_from_polygon">
+			<return type="QParticleObject" />
+			<param index="0" name="index" type="int" />
+			<description>
+			</description>
+		</method>
+		<method name="get_particle_index">
+			<return type="int" />
+			<param index="0" name="particle_object" type="QParticleObject" />
+			<description>
+			</description>
+		</method>
+		<method name="get_polygon_area">
+			<return type="float" />
+			<description>
+			</description>
+		</method>
+		<method name="get_polygon_particle_count">
+			<return type="int" />
+			<description>
+			</description>
+		</method>
+		<method name="get_specified_side_points_of_polygon">
+			<return type="PackedVector2Array" />
+			<param index="0" name="polygon_points" type="PackedVector2Array" />
+			<param index="1" name="axis" type="Vector2" />
+			<param index="2" name="points_count_range" type="int" />
+			<param index="3" name="scale" type="float" />
+			<param index="4" name="origin" type="Vector2" />
+			<description>
+			</description>
+		</method>
+		<method name="get_spring_at">
+			<return type="QSpringObject" />
+			<param index="0" name="index" type="int" />
+			<description>
+			</description>
+		</method>
+		<method name="get_spring_count">
+			<return type="int" />
+			<description>
+			</description>
+		</method>
+		<method name="get_spring_index">
+			<return type="int" />
+			<param index="0" name="spring_object" type="QSpringObject" />
+			<description>
+			</description>
+		</method>
+		<method name="get_uv_map_at">
+			<return type="PackedInt32Array" />
+			<param index="0" name="index" type="int" />
+			<description>
+			</description>
+		</method>
+		<method name="get_uv_map_count">
+			<return type="int" />
+			<description>
+			</description>
+		</method>
+		<method name="remove_angle_constraint">
+			<return type="QMeshNode" />
+			<param index="0" name="angle_constraint_object" type="QAngleConstraintObject" />
+			<description>
+			</description>
+		</method>
+		<method name="remove_angle_constraint_at">
+			<return type="QMeshNode" />
+			<param index="0" name="index" type="int" />
+			<description>
+			</description>
+		</method>
+		<method name="remove_particle">
+			<return type="QMeshNode" />
+			<param index="0" name="particle_object" type="QParticleObject" />
+			<description>
+			</description>
+		</method>
+		<method name="remove_particle_at">
+			<return type="QMeshNode" />
+			<param index="0" name="index" type="int" />
+			<description>
+			</description>
+		</method>
+		<method name="remove_particle_from_polygon">
+			<return type="QMeshNode" />
+			<param index="0" name="particleObject" type="QParticleObject" />
+			<description>
+			</description>
+		</method>
+		<method name="remove_particle_from_polygon_at">
+			<return type="QMeshNode" />
+			<param index="0" name="index" type="int" />
+			<description>
+			</description>
+		</method>
+		<method name="remove_polygon">
+			<return type="QMeshNode" />
+			<description>
+			</description>
+		</method>
+		<method name="remove_spring">
+			<return type="QMeshNode" />
+			<param index="0" name="spring_object" type="QSpringObject" />
+			<description>
+			</description>
+		</method>
+		<method name="remove_spring_at">
+			<return type="QMeshNode" />
+			<param index="0" name="index" type="int" />
+			<description>
+			</description>
+		</method>
+		<method name="remove_uv_map_at">
+			<return type="QMeshNode" />
+			<param index="0" name="index" type="int" />
+			<description>
+			</description>
+		</method>
+		<method name="set_antialias_enabled">
+			<return type="QMeshNode" />
+			<param index="0" name="value" type="bool" />
+			<description>
+			</description>
+		</method>
+		<method name="set_curve_length">
+			<return type="QMeshNode" />
+			<param index="0" name="value" type="float" />
+			<description>
+			</description>
+		</method>
+		<method name="set_curved_corners_enabled">
+			<return type="QMeshNode" />
+			<param index="0" name="value" type="bool" />
+			<description>
+			</description>
+		</method>
+		<method name="set_fill_color">
+			<return type="QMeshNode" />
+			<param index="0" name="value" type="Color" />
+			<description>
+			</description>
+		</method>
+		<method name="set_fill_enabled">
+			<return type="QMeshNode" />
+			<param index="0" name="value" type="bool" />
+			<description>
+			</description>
+		</method>
+		<method name="set_fill_texture">
+			<return type="QMeshNode" />
+			<param index="0" name="texture" type="Texture2D" />
+			<description>
+			</description>
+		</method>
+		<method name="set_fill_texture_offset">
+			<return type="QMeshNode" />
+			<param index="0" name="value" type="Vector2" />
+			<description>
+			</description>
+		</method>
+		<method name="set_fill_texture_scale">
+			<return type="QMeshNode" />
+			<param index="0" name="value" type="float" />
+			<description>
+			</description>
+		</method>
+		<method name="set_mesh_global_position">
+			<return type="QMeshNode" />
+			<param index="0" name="_unnamed_arg0" type="Vector2" />
+			<description>
+			</description>
+		</method>
+		<method name="set_mesh_position">
+			<return type="QMeshNode" />
+			<param index="0" name="_unnamed_arg0" type="Vector2" />
+			<description>
+			</description>
+		</method>
+		<method name="set_mesh_rotation">
+			<return type="QMeshNode" />
+			<param index="0" name="_unnamed_arg0" type="float" />
+			<description>
+			</description>
+		</method>
+		<method name="set_min_angle_constraint_of_polygon">
+			<return type="QMeshNode" />
+			<param index="0" name="value" type="bool" />
+			<description>
+			</description>
+		</method>
+		<method name="set_particle_rendering_enabled">
+			<return type="QMeshNode" />
+			<param index="0" name="value" type="bool" />
+			<description>
+			</description>
+		</method>
+		<method name="set_polygon">
+			<return type="QMeshNode" />
+			<param index="0" name="particleCollection" type="QParticleObject[]" />
+			<description>
+			</description>
+		</method>
+		<method name="set_polygon_for_collision_disabled">
+			<return type="QMeshNode" />
+			<param index="0" name="value" type="bool" />
+			<description>
+			</description>
+		</method>
+		<method name="set_show_particle_index_numbers_enabled">
+			<return type="QMeshNode" />
+			<param index="0" name="value" type="bool" />
+			<description>
+			</description>
+		</method>
+		<method name="set_show_polygon_enabled">
+			<return type="QMeshNode" />
+			<param index="0" name="value" type="bool" />
+			<description>
+			</description>
+		</method>
+		<method name="set_show_springs_enabled">
+			<return type="QMeshNode" />
+			<param index="0" name="value" type="bool" />
+			<description>
+			</description>
+		</method>
+		<method name="set_stretching_texture_to_polygon_enabled">
+			<return type="QMeshNode" />
+			<param index="0" name="value" type="bool" />
+			<description>
+			</description>
+		</method>
+		<method name="set_stroke_color">
+			<return type="QMeshNode" />
+			<param index="0" name="value" type="Color" />
+			<description>
+			</description>
+		</method>
+		<method name="set_stroke_enabled">
+			<return type="QMeshNode" />
+			<param index="0" name="value" type="bool" />
+			<description>
+			</description>
+		</method>
+		<method name="set_stroke_offset">
+			<return type="QMeshNode" />
+			<param index="0" name="value" type="float" />
+			<description>
+			</description>
+		</method>
+		<method name="set_stroke_width">
+			<return type="QMeshNode" />
+			<param index="0" name="value" type="float" />
+			<description>
+			</description>
+		</method>
+		<method name="set_triangulation_enabled">
+			<return type="QMeshNode" />
+			<param index="0" name="value" type="bool" />
+			<description>
+			</description>
+		</method>
+		<method name="set_vector_rendering_enabled">
+			<return type="QMeshNode" />
+			<param index="0" name="value" type="bool" />
+			<description>
+			</description>
+		</method>
+	</methods>
+	<members>
+		<member name="antialias" type="bool" setter="set_antialias_enabled" getter="get_antialias_enabled" default="true">
+		</member>
+		<member name="curve_length" type="float" setter="set_curve_length" getter="get_curve_length" default="8.0">
+		</member>
+		<member name="data_internal_springs" type="PackedInt32Array[]" setter="set_data_internal_springs" getter="get_data_internal_springs" default="[]">
+		</member>
+		<member name="data_particle_is_enabled" type="PackedByteArray" setter="set_data_particle_is_enabled" getter="get_data_particle_is_enabled" default="PackedByteArray()">
+		</member>
+		<member name="data_particle_is_internal" type="PackedByteArray" setter="set_data_particle_is_internal" getter="get_data_particle_is_internal" default="PackedByteArray()">
+		</member>
+		<member name="data_particle_is_lazy" type="PackedByteArray" setter="set_data_particle_is_lazy" getter="get_data_particle_is_lazy" default="PackedByteArray()">
+		</member>
+		<member name="data_particle_positions" type="PackedVector2Array" setter="set_data_particle_positions" getter="get_data_particle_positions" default="PackedVector2Array()">
+		</member>
+		<member name="data_particle_radius" type="PackedFloat32Array" setter="set_data_particle_radius" getter="get_data_particle_radius" default="PackedFloat32Array()">
+		</member>
+		<member name="data_polygon" type="PackedInt32Array" setter="set_data_polygon" getter="get_data_polygon" default="PackedInt32Array()">
+		</member>
+		<member name="data_springs" type="PackedInt32Array[]" setter="set_data_springs" getter="get_data_springs" default="[]">
+		</member>
+		<member name="data_uv_maps" type="PackedInt32Array[]" setter="set_data_uv_maps" getter="get_data_uv_maps" default="[]">
+		</member>
+		<member name="disable_polygon_for_collisions" type="bool" setter="set_polygon_for_collision_disabled" getter="get_polygon_for_collision_disabled" default="false">
+		</member>
+		<member name="enable_curved_corners" type="bool" setter="set_curved_corners_enabled" getter="get_curved_corners_enabled" default="false">
+		</member>
+		<member name="enable_fill" type="bool" setter="set_fill_enabled" getter="get_fill_enabled" default="true">
+		</member>
+		<member name="enable_particle_rendering" type="bool" setter="set_particle_rendering_enabled" getter="get_particle_rendering_enabled" default="true">
+		</member>
+		<member name="enable_stretching_texture_to_polygon" type="bool" setter="set_stretching_texture_to_polygon_enabled" getter="get_stretching_texture_to_polygon_enabled" default="true">
+		</member>
+		<member name="enable_stroke" type="bool" setter="set_stroke_enabled" getter="get_stroke_enabled" default="false">
+		</member>
+		<member name="enable_vector_rendering" type="bool" setter="set_vector_rendering_enabled" getter="get_vector_rendering_enabled" default="false">
+		</member>
+		<member name="fill_color" type="Color" setter="set_fill_color" getter="get_fill_color" default="Color(1, 1, 1, 1)">
+		</member>
+		<member name="fill_texture" type="Texture2D" setter="set_fill_texture" getter="get_fill_texture">
+		</member>
+		<member name="fill_texture_offset" type="Vector2" setter="set_fill_texture_offset" getter="get_fill_texture_offset" default="Vector2(0, 0)">
+		</member>
+		<member name="fill_texture_scale" type="float" setter="set_fill_texture_scale" getter="get_fill_texture_scale" default="1.0">
+		</member>
+		<member name="show_particle_index_numbers" type="bool" setter="set_show_particle_index_numbers_enabled" getter="get_show_particle_index_numbers_enabled" default="false">
+		</member>
+		<member name="show_polygons" type="bool" setter="set_show_polygon_enabled" getter="get_show_polygon_enabled" default="true">
+		</member>
+		<member name="show_springs" type="bool" setter="set_show_springs_enabled" getter="get_show_springs_enabled" default="true">
+		</member>
+		<member name="stroke_color" type="Color" setter="set_stroke_color" getter="get_stroke_color" default="Color(0, 0, 0, 1)">
+		</member>
+		<member name="stroke_offset" type="float" setter="set_stroke_offset" getter="get_stroke_offset" default="0.0">
+		</member>
+		<member name="stroke_width" type="float" setter="set_stroke_width" getter="get_stroke_width" default="3.0">
+		</member>
+		<member name="triangulation" type="bool" setter="set_triangulation_enabled" getter="get_triangulation_enabled" default="false">
+		</member>
+	</members>
+</class>

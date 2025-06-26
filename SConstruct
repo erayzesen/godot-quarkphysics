@@ -24,7 +24,14 @@ env.Append(CPPPATH=["src/QuarkPhysics/polypartition/"])
 sources = [ Glob("src/*.cpp"),Glob("src/QuarkPhysics/*.cpp"),Glob("src/QuarkPhysics/extensions/*.cpp"),Glob("src/QuarkPhysics/json/*.cpp"),Glob("src/QuarkPhysics/polypartition/*.cpp") ]
 #sources = Glob("src/*.cpp")
 
-
+#Native Documentation Section
+if env["target"] in ["editor", "template_debug"]:
+    try:
+        doc_data = env.GodotCPPDocData("src/gen/doc_data.gen.cpp", source=Glob("doc_classes/*.xml"))
+        sources.append(doc_data)
+    except AttributeError:
+        print("Not including class reference as we're targeting a pre-4.3 baseline.")
+#End of the Native Documentation Section
 
 if env["platform"] == "macos":
     library = env.SharedLibrary(
