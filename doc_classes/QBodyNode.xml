@@ -3,6 +3,7 @@
 	<brief_description>
 	</brief_description>
 	<description>
+	It's the base class for all physics bodies. It has common properties and methods shared by all bodies.
 	</description>
 	<tutorials>
 	</tutorials>
@@ -11,140 +12,178 @@
 			<return type="QBodyNode" />
 			<param index="0" name="value" type="Vector2" />
 			<description>
+			Adds a vector value the position of the body.
+			[param value]: A vector value to add. 
 			</description>
 		</method>
 		<method name="add_body_previous_position">
 			<return type="QBodyNode" />
 			<param index="0" name="value" type="Vector2" />
 			<description>
+			Adds a vector the previous position of the body.
+			[param value]: A vector value to add.
 			</description>
 		</method>
 		<method name="add_body_rotation">
 			<return type="QBodyNode" />
 			<param index="0" name="angle_radian" type="float" />
 			<description>
+			Adds a value to the rotation of the body. 
+			[param angle_radian]: A value to add, in radians. 
 			</description>
 		</method>
 		<method name="add_mesh_node">
 			<return type="QBodyNode" />
 			<param index="0" name="mesh_node" type="Object" />
 			<description>
+			Adds a mesh to the body.
+			[b]Note:[/b] We don't recommend using this method with Godot. This method was added to stay true to the original API and for very exceptional cases. For Node type objects in QuarkPhysics, you should always stick to Godot's child structure workflow. 
+			[param mesh_node]: A QMeshNode to add.
 			</description>
 		</method>
 		<method name="apply_force">
 			<return type="QBodyNode" />
 			<param index="0" name="value" type="Vector2" />
 			<description>
+			Applies a force immediately to the body. The way the force is applied may vary depending on the QBodyNode type.  if you want to apply force at the next physic step safely, use [method set_force] and [method add_force] methods.
+			[param value]: The force to apply.
 			</description>
 		</method>
 		<method name="get_aabb">
 			<return type="Rect2" />
 			<description>
+			Returns the AABB feature of the body.
 			</description>
 		</method>
 		<method name="get_body_position">
 			<return type="Vector2" />
 			<description>
+			Returns the position of the body.
 			</description>
 		</method>
 		<method name="get_body_previous_position">
 			<return type="Vector2" />
 			<description>
+			Returns the previous position of the body.
 			</description>
 		</method>
 		<method name="get_body_previous_rotation">
 			<return type="float" />
 			<description>
+			Returns the previous position of the body.
 			</description>
 		</method>
 		<method name="get_body_rotation">
 			<return type="float" />
 			<description>
+			Returns the rotation of the body.
 			</description>
 		</method>
 		<method name="get_body_rotation_degree">
 			<return type="float" />
 			<description>
+			Returns the rotation of the body as degree.
 			</description>
 		</method>
 		<method name="get_body_specific_time_scale">
 			<return type="float" />
 			<description>
+			Returns the body spesific time scale.
 			</description>
 		</method>
 		<method name="get_body_specific_time_scale_enabled">
 			<return type="bool" />
 			<description>
+			Returns whether the body spesific time scale is enabled.
 			</description>
 		</method>
 		<method name="get_integrated_velocities_enabled">
 			<return type="bool" />
 			<description>
+			Returns whether the application of gravity and various velocity integrators necessary for the body's movement in the physics world is enabled. It is set to true by default. Typically, it is disabled for specific body objects that require manual control.
 			</description>
 		</method>
 		<method name="get_is_sleeping">
 			<return type="bool" />
 			<description>
+			Returns whether the body is sleeping.
 			</description>
 		</method>
 		<method name="get_mesh_at">
 			<return type="QMeshNode" />
 			<param index="0" name="index" type="int" />
 			<description>
+			Returns the mesh of the body with specified index.
+			[param index]: The index of the QMeshNode.
 			</description>
 		</method>
 		<method name="get_mesh_count">
 			<return type="int" />
 			<description>
+			Returns the count of the meshes of to the body.
 			</description>
 		</method>
 		<method name="get_overlap_with_collidable_layers_bit">
 			<return type="bool" />
 			<param index="0" name="_unnamed_arg0" type="int" />
 			<description>
+			Returns whether a body object can collide with other body objects that have the given layers bit as parameters.
+			[param layers_bit]: A bit value representing the layers to check.
 			</description>
 		</method>
 		<method name="get_overlap_with_layers_bit">
 			<return type="bool" />
 			<param index="0" name="_unnamed_arg0" type="int" />
 			<description>
+			Checks whether a body object overlaps with a given bit value that represents layers. Returns true if the body object is in at least one of the layers represented by the given bit.
+			[param layers_bit]: A bit value representing the layers to check.
 			</description>
 		</method>
 		<method name="get_total_area">
 			<return type="float" />
 			<description>
+			Returns the total area of the body.
 			</description>
 		</method>
 		<method name="get_total_initial_area">
 			<return type="float" />
 			<description>
+			Returns the total initial area of the body. Initial area means the calculated total area with non-transformed meshes of the body.
 			</description>
 		</method>
 		<method name="get_total_polygons_area">
 			<return type="float" />
 			<description>
+			Returns the total area of the polygons of the body.
 			</description>
 		</method>
 		<method name="get_total_polygons_initial_area">
 			<return type="float" />
 			<description>
+			Returns the total initial area of the polygons of the body. Initial area means the calculated total area with non-transformed meshes of the body.
 			</description>
 		</method>
 		<method name="get_world_node">
 			<return type="QWorldNode" />
 			<description>
+			Returns the QWorldNode object that the Body is currently inside of.
 			</description>
 		</method>
 		<method name="remove_mesh_node_at">
 			<return type="QBodyNode" />
 			<param index="0" name="index" type="int" />
 			<description>
+			Removes a mesh from the body.
+			[b]Note:[/b] We don't recommend using this method with Godot. This method was added to stay true to the original API and for very exceptional cases. For Node type objects in QuarkPhysics, you should always stick to Godot's child structure workflow. 
+			[param index]: The index of the mesh to remove.
 			</description>
 		</method>
 		<method name="set_air_friction">
 			<return type="QBodyNode" />
 			<param index="0" name="value" type="float" />
 			<description>
+			Sets the air friction value of the body.
+			[param value]: A value to set.
 			</description>
 		</method>
 		<method name="set_body_position">
@@ -152,18 +191,25 @@
 			<param index="0" name="value" type="Vector2" />
 			<param index="1" name="with_previous_position" type="bool" />
 			<description>
+			Sets the position of the body. 
+			[param value]: A position value to set.
+			[param with_previous_position]: Determines whether apply the position to the previous position of the body.In this simulation, since velocities are implicit, if the previous position are the same as the newly set position, the positional velocity of the body will also be zeroed.Therefore, if you want to zero out the positional velocity when setting the new position, use this option.
 			</description>
 		</method>
 		<method name="set_body_previous_position">
 			<return type="QBodyNode" />
 			<param index="0" name="value" type="Vector2" />
 			<description>
+			Sets the previous position of the body. 
+			[param value]: A position value to set. 
 			</description>
 		</method>
 		<method name="set_body_previous_rotation">
 			<return type="QBodyNode" />
 			<param index="0" name="angle_radian" type="float" />
 			<description>
+			Sets the previous rotation of the body. 
+			[param angle_radian]: A rotation value to set, in radians. 
 			</description>
 		</method>
 		<method name="set_body_rotation">
@@ -171,137 +217,186 @@
 			<param index="0" name="angle_radian" type="float" />
 			<param index="1" name="with_previous_rotation" type="bool" />
 			<description>
+			Sets the rotation of the body. 
+			[param angle_radian]: A rotation value to set, in radians. 
+			[param with_previous_rotation]: Determines whether apply the rotation to the previous rotation of the body.In this simulation, since velocities are implicit, if the previous rotation are the same as the newly set rotation, the angular velocity of the body will also be zeroed.Therefore, if you want to zero out the angular velocity when setting the new rotation, use this option.
 			</description>
 		</method>
 		<method name="set_body_rotation_degree">
 			<return type="QBodyNode" />
-			<param index="0" name="angle_radian" type="float" />
+			<param index="0" name="angle_degree" type="float" />
 			<param index="1" name="with_previous_rotation" type="bool" />
 			<description>
+			Sets the rotation of the body with specified angle in degrees. 
+			[param angle_degree]: A rotation value to set, in degrees.
 			</description>
 		</method>
 		<method name="set_body_spesific_time_scale">
 			<return type="QBodyNode" />
 			<param index="0" name="value" type="float" />
 			<description>
+			Sets the rotation of the body with specified angle in degrees. 
+			[param value]: A rotation value to set, in degrees. 
 			</description>
 		</method>
 		<method name="set_body_spesific_time_scale_enabled">
 			<return type="QBodyNode" />
 			<param index="0" name="value" type="bool" />
 			<description>
+			Sets whether the body-specific time scale is enabled. The world has a time scale, but this allows you to assign a specific time scale to the body object as an exception. 
+			[param value]: A value to set.
 			</description>
 		</method>
 		<method name="set_can_sleep">
 			<return type="QBodyNode" />
 			<param index="0" name="value" type="bool" />
 			<description>
+			Sets whether the body can sleep in the active sleep mode.
+			[param value]: A value to set.
 			</description>
 		</method>
 		<method name="set_collidable_layers_bit">
 			<return type="QBodyNode" />
 			<param index="0" name="value" type="int" />
 			<description>
+			Sets the bit mask that represents the collidable layers in which the body object is present.A body object can collide with other body objects present in the layers defined by the user. 
+			[param value]: A bit mask value to set. 
 			</description>
 		</method>
 		<method name="set_custom_gravity">
 			<return type="QBodyNode" />
 			<param index="0" name="value" type="Vector2" />
 			<description>
+			Sets whether a specific custom gravity value, defined using the SetCustomGravity() method, will be applied to the body instead of the gravity defined for the physics world.
+			[param value]: A value to set.
 			</description>
 		</method>
 		<method name="set_custom_gravity_enabled">
 			<return type="QBodyNode" />
 			<param index="0" name="value" type="bool" />
 			<description>
+			Sets whether a specific custom gravity value, defined using the SetCustomGravity() method, will be applied to the body instead of the gravity defined for the physics world.
+			[param value]: A value to set.
 			</description>
 		</method>
 		<method name="set_enabled">
 			<return type="QBodyNode" />
 			<param index="0" name="value" type="bool" />
 			<description>
+			Sets whether the body is enabled.
+			[param value]: A value to set.
 			</description>
 		</method>
 		<method name="set_friction">
 			<return type="QBodyNode" />
 			<param index="0" name="value" type="float" />
 			<description>
+			Sets the friction value of the body. 
+			[param value]: A value to set.
 			</description>
 		</method>
 		<method name="set_integrated_velocities_enabled">
 			<return type="QBodyNode" />
 			<param index="0" name="value" type="bool" />
 			<description>
+			Sets whether the application of gravity and various velocity integrators necessary for the body's movement in the physics world is enabled. It is set to true by default. Typically, it is disabled for specific body objects that require manual control.
+			[param value]: A value to set.
 			</description>
 		</method>
 		<method name="set_layers_bit">
 			<return type="QBodyNode" />
 			<param index="0" name="value" type="int" />
 			<description>
+			Sets the bit mask that represents the layers in which the body object is present.
+			[param value]: A bit mask value to set.
 			</description>
 		</method>
 		<method name="set_mass">
 			<return type="QBodyNode" />
 			<param index="0" name="value" type="float" />
 			<description>
+			Sets the mass value of the body. 
+			[param value]: A value to set.
 			</description>
 		</method>
 		<method name="set_mode">
 			<return type="QBodyNode" />
 			<param index="0" name="value" type="int" enum="QBodyNode.Modes" />
 			<description>
+			Sets whether the body is dynamic or static.
+			[param value] : A QBodyNode.Modes value to set.
 			</description>
 		</method>
 		<method name="set_restitution">
 			<return type="QBodyNode" />
 			<param index="0" name="value" type="float" />
 			<description>
+			Sets the restitution value of the body.
+			[param value]: A value to set.
 			</description>
 		</method>
 		<method name="set_static_friction">
 			<return type="QBodyNode" />
 			<param index="0" name="value" type="float" />
 			<description>
+			Sets the static friction value of the body. 
+			[param value]: A value to set.
 			</description>
 		</method>
 		<method name="set_velocity_limit">
 			<return type="QBodyNode" />
 			<param index="0" name="value" type="float" />
 			<description>
+			Limits the velocity of the physics body. If set to 0, no velocity limit is applied. The default value is 0.
+			[param value]: A value to set.
 			</description>
 		</method>
 		<method name="wake_up">
 			<return type="QBodyNode" />
 			<description>
+			Wakes up a body that is in a sleeping state.
 			</description>
 		</method>
 	</methods>
 	<members>
 		<member name="air_friction" type="float" setter="set_air_friction" getter="get_air_friction" default="0.01">
+		The Air friction value of the body. 
 		</member>
 		<member name="can_sleep" type="bool" setter="set_can_sleep" getter="get_can_sleep" default="true">
+		The property determines whether the body can sleep in the active sleep mode.
 		</member>
 		<member name="collidable_layers" type="int" setter="set_collidable_layers_bit" getter="get_collidable_layers_bit" default="1">
+		The bit mask that represents the collidable layers in which the body object is present.A body object can collide with other body objects present in the layers defined by the user. 
 		</member>
 		<member name="custom_gravity" type="Vector2" setter="set_custom_gravity" getter="get_custom_gravity" default="Vector2(0, 0)">
+		The custom gravity vector to be applied if the [member use_custom_gravity] property is enabled.
 		</member>
 		<member name="enabled" type="bool" setter="set_enabled" getter="get_enabled" default="true">
+		The property determines whether the body is enabled.
 		</member>
 		<member name="friction" type="float" setter="set_friction" getter="get_friction" default="0.2">
+		The friction value of the body.
 		</member>
 		<member name="layers" type="int" setter="set_layers_bit" getter="get_layers_bit" default="1">
+		The bit mask that represents the layers in which the body object is present.
 		</member>
 		<member name="mass" type="float" setter="set_mass" getter="get_mass" default="1.0">
+		The mass value of the body.
 		</member>
 		<member name="mode" type="int" setter="set_mode" getter="get_mode" enum="QBodyNode.Modes" default="0">
+		The property determines whether the body is dynamic or static. 
 		</member>
 		<member name="restitution" type="float" setter="set_restitution" getter="get_restitution" default="0.0">
+		The restitution value of the body. 
 		</member>
 		<member name="static_friction" type="float" setter="set_static_friction" getter="get_static_friction" default="0.5">
+		The static friction value of the body.
 		</member>
 		<member name="use_custom_gravity" type="bool" setter="set_custom_gravity_enabled" getter="get_custom_gravity_enabled" default="false">
+		The property determines whether a specific custom gravity value, defined using the [member custom_gravity] value, will be applied to the body instead of the gravity defined for the physics world.
 		</member>
 		<member name="velocity_limit" type="float" setter="set_velocity_limit" getter="get_velocity_limit" default="0.0">
+		Limits the velocity of the physics body. If set to 0, no velocity limit is applied. The default value is 0.
 		</member>
 	</members>
 	<signals>
@@ -309,21 +404,45 @@
 			<param index="0" name="body_node" type="Object" />
 			<param index="1" name="info" type="Dictionary" />
 			<description>
+			The signal is triggered when a body object collides with another body object during a physics step.
+			[param body_node]: The body that triggered the collision signal.  
+			[param info]: A Dictionary containing information about the collision. 
+			The structure of the Dictionary of [param info] returned by the signal is shown below.
+			[gdscript]
+			func _ready() :
+			    my_body.connect("collision", on_body_collided)
+			
+			func on_body_collided(body_node,info) :
+			    #body_node: The body that triggered the collision signal.
+			    #The collided body
+			    var collided_body=info["body"]
+			    #The position of the collision 
+			    var collision_position=info["position"]
+			    #The normal of the collision 
+			    var collision_normal=info["normal"]
+			    #The penetration depth of the collision 
+			    var collision_penetration=info["penetration"]
+				
+			[/gdscript]
 			</description>
 		</signal>
 		<signal name="pre_step">
 			<description>
+			The signal is triggered at the beginning of a physics step, before any collision or constraint operations have been applied to body objects. It is a good time to perform instantaneous operations that will manipulate the presence of a body object in the world.
 			</description>
 		</signal>
 		<signal name="step">
 			<description>
+			The signal is triggered after collision and constraint operations are applied in a physics step. It is a good time to perform operations that are not instantaneous but rather intended to be applied in the next physics step on body objects.
 			</description>
 		</signal>
 	</signals>
 	<constants>
 		<constant name="DYNAMIC" value="0">
+		Dynamic bodies are affected by collisions, constraints, and applied forces within the physics world. They're used for bodies that need to move. 
 		</constant>
 		<constant name="STATIC" value="1">
+		Static bodies aren't affected by collisions or constraints. They're used for bodies that should remain motionless.
 		</constant>
 	</constants>
 </class>

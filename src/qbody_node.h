@@ -149,7 +149,7 @@ public:
 
     QBodyNode *set_body_rotation(float angle_radian,bool with_previous_rotation=true);
 
-    QBodyNode *set_body_rotation_degree(float degree,bool with_previous_rotation=true);
+    QBodyNode *set_body_rotation_degree(float angle_degree,bool with_previous_rotation=true);
 
     QBodyNode *add_body_rotation(float angle_radian);
 
