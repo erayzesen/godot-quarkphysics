@@ -3,13 +3,17 @@
 	<brief_description>
 	</brief_description>
 	<description>
+	QMeshCircleNode allows you to create circle-shaped meshes. Its core idea is to produce a QMeshNode with a single particle whose radius is set.
+	[b]Note:[/b] These helper types of QMeshNode, once added to the scene, are converted into a typical QMeshNode with particles, spring connections, UV mappings, and a polygon. After being added to the scene, all modifications and adjustments should be done using the general methods of QMeshNode, rather than the member properties defined here.
 	</description>
 	<tutorials>
 	</tutorials>
 	<members>
 		<member name="center_position" type="Vector2" setter="set_center_position" getter="get_center_position" default="Vector2(0, 0)">
+		The center position of the circle.
 		</member>
 		<member name="circle_radius" type="float" setter="set_circle_radius" getter="get_circle_radius" default="32.0">
+		The radius of the circle.
 		</member>
 	</members>
 </class>
