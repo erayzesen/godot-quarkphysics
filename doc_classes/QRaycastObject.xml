@@ -3,6 +3,7 @@
 	<brief_description>
 	</brief_description>
 	<description>
+	QRaycastObject send a ray into the world and return collision results with body objects. You can create a constant raycast object that you can add to the world and update collision results at every physics step, or you can make instantaneous raycast calls at runtime using the [method QWorldNode.raycast_to] method. QWorldNode also provides methods for managing QRaycastObject instances.
 	</description>
 	<tutorials>
 	</tutorials>
@@ -14,61 +15,96 @@
 			<param index="2" name="enable_containing_bodies" type="bool" />
 			<param index="3" name="collidable_layers" type="int" />
 			<description>
+			Configures a raycast with basic features.
+			[param position]: The ray's position in the physics world.
+			[param ray_vector]: The ray vector.
+			[param enable_containing_bodies]: Determines whether to consider the body containing the ray's position. If set to true and the ray is inside a body's collision shape, the collision point will be the ray's starting point, and the first body hit will be this containing body.
+			[param collidable_layers]: The bit mask defines the collidable layers a body object is part of. A raycast object will only collide with body objects that are present in the layers specified by this mask.
 			</description>
 		</method>
 		<method name="get_contacts">
 			<return type="Array" />
 			<description>
+			Returns contact list of the raycast.
+			The code explaining the return structure is as follows:
+			[gdscript]
+			var contacts=my_raycast.get_contacts()
+			#Check if there are any contacts
+			if contacts.size()>0 :
+			    #Get the first contact
+			    var my_contact=contacts[0]
+			    #The contact body of the ray collision
+			    var contact_body=my_contact["body"]
+			    #The contact position of the ray collision.
+			    var contact_position=my_contact["position"]
+			    #The contact normal of the ray collision.
+			    var contact_normal=my_contact["normal"]
+			    #The distance between the ray position and the contact body.
+			    var contact_distance=my_contact["distance"]
+			[/gdscript]
 			</description>
 		</method>
 		<method name="get_containing_bodies_enabled">
 			<return type="bool" />
 			<description>
+			Returns whether to consider the body containing the ray's position. If set to true and the ray is inside a body's collision shape, the collision point will be the ray's starting point, and the first body hit will be this containing body.
 			</description>
 		</method>
 		<method name="get_position">
 			<return type="Vector2" />
 			<description>
+			Returns the position of the raycast.
 			</description>
 		</method>
 		<method name="get_ray_vector">
 			<return type="Vector2" />
 			<description>
+			Returns the ray vector of the raycast.
 			</description>
 		</method>
 		<method name="get_rotation">
 			<return type="float" />
 			<description>
+			Returns the rotation of the raycast.
 			</description>
 		</method>
 		<method name="set_collidable_layers_bit">
 			<return type="QRaycastObject" />
 			<param index="0" name="value" type="int" />
 			<description>
+			Sets the bitmask of layers the ray can collide with. The bit mask defines the collidable layers a body object is part of. A raycast object will only collide with body objects that are present in the layers specified by this mask.
+			[param value]: A bit mask value to set.
 			</description>
 		</method>
 		<method name="set_containing_bodies_enabled">
 			<return type="QRaycastObject" />
 			<param index="0" name="value" type="bool" />
 			<description>
+			Sets whether to consider the body containing the ray's position. If set to true and the ray is inside a body's collision shape, the collision point will be the ray's starting point, and the first body hit will be this containing body.
+			[param value]: A value to set.
 			</description>
 		</method>
 		<method name="set_position">
 			<return type="QRaycastObject" />
 			<param index="0" name="value" type="Vector2" />
 			<description>
+			Sets the position of the raycast. 
+			[param value]: A value to set.
 			</description>
 		</method>
 		<method name="set_ray_vector">
 			<return type="QRaycastObject" />
 			<param index="0" name="value" type="Vector2" />
 			<description>
+			Sets the ray vector of the raycast.
+			[param value]: A value to set.
 			</description>
 		</method>
 		<method name="set_rotation">
 			<return type="QRaycastObject" />
 			<param index="0" name="value" type="float" />
 			<description>
+			[param value]: A value to set.
 			</description>
 		</method>
 	</methods>
