@@ -3,7 +3,7 @@
 	<brief_description>
 	</brief_description>
 	<description>
-	You can apply angle constraints between 3 particles using the QAngleConstraintObject. The physics engine uses QAngleConstraintObject to impose angle constraints between particles in objects already simulated using mass-spring models (e.g. QSoftBody objects). However, if the user wants, they can apply specific angle constraints between any 3 particles using QAngleConstraint. QWorld also provides methods to manage QAngleConstraint objects.
+	You can apply angle constraints between 3 particles using the QAngleConstraintObject. The physics engine uses QAngleConstraintObject to impose angle constraints between particles in objects already simulated using mass-spring models (e.g. QSoftBody objects). However, if the user wants, they can apply specific angle constraints between any 3 particles using QAngleConstraintObject. QWorldNode also provides methods to manage QAngleConstraintObject instances.
 	[b]Note:[/b] QAngleConstraintObject will not work correctly on objects that are not simulated with particle dynamics, such as rigid bodies whose positions are fixed by transformations. QAngleConstraintObject relies on the ability to change the positions of particles with freedom of movement to apply constraints correctly.
 	</description>
 	<tutorials>

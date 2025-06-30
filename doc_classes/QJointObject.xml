@@ -3,7 +3,7 @@
 	<brief_description>
 	</brief_description>
 	<description>
-	QJointObject serves to apply various distance constraints between rigid bodies. Additionally, you can create a distance constraint between any object and an imaginary point in space. Instead of separate methods for all fundamental constraints in physics engines, there is a set of property sets available. For example, setting a distance constraint to a distance of 0 creates a constraint known as a pin joint. By decreasing the rigidity of a set distance constraint, you obtain another type of joint called a spring joint. Enabling the groove mode prevents the constraint from being applied as long as the set distance is not exceeded, resulting in another type of joint called a groove joint. QWorldNode also provides methods to manage QJoint objects.
+	QJointObject serves to apply various distance constraints between rigid bodies. Additionally, you can create a distance constraint between any object and an imaginary point in space. Instead of separate methods for all fundamental constraints in physics engines, there is a set of property sets available. For example, setting a distance constraint to a distance of 0 creates a constraint known as a pin joint. By decreasing the rigidity of a set distance constraint, you obtain another type of joint called a spring joint. Enabling the groove mode prevents the constraint from being applied as long as the set distance is not exceeded, resulting in another type of joint called a groove joint. QWorldNode also provides methods to manage QJointObject instances.
 	</description>
 	<tutorials>
 	</tutorials>
