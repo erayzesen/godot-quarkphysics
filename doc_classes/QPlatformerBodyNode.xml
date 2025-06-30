@@ -3,6 +3,7 @@
 	<brief_description>
 	</brief_description>
 	<description>
+	QPlatformerBodyNode provides a ready-to-use foundation for character physics in platformer games. It includes behaviors such as gravity, walking on slopes, and jumping. Additionally, it offers helper methods and properties for further customization.
 	</description>
 	<tutorials>
 	</tutorials>
@@ -11,63 +12,78 @@
 			<return type="Dictionary" />
 			<param index="0" name="offset" type="float" />
 			<description>
+			Checks for a collision with the ceiling.
+			[param offset]: The offset to apply during the check.
 			</description>
 		</method>
 		<method name="get_controller_horizontal_velocity">
 			<return type="Vector2" />
 			<description>
+			Returns the horizontal velocity controlled by the character physics.
 			</description>
 		</method>
 		<method name="get_controller_vertical_velocity">
 			<return type="Vector2" />
 			<description>
+			Returns the vertical velocity controlled by the character physics.
 			</description>
 		</method>
 		<method name="get_floor">
 			<return type="Dictionary" />
 			<param index="0" name="offset" type="float" />
 			<description>
+			 Checks for a collision with the floor.
+			 [param offset]: The offset to apply during the check.
 			</description>
 		</method>
 		<method name="get_floor_max_angle">
 			<return type="float" />
 			<description>
+			Returns the maximum angle for the floor.
 			</description>
 		</method>
 		<method name="get_gravity_multiplier">
 			<return type="float" />
 			<description>
+			Returns the gravity multiplier.
 			</description>
 		</method>
 		<method name="get_is_falling">
 			<return type="bool" />
 			<description>
+			Checks if the body is falling.
 			</description>
 		</method>
 		<method name="get_is_jump_released">
 			<return type="bool" />
 			<description>
+			Checks if the jump phase has been released.
 			</description>
 		</method>
 		<method name="get_is_on_ceiling">
 			<return type="bool" />
 			<description>
+			Checks if the body is currently touching the ceiling.
 			</description>
 		</method>
 		<method name="get_is_on_floor">
 			<return type="bool" />
 			<description>
+			Checks if the body is currently on the floor.
 			</description>
 		</method>
 		<method name="get_is_rising">
 			<return type="bool" />
 			<description>
+			Checks if the body is rising.
 			</description>
 		</method>
 		<method name="get_left_wall">
 			<return type="Dictionary" />
 			<param index="0" name="offset" type="float" />
 			<description>
+			Checks for a collision with a wall on the left.
+			[param offset]: The offset to apply during the check.
 			</description>
 		</method>
 		<method name="get_platform_collisions">
@@ -75,12 +91,17 @@
 			<param index="0" name="test_position" type="Vector2" />
 			<param index="1" name="filter_by_moving_direction" type="bool" />
 			<description>
+			Performs a platform collision test.
+			[param test_position]: The position to test for collisions.
+			[param filter_by_moving_direction]: If set to true, filters out collisions that respond in the opposite direction of the movement vector calculated between the current position and the given test position.
 			</description>
 		</method>
 		<method name="get_right_wall">
 			<return type="Dictionary" />
 			<param index="0" name="offset" type="float" />
 			<description>
+			Checks for a collision with a wall on the right.
+			[param offset]: The offset to apply during the check.
 			</description>
 		</method>
 		<method name="jump">
@@ -88,135 +109,183 @@
 			<param index="0" name="force" type="float" />
 			<param index="1" name="unconditional" type="bool" />
 			<description>
+			Initiates a jump with the specified force.
+			[param force]: The force of the jump.
+			[param unconditional]: If true, the jump will execute regardless of current conditions.
 			</description>
 		</method>
 		<method name="release_jump">
 			<return type="QPlatformerBodyNode" />
 			<description>
+			If you have previously triggered the [method jump], you should trigger this whenever the character is expected to exit the jump phase according to your game logic.
 			</description>
 		</method>
 		<method name="set_controller_horizontal_velocity">
 			<return type="QPlatformerBodyNode" />
 			<param index="0" name="value" type="Vector2" />
 			<description>
+			Sets the horizontal velocity controlled by the character physics.
+			[param value]: The velocity vector to be applied on the horizontal axis.
 			</description>
 		</method>
 		<method name="set_controller_vertical_velocity">
 			<return type="QPlatformerBodyNode" />
 			<param index="0" name="value" type="Vector2" />
 			<description>
+			Sets the vertical velocity controlled by the character physics.
+			[param value]: The velocity vector to be applied on the vertical axis.
 			</description>
 		</method>
 		<method name="set_floor_max_angle">
 			<return type="QPlatformerBodyNode" />
 			<param index="0" name="value" type="float" />
 			<description>
+			The maximum angle at which a surface is considered a floor by the character.
+			[param value]: A value of type radian to be set.
 			</description>
 		</method>
 		<method name="set_floor_max_angle_degree">
 			<return type="QPlatformerBodyNode" />
 			<param index="0" name="value" type="float" />
 			<description>
+			The maximum angle in degree at which a surface is considered a floor by the character.
+			[param value]: A value of type degree to be set.
 			</description>
 		</method>
 		<method name="set_gravity">
 			<return type="QPlatformerBodyNode" />
 			<param index="0" name="value" type="Vector2" />
 			<description>
+			Sets the gravity vector to be applied to the character on every frame.
+			[param value]: A value to set.
 			</description>
 		</method>
 		<method name="set_gravity_multiplier">
 			<return type="QPlatformerBodyNode" />
 			<param index="0" name="value" type="float" />
 			<description>
+			This is the multiplier applied to the gravity force acting on the character. It is useful in mechanics where you need to scale the globally defined gravity in the simulation. The default value is 1.0.
+			[param value]: A value to set.
 			</description>
 		</method>
 		<method name="set_jump_duration_frame_count">
 			<return type="QPlatformerBodyNode" />
 			<param index="0" name="value" type="int" />
 			<description>
+			Sets the number of frames required before the [method jump] method can be triggered again for the character after the default [method jump] method has been executed.
+			[param value]: A value to set.
 			</description>
 		</method>
 		<method name="set_jump_fall_gravity_multiplier">
 			<return type="QPlatformerBodyNode" />
 			<param index="0" name="value" type="float" />
 			<description>
+			Sets the gravity multiplier to be applied when the character is falling after the [method jump] method has been triggered. This can be useful for implementing custom and unique jumping behaviors.
+			[param value]: A value to set.
 			</description>
 		</method>
 		<method name="set_jump_gravity_multiplier">
 			<return type="QPlatformerBodyNode" />
 			<param index="0" name="value" type="float" />
 			<description>
+			Sets the multiplier to be applied to the character's gravity while ascending vertically during a jump. This can be useful for implementing custom and unique jumping behaviors.
 			</description>
 		</method>
 		<method name="set_max_jump_count">
 			<return type="QPlatformerBodyNode" />
 			<param index="0" name="value" type="int" />
 			<description>
+			Defines how many times the character can jump after the default [method jump] method is triggered and before the release_jump() method is called. For example, to enable double jump for the character, you should set this to 2.
+			[param value]: A value to set.
 			</description>
 		</method>
 		<method name="set_moving_floor_snap_offset">
 			<return type="QPlatformerBodyNode" />
 			<param index="0" name="value" type="float" />
 			<description>
+			Sets the offset required for the character to stick to and move along with moving platforms.
+			[param value]: A value to set.
 			</description>
 		</method>
 		<method name="set_specific_platform_layers">
 			<return type="QPlatformerBodyNode" />
 			<param index="0" name="value" type="int" />
 			<description>
+			Sets specific platform layers bit. This determines which platform layers the platformer physics will apply to, such as sloped surfaces, ceilings, walls, etc. The default value is 0, which disables this functionality. 
+			[b]Note:[/b] The character can still interact with bodies in the physics world that are set to the layers specified for collision, but platformer-specific behavior (like gravity and movement on slopes) will be applied only to the specified platform layers. 
+			[param value]: The bitmask representing the platform layers.
 			</description>
 		</method>
 		<method name="set_walk_aceleration_rate">
 			<return type="QPlatformerBodyNode" />
 			<param index="0" name="value" type="float" />
 			<description>
+			Sets the walking acceleration rate.
+			[param value]: A value to set.
 			</description>
 		</method>
 		<method name="set_walk_deceleration_rate">
 			<return type="QPlatformerBodyNode" />
 			<param index="0" name="value" type="float" />
 			<description>
+			Sets the walking deceleration rate.
+			[param value]: A value to set.
 			</description>
 		</method>
 		<method name="set_walk_speed">
 			<return type="QPlatformerBodyNode" />
 			<param index="0" name="value" type="float" />
 			<description>
+			Sets the walking speed of the character.
+			[param value]: A value to set.
 			</description>
 		</method>
 		<method name="walk">
 			<return type="QPlatformerBodyNode" />
 			<param index="0" name="side" type="int" />
 			<description>
+			Moves the body in a specified horizontal direction.
+			[param side]: The direction (-1 for left, 1 for right, 0 for no movement).
 			</description>
 		</method>
 	</methods>
 	<members>
 		<member name="fixed_rotation" type="bool" setter="set_fixed_rotation_enabled" getter="get_fixed_rotation_enabled" overrides="QRigidBodyNode" default="true" />
 		<member name="floor_max_angle_degree" type="float" setter="set_floor_max_angle_degree" getter="get_floor_max_angle_degree" default="45.0">
+			Sets the maximum angle for the floor.
 		</member>
 		<member name="friction" type="float" setter="set_friction" getter="get_friction" overrides="QBodyNode" default="0.0" />
 		<member name="gravity" type="Vector2" setter="set_gravity" getter="get_gravity" default="Vector2(0, 0.3)">
+		Sets the gravity vector to be applied to the character on every frame.
 		</member>
 		<member name="jump_duration_frame_count" type="int" setter="set_jump_duration_frame_count" getter="get_jump_duration_frame_count" default="30">
+		Sets the number of frames required before the [method jump] method can be triggered again for the character after the default [method jump] method has been executed.
 		</member>
 		<member name="jump_fall_gravity_multiplier" type="float" setter="set_jump_fall_gravity_multiplier" getter="get_jump_fall_gravity_multiplier" default="1.0">
+		Sets the gravity multiplier to be applied when the character is falling after the [method jump] method has been triggered. This can be useful for implementing custom and unique jumping behaviors.
 		</member>
 		<member name="jump_gravity_multiplier" type="float" setter="set_jump_gravity_multiplier" getter="get_jump_gravity_multiplier" default="0.4">
+		Sets the multiplier to be applied to the character's gravity while ascending vertically during a jump. This can be useful for implementing custom and unique jumping behaviors.
 		</member>
 		<member name="kinematic_collisions" type="bool" setter="set_kinematic_collisions_enabled" getter="get_kinematic_collisions_enabled" overrides="QRigidBodyNode" default="true" />
 		<member name="max_jump_count" type="int" setter="set_max_jump_count" getter="get_max_jump_count" default="2">
+		Defines how many times the character can jump after the default [method jump] method is triggered and before the release_jump() method is called. For example, to enable double jump for the character, you should set this to 2.
 		</member>
 		<member name="moving_floor_snap_offset" type="float" setter="set_moving_floor_snap_offset" getter="get_moving_floor_snap_offset" default="10.0">
+		Sets the offset required for the character to stick to and move along with moving platforms.
 		</member>
 		<member name="specific_platform_layers" type="int" setter="set_specific_platform_layers" getter="get_specific_platform_layers" default="0">
+		Sets specific platform layers bit. This determines which platform layers the platformer physics will apply to, such as sloped surfaces, ceilings, walls, etc. The default value is 0, which disables this functionality. 
+		[b]Note:[/b] The character can still interact with bodies in the physics world that are set to the layers specified for collision, but platformer-specific behavior (like gravity and movement on slopes) will be applied only to the specified platform layers. 
 		</member>
 		<member name="walk_aceleration_rate" type="float" setter="set_walk_aceleration_rate" getter="get_walk_aceleration_rate" default="0.1">
+		Sets the walking acceleration rate.
 		</member>
 		<member name="walk_deceleration_rate" type="float" setter="set_walk_deceleration_rate" getter="get_walk_deceleration_rate" default="0.1">
+		Sets the walking deceleration rate.
 		</member>
 		<member name="walk_speed" type="float" setter="set_walk_speed" getter="get_walk_speed" default="3.0">
+		Sets the walking speed of the character.
 		</member>
 	</members>
 </class>
