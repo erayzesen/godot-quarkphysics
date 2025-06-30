@@ -4,9 +4,7 @@
 	</brief_description>
 	<description>
 	A QWorldNode object is required to create a physics simulation. The QWorldNode class manages the entire physics simulation. You can add or remove objects to the physics world and make specific settings for the simulation. Additionally, the QWorldNode class is responsible for updating the simulation. There can only be one QWorldNode object in the scene tree. 
-
 	[b]Note:[/b] Note: You can rename your QWorldNode object, but this will make it more costly for QBodyNode objects to locate it. If it's not crucial for your setup, we recommend keeping its name as "QWorldNode", just as it is when created from the editor.
-
 	[gdscript]
 	# In the root node of the scene
 	var my_world= QWorldNode.new()

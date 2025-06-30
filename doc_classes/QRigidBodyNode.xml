@@ -12,16 +12,16 @@
 			<return type="QRigidBodyNode" />
 			<param index="0" name="value" type="float" />
 			<description>
-			Adds to the angular force that will be applied to the body in the next frame.
-			[param value]: A value to set.
+			Adds angular force to be applied to the body in the next frame.
+			[param value]: A value to be added.
 			</description>
 		</method>
 		<method name="add_force">
 			<return type="QRigidBodyNode" />
 			<param index="0" name="value" type="Vector2" />
 			<description>
-			Adds to the force that will be applied to the body in the next frame.
-			[param value] A value to set.
+			Adds force to be applied to the body in the next frame.
+			[param value] A value to be added.
 			</description>
 		</method>
 		<method name="apply_force">
@@ -31,7 +31,7 @@
 			<param index="2" name="update_mesh_transforms" type="bool" />
 			<description>
 			Applies force to the body.
-			[param value]: A value to set.
+			[param value]: A value to apply.
 			[param r]: The offset vector from the center point to the point where the force will be applied.
 			[param update_mesh_transforms]: Determines whether the transformation should be applied to the meshes immediately after the force is applied. For example, if you're going to apply multiple forces at once, applying the transformation only once after all forces have been applied can save performance cost.
 			</description>
