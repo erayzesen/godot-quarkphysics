@@ -3,6 +3,7 @@
 	<brief_description>
 	</brief_description>
 	<description>
+	QAreaBodyNode are objects that don't respond to collisions or receive any response from them, but only report collisions. An operation is not applied for them to move during physics steps, they are stationary. Unlike other body types, they have two signals named collision_enter and collision_exit.
 	</description>
 	<tutorials>
 	</tutorials>
@@ -11,24 +12,32 @@
 			<return type="Vector2" />
 			<param index="0" name="body_node" type="QBodyNode" />
 			<description>
+			A virtual function that enables the calculation of the **linearForceToApply** value specifically for each **body** object. If not overridden, it applies the **linearForceToApply** value defined for **QAreaBody** as a force to all objects. Additionally, if **ComputeLinearForceListener** is defined and not overridden, it applies the value returned by that listener.
+			[param body_node]: The QBodyNode located within the area where the linear force will be applied.
 			</description>
 		</method>
 		<method name="get_bodies">
 			<return type="Array" />
 			<description>
+			Returns a collection of all QBodyNode objects currently within the area.
 			</description>
 		</method>
 		<method name="has_body">
 			<return type="bool" />
 			<param index="0" name="body_node" type="QBodyNode" />
 			<description>
+			Returns whether a given body is currently in contact with this QAreaBody.
+			[param body_node]: The QBodyNode instance to be queried.
 			</description>
 		</method>
 	</methods>
 	<members>
 		<member name="gravity_free" type="bool" setter="set_gravity_free_enabled" getter="get_gravity_free_enabled" default="false">
+		Sets whether the option to exempt objects entering the area from gravity is enabled. If enabled, it will disable both the globally defined gravity and the body-specific gravity applied to physics bodies entering the area.
 		</member>
 		<member name="linear_force_to_apply" type="Vector2" setter="set_linear_force_to_apply" getter="get_linear_force_to_apply" default="Vector2(0, 0)">
+		Sets the amount of linear force to be applied to objects entering the area. If a force vector is defined, objects entering the area will be continuously subjected to this force.
+		If you want to apply a specific linear force to each QBodyNode within the area, you can use the virtual method [method _compute_linear_force].
 		</member>
 	</members>
 	<signals>
@@ -36,12 +45,18 @@
 			<param index="0" name="area_body_node" type="Object" />
 			<param index="1" name="collided_body_node" type="Object" />
 			<description>
+			This signal is triggered when any QBodyNode enters the collision list of a QAreaBody for the first time.
+			[param area_body_node]: QAreaBodyNode that triggered the signal.
+			[param collided_body_node]: QBodyNode that entered the collision.
 			</description>
 		</signal>
 		<signal name="collision_exit">
 			<param index="0" name="area_body_node" type="Object" />
 			<param index="1" name="collided_body_node" type="Object" />
 			<description>
+			This signal is triggered when any object exits the collision list of a QAreaBody for the first time.
+			[param area_body_node]: QAreaBodyNode that triggered the signal.
+			[param collided_body_node]: QBodyNode that entered the collision.
 			</description>
 		</signal>
 	</signals>
