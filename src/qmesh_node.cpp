@@ -199,31 +199,31 @@ void QMeshNode::vector_render_in_editor() {
     PackedColorArray strokeColors;
     strokeColors.push_back(strokeColor);
     
-    PackedVector2Array polygonPoints;
+    PackedVector2Array polygon_points;
     for(int i=0;i<dataPolygon.size();i++){
         int pi=dataPolygon[i];
         Vector2 pos=dataParticlePositions[pi];
-        polygonPoints.push_back( pos );
+        polygon_points.push_back( pos );
     }
     
 
     PackedVector2Array strokePoints;
 
-    if(polygonPoints.size()>2){
+    if(polygon_points.size()>2){
 
         if (enableCurvedCorners){
-            strokePoints=get_curved_polygon_points(polygonPoints, curveLength,strokeOffset);
+            strokePoints=get_curved_polygon_points(polygon_points, curveLength,strokeOffset);
         }else{
             if(strokeOffset==0.0){
-                strokePoints=polygonPoints;
+                strokePoints=polygon_points;
                 if(strokePoints.size()>0 )
                     strokePoints.push_back(strokePoints[0]);
             }else{
-                int polygonSize=polygonPoints.size();
+                int polygonSize=polygon_points.size();
                 for(size_t i=0;i<polygonSize;++i ){
-                    Vector2 pp=polygonPoints[ (i-1+polygonSize) % polygonSize ];
-                    Vector2 cp=polygonPoints[i];
-                    Vector2 np=polygonPoints[ (i+1) % polygonSize ];
+                    Vector2 pp=polygon_points[ (i-1+polygonSize) % polygonSize ];
+                    Vector2 cp=polygon_points[i];
+                    Vector2 np=polygon_points[ (i+1) % polygonSize ];
 
                     Vector2 curveUnit=(np-pp).normalized();
                     Vector2 curveNormal=curveUnit.orthogonal();
@@ -245,7 +245,7 @@ void QMeshNode::vector_render_in_editor() {
             if(fillTexture.is_valid() ){
                 Rect2 textureRect;
                 if(enableStretchingTextureToPolygon){
-                    textureRect=get_aabb_of_polygon(polygonPoints);
+                    textureRect=get_aabb_of_polygon(polygon_points);
                 }else{
                     Vector2 tSize=fillTexture->get_size();
                     textureRect=Rect2(-tSize*0.5,tSize);
@@ -276,16 +276,16 @@ void QMeshNode::vector_render_in_editor() {
             //Rendering Polygons
             RID polygonDrawInstance=fillTexture.is_valid() ? textureMaskRenderInstance:vectorRenderInstance;
             if(enableTriangulation){
-                if(Geometry2D::get_singleton()->triangulate_polygon(polygonPoints).size()==0 ){
+                if(Geometry2D::get_singleton()->triangulate_polygon(polygon_points).size()==0 ){
                     for(size_t s=0;s<meshObject->GetSubConvexPolygonCount();++s){
                         vector<QParticle*> subPolygonParticles=meshObject->GetSubConvexPolygonAt(s);
-                        PackedVector2Array subPolygonPoints;
+                        PackedVector2Array subpolygon_points;
                         for(size_t p=0;p<subPolygonParticles.size();++p ){
                             QVector pPos=subPolygonParticles[p]->GetGlobalPosition();
-                            subPolygonPoints.push_back( Vector2(pPos.x,pPos.y) );
+                            subpolygon_points.push_back( Vector2(pPos.x,pPos.y) );
                         }
-                        if(subPolygonPoints.size()>2 ){
-                            TypedArray<PackedVector2Array> partedPolygons=Geometry2D::get_singleton()->intersect_polygons(subPolygonPoints,subPolygonPoints);
+                        if(subpolygon_points.size()>2 ){
+                            TypedArray<PackedVector2Array> partedPolygons=Geometry2D::get_singleton()->intersect_polygons(subpolygon_points,subpolygon_points);
                             for(size_t j=0;j<partedPolygons.size();++j ){                
                                 rs->canvas_item_add_polygon(polygonDrawInstance,partedPolygons[j],{fillColors} );
                             }
@@ -294,13 +294,13 @@ void QMeshNode::vector_render_in_editor() {
                             
                     }
                 }else{ 
-                    if(Geometry2D::get_singleton()->triangulate_polygon(polygonPoints).is_empty()==false  ){
-                        rs->canvas_item_add_polygon(polygonDrawInstance,polygonPoints,{fillColors} );
+                    if(Geometry2D::get_singleton()->triangulate_polygon(polygon_points).is_empty()==false  ){
+                        rs->canvas_item_add_polygon(polygonDrawInstance,polygon_points,{fillColors} );
                     }
                 }
             }else{
-                if(Geometry2D::get_singleton()->triangulate_polygon(polygonPoints).is_empty()==false  ){
-                    rs->canvas_item_add_polygon(polygonDrawInstance,polygonPoints,{fillColors} );
+                if(Geometry2D::get_singleton()->triangulate_polygon(polygon_points).is_empty()==false  ){
+                    rs->canvas_item_add_polygon(polygonDrawInstance,polygon_points,{fillColors} );
                 }
             }
         }
@@ -384,20 +384,20 @@ void QMeshNode::debug_render_in_runtime()
     }
     //Drawing polygons
     if(meshObject->GetPolygonParticleCount()>2 ){
-        PackedVector2Array polygonPoints;
+        PackedVector2Array polygon_points;
         for(int n=0;n<meshObject->GetPolygonParticleCount();n++){
             
             QVector qp=meshObject->GetParticleFromPolygon(n)->GetGlobalPosition();
             Vector2 p=(Vector2(qp.x,qp.y)-get_global_position() ).rotated(-get_global_rotation() ) ;
             p*=node_scale_inverse_factor;
-            polygonPoints.push_back(p);
+            polygon_points.push_back(p);
             
         }
-        polygonPoints.append(polygonPoints[0]);
-        if(polygonPoints.size()!=0){
+        polygon_points.append(polygon_points[0]);
+        if(polygon_points.size()!=0){
             PackedColorArray colors;
             colors.append(colliderColor);
-            rs->canvas_item_add_polyline(debugRenderInstance,polygonPoints,colors);
+            rs->canvas_item_add_polyline(debugRenderInstance,polygon_points,colors);
         }
         //Sub Convex Polygons Rendering
         for(int n=0;n<meshObject->GetSubConvexPolygonCount();++n){
@@ -498,7 +498,7 @@ void QMeshNode::vector_render_in_runtime()
     //Drawing polygons
     if(meshObject->GetPolygonParticleCount()>2){
         int polygonSize=meshObject->GetPolygonParticleCount();
-        PackedVector2Array polygonPoints;
+        PackedVector2Array polygon_points;
         PackedVector2Array polygonLocalPoints;
         for(int n=0;n<polygonSize;n++){
             QVector qpg=meshObject->GetParticleFromPolygon(n)->GetGlobalPosition();
@@ -506,28 +506,28 @@ void QMeshNode::vector_render_in_runtime()
             Vector2 pg=(Vector2(qpg.x,qpg.y)-get_global_position() ).rotated(-get_global_rotation() );
             pg*=node_scale_inverse_factor; 
             Vector2 pl=Vector2(qpl.x,qpl.y);
-            polygonPoints.push_back(pg );
+            polygon_points.push_back(pg );
             polygonLocalPoints.push_back(pl );
             
         }
-        /* if(polygonPoints.size()>0){
-            polygonPoints.push_back(polygonPoints[0] );
+        /* if(polygon_points.size()>0){
+            polygon_points.push_back(polygon_points[0] );
         } */
 
         PackedVector2Array strokePoints;
         if (enableCurvedCorners){
-            strokePoints=get_curved_polygon_points(polygonPoints, curveLength,strokeOffset);
+            strokePoints=get_curved_polygon_points(polygon_points, curveLength,strokeOffset);
         }else{
             if(strokeOffset==0.0){
-                strokePoints=polygonPoints;
+                strokePoints=polygon_points;
                 if(strokePoints.size()>0 )
                     strokePoints.push_back(strokePoints[0]);
             }else{
-                int polygonSize=polygonPoints.size();
+                int polygonSize=polygon_points.size();
                 for(size_t i=0;i<polygonSize;++i ){
-                    Vector2 pp=polygonPoints[ (i-1+polygonSize) % polygonSize ];
-                    Vector2 cp=polygonPoints[i];
-                    Vector2 np=polygonPoints[ (i+1) % polygonSize ];
+                    Vector2 pp=polygon_points[ (i-1+polygonSize) % polygonSize ];
+                    Vector2 cp=polygon_points[i];
+                    Vector2 np=polygon_points[ (i+1) % polygonSize ];
 
                     Vector2 curveUnit=(np-pp).normalized();
                     Vector2 curveNormal=curveUnit.orthogonal();
@@ -587,18 +587,18 @@ void QMeshNode::vector_render_in_runtime()
 
             RID polygonDrawInstance=fillTexture.is_valid() ? textureMaskRenderInstance:vectorRenderInstance;
             if(enableTriangulation){
-                if(Geometry2D::get_singleton()->triangulate_polygon(polygonPoints).size()==0 ){
+                if(Geometry2D::get_singleton()->triangulate_polygon(polygon_points).size()==0 ){
                     for(size_t s=0;s<meshObject->GetSubConvexPolygonCount();++s){
                         vector<QParticle*> subPolygonParticles=meshObject->GetSubConvexPolygonAt(s);
-                        PackedVector2Array subPolygonPoints;
+                        PackedVector2Array subpolygon_points;
                         
                         for(size_t p=0;p<subPolygonParticles.size();++p ){
                             QVector pPos=subPolygonParticles[p]->GetGlobalPosition();
-                            subPolygonPoints.push_back( (Vector2(pPos.x,pPos.y)-get_global_position()).rotated(-get_global_rotation() ) );
+                            subpolygon_points.push_back( (Vector2(pPos.x,pPos.y)-get_global_position()).rotated(-get_global_rotation() ) );
                         }
 
-                        if(subPolygonPoints.size()>2 ){
-                            TypedArray<PackedVector2Array> partedPolygons=Geometry2D::get_singleton()->intersect_polygons(subPolygonPoints,subPolygonPoints);
+                        if(subpolygon_points.size()>2 ){
+                            TypedArray<PackedVector2Array> partedPolygons=Geometry2D::get_singleton()->intersect_polygons(subpolygon_points,subpolygon_points);
                             for(size_t j=0;j<partedPolygons.size();++j ){
 
                                 rs->canvas_item_add_polygon(polygonDrawInstance,partedPolygons[j],{fillColors} );
@@ -609,13 +609,13 @@ void QMeshNode::vector_render_in_runtime()
                     }
                     
                 }else{
-                    if(Geometry2D::get_singleton()->triangulate_polygon(polygonPoints).is_empty()==false  ){
-                        rs->canvas_item_add_polygon(polygonDrawInstance,polygonPoints,{fillColors} );
+                    if(Geometry2D::get_singleton()->triangulate_polygon(polygon_points).is_empty()==false  ){
+                        rs->canvas_item_add_polygon(polygonDrawInstance,polygon_points,{fillColors} );
                     }
                 }
             }else{
-                if(Geometry2D::get_singleton()->triangulate_polygon(polygonPoints).is_empty()==false  ){
-                    rs->canvas_item_add_polygon(polygonDrawInstance,polygonPoints,{fillColors} );
+                if(Geometry2D::get_singleton()->triangulate_polygon(polygon_points).is_empty()==false  ){
+                    rs->canvas_item_add_polygon(polygonDrawInstance,polygon_points,{fillColors} );
                 }
             }
 
@@ -867,14 +867,14 @@ void QMeshNode::apply_mesh_data_to_mesh_node_data(QMesh::MeshData data)
 
 }
 
-Rect2 QMeshNode::get_aabb_of_polygon(PackedVector2Array polygonPoints)
+Rect2 QMeshNode::get_aabb_of_polygon(PackedVector2Array polygon_points)
 {
     float minX=MAXFLOAT;
 	float minY=MAXFLOAT;
 	float maxX=-MAXFLOAT;
 	float maxY=-MAXFLOAT;
-    for(int n=0;n<polygonPoints.size();n++){
-        Vector2 p=polygonPoints[n];
+    for(int n=0;n<polygon_points.size();n++){
+        Vector2 p=polygon_points[n];
 
         if(p.x<minX)
             minX=p.x;
@@ -938,8 +938,8 @@ void QMeshNode::_bind_methods()
     ClassDB::bind_method(D_METHOD("get_spring_index","spring_object"),&QMeshNode::get_spring_index );
 
     //Polygon Operations
-    ClassDB::bind_method(D_METHOD("set_polygon","particleCollection"),&QMeshNode::set_polygon );
-    ClassDB::bind_method(D_METHOD("add_particle_to_polygon","particleObject"),&QMeshNode::add_particle_to_polygon );
+    ClassDB::bind_method(D_METHOD("set_polygon","particle_collection"),&QMeshNode::set_polygon );
+    ClassDB::bind_method(D_METHOD("add_particle_to_polygon","particle_object"),&QMeshNode::add_particle_to_polygon );
     ClassDB::bind_method(D_METHOD("remove_particle_from_polygon","particleObject"),&QMeshNode::remove_particle_from_polygon );
     ClassDB::bind_method(D_METHOD("remove_particle_from_polygon_at","index"),&QMeshNode::remove_particle_from_polygon_at );
     ClassDB::bind_method(D_METHOD("remove_polygon"),&QMeshNode::remove_polygon );
@@ -948,7 +948,7 @@ void QMeshNode::_bind_methods()
     ClassDB::bind_method(D_METHOD("get_min_angle_constraint_of_polygon"),&QMeshNode::get_min_angle_constraint_of_polygon );
     ClassDB::bind_method(D_METHOD("set_min_angle_constraint_of_polygon","value"),&QMeshNode::set_min_angle_constraint_of_polygon );
     ClassDB::bind_method(D_METHOD("get_decomposited_polygon"),&QMeshNode::get_decomposited_polygon );
-    ClassDB::bind_method(D_METHOD("get_aabb_of_polygon","polygonPoints"),&QMeshNode::get_aabb_of_polygon );
+    ClassDB::bind_method(D_METHOD("get_aabb_of_polygon","polygon_points"),&QMeshNode::get_aabb_of_polygon );
 
 
     //UV Operations
@@ -988,7 +988,7 @@ void QMeshNode::_bind_methods()
      ClassDB::bind_method(D_METHOD("get_particle_rendering_enabled"),&QMeshNode::get_particle_rendering_enabled );
 
      //Render helper operations
-     ClassDB::bind_method(D_METHOD("get_curved_polygon_points","polygonPoints","curve_amount","margin","origin","bake_interval"),&QMeshNode::get_curved_polygon_points );
+     ClassDB::bind_method(D_METHOD("get_curved_polygon_points","polygon_points","curve_amount","margin","origin","bake_interval"),&QMeshNode::get_curved_polygon_points );
      ClassDB::bind_method(D_METHOD("get_inner_shadow_of_polygon","polygon_points","offset"),&QMeshNode::get_inner_shadow_of_polygon );
      ClassDB::bind_method(D_METHOD("get_specified_side_points_of_polygon","polygon_points","axis","points_count_range","scale", "origin"),&QMeshNode::get_specified_side_points_of_polygon );
 
@@ -1492,7 +1492,7 @@ int QMeshNode::get_spring_index(Ref<QSpringObject> spring_object)
 
 //Polygon Operations
 
-QMeshNode *QMeshNode::set_polygon(TypedArray<QParticleObject> particleCollection) {
+QMeshNode *QMeshNode::set_polygon(TypedArray<QParticleObject> particle_collection) {
 
     if(meshObject==nullptr){
         godot::UtilityFunctions::printerr("Quark Physics Error: The mesh object not configured yet! | QMeshNode.set_polygon() ");
@@ -1507,9 +1507,9 @@ QMeshNode *QMeshNode::set_polygon(TypedArray<QParticleObject> particleCollection
 	vector<Ref<QParticleObject>> polygonParticleObjects;
     vector<QParticle*> polygonParticles;
 
-    for(int i=0;i<particleCollection.size();i++){
+    for(int i=0;i<particle_collection.size();i++){
         
-        Ref<QParticleObject> element=particleCollection[i];
+        Ref<QParticleObject> element=particle_collection[i];
         if(element.is_valid()==false || element==nullptr ){
             godot::UtilityFunctions::printerr("Quark Physics Error: The element of the polygon array isn't a valid particle object type! | QMeshNode.set_polygon() ");
             return this;
@@ -1524,7 +1524,7 @@ QMeshNode *QMeshNode::set_polygon(TypedArray<QParticleObject> particleCollection
     return  this;
 }
 
-QMeshNode *QMeshNode::add_particle_to_polygon(Ref<QParticleObject> particleObject) {
+QMeshNode *QMeshNode::add_particle_to_polygon(Ref<QParticleObject> particle_object) {
     if(meshObject==nullptr){
         godot::UtilityFunctions::printerr("Quark Physics Error: The mesh object not configured yet! | QMeshNode.add_particle_to_polygon() ");
         return this;
@@ -1535,23 +1535,23 @@ QMeshNode *QMeshNode::add_particle_to_polygon(Ref<QParticleObject> particleObjec
         }
     }
     
-    if(particleObject.is_valid()==false){
+    if(particle_object.is_valid()==false){
         godot::UtilityFunctions::printerr("Quark Physics Error: There is no a valid particle object type! | QMeshNode.add_particle_to_polygon() ");
         return this;
     }
 
     
     
-    polygon.push_back(particleObject);
-    meshObject->AddParticleToPolygon(particleObject->particleObject);
+    polygon.push_back(particle_object);
+    meshObject->AddParticleToPolygon(particle_object->particleObject);
 
 	return this;
 }
 
-QMeshNode *QMeshNode::remove_particle_from_polygon(Ref<QParticleObject> particleObject) {
+QMeshNode *QMeshNode::remove_particle_from_polygon(Ref<QParticleObject> particle_object) {
        
 
-    auto findedIt=find(polygon.begin(),polygon.end(),particleObject );
+    auto findedIt=find(polygon.begin(),polygon.end(),particle_object );
     if(findedIt!=polygon.end() ){
         int index=findedIt-polygon.begin();
         remove_particle_from_polygon_at(index);
@@ -1608,14 +1608,14 @@ Array QMeshNode::get_decomposited_polygon() {
         godot::UtilityFunctions::printerr("Quark Physics Error: The mesh object not configured yet! | QMeshNode.get_decomposited_polygon() ");
         return result;
     }
-    PackedVector2Array polygonPoints;
+    PackedVector2Array polygon_points;
     for (size_t i=0;i<meshObject->GetPolygonParticleCount();++i ){
         QVector p=meshObject->GetParticleFromPolygon(i)->GetGlobalPosition();
-        polygonPoints.push_back( Vector2(p.x,p.y) );
+        polygon_points.push_back( Vector2(p.x,p.y) );
 
     }
 
-    Array decompositedPolygon=Geometry2D::get_singleton()->decompose_polygon_in_convex(polygonPoints);
+    Array decompositedPolygon=Geometry2D::get_singleton()->decompose_polygon_in_convex(polygon_points);
 
     
 
@@ -1749,9 +1749,9 @@ QMeshNode *QMeshNode::remove_angle_constraint_at(int index)
 
 //Render Helper Operations
 
-PackedVector2Array QMeshNode::get_curved_polygon_points(PackedVector2Array polygonPoints, float curve_amount,float margin,Vector2 origin,float bake_interval) {
+PackedVector2Array QMeshNode::get_curved_polygon_points(PackedVector2Array polygon_points, float curve_amount,float margin,Vector2 origin,float bake_interval) {
     PackedVector2Array res;
-    size_t polygonSize=polygonPoints.size();
+    size_t polygonSize=polygon_points.size();
     if(polygonSize<3 ){
         return res;
     }
@@ -1760,9 +1760,9 @@ PackedVector2Array QMeshNode::get_curved_polygon_points(PackedVector2Array polyg
     Vector2 firstCurveVec;
     curvedPolygon->set_bake_interval(bake_interval);
 	for (size_t i=0;i<polygonSize;++i ){
-        Vector2 pp=polygonPoints[ (i-1+polygonSize) % polygonSize ];
-        Vector2 cp=polygonPoints[i];
-        Vector2 np=polygonPoints[ (i+1) % polygonSize ];
+        Vector2 pp=polygon_points[ (i-1+polygonSize) % polygonSize ];
+        Vector2 cp=polygon_points[i];
+        Vector2 np=polygon_points[ (i+1) % polygonSize ];
         Vector2 curveUnit=(np-pp).normalized();
         Vector2 curveNormal=curveUnit.orthogonal();
         Vector2 curveVec=curveUnit*curve_amount;

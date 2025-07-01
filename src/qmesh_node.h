@@ -214,13 +214,13 @@ public:
     int get_spring_index(Ref<QSpringObject> spring_object);
 
     //Polygon Operations
-    QMeshNode *set_polygon(TypedArray<QParticleObject> particleCollection);
-    QMeshNode *add_particle_to_polygon(Ref<QParticleObject> particleObject);
-    QMeshNode *remove_particle_from_polygon(Ref<QParticleObject> particleObject);
+    QMeshNode *set_polygon(TypedArray<QParticleObject> particle_collection);
+    QMeshNode *add_particle_to_polygon(Ref<QParticleObject> particle_object);
+    QMeshNode *remove_particle_from_polygon(Ref<QParticleObject> particle_object);
     QMeshNode *remove_particle_from_polygon_at(int index);
     QMeshNode *remove_polygon();
     Ref<QParticleObject> get_particle_from_polygon(int index);
-    Rect2 get_aabb_of_polygon(PackedVector2Array polygonPoints);
+    Rect2 get_aabb_of_polygon(PackedVector2Array polygon_points);
 
     int get_polygon_particle_count();
     Array get_decomposited_polygon();
@@ -242,7 +242,7 @@ public:
     
 
     //Render helper operations
-    PackedVector2Array get_curved_polygon_points(PackedVector2Array polygonPoints,float curve_amount,float margin=0,Vector2 origin=Vector2(0,0),float bake_interval=5.0f);
+    PackedVector2Array get_curved_polygon_points(PackedVector2Array polygon_points,float curve_amount,float margin=0,Vector2 origin=Vector2(0,0),float bake_interval=5.0f);
     PackedVector2Array get_inner_shadow_of_polygon(PackedVector2Array polygon_points,Vector2 offset);
     PackedVector2Array get_specified_side_points_of_polygon(PackedVector2Array polygon_points,Vector2 axis,int points_count_range,float scale=1.0, Vector2 origin=Vector2(0,0));
 

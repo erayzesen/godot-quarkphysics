@@ -17,7 +17,9 @@ var step=0
 
 var colors:PackedColorArray=[Color("ff8426"),Color("ff2674"),Color("007899"),Color("bfff3c") ]
 	
-
+func _ready() -> void:
+	var myNode=QRigidBodyNode.new()
+	$QWorldNode.add_body_node(myNode)
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	step+=1

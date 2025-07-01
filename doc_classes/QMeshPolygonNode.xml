@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class name="QMeshPolygonNode" inherits="QMeshNode" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/godotengine/godot/master/doc/class.xsd">
+	<brief_description>
+	</brief_description>
+	<description>
+	QMeshPolygonNode provides various settings to help you create meshes based on regular polygons.
+	[b]Note:[/b] These helper types of QMeshNode, once added to the scene, are converted into a typical QMeshNode with particles, spring connections, UV mappings, and a polygon. After being added to the scene, all modifications and adjustments should be done using the general methods of QMeshNode, rather than the member properties defined here.
+	</description>
+	<tutorials>
+	</tutorials>
+	<methods>
+		<method name="set_particle_radius">
+			<return type="QMeshPolygonNode" />
+			<param index="0" name="value" type="float" />
+			<description>
+			Sets the radius of particles in the mesh.
+			</description>
+		</method>
+	</methods>
+	<members>
+		<member name="center_position" type="Vector2" setter="set_center_position" getter="get_center_position" default="Vector2(0, 0)">
+		The center position of the polygon. 
+		</member>
+		<member name="particle_radius" type="float" setter="set_particle_radius" getter="get_particle_radius" default="0.5">
+		The radius of particles in the mesh.
+		</member>
+		<member name="polar_grid" type="int" setter="set_polar_grid" getter="get_polar_grid" default="-1">
+		This property creates a polar grid structure for the polygonal mesh using particles and connections. It is especially useful for soft body dynamics where a higher density of particles and connections is needed.
+		</member>
+		<member name="polygon_radius" type="float" setter="set_polygon_radius" getter="get_polygon_radius" default="32.0">
+		The radius of the polygon.
+		</member>
+		<member name="side_count" type="int" setter="set_side_count" getter="get_side_count" default="8">
+		The side count of the polygon.
+		</member>
+	</members>
+</class>

@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class name="QJointObject" inherits="RefCounted" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/godotengine/godot/master/doc/class.xsd">
+	<brief_description>
+	</brief_description>
+	<description>
+	QJointObject serves to apply various distance constraints between rigid bodies. Additionally, you can create a distance constraint between any object and an imaginary point in space. Instead of separate methods for all fundamental constraints in physics engines, there is a set of property sets available. For example, setting a distance constraint to a distance of 0 creates a constraint known as a pin joint. By decreasing the rigidity of a set distance constraint, you obtain another type of joint called a spring joint. Enabling the groove mode prevents the constraint from being applied as long as the set distance is not exceeded, resulting in another type of joint called a groove joint. QWorldNode also provides methods to manage QJointObject instances.
+	</description>
+	<tutorials>
+	</tutorials>
+	<methods>
+		<method name="configure">
+			<return type="QJointObject" />
+			<param index="0" name="rigid_body_node_a" type="Object" />
+			<param index="1" name="anchor_world_pos_a" type="Vector2" />
+			<param index="2" name="anchor_world_pos_b" type="Vector2" />
+			<param index="3" name="rigid_body_node_b" type="Object" />
+			<param index="4" name="length" type="float" />
+			<description>
+			Configures a distance constraint between two rigid bodies using basic properties.
+			[param rigid_body_node_a]: The QRigidBodyNode instance to assign to rigid_body_node_a.
+			[param anchor_position_a]: The anchor point for rigid_body_node_a, in physics world coordinates.
+			[param anchor_position_b]: The anchor point for rigid_body_node_b, in physics world coordinates.
+			[param rigid_body_node_b]: The QRigidBodyNode instance to assign to rigid_body_node_b.
+			[param length]: The length of the distance constraint
+			</description>
+		</method>
+		<method name="configure_with_common_anchor_position">
+			<return type="QJointObject" />
+			<param index="0" name="rigid_body_node_a" type="Object" />
+			<param index="1" name="common_anchor_world_pos" type="Vector2" />
+			<param index="2" name="rigid_body_node_b" type="Object" />
+			<description>
+			Configures a distance constraint between two rigid bodies with a common anchor point. This is practical for pin-style joint requirements.
+			[param rigid_body_node_a]: The QRigidBodyNode instance to assign to rigid_body_node_a.
+			[param common_anchor_world_pos]: The common anchor point for rigid bodies.
+			[param rigid_body_node_b]: The QRigidBodyNode instance to assign to rigid_body_node_b.
+			</description>
+		</method>
+		<method name="configure_with_current_distance">
+			<return type="QJointObject" />
+			<param index="0" name="rigid_body_node_a" type="Object" />
+			<param index="1" name="anchor_world_pos_a" type="Vector2" />
+			<param index="2" name="anchor_world_pos_b" type="Vector2" />
+			<param index="3" name="rigid_body_node_b" type="Object" />
+			<description>
+			Configures a distance constraint between two rigid bodies with basic features. However, it calculates the distance for you based on the anchor points you provide. You can set up the configuration this way if the distance for the constraint is already the same as the distance between the two anchor points.
+			[param rigid_body_node_a]: The QRigidBodyNode instance to assign to rigid_body_node_a.
+			[param anchor_position_a]: The anchor point for rigid_body_node_a, in physics world coordinates.
+			[param anchor_position_b]: The anchor point for rigid_body_node_b, in physics world coordinates.
+			[param rigid_body_node_b]: The QRigidBodyNode instance to assign to rigid_body_node_b.
+			</description>
+		</method>
+		<method name="get_anchor_global_position_a">
+			<return type="Vector2" />
+			<description>
+			Returns the position of anchorA of the joint in world coordinates.
+			</description>
+		</method>
+		<method name="get_anchor_global_position_b">
+			<return type="Vector2" />
+			<description>
+			Returns the position of anchorB of the joint in world coordinates.
+			</description>
+		</method>
+		<method name="get_anchor_position_a">
+			<return type="Vector2" />
+			<description>
+			Returns the position of anchorA of the joint.If bodyA is defined, it returns the relative position of the anchor according to bodyA, otherwise, it returns the position of the anchor in world coordinates.
+			</description>
+		</method>
+		<method name="get_anchor_position_b">
+			<return type="Vector2" />
+			<description>
+			Returns the position of anchorB of the joint.If bodyB is defined, it returns the relative position of the anchor according to bodyA, otherwise, it returns the position of the anchor in world coordinates.
+			</description>
+		</method>
+		<method name="get_balance">
+			<return type="float" />
+			<description>
+			Returns the balance value of the joint. 0.0 is the a-side, 1.0 is the b-side
+			</description>
+		</method>
+		<method name="get_body_node_a">
+			<return type="QRigidBodyNode" />
+			<description>
+			Returns bodyA of the joint.
+			</description>
+		</method>
+		<method name="get_body_node_b">
+			<return type="QRigidBodyNode" />
+			<description>
+			Returns bodyB of the joint.
+			</description>
+		</method>
+		<method name="get_collisions_enabled">
+			<return type="bool" />
+			<description>
+			Returns whether collisions are enabled between bodies of the joint.
+			</description>
+		</method>
+		<method name="get_enabled">
+			<return type="bool" />
+			<description>
+			Returns whether the joint is enabled.
+			</description>
+		</method>
+		<method name="get_groove_enabled">
+			<return type="bool" />
+			<description>
+			Returns whether the groove mode of the joint enabled or not.
+			</description>
+		</method>
+		<method name="get_length">
+			<return type="float" />
+			<description>
+			Returns the length of the distance constraint of the joint.
+			</description>
+		</method>
+		<method name="get_rigidity">
+			<return type="float" />
+			<description>
+			Returns the rigidity of the joint.
+			</description>
+		</method>
+		<method name="set_anchor_position_a">
+			<return type="QJointObject" />
+			<param index="0" name="value" type="Vector2" />
+			<description>
+			Sets anchorA position of the joint.
+			[param value]: A position to set in world coordinates.
+			</description>
+		</method>
+		<method name="set_anchor_position_b">
+			<return type="QJointObject" />
+			<param index="0" name="value" type="Vector2" />
+			<description>
+			Sets anchorB position of the joint.
+			[param value]: A position to set in world coordinates.
+			</description>
+		</method>
+		<method name="set_balance">
+			<return type="QJointObject" />
+			<param index="0" name="value" type="float" />
+			<description>
+			Sets the force balance value of the joint, it's 0.5 as a default. 0.0 is the a-side, 1.0 is the b-side.
+			[param value]: The balance value to set. It must be a value between 0.0 and 1.0.
+			</description>
+		</method>
+		<method name="set_body_node_a">
+			<return type="QJointObject" />
+			<param index="0" name="rigid_body_node" type="Object" />
+			<description>
+			Sets bodyA of the joint.
+			[param rigid_body_node]: The QRigidBodyNode to assign. 
+			</description>
+		</method>
+		<method name="set_body_node_b">
+			<return type="QJointObject" />
+			<param index="0" name="rigid_body_node" type="Object" />
+			<description>
+			Sets bodyB of the joint.
+			[param rigid_body_node]: The QRigidBodyNode to assign.
+			</description>
+		</method>
+		<method name="set_collision_enabled">
+			<return type="QJointObject" />
+			<param index="0" name="value" type="bool" />
+			<description>
+			Sets whether collisions are enabled between bodies of the joint.
+			[param value]: A value to set.
+			</description>
+		</method>
+		<method name="set_enabled">
+			<return type="QJointObject" />
+			<param index="0" name="value" type="bool" />
+			<description>
+			Sets whether the joint is enabled.
+			[param value]: A value to set.
+			</description>
+		</method>
+		<method name="set_groove_enabled">
+			<return type="QJointObject" />
+			<param index="0" name="value" type="bool" />
+			<description>
+			Sets whether the groove mode of the joint enabled or not. When groove mode is enabled in QJoints, distance constraint will only be applied when the set distance is exceeded.
+			[param value]: A value to set.
+			</description>
+		</method>
+		<method name="set_length">
+			<return type="QJointObject" />
+			<param index="0" name="value" type="float" />
+			<description>
+			Sets the length of the distance constraint of the joint.
+			[param value]: A value to set.
+			</description>
+		</method>
+		<method name="set_rigidity">
+			<return type="QJointObject" />
+			<param index="0" name="value" type="float" />
+			<description>
+			Sets the rigidity of the joint.
+			[param value]: A value to set.
+			</description>
+		</method>
+	</methods>
+</class>

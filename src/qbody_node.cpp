@@ -127,7 +127,7 @@ void QBodyNode::_bind_methods() {
      ClassDB::bind_method(D_METHOD("set_body_previous_position","value"),&QBodyNode::set_body_previous_position );
      ClassDB::bind_method(D_METHOD("add_body_previous_position","value"),&QBodyNode::add_body_previous_position );
      ClassDB::bind_method(D_METHOD("set_body_rotation","angle_radian","with_previous_rotation"),&QBodyNode::set_body_rotation );
-     ClassDB::bind_method(D_METHOD("set_body_rotation_degree","angle_radian","with_previous_rotation"),&QBodyNode::set_body_rotation_degree );
+     ClassDB::bind_method(D_METHOD("set_body_rotation_degree","angle_degree","with_previous_rotation"),&QBodyNode::set_body_rotation_degree );
      ClassDB::bind_method(D_METHOD("add_body_rotation","angle_radian"),&QBodyNode::add_body_rotation );
      ClassDB::bind_method(D_METHOD("set_body_previous_rotation","angle_radian"),&QBodyNode::set_body_previous_rotation );
      ClassDB::bind_method(D_METHOD("set_layers_bit","value"),&QBodyNode::set_layers_bit );
@@ -358,8 +358,8 @@ QBodyNode *QBodyNode::set_body_rotation(float angle_radian, bool with_previous_r
 	return this;
 }
 
-QBodyNode *QBodyNode::set_body_rotation_degree(float degree, bool with_previous_rotation) {
-	bodyObject->SetRotationDegree(degree,with_previous_rotation );
+QBodyNode *QBodyNode::set_body_rotation_degree(float angle_degree, bool with_previous_rotation) {
+	bodyObject->SetRotationDegree(angle_degree,with_previous_rotation );
 	return this;
 }
 
