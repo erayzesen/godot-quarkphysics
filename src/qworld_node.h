@@ -54,6 +54,7 @@ class QWorldNode: public Node2D{
     float cellSize=128.0;
     bool enableDebugRenderer=true;
     
+    
 
     // Mouse Interactions
     bool enableDebugMouseInteractions=false;
@@ -137,6 +138,10 @@ public:
         return worldObject->GetEnabled();
     }
 
+    float get_soft_body_collision_hysteresis(){
+        return worldObject->GetSoftBodyCollisionHysteresis();
+    }
+
     //Set Methods
     void set_debug_renderer_enabled(bool value);
     void set_debug_mouse_interactions_enabled(bool value);
@@ -193,6 +198,11 @@ public:
 
     QWorldNode *set_enabled(bool value){
         worldObject->SetEnabled(value);
+        return this;
+    }
+
+    QWorldNode *set_soft_body_collision_hysteresis(float value){
+        worldObject->SetSoftBodyCollisionHysteresis(value);
         return this;
     }
 

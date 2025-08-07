@@ -454,7 +454,7 @@ void QCollision::PolylineAndPolyline(vector<QParticle*> &testPolylineParticles,v
 			}
 
 			if(useMiniResponse){			
-				penetration*=0.2f;
+				penetration*=pA->GetOwnerMesh()->GetOwnerBody()->GetWorld()->GetSoftBodyCollisionHysteresis();
 			}
 		
 
