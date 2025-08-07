@@ -489,6 +489,7 @@ void QWorldNode::_bind_methods()
 	ClassDB::bind_method(D_METHOD("get_debug_renderer_enabled"),&QWorldNode::get_debug_renderer_enabled );
 	ClassDB::bind_method(D_METHOD("get_debug_mouse_interactions_enabled"),&QWorldNode::get_debug_mouse_interactions_enabled );
 	ClassDB::bind_method(D_METHOD("get_enabled"),&QWorldNode::get_enabled );
+	ClassDB::bind_method(D_METHOD("get_soft_body_collision_hysteresis"),&QWorldNode::get_soft_body_collision_hysteresis );
 
 	//Set
 	ClassDB::bind_method(D_METHOD("set_gravity","value"),&QWorldNode::set_gravity );
@@ -503,6 +504,7 @@ void QWorldNode::_bind_methods()
 	ClassDB::bind_method(D_METHOD("set_debug_renderer_enabled","value"),&QWorldNode::set_debug_renderer_enabled );
 	ClassDB::bind_method(D_METHOD("set_debug_mouse_interactions_enabled","value"),&QWorldNode::set_debug_mouse_interactions_enabled );
 	ClassDB::bind_method(D_METHOD("set_enabled","value"),&QWorldNode::set_enabled );
+	ClassDB::bind_method(D_METHOD("set_soft_body_collision_hysteresis","value"),&QWorldNode::set_soft_body_collision_hysteresis );
 
 	//Body
 	ClassDB::bind_method(D_METHOD("add_body_node","body_node"),&QWorldNode::add_body );
@@ -557,9 +559,14 @@ void QWorldNode::_bind_methods()
 	ADD_PROPERTY( PropertyInfo(Variant::INT, "iteration_count"),"set_iteration_count","get_iteration_count" );
 	ADD_PROPERTY( PropertyInfo(Variant::BOOL, "enable_sleeping"),"set_sleeping_enabled","get_sleeping_enabled" );
 	ADD_PROPERTY( PropertyInfo(Variant::FLOAT, "time_scale"),"set_time_scale","get_time_scale" );
+
+	ADD_GROUP("Collision Properties","");
+	ADD_PROPERTY( PropertyInfo(Variant::FLOAT, "soft_body_collision_hysteresis",PROPERTY_HINT_RANGE,"0.0,1.0,0.01"),"set_soft_body_collision_hysteresis","get_soft_body_collision_hysteresis" );
 	ADD_PROPERTY( PropertyInfo(Variant::BOOL, "enable_broadphase"),"set_broadphase_enabled","get_broadphase_enabled" );
 	ADD_PROPERTY( PropertyInfo(Variant::BOOL, "enable_spatial_hashing"),"set_spatial_hashing_enabled","get_spatial_hashing_enabled" );
 	ADD_PROPERTY( PropertyInfo(Variant::FLOAT, "spatial_hashing_cell_size"),"set_spatial_hashing_cell_size","get_spatial_hashing_cell_size" );
+
+	ADD_GROUP("Debug","");
 	ADD_PROPERTY( PropertyInfo(Variant::BOOL, "debug_renderer"),"set_debug_renderer_enabled","get_debug_renderer_enabled" );
 	ADD_PROPERTY( PropertyInfo(Variant::BOOL, "enable_debug_mouse_interactions"),"set_debug_mouse_interactions_enabled","get_debug_mouse_interactions_enabled" );
 
