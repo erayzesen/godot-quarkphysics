@@ -133,6 +133,13 @@
 			Returns whether world is enabled.
 			</description>
 		</method>
+		<method name="get_soft_body_collision_hysteresis">
+			<return type="float" />
+			<description>
+			Returns the global hysteresis factor for soft body vs soft body collisions.Controls how reactive soft bodies are in exceptional stress cases (compressed, fast, piled). High values prevent overlaps but cause aggressive behavior; low values allow some collision ignoring with calmer response.
+			The value ranges from 0.0 to 1.0. Default is 0.2. 
+			</description>
+		</method>
 		<method name="get_joint_at">
 			<return type="QJointObject" />
 			<param index="0" name="_unnamed_arg0" type="int" />
@@ -354,6 +361,14 @@
 			Sets whether world is enabled. 
 			</description>
 		</method>
+		<method name="set_soft_body_collision_hysteresis">
+			<return type="QWorldNode" />
+			<param index="0" name="value" type="float" />
+			<description>
+			Sets the global hysteresis factor for soft body vs soft body collisions.Controls how reactive soft bodies are in exceptional stress cases (compressed, fast, piled). High values prevent overlaps but cause aggressive behavior; low values allow some collision ignoring with calmer response. 
+			The value ranges from 0.0 to 1.0. Default is 0.2. 
+			</description>
+		</method>
 		<method name="set_gravity">
 			<return type="QWorldNode" />
 			<param index="0" name="value" type="Vector2" />
@@ -438,6 +453,10 @@
 		</member>
 		<member name="time_scale" type="float" setter="set_time_scale" getter="get_time_scale" default="1.0">
 			Sets the default time scale for the physics world. All movements and constraints of QBodyNode objects will be affected by this scale. The default value is 1.0.
+		</member>
+		<member name="soft_body_collision_hysteresis" type="bool" setter="set_soft_body_collision_hysteresis" getter="get_soft_body_collision_hysteresis" default="0.2">
+			Sets the global hysteresis factor for soft body vs soft body collisions.Controls how reactive soft bodies are in exceptional stress cases (compressed, fast, piled). High values prevent overlaps but cause aggressive behavior; low values allow some collision ignoring with calmer response. 
+			The value ranges from 0.0 to 1.0. Default is 0.2. 
 		</member>
 		<member name="enable_broadphase" type="bool" setter="set_broadphase_enabled" getter="get_broadphase_enabled" default="true">
 			Determines whether the BroadPhase optimization method (Sweep & Prune) is used for performance improvements. If disabled, the engine will use Brute-Force, where every object is directly tested against every other object using AABB checks. The default setting is enabled, and disabling it is not recommended.

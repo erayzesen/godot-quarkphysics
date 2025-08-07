@@ -176,7 +176,8 @@ public:
 	bool GetEnabled(){
 		return enabled;
 	}
-	/**  Returns the global hysteresis factor for soft body vs soft body collisions.Controls how reactive soft bodies are in exceptional stress cases (compressed, fast, piled). High values prevent overlaps but cause aggressive behavior; low values allow some collision ignoring with calmer response. The value ranges from 0.0 to 1.0. Default is 0.2.  */
+	/**  Returns the global hysteresis factor for soft body vs soft body collisions.Controls how reactive soft bodies are in exceptional stress cases (compressed, fast, piled). High values prevent overlaps but cause aggressive behavior; low values allow some collision ignoring with calmer response.
+	 *  The value ranges from 0.0 to 1.0. Default is 0.2.  */
 	float GetSoftBodyCollisionHysteresis(){
 		return softBodyCollisionHysteresis;
 	}
