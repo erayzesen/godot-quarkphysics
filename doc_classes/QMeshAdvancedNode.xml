@@ -3,17 +3,17 @@
 	<brief_description>
 	</brief_description>
 	<description>
-	QMeshAdvancedNode allows you to create custom and advanced meshes directly within the editor using the QMeshEditor plugin. Additionally, it enables you to export and import your meshes in a JSON-based format.
+		QMeshAdvancedNode allows you to create custom and advanced meshes directly within the editor using the QMeshEditor plugin. Additionally, it enables you to export and import your meshes in a JSON-based format.
 	[b]Note:[/b] These helper types of QMeshNode, once added to the scene, are converted into a typical QMeshNode with particles, spring connections, UV mappings, and a polygon. After being added to the scene, all modifications and adjustments should be done using the general methods of QMeshNode, rather than the member properties defined here.
 	</description>
 	<tutorials>
 	</tutorials>
 	<members>
 		<member name="export_qmesh_file" type="String" setter="set_export_file_path" getter="get_export_file_path" default="&quot;&quot;">
-		Exports the mesh you created in the JSON-based *.qmesh format. 
+			Exports the mesh you created in the JSON-based *.qmesh format.
 		</member>
 		<member name="import_qmesh_file" type="String" setter="set_import_file_path" getter="get_import_file_path" default="&quot;&quot;">
-		Imports the previously created mesh in the JSON-based .qmesh format.
+			Imports the previously created mesh in the JSON-based .qmesh format.
 		</member>
 	</members>
 </class>

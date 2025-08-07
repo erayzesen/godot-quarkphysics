@@ -3,7 +3,7 @@
 	<brief_description>
 	</brief_description>
 	<description>
-	You can apply angle constraints between 3 particles using the QAngleConstraintObject. The physics engine uses QAngleConstraintObject to impose angle constraints between particles in objects already simulated using mass-spring models (e.g. QSoftBody objects). However, if the user wants, they can apply specific angle constraints between any 3 particles using QAngleConstraintObject. QWorldNode also provides methods to manage QAngleConstraintObject instances.
+		You can apply angle constraints between 3 particles using the QAngleConstraintObject. The physics engine uses QAngleConstraintObject to impose angle constraints between particles in objects already simulated using mass-spring models (e.g. QSoftBody objects). However, if the user wants, they can apply specific angle constraints between any 3 particles using QAngleConstraintObject. QWorldNode also provides methods to manage QAngleConstraintObject instances.
 	[b]Note:[/b] QAngleConstraintObject will not work correctly on objects that are not simulated with particle dynamics, such as rigid bodies whose positions are fixed by transformations. QAngleConstraintObject relies on the ability to change the positions of particles with freedom of movement to apply constraints correctly.
 	</description>
 	<tutorials>
@@ -17,7 +17,7 @@
 			<param index="3" name="minimum_angle" type="float" />
 			<param index="4" name="maximum_angle" type="float" />
 			<description>
-			Provides a configuration for an angle constraint between 3 particles using basic settings.
+				Provides a configuration for an angle constraint between 3 particles using basic settings.
 			[param particle_object_a]: The QParticleObject to assign. 
 			[param particle_object_b]: The QParticleObject to assign.
 			[param particle_object_c]: The QParticleObject to assign.
@@ -32,7 +32,7 @@
 			<param index="2" name="particle_object_c" type="QParticleObject" />
 			<param index="3" name="angle_range" type="float" />
 			<description>
-			Provides a configuration to compute the angle between 3 particles based on their local positions and to apply a constraint within the specified angle range.
+				Provides a configuration to compute the angle between 3 particles based on their local positions and to apply a constraint within the specified angle range.
 			[param particle_object_a]: The QParticleObject to assign. 
 			[param particle_object_b]: The QParticleObject to assign.
 			[param particle_object_c]: The QParticleObject to assign.
@@ -42,50 +42,50 @@
 		<method name="get_enabled">
 			<return type="bool" />
 			<description>
-			Returns whether the angle constraint is enabled.
+				Returns whether the angle constraint is enabled.
 			</description>
 		</method>
 		<method name="get_max_angle">
 			<return type="bool" />
 			<description>
-			Returns the max-angle of the constraint.
+				Returns the max-angle of the constraint.
 			</description>
 		</method>
 		<method name="get_min_angle">
 			<return type="float" />
 			<description>
-			Returns the min-angle of the constraint.
+				Returns the min-angle of the constraint.
 			</description>
 		</method>
 		<method name="get_particle_a">
 			<return type="QParticleObject" />
 			<description>
-			Returns particleA of the angle constraint.
+				Returns particleA of the angle constraint.
 			</description>
 		</method>
 		<method name="get_particle_b">
 			<return type="QParticleObject" />
 			<description>
-			Returns particleB of the angle constraint.
+				Returns particleB of the angle constraint.
 			</description>
 		</method>
 		<method name="get_particle_c">
 			<return type="QParticleObject" />
 			<description>
-			Returns particleC of the angle constraint.
+				Returns particleC of the angle constraint.
 			</description>
 		</method>
 		<method name="get_rigidity">
 			<return type="float" />
 			<description>
-			Returns the rigidity of the angle constraint.
+				Returns the rigidity of the angle constraint.
 			</description>
 		</method>
 		<method name="set_enabled">
 			<return type="QAngleConstraintObject" />
 			<param index="0" name="value" type="bool" />
 			<description>
-			Sets whether the angle constraint is enabled.
+				Sets whether the angle constraint is enabled.
 			[param value]: A value to set.
 			</description>
 		</method>
@@ -93,7 +93,7 @@
 			<return type="QAngleConstraintObject" />
 			<param index="0" name="value" type="float" />
 			<description>
-			Sets the maximum angle of the constraint.
+				Sets the maximum angle of the constraint.
 			[param value]: The angle in radians to set.
 			</description>
 		</method>
@@ -101,7 +101,7 @@
 			<return type="QAngleConstraintObject" />
 			<param index="0" name="value" type="float" />
 			<description>
-			Sets the minimum angle of the constraint.
+				Sets the minimum angle of the constraint.
 			[param value]: The angle in radians to set.
 			</description>
 		</method>
@@ -109,7 +109,7 @@
 			<return type="QAngleConstraintObject" />
 			<param index="0" name="particle_object" type="QParticleObject" />
 			<description>
-			Sets particleA of the angle constraint.
+				Sets particleA of the angle constraint.
 			[param particle_object]: The QParticleObject to assign.
 			</description>
 		</method>
@@ -117,7 +117,7 @@
 			<return type="QAngleConstraintObject" />
 			<param index="0" name="particle_object" type="QParticleObject" />
 			<description>
-			Sets particleB of the angle constraint.
+				Sets particleB of the angle constraint.
 			[param particle_object]: The QParticleObject to assign.
 			</description>
 		</method>
@@ -125,7 +125,7 @@
 			<return type="QAngleConstraintObject" />
 			<param index="0" name="particle_object" type="QParticleObject" />
 			<description>
-			Sets particleC of the angle constraint.
+				Sets particleC of the angle constraint.
 			[param particle_object]: The QParticleObject to assign.
 			</description>
 		</method>
@@ -133,7 +133,7 @@
 			<return type="QAngleConstraintObject" />
 			<param index="0" name="value" type="float" />
 			<description>
-			Sets the rigidity of the constraint.
+				Sets the rigidity of the constraint.
 			[param value]: A value to set.
 			</description>
 		</method>

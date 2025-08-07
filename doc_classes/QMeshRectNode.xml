@@ -3,7 +3,7 @@
 	<brief_description>
 	</brief_description>
 	<description>
-	QMeshRectNode provides various settings to help you create rectangle-shaped meshes.
+		QMeshRectNode provides various settings to help you create rectangle-shaped meshes.
 	[b]Note:[/b] These helper types of QMeshNode, once added to the scene, are converted into a typical QMeshNode with particles, spring connections, UV mappings, and a polygon. After being added to the scene, all modifications and adjustments should be done using the general methods of QMeshNode, rather than the member properties defined here.
 	</description>
 	<tutorials>
@@ -13,23 +13,23 @@
 			<return type="QMeshRectNode" />
 			<param index="0" name="value" type="float" />
 			<description>
-			Sets the radius of particles in the mesh.
+				Sets the radius of particles in the mesh.
 			[param value]: A value to set.
 			</description>
 		</method>
 	</methods>
 	<members>
 		<member name="center_position" type="Vector2" setter="set_center_position" getter="get_center_position" default="Vector2(0, 0)">
-		The center position of the rectangle.
+			The center position of the rectangle.
 		</member>
 		<member name="grid" type="Vector2" setter="set_grid" getter="get_grid" default="Vector2(0, 0)">
-		This property generates a grid-like structure for the rectangular mesh using particles and connections. It is especially useful for rectangular meshes that require more particles and connections in soft body dynamics.
+			This property generates a grid-like structure for the rectangular mesh using particles and connections. It is especially useful for rectangular meshes that require more particles and connections in soft body dynamics.
 		</member>
 		<member name="particle_radius" type="float" setter="set_particle_radius" getter="get_particle_radius" default="0.5">
-		The radius of particles in the mesh.
+			The radius of particles in the mesh.
 		</member>
 		<member name="rectangle_size" type="Vector2" setter="set_size" getter="get_size" default="Vector2(32, 32)">
-		The size of the rectangle.
+			The size of the rectangle.
 		</member>
 	</members>
 </class>
