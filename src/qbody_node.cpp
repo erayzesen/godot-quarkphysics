@@ -154,7 +154,7 @@ void QBodyNode::_bind_methods() {
      ClassDB::bind_method(D_METHOD("get_mesh_at","index"),&QBodyNode::get_mesh_at );
      ClassDB::bind_method(D_METHOD("get_mesh_count"),&QBodyNode::get_mesh_count );
 
-     GDVIRTUAL_BIND(_on_collision, "collision_info");
+     GDVIRTUAL_BIND(_on_collision, "info");
 
      
 

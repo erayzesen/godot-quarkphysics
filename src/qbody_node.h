@@ -219,7 +219,7 @@ public:
 
     bool on_collision_callback(QBody *body,QBody::CollisionInfo info);
 
-    virtual bool _on_collision(Dictionary collisionInfo){
+    virtual bool _on_collision(Dictionary info){
         return true;
     };
 

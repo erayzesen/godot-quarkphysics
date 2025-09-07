@@ -16,10 +16,10 @@
 			<param index="3" name="internal" type="bool" />
 			<description>
 				Configures a spring connection between two particles with basic features.
-			[param particle_object_a]: The QParticleObject instance to be assigned for particle_a.
-			[param particle_object_b]: The QParticleObject instance to be assigned for particle_b.
-			[param length]: The length of the distance constraint.
-			[param internal]: Determines if the spring constraint is an internal element of the mesh structure, if the constraint is for particles within a mesh. You can leave this as false if there's no specific situation requiring you to specify it.
+				[param particle_object_a]: The QParticleObject instance to be assigned for particle_a.
+				[param particle_object_b]: The QParticleObject instance to be assigned for particle_b.
+				[param length]: The length of the distance constraint.
+				[param internal]: Determines if the spring constraint is an internal element of the mesh structure, if the constraint is for particles within a mesh. You can leave this as false if there's no specific situation requiring you to specify it.
 			</description>
 		</method>
 		<method name="configure_with_current_distance">
@@ -29,9 +29,9 @@
 			<param index="2" name="internal" type="bool" />
 			<description>
 				Configures a spring connection between two particles with basic features. Configures a spring connection between two particles with basic features. However, it automatically sets the constraint's length parameter based on the current distance between the two particles.
-			[param particle_object_a]: The QParticleObject instance to be assigned for particle_a.
-			[param particle_object_b]: The QParticleObject instance to be assigned for particle_b.
-			[param internal]: Determines if the spring constraint is an internal element of the mesh structure, if the constraint is for particles within a mesh. You can leave this as false if there's no specific situation requiring you to specify it.
+				[param particle_object_a]: The QParticleObject instance to be assigned for particle_a.
+				[param particle_object_b]: The QParticleObject instance to be assigned for particle_b.
+				[param internal]: Determines if the spring constraint is an internal element of the mesh structure, if the constraint is for particles within a mesh. You can leave this as false if there's no specific situation requiring you to specify it.
 			</description>
 		</method>
 		<method name="get_distance_limit_enabled">
@@ -93,7 +93,7 @@
 			<param index="0" name="value" type="bool" />
 			<description>
 				Sets whether the distance limit is enabled. If set to true, you'll configure coefficients for the minimum and maximum limits of the constrained distance. For example, if the minimum coefficient is 0.5, the constraint ensures the distance doesn't go below half of the constrained distance. If the maximum coefficient is set to 4, it ensures the distance doesn't exceed four times the constrained distance.
-			[param value]: A value to set.
+				[param value]: A value to set.
 			</description>
 		</method>
 		<method name="set_enabled">
@@ -101,7 +101,7 @@
 			<param index="0" name="value" type="bool" />
 			<description>
 				Sets whether the spring is enabled. 
-			[param value]: A value to set.
+				[param value]: A value to set.
 			</description>
 		</method>
 		<method name="set_is_internal">
@@ -109,7 +109,7 @@
 			<param index="0" name="value" type="bool" />
 			<description>
 				Sets whether the spring is internal. The internal property is generally recommended for use when creating spring connections between particles within a mesh. It should be set to true for spring connections that are part of the internal structure of the mesh, rather than at its boundaries.
-			[param value]: A value to set.
+				[param value]: A value to set.
 			</description>
 		</method>
 		<method name="set_length">
@@ -117,7 +117,7 @@
 			<param index="0" name="value" type="float" />
 			<description>
 				Sets the length of the spring.
-			[param value]: A value to set.
+				[param value]: A value to set.
 			</description>
 		</method>
 		<method name="set_maximum_distance_factor">
@@ -125,7 +125,7 @@
 			<param index="0" name="value" type="float" />
 			<description>
 				Sets the maximum distance factor to be enforced when the distance limits feature is enabled.
-			[param value]: A value to set.
+				[param value]: A value to set.
 			</description>
 		</method>
 		<method name="set_minimum_distance_factor">
@@ -133,7 +133,7 @@
 			<param index="0" name="value" type="float" />
 			<description>
 				Returns the minimum distance factor to be enforced when the distance limits feature is enabled.
-			[param value]: A value to set.
+				[param value]: A value to set.
 			</description>
 		</method>
 		<method name="set_particle_a">
@@ -141,7 +141,7 @@
 			<param index="0" name="particle_object" type="QParticleObject" />
 			<description>
 				Sets particle_a of the spring.
-			[param particle_object]: The QParticleObject instance to be assigned.
+				[param particle_object]: The QParticleObject instance to be assigned.
 			</description>
 		</method>
 		<method name="set_particle_b">
@@ -149,7 +149,7 @@
 			<param index="0" name="particle_object" type="QParticleObject" />
 			<description>
 				Sets particle_b of the spring.
-			[param particle_object]: The QParticleObject instance to be assigned.
+				[param particle_object]: The QParticleObject instance to be assigned.
 			</description>
 		</method>
 		<method name="set_rigidity">
@@ -157,7 +157,7 @@
 			<param index="0" name="value" type="float" />
 			<description>
 				Sets the rigidity of the spring.
-			[param value]: A value to set.
+				[param value]: A value to set.
 			</description>
 		</method>
 	</methods>

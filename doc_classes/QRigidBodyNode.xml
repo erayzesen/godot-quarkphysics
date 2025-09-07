@@ -13,7 +13,7 @@
 			<param index="0" name="value" type="float" />
 			<description>
 				Adds angular force to be applied to the body in the next frame.
-			[param value]: A value to be added.
+				[param value]: A value to be added.
 			</description>
 		</method>
 		<method name="add_force">
@@ -21,7 +21,7 @@
 			<param index="0" name="value" type="Vector2" />
 			<description>
 				Adds force to be applied to the body in the next frame.
-			[param value] A value to be added.
+				[param value] A value to be added.
 			</description>
 		</method>
 		<method name="apply_force">
@@ -31,9 +31,9 @@
 			<param index="2" name="update_mesh_transforms" type="bool" />
 			<description>
 				Applies force to the body.
-			[param value]: A value to apply.
-			[param r]: The offset vector from the center point to the point where the force will be applied.
-			[param update_mesh_transforms]: Determines whether the transformation should be applied to the meshes immediately after the force is applied. For example, if you're going to apply multiple forces at once, applying the transformation only once after all forces have been applied can save performance cost.
+				[param value]: A value to apply.
+				[param r]: The offset vector from the center point to the point where the force will be applied.
+				[param update_mesh_transforms]: Determines whether the transformation should be applied to the meshes immediately after the force is applied. For example, if you're going to apply multiple forces at once, applying the transformation only once after all forces have been applied can save performance cost.
 			</description>
 		</method>
 		<method name="apply_impulse">
@@ -42,8 +42,8 @@
 			<param index="1" name="r" type="Vector2" />
 			<description>
 				Applies a impulse immediately to the body. Since velocity values are implicit in this physical simulation, impulses are applied to previous position and previous rotation properties of the body. 
-			[param value]: A value to set.
-			[param r]: The offset vector from the center point to the point where the impulse will be applied.
+				[param value]: A value to set.
+				[param r]: The offset vector from the center point to the point where the impulse will be applied.
 			</description>
 		</method>
 		<method name="get_angular_force">
@@ -63,7 +63,7 @@
 			<param index="0" name="value" type="float" />
 			<description>
 				Sets the angular force that will be applied to the body in the next frame.
-			[param value]: A value to set.
+				[param value]: A value to set.
 			</description>
 		</method>
 		<method name="set_body_position_and_collide">
@@ -72,8 +72,8 @@
 			<param index="1" name="with_previous_position" type="bool" />
 			<description>
 				Sets the position of the rigid body and performs a collision test against the physical world. This method is intended to change the rigid body's position in a way that does not cause collision errors in the physics world.
-			[param value]: A value to set.
-			[param with_previous_position]: Sets the specified position as the previous position as well. You use it when you want to reset the body's velocity while changing its position. This is because the simulation uses Verlet integration, where velocities are implicit and determined by the difference between the current and previous positions.
+				[param value]: A value to set.
+				[param with_previous_position]: Sets the specified position as the previous position as well. You use it when you want to reset the body's velocity while changing its position. This is because the simulation uses Verlet integration, where velocities are implicit and determined by the difference between the current and previous positions.
 			</description>
 		</method>
 		<method name="set_fixed_rotation_enabled">
@@ -81,7 +81,7 @@
 			<param index="0" name="value" type="bool" />
 			<description>
 				Sets whether the body's rotation is locked. If set to true, the body's rotation will not change due to the effects of the physics world and will remain the same.
-			[param value]: A value to set.
+				[param value]: A value to set.
 			</description>
 		</method>
 		<method name="set_force">
@@ -89,7 +89,7 @@
 			<param index="0" name="value" type="Vector2" />
 			<description>
 				Sets the force to be applied in the next frame.
-			[param value]: A value to set.
+				[param value]: A value to set.
 			</description>
 		</method>
 		<method name="set_kinematic_collisions_enabled">
@@ -97,7 +97,7 @@
 			<param index="0" name="value" type="bool" />
 			<description>
 				If the body is set as kinematic, collisions with other kinematic bodies are ignored by default. If set to true, collisions with other kinematic bodies will occur.
-			[param value]: A value to set.
+				[param value]: A value to set.
 			</description>
 		</method>
 		<method name="set_kinematic_enabled">
@@ -105,7 +105,7 @@
 			<param index="0" name="value" type="bool" />
 			<description>
 				Sets whether the body is kinematic. Kinematic rigid bodies are exempt from velocity integrations and default forces like gravity. They remain stationary unless you intervene.
-			[param value]: A value to set.
+				[param value]: A value to set.
 			</description>
 		</method>
 	</methods>
