@@ -154,6 +154,8 @@ void QBodyNode::_bind_methods() {
      ClassDB::bind_method(D_METHOD("get_mesh_at","index"),&QBodyNode::get_mesh_at );
      ClassDB::bind_method(D_METHOD("get_mesh_count"),&QBodyNode::get_mesh_count );
 
+     GDVIRTUAL_BIND(_on_collision, "collision_info");
+
      
 
      //Export Features
@@ -569,7 +571,9 @@ bool QBodyNode::on_collision_callback(QBody *body, QBody::CollisionInfo info) {
     infoData["normal"]=Vector2(info.normal.x,info.normal.y);
     infoData["penetration"]=info.penetration;
     emit_signal("collision",body_as_node,infoData);
-    return true;
+    bool res=true;
+    GDVIRTUAL_CALL(_on_collision,infoData ,res);
+    return res;
 }
 
 void QBodyNode::pre_step_callback(QBody *body) {

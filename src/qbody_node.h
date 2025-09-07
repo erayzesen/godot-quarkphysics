@@ -31,6 +31,8 @@
 #include <godot_cpp/classes/node2d.hpp>
 #include "QuarkPhysics/qbody.h"
 #include "qmesh_node.h"
+#include <godot_cpp/core/binder_common.hpp>
+#include <godot_cpp/core/gdvirtual.gen.inc>
 
 class QWorldNode;
 class QJointObject;
@@ -53,7 +55,6 @@ protected:
     void _notification(int what);
     void on_post_enter_tree();
     bool isConfigured=false;
-    QBody *bodyObject=nullptr;
     QWorldNode *worldNode=nullptr;
     vector<QMeshNode*> meshNodes;
     static void _bind_methods();
@@ -63,6 +64,8 @@ protected:
 
     
 public:
+    QBody *bodyObject=nullptr;
+
     QBodyNode(){
         
     };
@@ -216,6 +219,10 @@ public:
 
     bool on_collision_callback(QBody *body,QBody::CollisionInfo info);
 
+    virtual bool _on_collision(Dictionary collisionInfo){
+        return true;
+    };
+
     void pre_step_callback(QBody* body);
 
 
@@ -227,6 +234,8 @@ public:
     friend class QRenderer;
     friend class QMeshNode;
     friend class QAreaBodyNode;
+
+    GDVIRTUAL1RC(bool,_on_collision,Dictionary );
 
 };
 
