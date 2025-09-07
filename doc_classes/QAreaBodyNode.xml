@@ -13,7 +13,7 @@
 			<param index="0" name="body_node" type="QBodyNode" />
 			<description>
 				A virtual function that enables the calculation of the **linearForceToApply** value specifically for each **body** object. If not overridden, it applies the **linearForceToApply** value defined for **QAreaBody** as a force to all objects. Additionally, if **ComputeLinearForceListener** is defined and not overridden, it applies the value returned by that listener.
-			[param body_node]: The QBodyNode located within the area where the linear force will be applied.
+				[param body_node]: The QBodyNode located within the area where the linear force will be applied.
 			</description>
 		</method>
 		<method name="get_bodies">
@@ -27,7 +27,7 @@
 			<param index="0" name="body_node" type="QBodyNode" />
 			<description>
 				Returns whether a given body is currently in contact with this QAreaBody.
-			[param body_node]: The QBodyNode instance to be queried.
+				[param body_node]: The QBodyNode instance to be queried.
 			</description>
 		</method>
 	</methods>
@@ -37,7 +37,7 @@
 		</member>
 		<member name="linear_force_to_apply" type="Vector2" setter="set_linear_force_to_apply" getter="get_linear_force_to_apply" default="Vector2(0, 0)">
 			Sets the amount of linear force to be applied to objects entering the area. If a force vector is defined, objects entering the area will be continuously subjected to this force.
-		If you want to apply a specific linear force to each QBodyNode within the area, you can use the virtual method [method _compute_linear_force].
+			If you want to apply a specific linear force to each QBodyNode within the area, you can use the virtual method [method _compute_linear_force].
 		</member>
 	</members>
 	<signals>
@@ -46,8 +46,8 @@
 			<param index="1" name="collided_body_node" type="Object" />
 			<description>
 				This signal is triggered when any QBodyNode enters the collision list of a QAreaBody for the first time.
-			[param area_body_node]: QAreaBodyNode that triggered the signal.
-			[param collided_body_node]: QBodyNode that entered the collision.
+				[param area_body_node]: QAreaBodyNode that triggered the signal.
+				[param collided_body_node]: QBodyNode that entered the collision.
 			</description>
 		</signal>
 		<signal name="collision_exit">
@@ -55,8 +55,8 @@
 			<param index="1" name="collided_body_node" type="Object" />
 			<description>
 				This signal is triggered when any object exits the collision list of a QAreaBody for the first time.
-			[param area_body_node]: QAreaBodyNode that triggered the signal.
-			[param collided_body_node]: QBodyNode that entered the collision.
+				[param area_body_node]: QAreaBodyNode that triggered the signal.
+				[param collided_body_node]: QBodyNode that entered the collision.
 			</description>
 		</signal>
 	</signals>

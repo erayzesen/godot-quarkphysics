@@ -13,7 +13,7 @@
 			<param index="0" name="value" type="Vector2" />
 			<description>
 				Adds a value to the force of the particle. Set forces determine the force to be applied to a particle object at the next physics frame from the current frame.  
-			[param value]: A value to be added.
+				[param value]: A value to be added.
 			</description>
 		</method>
 		<method name="add_global_position">
@@ -21,7 +21,7 @@
 			<param index="0" name="value" type="Vector2" />
 			<description>
 				Adds a value to the global position of the particle. 
-			[param value]: A value to be added.
+				[param value]: A value to be added.
 			</description>
 		</method>
 		<method name="add_position">
@@ -29,7 +29,7 @@
 			<param index="0" name="value" type="Vector2" />
 			<description>
 				Adds a value to the local position of the particle.
-			[param value]: A value to be added.
+				[param value]: A value to be added.
 			</description>
 		</method>
 		<method name="add_previous_global_position">
@@ -37,7 +37,7 @@
 			<param index="0" name="value" type="Vector2" />
 			<description>
 				Adds a value to the previous global position of the particle. 
-			[param value]: A value to be added.
+				[param value]: A value to be added.
 			</description>
 		</method>
 		<method name="apply_force">
@@ -45,7 +45,7 @@
 			<param index="0" name="value" type="Vector2" />
 			<description>
 				Applies a force directly to the particle. This is independent of the particle's force property, which can be set or modified using [method add_force] or [method set_force], and is applied in the next frame
-			[param value]: The value of the force to be applied.
+				[param value]: The value of the force to be applied.
 			</description>
 		</method>
 		<method name="configure">
@@ -54,15 +54,15 @@
 			<param index="1" name="radius" type="float" />
 			<description>
 				Configures the particle object with basic settings.
-			[param position]: The local position of the particle. 
-			[param radius]: The radius of the particle.
+				[param position]: The local position of the particle. 
+				[param radius]: The radius of the particle.
 			</description>
 		</method>
 		<method name="get_enabled">
 			<return type="bool" />
 			<description>
 				Returns whether the particle is enabled. Disabled particles are not exempt from the collision tests that involve the meshes they belong to, but the solutions of their manifolds are not applied. Additionally, in body types where particles can move freely individually (e.g., QSoftBody), force and velocity integrations are not applied.
-			[b]note:[/b] Disabled particles in QRigidBody objects may appear to move, because they are transformed based on the rigid body's position and rotation, and their positions are updated directly.
+				[b]note:[/b] Disabled particles in QRigidBody objects may appear to move, because they are transformed based on the rigid body's position and rotation, and their positions are updated directly.
 			</description>
 		</method>
 		<method name="get_force">
@@ -124,7 +124,7 @@
 			<param index="0" name="value" type="bool" />
 			<description>
 				Sets whether the particle is enabled. Disabled particles are not exempt from the collision tests that involve the meshes they belong to, but the solutions of their manifolds are not applied. Additionally, in body types where particles can move freely individually (e.g., QSoftBody), force and velocity integrations are not applied.
-			[param value]: A value to set.
+				[param value]: A value to set.
 			</description>
 		</method>
 		<method name="set_force">
@@ -132,7 +132,7 @@
 			<param index="0" name="value" type="Vector2" />
 			<description>
 				Sets the force value of the particle. Set forces determine the force to be applied to a particle object at the next physics step from the current step. 
-			[param value]: A value to set.
+				[param value]: A value to set.
 			</description>
 		</method>
 		<method name="set_global_position">
@@ -140,7 +140,7 @@
 			<param index="0" name="value" type="Vector2" />
 			<description>
 				Sets the global position of the particle.
-			[param value]: A value to set.
+				[param value]: A value to set.
 			</description>
 		</method>
 		<method name="set_is_internal">
@@ -148,7 +148,7 @@
 			<param index="0" name="value" type="bool" />
 			<description>
 				Sets whether the particle is internal.Internal particle definition is used not for the particles that define the collision boundaries of a mesh, but for the grid particles inside these boundaries. This feature is important for simulation types that require different internal particle simulation, such as volume preserved soft bodies.
-			[param value]: A value to set.
+				[param value]: A value to set.
 			</description>
 		</method>
 		<method name="set_is_lazy">
@@ -156,7 +156,7 @@
 			<param index="0" name="value" type="bool" />
 			<description>
 				Sets whether the particle's lazy feature is enabled. This feature allows the particle to react once in a one-sided manner when colliding with an object; after that, it won't react again until it exits and re-enters the collision. This feature is used for particles that lightly interact with surrounding objects when necessary.
-			[param value]: A value to set.
+				[param value]: A value to set.
 			</description>
 		</method>
 		<method name="set_mass">
@@ -164,7 +164,7 @@
 			<param index="0" name="value" type="float" />
 			<description>
 				Sets the mass of the particle
-			[param value]: A value to set.
+				[param value]: A value to set.
 			</description>
 		</method>
 		<method name="set_position">
@@ -172,7 +172,7 @@
 			<param index="0" name="value" type="Vector2" />
 			<description>
 				Sets local position of the particle.
-			[param value]: A value to set.
+				[param value]: A value to set.
 			</description>
 		</method>
 		<method name="set_previous_global_position">
@@ -180,7 +180,7 @@
 			<param index="0" name="value" type="Vector2" />
 			<description>
 				Sets the previous global position of the particle. 
-			[param value]: A value to set.
+				[param value]: A value to set.
 			</description>
 		</method>
 		<method name="set_radius">
@@ -188,7 +188,7 @@
 			<param index="0" name="value" type="float" />
 			<description>
 				Sets the radius of the particle.
-			[param value]: A value to set.
+				[param value]: A value to set.
 			</description>
 		</method>
 	</methods>

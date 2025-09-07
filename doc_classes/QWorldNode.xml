@@ -4,14 +4,14 @@
 	</brief_description>
 	<description>
 		A QWorldNode object is required to create a physics simulation. The QWorldNode class manages the entire physics simulation. You can add or remove objects to the physics world and make specific settings for the simulation. Additionally, the QWorldNode class is responsible for updating the simulation. There can only be one QWorldNode object in the scene tree. 
-	[b]Note:[/b] Note: You can rename your QWorldNode object, but this will make it more costly for QBodyNode objects to locate it. If it's not crucial for your setup, we recommend keeping its name as "QWorldNode", just as it is when created from the editor.
-	[gdscript]
-	# In the root node of the scene
-	var my_world= QWorldNode.new()
-	add_child(my_world)
-	# Another way
-	# get_tree().get_current_scene().add_child(my_world)
-	[/gdscript]
+		[b]Note:[/b] Note: You can rename your QWorldNode object, but this will make it more costly for QBodyNode objects to locate it. If it's not crucial for your setup, we recommend keeping its name as "QWorldNode", just as it is when created from the editor.
+		[gdscript]
+		# In the root node of the scene
+		var my_world= QWorldNode.new()
+		add_child(my_world)
+		# Another way
+		# get_tree().get_current_scene().add_child(my_world)
+		[/gdscript]
 	</description>
 	<tutorials>
 	</tutorials>
@@ -21,8 +21,8 @@
 			<param index="0" name="body_node" type="Object" />
 			<description>
 				Adds a body to the world.
-			[b]Note:[/b] We don't recommend using this with Godot. This method was added to stay true to the original API and for very exceptional cases. For Node type objects in QuarkPhysics, you should always stick to Godot's child structure workflow. When you add QBodyNode objects to the scene using add_child(), they'll automatically look for a QWorldNode in the scene and add themselves there. Similarly, when you remove a QBodyNode type object from the scene with queue_free(), it'll automatically remove itself from the QWorldNode. 
-			[param body_node]: A QBodyNode to be added.
+				[b]Note:[/b] We don't recommend using this with Godot. This method was added to stay true to the original API and for very exceptional cases. For Node type objects in QuarkPhysics, you should always stick to Godot's child structure workflow. When you add QBodyNode objects to the scene using add_child(), they'll automatically look for a QWorldNode in the scene and add themselves there. Similarly, when you remove a QBodyNode type object from the scene with queue_free(), it'll automatically remove itself from the QWorldNode. 
+				[param body_node]: A QBodyNode to be added.
 			</description>
 		</method>
 		<method name="add_collision_exception">
@@ -31,8 +31,8 @@
 			<param index="1" name="bodyB" type="Object" />
 			<description>
 				Adds a collision exception between two bodies. These bodies will never collide.
-			[param bodyA] : A QBodyNode in the world.
-			[param bodyB] : Another QBodyNode in the world.
+				[param bodyA] : A QBodyNode in the world.
+				[param bodyB] : Another QBodyNode in the world.
 			</description>
 		</method>
 		<method name="add_joint">
@@ -40,7 +40,7 @@
 			<param index="0" name="joint_object" type="QJointObject" />
 			<description>
 				Adds a joint to the world.
-			[param joint_object]: A QJointObject to be added.
+				[param joint_object]: A QJointObject to be added.
 			</description>
 		</method>
 		<method name="add_raycast">
@@ -48,7 +48,7 @@
 			<param index="0" name="raycast_object" type="QRaycastObject" />
 			<description>
 				Adds a raycast to the world.
-			[param raycast_object]: A QRaycastObject to be added.
+				[param raycast_object]: A QRaycastObject to be added.
 			</description>
 		</method>
 		<method name="add_spring">
@@ -56,7 +56,7 @@
 			<param index="0" name="spring_object" type="QSpringObject" />
 			<description>
 				Adds a spring to the world. 
-			[param spring_object]: A QSpringObject to be added.
+				[param spring_object]: A QSpringObject to be added.
 			</description>
 		</method>
 		<method name="get_bodies_hit_by_point">
@@ -67,10 +67,10 @@
 			<param index="3" name="layers_bit" type="int" />
 			<description>
 				Returns a list of bodies that collide with the point given.
-			[param point] :A point to test.
-			[param max_body_count] :The maximum number of bodies to be returned.
-			[param only_rigid_bodies] : If set to true, it only tests rigid bodies.
-			[param layers_bit] : Collision layer bits(Set -1 if you don't want to filter bodies via layer bits )
+				[param point] :A point to test.
+				[param max_body_count] :The maximum number of bodies to be returned.
+				[param only_rigid_bodies] : If set to true, it only tests rigid bodies.
+				[param layers_bit] : Collision layer bits(Set -1 if you don't want to filter bodies via layer bits )
 			</description>
 		</method>
 		<method name="get_body_at">
@@ -78,7 +78,7 @@
 			<param index="0" name="index" type="int" />
 			<description>
 				Returns QBodyNode at the specified index.
-			[param index]: The Index of the body to get.
+				[param index]: The Index of the body to get.
 			</description>
 		</method>
 		<method name="get_body_count">
@@ -92,7 +92,7 @@
 			<param index="0" name="body_node" type="Object" />
 			<description>
 				Returns index of the specified body
-			[param body_node]: A QBodyNode to find index.
+				[param body_node]: A QBodyNode to find index.
 			</description>
 		</method>
 		<method name="get_collisions">
@@ -102,26 +102,26 @@
 			<description>
 				Performs a collision test between the given QBodyNodes. It returns the result of the collision test as an array of dictionaries, with each dictionary containing contact information. 
 
-			The code explaining the return structure is as follows:
-			[gdscript]
-			var contacts=$QWorldNode.get_collisions(my_body_a,my_body_b)
-			for i in range(contacts.size() ) :
-			    var contact=contacts[i]
-			    # The contact position of the collision
-			    var position=contact["position"]
-			    # The normal of the collision
-			    var normal=contact["normal"]
-			    # The penetration of the collision
-			    var penetration=contact["penetration"]
-			    # The incident particle of the collision
-			    var incident_particle=contact["particle"]
-			    # The particle list of the reference face in the collision
-			    var reference_particles=contact["reference_particles"]
+				The code explaining the return structure is as follows:
+				[gdscript]
+				var contacts=$QWorldNode.get_collisions(my_body_a,my_body_b)
+				for i in range(contacts.size() ) :
+				    var contact=contacts[i]
+				    # The contact position of the collision
+				    var position=contact["position"]
+				    # The normal of the collision
+				    var normal=contact["normal"]
+				    # The penetration of the collision
+				    var penetration=contact["penetration"]
+				    # The incident particle of the collision
+				    var incident_particle=contact["particle"]
+				    # The particle list of the reference face in the collision
+				    var reference_particles=contact["reference_particles"]
 
-			[/gdscript]
+				[/gdscript]
 
-			[param bodyA]: A QBodyNode in the world.
-			[param bodyB]: Another QBodyNode in the world.
+				[param bodyA]: A QBodyNode in the world.
+				[param bodyB]: Another QBodyNode in the world.
 			</description>
 		</method>
 		<method name="get_enabled">
@@ -135,7 +135,7 @@
 			<param index="0" name="_unnamed_arg0" type="int" />
 			<description>
 				Returns the joint at the specified index.
-			[param index]: The index of the joint.
+				[param index]: The index of the joint.
 			</description>
 		</method>
 		<method name="get_joint_count">
@@ -149,7 +149,7 @@
 			<param index="0" name="joint_object" type="QJointObject" />
 			<description>
 				Returns the index of the specified joint.
-			[param joint_object]:  A QJointObject in the world.
+				[param joint_object]:  A QJointObject in the world.
 			</description>
 		</method>
 		<method name="get_particles_close_to_point">
@@ -161,11 +161,11 @@
 			<param index="4" name="layers_bit" type="int" />
 			<description>
 				Returns nearest particles to the specified point.
-			[param point]:  A point to test
-			[param distance]: The distance of proximity to the point
-			[param max_particle_count]: The maximum number of particles to be returned.
-			[param except_rigid_bodies]: If set to true, it tests only non-rigid bodies.
-			[param layers_bit]: Collision layer bits. (Set -1 if you don't want to filter bodies via layer bits )
+				[param point]:  A point to test
+				[param distance]: The distance of proximity to the point
+				[param max_particle_count]: The maximum number of particles to be returned.
+				[param except_rigid_bodies]: If set to true, it tests only non-rigid bodies.
+				[param layers_bit]: Collision layer bits. (Set -1 if you don't want to filter bodies via layer bits )
 			</description>
 		</method>
 		<method name="get_raycast_at">
@@ -173,7 +173,7 @@
 			<param index="0" name="_unnamed_arg0" type="int" />
 			<description>
 				Returns the raycast at the specified index.
-			[param index]: The index of the raycast.
+				[param index]: The index of the raycast.
 			</description>
 		</method>
 		<method name="get_raycast_count">
@@ -187,7 +187,7 @@
 			<param index="0" name="raycast_object" type="QRaycastObject" />
 			<description>
 				Returns the index of the specified raycast.
-			[param index]: A QRaycastObject in the world.
+				[param index]: A QRaycastObject in the world.
 			</description>
 		</method>
 		<method name="get_sleeping_position_tolerance">
@@ -206,7 +206,7 @@
 			<param index="0" name="_unnamed_arg0" type="int" />
 			<description>
 				Returns the spring at the specified index.
-			[param index]: The index of the spring.
+				[param index]: The index of the spring.
 			</description>
 		</method>
 		<method name="get_spring_count">
@@ -220,7 +220,7 @@
 			<param index="0" name="spring_object" type="QSpringObject" />
 			<description>
 				Returns the index of the specified spring.
-			[param spring_object]: A QSpringObject in the world.
+				[param spring_object]: A QSpringObject in the world.
 			</description>
 		</method>
 		<method name="raycast_to">
@@ -232,26 +232,26 @@
 			<description>
 				Sends a ray into the world with the given position and direction vector. Returns a collection of contact dictionary containing collision information with body objects hit by the ray. The array is sorted from nearest to farthest based on the ray's origin.
 
-			The code explaining the return structure is as follows:
-			[gdscript]
-			var contacts=$QWorldNode.raycast_to(position,ray_vector,-1,false)
-			#Check if there are any contacts
-			if contacts.size()&gt;0 :
-			    #Get the first contact
-			    var my_contact=contacts[0]
-			    #The contact body of the ray collision
-			    var contact_body=my_contact["body"]
-			    #The contact position of the ray collision.
-			    var contact_position=my_contact["position"]
-			    #The contact normal of the ray collision.
-			    var contact_normal=my_contact["normal"]
-			    #The distance between the ray position and the contact body.
-			    var contact_distance=my_contact["distance"]
-			[/gdscript]
-			[param position]: The position of the ray.
-			[param ray_vector]: The vector of the ray.
-			[param collidable_layers_bit]: The target layer bits. (Set -1 if you don't want to filter bodies via layer bits )
-			[enable_containing_bodies]: Determines whether a body should be ignored in raycast collisions if the ray position is inside the shape representing the body in the world. If set to true, these objects will be ignored in raycast collisions.
+				The code explaining the return structure is as follows:
+				[gdscript]
+				var contacts=$QWorldNode.raycast_to(position,ray_vector,-1,false)
+				#Check if there are any contacts
+				if contacts.size()&gt;0 :
+				    #Get the first contact
+				    var my_contact=contacts[0]
+				    #The contact body of the ray collision
+				    var contact_body=my_contact["body"]
+				    #The contact position of the ray collision.
+				    var contact_position=my_contact["position"]
+				    #The contact normal of the ray collision.
+				    var contact_normal=my_contact["normal"]
+				    #The distance between the ray position and the contact body.
+				    var contact_distance=my_contact["distance"]
+				[/gdscript]
+				[param position]: The position of the ray.
+				[param ray_vector]: The vector of the ray.
+				[param collidable_layers_bit]: The target layer bits. (Set -1 if you don't want to filter bodies via layer bits )
+				[enable_containing_bodies]: Determines whether a body should be ignored in raycast collisions if the ray position is inside the shape representing the body in the world. If set to true, these objects will be ignored in raycast collisions.
 			</description>
 		</method>
 		<method name="remove_body_at">
@@ -259,7 +259,7 @@
 			<param index="0" name="index" type="int" />
 			<description>
 				Removes the body from the world at the specified index. The index of a body can be obtained using the [get_body_index] method.
-			[param index]: The index of the body to remove.
+				[param index]: The index of the body to remove.
 			</description>
 		</method>
 		<method name="remove_body_node">
@@ -267,7 +267,7 @@
 			<param index="0" name="body_node" type="Object" />
 			<description>
 				Removes body from the world.
-			[param body]: A QBodyNode to be removed.
+				[param body]: A QBodyNode to be removed.
 			</description>
 		</method>
 		<method name="remove_collision_exception">
@@ -276,8 +276,8 @@
 			<param index="1" name="bodyB" type="Object" />
 			<description>
 				Removes a collision exception.
-			[param bodyA]: A body in the world.
-			[param bodyB]: Another body in the world.
+				[param bodyA]: A body in the world.
+				[param bodyB]: Another body in the world.
 			</description>
 		</method>
 		<method name="remove_joint">
@@ -285,7 +285,7 @@
 			<param index="0" name="joint_object" type="QJointObject" />
 			<description>
 				Removes a joint from the world.
-			[param joint]  A QJointObject to be removed.
+				[param joint]  A QJointObject to be removed.
 			</description>
 		</method>
 		<method name="remove_joint_at">
@@ -293,7 +293,7 @@
 			<param index="0" name="index" type="int" />
 			<description>
 				Removes a joint from the world at the specified index. The index of a joint can be obtained using the [method get_joint_index] method.
-			[param index]: The index of the joint to be removed.
+				[param index]: The index of the joint to be removed.
 			</description>
 		</method>
 		<method name="remove_matching_collision_exception">
@@ -301,7 +301,7 @@
 			<param index="0" name="body" type="Object" />
 			<description>
 				Removes a collision exception that contains the given body.
-			[param body]: A body to be matched.
+				[param body]: A body to be matched.
 			</description>
 		</method>
 		<method name="remove_raycast">
@@ -309,7 +309,7 @@
 			<param index="0" name="raycast_object" type="QRaycastObject" />
 			<description>
 				Removes a raycast from the world. 
-			[param raycast]: A raycast to be removed.
+				[param raycast]: A raycast to be removed.
 			</description>
 		</method>
 		<method name="remove_raycast_at">
@@ -317,7 +317,7 @@
 			<param index="0" name="index" type="int" />
 			<description>
 				Removes a raycast from the world at the specified index.  The index of a raycast can be obtained using the [method get_raycast_index] method.
-			[param index]: An index number.
+				[param index]: An index number.
 			</description>
 		</method>
 		<method name="remove_spring">
@@ -325,7 +325,7 @@
 			<param index="0" name="spring_object" type="QSpringObject" />
 			<description>
 				Removes a spring from the world.
-			[param spring]: A spring to be removed.
+				[param spring]: A spring to be removed.
 			</description>
 		</method>
 		<method name="remove_spring_at">
@@ -333,7 +333,7 @@
 			<param index="0" name="index" type="int" />
 			<description>
 				Removes a spring from the world at the specified index. The index of a spring can be obtained using the [method get_spring_index] method.
-			[param index]: The index of the spring to be removed.
+				[param index]: The index of the spring to be removed.
 			</description>
 		</method>
 		<method name="set_broadphase_enabled">
@@ -355,7 +355,7 @@
 			<param index="0" name="value" type="Vector2" />
 			<description>
 				Sets the gravity force of the world. The gravity force applies to dynamic bodies in every step of physics.
-			[param value]: The force vector value of the gravity.
+				[param value]: The force vector value of the gravity.
 			</description>
 		</method>
 		<method name="set_iteration_count">
@@ -363,7 +363,7 @@
 			<param index="0" name="value" type="int" />
 			<description>
 				Sets the iteration count per step of physics in the world. Iteration count determines stability level of the simulation.
-			[param value]: The number of iterations per step.
+				[param value]: The number of iterations per step.
 			</description>
 		</method>
 		<method name="set_sleeping_enabled">
@@ -371,7 +371,7 @@
 			<param index="0" name="value" type="bool" />
 			<description>
 				Sets whether sleep mode will be applied to dynamic objects.
-			[param value]: A value to set.
+				[param value]: A value to set.
 			</description>
 		</method>
 		<method name="set_sleeping_position_tolerance">
@@ -379,7 +379,7 @@
 			<param index="0" name="value" type="float" />
 			<description>
 				Sets the sleeping position tolerance. If the sleeping option is active, objects will go to sleep as long as they do not exceed this position change limit within a certain step amount.
-			[param value]: A value to set.
+				[param value]: A value to set.
 			</description>
 		</method>
 		<method name="set_sleeping_rotation_tolerance">
@@ -387,7 +387,7 @@
 			<param index="0" name="value" type="float" />
 			<description>
 				Sets the sleeping rotation tolerance. If the sleeping option is active, objects will go to sleep as long as they do not exceed this rotation change limit within a certain step amount.
-			[param value]: A value to set.
+				[param value]: A value to set.
 			</description>
 		</method>
 		<method name="set_soft_body_collision_hysteresis">
@@ -396,7 +396,7 @@
 			<description>
 				Sets the global hysteresis factor for soft body vs soft body collisions.This only affects exceptional stress cases (e.g. when bodies are compressed,moving fast, or heavily stacked). Controls how reactive soft bodies become in such conditions. High values prevent overlaps but may cause aggressive separation behavior; low values allow calmer responses but may lead to brief overlap or missed collisions.
 				The value ranges from 0.0 to 1.0. Default is 0.2.
-			[param value]: A value to set.
+				[param value]: A value to set.
 			</description>
 		</method>
 		<method name="set_spatial_hashing_cell_size">
@@ -404,7 +404,7 @@
 			<param index="0" name="value" type="float" />
 			<description>
 				If Spatial Hashing is enabled, this option sets the size of the hashing cells. The default value is 128 pixels.
-			 [param value]: A value to set.
+				 [param value]: A value to set.
 			</description>
 		</method>
 		<method name="set_spatial_hashing_enabled">
@@ -412,7 +412,7 @@
 			<param index="0" name="value" type="bool" />
 			<description>
 				Replaces the built-in Sweep &amp; Prune method with a Spatial Hashing technique specifically implemented as a BroadPhase optimization for QuarkPhysics. This method divides the scene into cells and only checks for collisions within the same cells. The default setting is disabled, and it will remain so until it is optimized further to outperform the built-in Sweep &amp; Prune method.
-			[param value]: A value to set.
+				[param value]: A value to set.
 			</description>
 		</method>
 		<method name="set_time_scale">
@@ -420,7 +420,7 @@
 			<param index="0" name="value" type="float" />
 			<description>
 				Sets the time scale for the physics simulation. The default value is 1.0. If you give a value lower than 1.0, the simulation will slow down, and if you give a value higher than 1.0, the simulation will speed up. 
-			[param value]: A value to set.
+				[param value]: A value to set.
 			</description>
 		</method>
 		<method name="update_world">

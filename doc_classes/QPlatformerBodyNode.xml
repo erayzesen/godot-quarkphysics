@@ -13,7 +13,7 @@
 			<param index="0" name="offset" type="float" />
 			<description>
 				Checks for a collision with the ceiling.
-			[param offset]: The offset to apply during the check.
+				[param offset]: The offset to apply during the check.
 			</description>
 		</method>
 		<method name="get_controller_horizontal_velocity">
@@ -33,7 +33,7 @@
 			<param index="0" name="offset" type="float" />
 			<description>
 				Checks for a collision with the floor.
-			 [param offset]: The offset to apply during the check.
+				 [param offset]: The offset to apply during the check.
 			</description>
 		</method>
 		<method name="get_floor_max_angle">
@@ -83,7 +83,7 @@
 			<param index="0" name="offset" type="float" />
 			<description>
 				Checks for a collision with a wall on the left.
-			[param offset]: The offset to apply during the check.
+				[param offset]: The offset to apply during the check.
 			</description>
 		</method>
 		<method name="get_platform_collisions">
@@ -92,8 +92,8 @@
 			<param index="1" name="filter_by_moving_direction" type="bool" />
 			<description>
 				Performs a platform collision test.
-			[param test_position]: The position to test for collisions.
-			[param filter_by_moving_direction]: If set to true, filters out collisions that respond in the opposite direction of the movement vector calculated between the current position and the given test position.
+				[param test_position]: The position to test for collisions.
+				[param filter_by_moving_direction]: If set to true, filters out collisions that respond in the opposite direction of the movement vector calculated between the current position and the given test position.
 			</description>
 		</method>
 		<method name="get_right_wall">
@@ -101,7 +101,7 @@
 			<param index="0" name="offset" type="float" />
 			<description>
 				Checks for a collision with a wall on the right.
-			[param offset]: The offset to apply during the check.
+				[param offset]: The offset to apply during the check.
 			</description>
 		</method>
 		<method name="jump">
@@ -110,8 +110,8 @@
 			<param index="1" name="unconditional" type="bool" />
 			<description>
 				Initiates a jump with the specified force.
-			[param force]: The force of the jump.
-			[param unconditional]: If true, the jump will execute regardless of current conditions.
+				[param force]: The force of the jump.
+				[param unconditional]: If true, the jump will execute regardless of current conditions.
 			</description>
 		</method>
 		<method name="release_jump">
@@ -125,7 +125,7 @@
 			<param index="0" name="value" type="Vector2" />
 			<description>
 				Sets the horizontal velocity controlled by the character physics.
-			[param value]: The velocity vector to be applied on the horizontal axis.
+				[param value]: The velocity vector to be applied on the horizontal axis.
 			</description>
 		</method>
 		<method name="set_controller_vertical_velocity">
@@ -133,7 +133,7 @@
 			<param index="0" name="value" type="Vector2" />
 			<description>
 				Sets the vertical velocity controlled by the character physics.
-			[param value]: The velocity vector to be applied on the vertical axis.
+				[param value]: The velocity vector to be applied on the vertical axis.
 			</description>
 		</method>
 		<method name="set_floor_max_angle">
@@ -141,7 +141,7 @@
 			<param index="0" name="value" type="float" />
 			<description>
 				The maximum angle at which a surface is considered a floor by the character.
-			[param value]: A value of type radian to be set.
+				[param value]: A value of type radian to be set.
 			</description>
 		</method>
 		<method name="set_floor_max_angle_degree">
@@ -149,7 +149,7 @@
 			<param index="0" name="value" type="float" />
 			<description>
 				The maximum angle in degree at which a surface is considered a floor by the character.
-			[param value]: A value of type degree to be set.
+				[param value]: A value of type degree to be set.
 			</description>
 		</method>
 		<method name="set_gravity">
@@ -157,7 +157,7 @@
 			<param index="0" name="value" type="Vector2" />
 			<description>
 				Sets the gravity vector to be applied to the character on every frame.
-			[param value]: A value to set.
+				[param value]: A value to set.
 			</description>
 		</method>
 		<method name="set_gravity_multiplier">
@@ -165,7 +165,7 @@
 			<param index="0" name="value" type="float" />
 			<description>
 				This is the multiplier applied to the gravity force acting on the character. It is useful in mechanics where you need to scale the globally defined gravity in the simulation. The default value is 1.0.
-			[param value]: A value to set.
+				[param value]: A value to set.
 			</description>
 		</method>
 		<method name="set_jump_duration_frame_count">
@@ -173,7 +173,7 @@
 			<param index="0" name="value" type="int" />
 			<description>
 				Sets the number of frames required before the [method jump] method can be triggered again for the character after the default [method jump] method has been executed.
-			[param value]: A value to set.
+				[param value]: A value to set.
 			</description>
 		</method>
 		<method name="set_jump_fall_gravity_multiplier">
@@ -181,7 +181,7 @@
 			<param index="0" name="value" type="float" />
 			<description>
 				Sets the gravity multiplier to be applied when the character is falling after the [method jump] method has been triggered. This can be useful for implementing custom and unique jumping behaviors.
-			[param value]: A value to set.
+				[param value]: A value to set.
 			</description>
 		</method>
 		<method name="set_jump_gravity_multiplier">
@@ -196,7 +196,7 @@
 			<param index="0" name="value" type="int" />
 			<description>
 				Defines how many times the character can jump after the default [method jump] method is triggered and before the release_jump() method is called. For example, to enable double jump for the character, you should set this to 2.
-			[param value]: A value to set.
+				[param value]: A value to set.
 			</description>
 		</method>
 		<method name="set_moving_floor_snap_offset">
@@ -204,7 +204,7 @@
 			<param index="0" name="value" type="float" />
 			<description>
 				Sets the offset required for the character to stick to and move along with moving platforms.
-			[param value]: A value to set.
+				[param value]: A value to set.
 			</description>
 		</method>
 		<method name="set_specific_platform_layers">
@@ -212,8 +212,8 @@
 			<param index="0" name="value" type="int" />
 			<description>
 				Sets specific platform layers bit. This determines which platform layers the platformer physics will apply to, such as sloped surfaces, ceilings, walls, etc. The default value is 0, which disables this functionality. 
-			[b]Note:[/b] The character can still interact with bodies in the physics world that are set to the layers specified for collision, but platformer-specific behavior (like gravity and movement on slopes) will be applied only to the specified platform layers. 
-			[param value]: The bitmask representing the platform layers.
+				[b]Note:[/b] The character can still interact with bodies in the physics world that are set to the layers specified for collision, but platformer-specific behavior (like gravity and movement on slopes) will be applied only to the specified platform layers. 
+				[param value]: The bitmask representing the platform layers.
 			</description>
 		</method>
 		<method name="set_walk_aceleration_rate">
@@ -221,7 +221,7 @@
 			<param index="0" name="value" type="float" />
 			<description>
 				Sets the walking acceleration rate.
-			[param value]: A value to set.
+				[param value]: A value to set.
 			</description>
 		</method>
 		<method name="set_walk_deceleration_rate">
@@ -229,7 +229,7 @@
 			<param index="0" name="value" type="float" />
 			<description>
 				Sets the walking deceleration rate.
-			[param value]: A value to set.
+				[param value]: A value to set.
 			</description>
 		</method>
 		<method name="set_walk_speed">
@@ -237,7 +237,7 @@
 			<param index="0" name="value" type="float" />
 			<description>
 				Sets the walking speed of the character.
-			[param value]: A value to set.
+				[param value]: A value to set.
 			</description>
 		</method>
 		<method name="walk">
@@ -245,7 +245,7 @@
 			<param index="0" name="side" type="int" />
 			<description>
 				Moves the body in a specified horizontal direction.
-			[param side]: The direction (-1 for left, 1 for right, 0 for no movement).
+				[param side]: The direction (-1 for left, 1 for right, 0 for no movement).
 			</description>
 		</method>
 	</methods>
@@ -276,7 +276,7 @@
 		</member>
 		<member name="specific_platform_layers" type="int" setter="set_specific_platform_layers" getter="get_specific_platform_layers" default="0">
 			Sets specific platform layers bit. This determines which platform layers the platformer physics will apply to, such as sloped surfaces, ceilings, walls, etc. The default value is 0, which disables this functionality. 
-		[b]Note:[/b] The character can still interact with bodies in the physics world that are set to the layers specified for collision, but platformer-specific behavior (like gravity and movement on slopes) will be applied only to the specified platform layers.
+			[b]Note:[/b] The character can still interact with bodies in the physics world that are set to the layers specified for collision, but platformer-specific behavior (like gravity and movement on slopes) will be applied only to the specified platform layers.
 		</member>
 		<member name="walk_aceleration_rate" type="float" setter="set_walk_aceleration_rate" getter="get_walk_aceleration_rate" default="0.1">
 			Sets the walking acceleration rate.

@@ -14,7 +14,6 @@ func _ready() -> void:
 	#Using "collision" signal to handle collisions
 	connect("collision",on_collision)
 	pass 
-
 	
 func _physics_process(delta: float) -> void:
 	#Walk 

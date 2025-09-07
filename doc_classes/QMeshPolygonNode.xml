@@ -4,7 +4,7 @@
 	</brief_description>
 	<description>
 		QMeshPolygonNode provides various settings to help you create meshes based on regular polygons.
-	[b]Note:[/b] These helper types of QMeshNode, once added to the scene, are converted into a typical QMeshNode with particles, spring connections, UV mappings, and a polygon. After being added to the scene, all modifications and adjustments should be done using the general methods of QMeshNode, rather than the member properties defined here.
+		[b]Note:[/b] These helper types of QMeshNode, once added to the scene, are converted into a typical QMeshNode with particles, spring connections, UV mappings, and a polygon. After being added to the scene, all modifications and adjustments should be done using the general methods of QMeshNode, rather than the member properties defined here.
 	</description>
 	<tutorials>
 	</tutorials>
