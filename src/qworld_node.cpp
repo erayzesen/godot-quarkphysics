@@ -49,7 +49,7 @@ Array QWorldNode::get_collisions(Object *bodyA, Object *bodyB) {
 		godot::UtilityFunctions::printerr("Quark Physics Error: Not valid body type : bodyB | QWorldNode.get_collisions() ");
 		return res;
 	}
-	auto contacts=worldObject->GetCollisions(qbodyA->bodyObject,qbodyB->bodyObject);
+	auto contacts=worldObject->GetCollisions(qbodyA->bodyObject,qbodyB->bodyObject,false);
 	for(int i=0;i<contacts.size();i++){
 		QCollision::Contact *oc=contacts[i];
 		Dictionary c;
