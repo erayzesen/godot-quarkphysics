@@ -279,23 +279,28 @@ public:
 	 * Performs the collision of the body and returns a contact list as a collision result. 
 	 * @param bodyA A body in the world.
 	 * @param bodyB Another body in the world.
+	 * @param applyHotSolvers Determines whether hot collision solvers are applied during the collision test.  If the purpose is solely to perform the test, this should be set to false.
 	 */
-	static vector<QCollision::Contact*> GetCollisions(QBody *bodyA, QBody *bodyB);
+	static vector<QCollision::Contact*> GetCollisions(QBody *bodyA, QBody *bodyB,bool applyHotSolvers=true);
 
 
-	/**Adds a body to the world
+	/**
+	 * Adds a body to the world
 	 * @param body A body to be added
 	 */
 	QWorld *AddBody(QBody *body);
-	/**Adds a body group to the world
+	/**
+	 * Adds a body group to the world
 	 * @param bodyGroup A collection of bodies to be added
 	 */
 	QWorld *AddBodyGroup(const vector<QBody*> &bodyGroup);
-	/**Removes body from the world.
+	/**
+	 * Removes body from the world.
 	 * @param body A body to be removed.
 	 */
 	QWorld *RemoveBody(QBody *body);
-	 /**Removes the body from the world at the specified index.
+	 /**
+	  * Removes the body from the world at the specified index.
 	  * The index of a body can be obtained using the GetBodyIndex() method.
 	  * @param index The index of the body to remove.
 	  */

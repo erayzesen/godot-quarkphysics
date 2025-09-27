@@ -635,7 +635,7 @@ vector<QManifold> QWorld::TestCollisionWithWorld(QBody *body)
 						mesh->UpdatePolygonBisectors();
 					}
 
-					vector<QCollision::Contact*> contacts=GetCollisions(body,otherBody);
+					vector<QCollision::Contact*> contacts=GetCollisions(body,otherBody,false);
 					if(contacts.size()>0){
 						QManifold manifold(body,otherBody);
 						manifold.contacts=contacts;
@@ -924,7 +924,7 @@ bool QWorld::CheckCollisionException(QBody *bodyA, QBody *bodyB)
 
 
 //Collision Constraints and Response Between Bodies
-vector<QCollision::Contact*> QWorld::GetCollisions(QBody *bodyA, QBody *bodyB){
+vector<QCollision::Contact*> QWorld::GetCollisions(QBody *bodyA, QBody *bodyB,bool applyHotSolvers){
 	vector<QCollision::Contact*> contactList;
 
 	vector<QMesh*>* meshesA=bodyA->GetMeshes();
@@ -1014,11 +1014,15 @@ vector<QCollision::Contact*> QWorld::GetCollisions(QBody *bodyA, QBody *bodyB){
 					QCollision::CircleAndPolygon(polygonMesh->polygon,polylineMesh->polygon,contactList);
 				}else{
 					vector<QCollision::Contact*> hotContactList;
-					QManifold hotManifold(bodyA,bodyB);
-					QCollision::CircleAndPolygon(polylineMesh->polygon,polygonMesh->polygon,hotContactList);
-					hotManifold.contacts=hotContactList;
-					hotManifold.Solve();
-					hotManifold.SolveFrictionAndVelocities();
+					if (applyHotSolvers){
+						QManifold hotManifold(bodyA,bodyB);
+						QCollision::CircleAndPolygon(polylineMesh->polygon,polygonMesh->polygon,hotContactList);
+						hotManifold.contacts=hotContactList;
+						hotManifold.Solve();
+						hotManifold.SolveFrictionAndVelocities();
+					}else{
+						QCollision::CircleAndPolygon(polylineMesh->polygon,polygonMesh->polygon,contactList);
+					}
 					
 					QCollision::PolylineAndPolygon(polylineMesh->polygon,polygonMesh->polygon,contactList);
 					
