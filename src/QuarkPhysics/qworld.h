@@ -280,7 +280,7 @@ public:
 	 * @param bodyA A body in the world.
 	 * @param bodyB Another body in the world.
 	 */
-	static vector<QCollision::Contact*> GetCollisions(QBody *bodyA, QBody *bodyB);
+	static vector<QCollision::Contact*> GetCollisions(QBody *bodyA, QBody *bodyB,bool applyHotSolvers=true);
 
 
 	/**Adds a body to the world
