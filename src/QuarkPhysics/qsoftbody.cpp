@@ -307,7 +307,7 @@ void QSoftBody::ApplyShapeMatching()
 		float averageRotation;
 		if(enableShapeMatchingFixedTransform){
 			averagePosition=shapeMatchingFixedPosition;
-			averageRotation=shapeMatchingFixedRotation;
+			averageRotation=-shapeMatchingFixedRotation;
 		}else{
 			auto averagePositionAndRotation=QMesh::GetAveragePositionAndRotation(particles);
 			averagePosition=averagePositionAndRotation.first;

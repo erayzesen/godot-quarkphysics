@@ -691,6 +691,7 @@ void QMeshNode::on_post_enter_tree() {
             for(int i=0;i<meshObject->GetParticleCount();i++ ){ //particles
                 Ref<QParticleObject> p=memnew( QParticleObject(meshObject->GetParticleAt(i)) );
                 particleObjects.push_back(p);
+                p->ownerMeshNode=this;
             }
             for(int i=0;i<meshObject->GetSpringCount();i++ ){ //springs
                 Ref<QSpringObject> s=memnew( QSpringObject(meshObject->GetSpringAt(i)) );
@@ -1328,6 +1329,7 @@ QMeshNode *QMeshNode::add_particle(Ref<QParticleObject> particle_object) {
     }
     particleObjects.push_back(particle_object);
     meshObject->AddParticle(particle_object->particleObject);
+    particle_object->ownerMeshNode=this;
     
 	return this;
 }
@@ -1399,6 +1401,7 @@ QMeshNode *QMeshNode::remove_particle_at(int index) {
 
     particleObjects.erase(particleObjects.begin()+index);
     meshObject->RemoveParticleAt(index);
+    particle_object->ownerMeshNode=nullptr;
 	return this;
 }
 
