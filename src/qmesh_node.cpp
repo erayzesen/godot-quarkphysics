@@ -1328,6 +1328,7 @@ QMeshNode *QMeshNode::add_particle(Ref<QParticleObject> particle_object) {
     }
     particleObjects.push_back(particle_object);
     meshObject->AddParticle(particle_object->particleObject);
+    particle_object->ownerMeshNode=this;
     
 	return this;
 }
@@ -1399,6 +1400,7 @@ QMeshNode *QMeshNode::remove_particle_at(int index) {
 
     particleObjects.erase(particleObjects.begin()+index);
     meshObject->RemoveParticleAt(index);
+    particle_object->ownerMeshNode=nullptr;
 	return this;
 }
 

@@ -1206,7 +1206,7 @@ bool QWorld::SortBodiesVertical(const QBody *bodyA, const QBody *bodyB)
 				 }
 
 				 for(auto spring:mesh->springs){
-					 spring->Update(sBody->GetRigidity()*ts,sBody->GetPassivationOfInternalSpringsEnabled(),false);
+					 spring->Update( (sBody->GetRigidity()*spring->GetRigidity())*ts,sBody->GetPassivationOfInternalSpringsEnabled(),false);
 				 }
 
 				 for(auto particle:mesh->particles){
