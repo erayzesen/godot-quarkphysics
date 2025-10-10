@@ -1206,7 +1206,7 @@ bool QWorld::SortBodiesVertical(const QBody *bodyA, const QBody *bodyB)
 				 }
 
 				 for(auto spring:mesh->springs){
-					 spring->Update( (sBody->GetRigidity()*spring->GetRigidity())*ts,sBody->GetPassivationOfInternalSpringsEnabled(),false);
+					 spring->Update( (sBody->GetRigidity()*spring->GetRigidity()),sBody->GetPassivationOfInternalSpringsEnabled(),false);
 				 }
 
 				 for(auto particle:mesh->particles){
@@ -1221,7 +1221,7 @@ bool QWorld::SortBodiesVertical(const QBody *bodyA, const QBody *bodyB)
 				 }
 
 				 for(auto angleConstraint:mesh->angleConstraints){
-					 angleConstraint->Update(angleConstraint->GetRigidity()*ts,false);
+					 angleConstraint->Update(angleConstraint->GetRigidity(),false);
 				 }
 
 				 for(auto particle:mesh->particles){
