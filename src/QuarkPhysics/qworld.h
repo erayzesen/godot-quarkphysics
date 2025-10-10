@@ -246,7 +246,43 @@ public:
 	 * @param value A value to set.
 	 */
 	QWorld *SetTimeScale(float value=1.0f){
-		timeScale=value;
+		if (timeScale!=value){
+			float velocityTimeScaleFactor=0.0f;
+			if(timeScale!=0){
+				if (value<timeScale){
+					velocityTimeScaleFactor=1/timeScale*value;
+				}else{
+					velocityTimeScaleFactor=1.0f;
+				}
+			}
+			
+			
+			for (auto body:bodies){
+				if(body->enableBodySpecificTimeScale==false){
+					//recalculate velocities
+					if (body->bodyType==QBody::BodyTypes::RIGID){
+						QVector vel=body->GetPosition()-body->GetPreviousPosition();
+						vel*=velocityTimeScaleFactor;
+						body->SetPreviousPosition(body->GetPosition()-vel);
+						float rotVel=body->GetRotation()-body->GetPreviousRotation();
+						rotVel*=velocityTimeScaleFactor;
+						body->SetPreviousRotation(body->GetRotation()-rotVel);
+					}else if(body->bodyType!=QBody::BodyTypes::AREA){
+						for(auto mesh :body->_meshes){
+							for (auto particle :mesh->particles){
+								QVector vel=particle->GetGlobalPosition()-particle->GetPreviousGlobalPosition();
+								vel*=velocityTimeScaleFactor;
+								particle->SetPreviousGlobalPosition(particle->GetGlobalPosition()-vel );
+							}
+						}
+					}
+					body->WakeUp();
+						
+					
+				}
+			}
+			timeScale=value;
+		}
 		return this;
 	}
 
