@@ -249,8 +249,13 @@ public:
 		if (timeScale!=value){
 			float velocityTimeScaleFactor=0.0f;
 			if(timeScale!=0){
-				velocityTimeScaleFactor=1/timeScale*value;
+				if (value<timeScale){
+					velocityTimeScaleFactor=1/timeScale*value;
+				}else{
+					velocityTimeScaleFactor=1.0f;
+				}
 			}
+			
 			
 			for (auto body:bodies){
 				if(body->enableBodySpecificTimeScale==false){

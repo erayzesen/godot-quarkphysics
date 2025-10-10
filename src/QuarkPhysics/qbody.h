@@ -578,11 +578,15 @@ protected:
 		 */
 		QBody *SetBodySpecificTimeScale(float value){
 			if (bodySpecificTimeScale!=value){
-				if(enableBodySpecificTimeScale){
+				if(enableBodySpecificTimeScale ){
 					//recalculate velocities
 					float velocityTimeScaleFactor=0.0f;
 					if(bodySpecificTimeScale!=0){
-						velocityTimeScaleFactor=(1/bodySpecificTimeScale)*value;
+						if (value<bodySpecificTimeScale){
+							velocityTimeScaleFactor=(1/bodySpecificTimeScale)*value;
+						}else{
+							velocityTimeScaleFactor=1.0f;	
+						}
 					}
 					
 					if (bodyType==BodyTypes::RIGID){
@@ -600,11 +604,11 @@ protected:
 								particle->SetPreviousGlobalPosition(particle->GetGlobalPosition()-vel );
 							}
 						}
-					}
-					WakeUp();
-						
+					}	
 					
 				}
+				WakeUp();
+
 				bodySpecificTimeScale=value;
 			}
 			return this;
