@@ -1,6 +1,8 @@
 #ifndef REGISTER_QUARKPHYSICS_TYPES_H
 #define REGISTER_QUARKPHYSICS_TYPES_H
 
+#pragma once
+
 #include <godot_cpp/core/class_db.hpp>
 
 using namespace godot;
