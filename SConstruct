@@ -56,5 +56,5 @@ else:
         "project/addons/quarkphysics/bin/libquarkphysics{}{}".format(env["suffix"], env["SHLIBSUFFIX"]),
         source=sources,
     )
-
+env.NoCache(library)
 Default(library)

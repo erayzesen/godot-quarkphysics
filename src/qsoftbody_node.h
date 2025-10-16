@@ -30,6 +30,7 @@
 
 #include "qbody_node.h"
 #include "QuarkPhysics/qsoftbody.h"
+#include <iostream>
 
 class QSoftBodyNode : public QBodyNode {
     GDCLASS(QSoftBodyNode,QBodyNode);
